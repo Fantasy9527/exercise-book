@@ -1,0 +1,22 @@
+{
+  "name": "Exercise-Book",
+  "version": "1.0.0",
+  "description": "http-server",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incomparable9527/Exercise-Book.git"
+  },
+  "author": "Fan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/incomparable9527/Exercise-Book/issues"
+  },
+  "homepage": "https://github.com/incomparable9527/Exercise-Book#readme"
+}
