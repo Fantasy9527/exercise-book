@@ -1,0 +1,120 @@
+<div class="panel-body">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-default bg-default">
+				<div class="panel-body">
+					<form ng-if="showEditTeam==1" name="editForm" ng-submit="saveModel()">
+						<small class="text-muted">群组名称</small>
+						<input type="text" class="form-control input-md" ng-model="model.shopManager.name" placeholder="群组名称" maxlength="12" />
+						<small class="text-muted gap-top">备注，可以为空</small>
+						<input type="text" class="form-control input-md" ng-model="model.shopManager.remark" placeholder="备注" />
+						<div class="gap-top">
+							<input type="submit" class="btn btn-info btn-sm" value="保存">
+							<a class="btn btn-default btn-sm gap-left" ng-click="cancelModel()">取消</a>
+						</div>
+					</form>
+					<div ng-if="showEditTeam==-1">
+						<div class="pull-left">
+							<strong class="font-16 text-bold">{{model.shopManager.name}}</strong>
+							<br/>
+						</div>
+						<!--
+		                <div class="pull-right">
+		                  <span ng-click="editTeam()" data-toggle="tooltip" title="编辑" class="pull-right">@ui.fa("edit fa-lg")</span>
+		                </div> -->
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div>
+						<small class="text-muted">成员数: {{model.managers.length}}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="panel panel-default bg-default">
+				<div class="panel-tab clearfix">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#" data-toggle="tab"><i class="fa fa-user"></i> 成员</a></li>
+					</ul>
+				</div>
+				<div class="panel-body">
+					<div class="tab-content">
+						<div class="tab-pane fade active in">
+							<div class="btn-group">
+								<button type="button" ng-click='addManager()' class="btn btn-sm btn-success">
+									<i class="fa fa-plus"></i> 新增成员
+								</button>
+							</div>
+							<form ng-if="showAddModel==1" name="queryForm" ng-submit="saveQueryModel()" class="row gap-top">
+								<div class="col-md-5" ng-class='{"has-error":queryForm.email.$invalid && queryForm.email.$dirty}'>
+									<input type="text" class="form-control input-md" name="email" ng-model="queryModel.account" placeholder="成员邮箱或者手机号" required autofocus>
+									<div class="error" ng-show="queryForm.email.$invalid && queryForm.email.$dirty" style="color:#bb4442;"><small>邮箱或手机为空或格式不正确</small></div>
+								</div>
+								<div class="col-md-7">
+									<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-search fa-lg"></i> 查找</button>
+									<button type="button" ng-click='cancelQueryModel()' class="btn btn-sm btn-default">取消</button>
+								</div>
+							</form>
+							<form ng-if="showAddModel==3" ng-submit="saveAddModel()" class="row gap-top" name="addForm">
+								<div class="col-md-12">
+									<div class="alert alert-warning" role="alert">
+										该账号不存在，您现在可以创建它。
+									</div>
+								</div>
+									<div class="panel-body">
+										<div class="form-group">
+											<label>邮箱</label>
+											<input type="text" class="form-control input-md" ng-model="addModel.email" >
+											<!-- ng-readonly="addReadonly=='email'" -->
+										</div>
+										<div class="form-group">
+											<label>手机</label>
+												<input type="phone" class="form-control input-md" name="phone" ng-model="addModel.mobile" placeholder="手机" >
+												<!-- ng-readonly="addReadonly=='mobile'" -->
+										</div>
+										<div class="form-group">
+											<label>姓名</label>
+												<input type="text" class="form-control input-md" name="name" ng-model="addModel.name" placeholder="姓名">
+										</div>
+										<div class="form-group">
+											<label>密码</label>
+												<input type="password" class="form-control input-md" ng-model="addModel.password" placeholder="密码">
+										</div>
+										<div class="pull-right">
+											<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-plus fa-lg"></i> 创建账号</button>
+											<button type="button" ng-click='cancelQueryModel()' class="btn btn-sm btn-default">取消</button>
+										</div>
+									</div>
+							</form>
+
+							<div ng-if="showAddModel==2" class="row gap-top">
+								<div class="col-md-12">
+									<div class="alert alert-warning" role="alert">
+										{{queryModel.email}} 已存在，是否要添加到 {{model.shopManager.name}} 群组中?
+									</div>
+								</div>
+								<div class="col-md-4 gap-top">
+									<span class='text-bold h4'>{{queryModel.email}}</span> <small class="text-muted">{{existModel.name}}</small>
+								</div>
+								<div class="col-md-8">
+									<button type="button" ng-click="saveExistModel()" class="btn btn-sm btn-danger"><i class="fa fa-plus fa-lg"></i> 添加到 {{model.shopManager.name}} 群组</button>
+									<button type="button" ng-click='cancelQueryModel()' class="btn btn-sm btn-default">取消</button>
+								</div>
+							</div>
+
+							<div class="panel panel-default gap-top" intro='fade' outro='fade'>
+								<ul class="list-group">
+									<li class="list-group-item" ng-repeat="manager in model.managers">
+										<span class='m-right-xs gap-left'>{{manager.email}}</span> <small class="text-muted">{{manager.name}}</small>
+										<span title="移除该成员" data-toggle="tooltip" data-placement="top" class="pull-right" ng-click="removeManager(manager.id)"><i class="fa fa-minus-circle fa-lg"></i></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

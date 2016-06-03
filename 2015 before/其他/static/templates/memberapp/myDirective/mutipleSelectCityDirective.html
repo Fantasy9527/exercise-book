@@ -1,0 +1,23 @@
+<div ng-if="showCityMutSelectArea==1" class="form-group" style="margin-left: 90px;"> 
+	  <form> 
+		  <div class="side-by-side clearfix">
+			<div style="width:360px;height:auto;" ng-click="showOrHideSelectArea()" class="fadeInUp animation-delay1" >
+				<select ng-if="showSelectArea==1" class="form-control" style="width:100%;height:29px;" >								
+				</select>
+				<div ng-if="showSelectArea==-1" style="border:1px solid #AAAAAA;padding:5px;">
+					<span ng-repeat="selectedCity in selectedCities">
+						<a class="btn btn-default fadeInUp animation-delay1" style="font-size: 12px !important;margin:3px;" ng-click="removeSelectedCity(selectedCity.id)">{{selectedCity.name}}<image src="/assets/images/delete.png" style="margin-left:5px;"></image></a>
+					</span>
+				</div>
+			</div>														
+			 <div ng-if="showingView==1" class="form-group user-defined-shadow" style="z-index:9999;border:1px solid #AAAAAA; width:360px;height:360px;position:absolute;overflow-x:auto;background-color:#F9F9F9;"  >
+				<ul ng-repeat="province in provinces" label="province.name" class="list-inline" style="margin-left:10px;margin-top:3px;">
+					<ul class="list-inline" style="font-weight:bold;">{{province.name}}</ul>
+					<li ng-repeat="city in province.cities" style="width:25%;" ng-mouseover="mouseOver(city.id)" ng-click="selectCity(city.id)" >
+						<a class="btn" ng-class="{'mutiple-selected':city.active==1,'getFocus':city.id==isFocus}" href="">{{city.name}}</a>
+					</li>
+				</ul>
+			 </div>
+		  </div>
+	  </form>
+</div>	

@@ -1,0 +1,72 @@
+<div class="fadeInDown" ng-hide="isLoding">
+  <div class="card-box">
+    <div class="card-back-t"> </div>
+    <div class="card-main">
+      <a href="#/swingCard?authId={{authId}}&sn={{model.sn}}">
+        <img src="./images/card.png" ng-src="{{model.memberTypes.imageUrl}}" alt="">
+        <p class="card-name">{{model.memberTypes.name}}</p>
+        <p class="card-sn">{{model.memberCard}}</p>
+      </a>
+      <div class="qr-icon"></div>
+    </div>
+  </div>
+  <ul class="list-box list-box-nobor">
+    <li class="bind" ng-hide="model.isFill" ng-click="" ui-sref="bind({authId:{{authId}}})">
+      <a href=""> <i></i>
+        <div class="list-c">绑定实体会员卡</div> <i class="list-icon"></i> </a>
+    </li>
+    <li class="vip" ng-click="" ui-sref="vip({authId:{{authId}}})">
+      <a href=""> <i></i>
+        <div class="list-c">会员特权</div> <i class="list-icon"></i> </a>
+    </li>
+  </ul>
+  <ul class="list-box list-box-nobor">
+
+    <li class="balance" ng-click="goBalance()">
+      <a><i></i>
+        <div class="list-c">会员充值
+          <span class="f-fr">{{model.charge_balance+model.gift_balance | currency:""}}元</span>
+        </div>
+        <i class="list-icon"></i>
+      </a>
+    </li>
+    <li class="jifen" ng-click>
+      <a href=""> <i></i>
+        <div class="list-c">我的积分
+          <span class="f-fr">{{model.point}}</span>
+        </div>
+      </a>
+    </li>
+    <li class="quan" ui-sref="coupon({authId:{{authId}}})" ng-click>
+      <a href=""> <i></i>
+        <div class="list-c">我的券
+          <span class="f-fr" ng-show="!!model.voucherCount">{{model.voucherCount}}张</span>
+        </div> <i class="list-icon"></i> </a>
+    </li>
+  </ul>
+
+  <div class="list-warning" ng-hide="model.voucher==null||model.isFill"> {{model.voucher.promotionName}} </div>
+  <ul class="list-box">
+    <li class="user" ui-sref="fillMaterial({authId:{{authId}}})" ng-click>
+      <a href=""> <i></i>
+        <div class="list-c">{{model.isFill?"个人信息":"完善个人资料"}}</div> <i class="list-icon"></i> </a>
+    </li>
+    <li class="zhangdan" ui-sref="account({authId:{{authId}}})" ng-click>
+      <a href=""> <i></i>
+        <div class="list-c">消费记录</div> <i class="list-icon"></i> </a>
+    </li>
+  </ul>
+  <div class="phone-detail f-cb" ui-sref="shops">
+    <div class="f-fl">
+      <p ng-class="{'no-remark':!model.brands.remark}">{{model.brands.name}}</p>
+      <p>{{model.brands.remark}}</p>
+    </div> <i class="list-icon"></i>
+    <!--<div class="list-phone"></div>--></div>
+</div>
+<!-- <div class="spinner fadeInDown" ng-show="isLoding">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+</div> -->

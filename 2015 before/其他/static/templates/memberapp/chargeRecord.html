@@ -1,0 +1,65 @@
+<div class="panel-tab clearfix">
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="#/memberDetail/{{memberId}}" >
+                <i class="fa fa-user"></i> 基本资料
+            </a>
+        </li>
+        <li>
+            <a href="#/expenseRecord/{{memberId}}" >
+                <i class="fa fa-edit"></i> 消费记录
+            </a>
+        </li>
+        <li class="active">
+            <a href="#/payRecord/{{memberId}}" >
+                <i class="fa fa-tasks"></i> 充值记录
+            </a>
+        </li>
+        <li>
+            <a href="#/hanginAccount/{{memberId}}" >
+                <i class="fa fa-pencil fa-lg"></i> 挂账结算
+            </a>
+        </li>
+        <li>
+            <a href="#/putUpRecord/{{memberId}}" >
+                <i class="fa fa-bookmark fa-lg"></i> 挂单记录
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="panel-body">
+    <div ng-if="models.length==0" style="text-align:center;">
+        <label class="normal">无充值记录</label>
+    </div>
+    <table ng-if="models.length>0" class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+            <th class="text-center">序号</th>
+            <th class="text-center">流水号</th>
+            <th class="text-center">充值金额</th>
+            <th class="text-center">赠送金额</th>
+            <th class="text-center">现金</th>
+            <th class="text-center">银行卡</th>
+            <th class="text-center">支付宝</th>
+            <th class="text-center">微信</th>
+            <th class="text-center">营销员</th>
+            <th class="text-center">收银员</th>
+            <th class="text-center">充值时间</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="model in models">
+                <td class="text-center" ng-bind="$index+1"></td>
+                <td class="text-center" ng-bind="model.local_sn"></td>
+                <td class="text-center" ng-bind="model.charge_value"></td>
+                <td class="text-center" ng-bind="model.gift_value"></td>
+                <td class="text-center" ng-bind="model.cashPay.amount"></td>
+                <td class="text-center" ng-bind="model.cardPay.amount"></td>
+                <td class="text-center" ng-bind="model.aliPay.amount"></td>
+                <td class="text-center" ng-bind="model.weixinPay.amount"></td>
+                <td class="text-center" ng-bind="model.saleStaff.name"></td>
+                <td class="text-center" ng-bind="model.staff.name"></td>
+                <td class="text-center" ng-bind="model.create_on"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div page></div>
+</div>

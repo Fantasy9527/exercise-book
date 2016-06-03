@@ -1,0 +1,252 @@
+<div class="panel panel-default add-product" id="container">
+  <script id="tpl" type="text/ractive">
+<div class="panel-body" >
+<div class="row" >
+<div class="col-md-8" >
+<div class="btn-toolbar" >
+<div class="btn-group" >
+          <button type="button" class="btn btn-sm btn-success" on-click="OnAddModel">
+<i class="fa fa-plus"></i>
+ 新增打印机</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-4" >
+
+
+<div class="input-group" >
+
+        <input type="text" class="form-control input-sm">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-sm btn-default">查找</button>
+        </div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="row" >
+
+
+<div class="col-md-12" >
+
+            <table class="table table-striped gap-top">
+              <thead>
+                <tr>
+                  <th width="40px">#</th>
+                  <th >名称</th>
+                  <th class="text-center">打印机类型</th>
+                  <th class="text-center">状态</th>
+                  <th class="text-center">IP 地址</th>
+                  <th class="text-center">端口</th>
+                  <th class="text-center">串口号</th>
+                  <th class="text-center">波特率</th>
+                  <th class="text-center">尺寸</th>
+                  <th class="text-center">备注</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#editing == 0}}
+
+  <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+    <td>{{editing == 0 ? '' : num+1}}</td>
+    <td>
+      <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1"/>
+      <small class="text-muted">打印机名称</small>
+    </td>
+    <td>
+      <select class="form-control input-md" value="{{editingModel.printerType}}">
+        {{#printerTypes}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/printerTypes}}
+      </select>
+      <small class="text-muted">打印机类型：分为串口打印机和网口打印机</small>
+    </td>
+    <td>
+      <select class="form-control input-md" value="{{editingModel.state}}">
+        {{#states}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/states}}
+      </select>
+      <small class="text-muted">打印机的状态</small>
+    </td>
+    {{#editingModel.printerType == 1}}
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.ip}}" data-required="true" data-minlength="1"/>
+        <small class="text-muted">网口打印机的 IP 地址</small>
+      </td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.ipPort}}" data-required="true" data-range="[1, 65535]"/>
+        <small class="text-muted">网口打印机的 IP 端口</small>
+      </td>
+      <td></td>
+      <td></td>
+    {{/}}
+    {{#editingModel.printerType == 2}}
+      <td></td>
+      <td></td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.serialPort}}" data-required="true" data-minlength="1"/>
+        <small class="text-muted">串口打印机的串口号</small>
+      </td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.baudRate}}" data-required="true" data-min="1"/>
+        <small class="text-muted">串口打印机的波特率</small>
+      </td>
+    {{/}}
+
+     <td>
+      <select class="form-control input-md" value="{{editingModel.printerWidth}}">
+        {{#printerWidths}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/printerWidths}}
+      </select>
+      <small class="text-muted">打印机的尺寸</small>
+    </td>
+    <td>
+      <input type="text" class="form-control input-md" value="{{editingModel.remark}}"/>
+      <small class="text-muted">备注</small>
+
+<div class="gap-top" >
+
+        <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+        {{#editing > 0}}
+          <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+        {{/}}
+
+</div>
+
+    </td>
+  </tr>
+
+                {{/editing == 0}}
+                {{#models:num}}
+                  {{#editing == .id}}
+
+  <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+    <td>{{editing == 0 ? '' : num+1}}</td>
+    <td>
+      <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1"/>
+      <small class="text-muted">打印机名称</small>
+    </td>
+    <td>
+      <select class="form-control input-md" value="{{editingModel.printerType}}">
+        {{#printerTypes}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/printerTypes}}
+      </select>
+      <small class="text-muted">打印机类型：分为串口打印机和网口打印机</small>
+    </td>
+    <td>
+      <select class="form-control input-md" value="{{editingModel.state}}">
+        {{#states}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/states}}
+      </select>
+      <small class="text-muted">打印机的状态</small>
+    </td>
+    {{#editingModel.printerType == 1}}
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.ip}}" data-required="true" data-minlength="1"/>
+        <small class="text-muted">网口打印机的 IP 地址</small>
+      </td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.ipPort}}" data-required="true" data-range="[1, 65535]"/>
+        <small class="text-muted">网口打印机的 IP 端口</small>
+      </td>
+      <td></td>
+      <td></td>
+    {{/}}
+    {{#editingModel.printerType == 2}}
+      <td></td>
+      <td></td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.serialPort}}" data-required="true" data-minlength="1"/>
+        <small class="text-muted">串口打印机的串口号</small>
+      </td>
+      <td>
+        <input type="text" class="form-control input-md" value="{{editingModel.baudRate}}" data-required="true" data-min="1"/>
+        <small class="text-muted">串口打印机的波特率</small>
+      </td>
+    {{/}}
+
+     <td>
+      <select class="form-control input-md" value="{{editingModel.printerWidth}}">
+        {{#printerWidths}}
+        <option value="{{.id}}">{{.name}}</option>
+        {{/printerWidths}}
+      </select>
+      <small class="text-muted">打印机的尺寸</small>
+    </td>
+    <td>
+      <input type="text" class="form-control input-md" value="{{editingModel.remark}}"/>
+      <small class="text-muted">备注</small>
+
+<div class="gap-top" >
+
+        <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+        {{#editing > 0}}
+          <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+        {{/}}
+
+</div>
+
+    </td>
+  </tr>
+
+                  {{/editing == .id}}
+                  {{#editing != .id}}
+
+  <tr>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+    <td class="" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{._printerType.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{._state.name}}</td>
+    {{#.printerType == 1}}
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.ip}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.ipPort}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}"></td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}"></td>
+    {{/.printerType == 1}}
+    {{#.printerType == 2}}
+    <td class="text-center" on-click="OnEditModel:{{.id}}"></td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}"></td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.serialPort}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.baudRate}}</td>
+    {{/.printerType == 2}}
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{._printerWidth.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.remark}}</td>
+  </tr>
+
+                  {{/editing != .id}}
+                {{/models}}
+              </tbody>
+            </table>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</script>
+
+</div>

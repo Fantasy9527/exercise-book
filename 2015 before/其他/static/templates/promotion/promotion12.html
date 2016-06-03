@@ -1,0 +1,185 @@
+<div class="row">
+  <div class="col-lg-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a class="return-up" ui-sref="promotion">
+          <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级
+        </a>
+        <i class="glyphicon glyphicon-list"></i> 填资料赠券
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal form-border" name="promotionForm" novalidate>
+          <div class="panel panel-default">
+            <div class="panel-heading ">
+              <strong>基本信息</strong>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-lg-2 control-label">活动名称 :</label>
+                <div class="col-lg-10" ng-class="{'has-error':promotionForm.activity.$invalid&&promotionForm.activity.$dirty}">
+                  <input class="form-control" type="text" name="activity" placeholder="活动名称" ng-model="activity" required datepicker-dir>
+                  <label class="control-label" ng-show="promotionForm.activity.$invalid&&promotionForm.activity.$dirty">必填项</label>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">开始时间 :</label>
+                <div class="col-lg-10" ng-class="{'has-error':promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty}">
+                  <div class="input-group" ng-class="{'parsley-error':promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty}">
+                    <input name="promotionBeginTime" ng-model="promotionBeginTime" class="form-control
+                             datepicker
+                             datepickerTime
+                             time-cursor-pointer" type="text" placeholder="开始时间" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" datepicker-dir readonly required>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <label class="control-label" ng-show="promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty">必填项</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group errorTime">
+                <div class="alert alert-warning col-lg-10 col-lg-offset-2" ng-show="warningTime">
+                  <strong>警告!</strong> 结束时间早于开始时间，请检查
+                </div>
+                <label class="col-lg-2 control-label">结束时间 :</label>
+                <div class="col-lg-10" ng-class="{'has-error':promotionForm.promotionEndTime.$invalid&&promotionForm.promotionEndTime.$dirty}">
+                  <div class="input-group">
+                    <input type="text" name="promotionEndTime" ng-model="promotionEndTime" class="form-control datepicker datepickerTime time-cursor-pointer" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" placeholder="结束时间" datepicker-dir readonly>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <label class="control-label" ng-show="promotionForm.promotionEndTime.$invalid&&promotionForm.promotionEndTime.$dirty">必填项</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-2 control-label">微信公众号 :</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model='weixin'>
+                    <option ng-repeat="x in WeixinData" value="{{x.appid}}">{{x.name}}</option>
+                  </select>
+                </div>
+              </div>
+               
+               <div class="form-group">
+                <label class="col-lg-2 control-label">备注 :</label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" rows="3" style="resize:none" ng-model="remark"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="panel panel-default">
+            <div class="panel-heading ">
+              <strong>添加代金券</strong>
+            </div>
+            <div class="panel-body">
+              <div class="f-pr">
+                <button class="btn btn-sm btn-success" type="button" ng-click="addVoucherTable()"><i class="fa fa-plus"></i> 添加券</button>
+                <div class="dropdown-menu" style="width:460px; display:block;" ng-show="addVoucherShow">
+                  <div class="panel-heading ">
+                    <strong>可添加的代金券
+                        </strong>
+                    <button type="button" class="close" ng-click="closeTable()">
+                      ×
+                    </button>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-5 col-sm-5">
+
+                      </div>
+                      <div class="col-md-5 col-sm-5">
+
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <a class="btn btn-success pull-right" ng-click="addVoucher()">
+                                    添加
+                                </a>
+                      </div>
+                      <div class="padding-md">
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-striped table-hover" style="margin-bottom:0;" id="responsiveTable">
+                    <thead>
+                      <tr>
+                        <th style="width:15px;">
+                          <label class="label-checkbox">
+                            <input type="checkbox" ng-click="selFoodChkAll()" ng-model="chkAllBtn" id="chk-all">
+                            <span class="custom-checkbox">
+                                        </span>
+                          </label>
+                        </th>
+                        <th class="text-left">
+                          代金券名称
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+                  <div class="table-overflow-auto">
+                    <table class="table table-striped table-hover" id="responsiveTable">
+                      <tbody>
+                        <tr ng-repeat="x in voucherData" ng-click="selvoucher(x)" class="cursor-pointer">
+                          <td style="width:15px;">
+                            <input type="checkbox" ng-model="x.sel" class="chk-row">
+                            <span class="custom-checkbox"></span>
+                          </td>
+                          <td>{{x.name}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th class="col-md-3">代金券名称</th>
+                  <th class="col-md-2">数量</th>
+                  <th class="col-md-7">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in vouchers">
+                  <td>{{x.name}}</td>
+                 
+                  <td ng-class="{'has-error':promotionForm.quantity{{$index}}.$invalid&&promotionForm.quantity{{$index}}.$dirty}">
+                    <input class="form-control" type="text" name="quantity{{$index}}" placeholder="代金券数量" ng-model="x.quantity" ng-pattern="/^\+?[1-9][0-9]*$/" required="" />
+                     <label class="control-label" ng-show="promotionForm.quantity{{$index}}.$invalid&&promotionForm.quantity{{$index}}.$dirty">必须是非零的正实数</label>
+                  </td>
+                  <td>
+                  <a class="btn btn-sm btn-danger" type="button" ng-click="delVoucher($index,x.id)">删除</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <div class="row">
+            <div class="padding-md text-center">
+              <a class="btn btn-success btn-small" href="#/promotion">取消</a>
+               <button type="submit" ng-disabled="isPosting||promotionForm.$invalid" class="btn btn-success btn-small" ng-click="submitData()">保存<span ng-show="isPosting">中...</span></button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>

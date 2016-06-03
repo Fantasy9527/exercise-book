@@ -1,0 +1,100 @@
+	<div class="spinner fadeInDown" ng-show="isLoding">
+	<div class="rect1"></div>
+	<div class="rect2"></div>
+	<div class="rect3"></div>
+	<div class="rect4"></div>
+	<div class="rect5"></div>
+</div>
+	<div class="tab-content fadeInDown" ng-hide="isLoding">
+		<div class="tab-pane fade in active">
+			<div class="panel panel-default add-product gap-top" id="container">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<i class="fa fa-shopping-cart fa-lg grey"></i>
+						<span class="m-left-xs"><strong>定价:</strong></span>
+						<span class="m-right-xs goods-group" ng-repeat="x in priceState" ng-class="{'bg-success':x.sel}" ng-click="selPriceState(x)">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+					</li>
+					<li class="list-group-item">
+						<i class="fa fa-bar-chart-o fa-lg grey"></i>
+						<span class="m-left-xs"><strong>大类:</strong></span>
+						<span class="m-right-xs goods-group" ng-repeat="x in groups" ng-class="{'bg-success':x.sel}" ng-click="selGroups(x)">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+
+					</li>
+					<li class="list-group-item">
+					<i class="fa fa-shopping-cart fa-lg grey"></i>
+						<span class="m-left-xs"><strong>小类:</strong></span>
+						<span class="m-right-xs goods-group" ng-repeat="x in subgroups" ng-class="{'bg-success':x.sel}" ng-click="selSubGroups(x)" ng-show="x.show">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+					</li>
+				</ul>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table table-striped gap-top">
+								<thead>
+									<tr>
+										<th width="40px">#</th>
+										<th class="col-md-2">菜品名称</th>
+										<th class="col-md-1"  ng-hide="newPriceHide">当前价格(元)</th>
+										<th ng-class="{'col-md-1':!newPriceHide,'col-md-2':newPriceHide}">新价格(元)</th>
+										<th class="col-md-3 text-center"></th>
+										<th class="col-md-3 text-center"></th>
+										<th class="col-md-1 text-center"></th>
+										<th class="col-md-1 text-center"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="x in models" ng-click="editing(x)"  ng-keydown="saveData(x,$event)" ng-class="{editing:x.edit}">
+										<td>{{$index+1}}</td>
+										<td>{{x.goods.name}} <small class="text-muted" style="margin-left:4px;">{{x.groupName.name}} {{x.subgroupName.name}}</small> </td>
+										<td ng-show="x.product">{{x.product.price}}</td>
+										<td class="text-left">
+											<span ng-hide="x.edit">{{x.newPrice}}</span>
+											<span ng-show="x.edit">
+                                    <input ng-model="x.newPrice" type="text" class="form-control input-md" 
+                                    ng-class="{'parsley-error':x.nameError,'parsley-error':x.name==''}">
+                                </span>
+											<small ng-show="x.edit" class="text-muted" style="margin-left:4px;">新价格</small>
+
+
+										</td>
+										<td class="text-center">
+											<div ng-show="x.edit">
+												<button ng-click="saveData(x,$event)" type="button" class="btn btn-info btn-sm">保存</button>
+												<button ng-click=cancelEdit(x,$event) type="button" class="btn btn-default btn-sm">
+													</i> 取消</button>
+												<button ng-show="x.product" ng-click="delPrice(x,$index)"  type="button" class="btn btn-danger btn-sm  pull-right">
+													</i> 删除</button>
+
+
+											</div>
+
+										</td>
+										<td class="text-center"></td>
+										<td class="text-center"></td>
+										<td class="text-center"></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="panel-footer clearfix text-center">
+					<ul class="pagination" ng-hide="goodsData.pages.max==0">
+						<li ng-hide="goodsData.pages.previous==null" ng-click="pagePrevious(goodsData.pages.previous)"><a href="">«</a>
+						</li>
+						<li ng-repeat="x in pageShowing" ng-class="{active:goodsData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+							<a href="">
+							{{x.name}}
+						</a>
+						</li>
+						<li ng-hide="goodsData.pages.next==null" ng-click="pageNext(goodsData.pages.next)"><a href="">»</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</div>

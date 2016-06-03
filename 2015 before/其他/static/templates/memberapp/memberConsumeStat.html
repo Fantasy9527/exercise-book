@@ -1,0 +1,78 @@
+<div class="panel-heading">
+    <i class="fa fa-book fa-lg"></i> 数据统计
+</div>
+
+<form class="form-inline no-margin">
+    <div class="row">
+        <div class="col-md-6" style="width:450px;margin-left: 15px;">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="queryCondition" ng-keypress="queryByCondition($event)">
+                <div class="input-group-btn">
+                    <a class="btn btn-success" ng-click="queryByCondition()"><i class="fa fa-search fa-lg"></i> 查询</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="panel-tab clearfix" style="margin-top:10px;">
+    <ul class="nav nav-tabs" style="margin-left: 15px;">
+        <li class=""><a href="#/memberStat/type/"><i class="fa fa-globe"></i>  会员类型统计</a></li>
+        <!--<li class="active"><a href="#/memberStat/memberConsume/"><i class="fa fa-bar-chart-o"></i>  会员统计</a></li>-->
+    </ul>
+</div>
+<div class="panel panel-default" style="margin-left: 15px;">
+    <div class="panel-body" id="container">
+        <div class="tab-content">
+            <div class="spinner" ng-show="isLoading==true">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+            <div ng-if="isLoading==false && models.length==0" style="text-align:center;margin-top:20px;">
+                <label class="normal">无统计记录</label>
+            </div>
+            <table class="table table-striped table-hover gap-top" ng-show="isLoading==false && models.length>0">
+                <thead>
+                    <tr>
+                        <th width="10px">#</th>
+                        <th class="text-center">会员姓名</th>
+                        <th class="text-center">联系方式</th>
+                        <th class="text-center">上次消费时间</th>
+                        <th class="text-center">总余额</th>
+                        <th class="text-center">充值余额</th>
+                        <th class="text-center">赠送余额</th>
+                        <th class="text-center">累计充值</th>
+                        <th class="text-center">累计赠送</th>
+                        <th class="text-center">累计消费</th>
+                        <th class="text-center">累计消费次数</th>
+                        <th class="text-center">累计折扣</th>
+                        <th class="text-center">积分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="model in models">
+                        <td class="text-center">{{($index+1)+pageModel.current*pageModel.pageSize}}</td>
+                        <td class="text-center">
+                            <a ng-bind="model.name" style="color:#6bafca;" href="/home/brand/{{brand}}/member/data#/memberDetail/{{model.id}}"></a>
+                        </td>
+                        <td class="text-center" ng-bind="model.mobile"></td>
+                        <td class="text-center" ng-bind="model.lastUpdateTime"></td>
+                        <td class="text-center" ng-bind="model.totalBalance" style="color:#00A32C"></td>
+                        <td class="text-center" ng-bind="model.charge_balance"></td>
+                        <td class="text-center" ng-bind="model.gift_balance"></td>
+                        <td class="text-center" ng-bind="model.chargeValue"></td>
+                        <td class="text-center" ng-bind="model.giftValue"></td>
+                        <td class="text-center" ng-bind="model.consumeValue" style="color:#FF2400"></td>
+                        <td class="text-center" ng-bind="model.consumeCount"></td>
+                        <td class="text-center" ng-bind="model.promotionValue"></td>
+                        <td class="text-center" ng-bind="model.point"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div page ng-show="isLoading==false && models.length>0"></div>
+        </div>
+    </div>
+</div>
+</div>

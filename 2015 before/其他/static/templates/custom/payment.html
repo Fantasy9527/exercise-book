@@ -1,0 +1,62 @@
+    <div class="panel-body" ng-controller="paymentController">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button type="button" ng-click="addPayment()" class="btn btn-sm btn-success" ng-disabled="hasAdding"><i class="fa fa-plus"></i> 新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped gap-top">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th>
+                            <th class="col-md-3">收银方式</th>
+                            <th class="col-md-3">状态</th>
+                            <th class="col-md-6">备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in payData" ng-click="editing(x)">
+                            <td style="width:10px">{{$index+1}}</td>
+                            <td><span ng-hide="x.editing">{{x.name}}</span>
+                                <span ng-show="x.editing">
+                                    <input ng-model="x.name" type="text" class="form-control input-md" ng-class="{'parsley-error':x.nameError,'parsley-error':x.name==''}" autofocus>
+                                    <small class="text-muted" ng-hide="x.nameError">名称</small>
+                                    <small class="text-muted" ng-show="x.nameError">不能为空</small>
+                                </span>
+                            </td>
+                            <td><span ng-hide="x.editing">{{x.state.name}}</span>
+                                <span ng-show="x.editing">
+                                    {{x.state.name}}
+                                </span>
+                            </td>
+                            <td><span ng-hide="x.editing">{{x.remark}}</span>
+                                <span ng-show="x.editing">
+                                    <input ng-model="x.remark" type="text" class="form-control input-md">
+                                    <small class="text-muted">备注信息,可以为空</small>
+                                </span>
+                                <div class="gap-top">
+                                    <button ng-show="x.editing" ng-click="savePayment(x,$event)" type="button" class="btn btn-info btn-sm">保存</button>
+
+                                    <button ng-click=cancelEdit(x,$event) ng-show="x.editing" type="button" class="btn btn-default btn-sm">
+                                        </i> 取消</button>
+                                    <button ng-click="updateState(x)" ng-show="x.state.id==1 && x.editing" type="button" class="btn btn-danger btn-sm  pull-right">
+                                        </i> 停用</button>
+                                    <button ng-click="updateState(x)" ng-show="x.state.id==2 && x.editing" type="button" class="btn btn-success btn-sm  pull-right">
+                                    </i> 重新启用</button>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

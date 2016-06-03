@@ -1,0 +1,226 @@
+<div class="custom-popup light width-100" id="lightCustomModal" style="display:none">
+  <div class="padding-md">
+    <h4 class="m-top-none"> 您确定要发布菜单信息?</h4>
+  </div>
+
+  <div class="text-center">
+    <a href="#" class="btn btn-success m-right-sm lightCustomModal_close release">确定</a>
+    <a href="#" class="btn btn-danger lightCustomModal_close">取消</a>
+  </div>
+</div>
+
+
+<div class="panel panel-default fadeInDown">
+  <div class="panel-heading">
+    微信自定义菜单
+  </div>
+  <div class="panel-tab clearfix">
+    <ul class="tab-bar">
+      <li class="active" ng-click="tabChange(0)"><a href="#home1" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> 菜单一</a></li>
+      <li><a href="#profile1" data-toggle="tab" ng-click="tabChange(1)"><i class="glyphicon glyphicon-list"></i> 菜单二</a></li>
+    </ul>
+  </div>
+  <div class="panel-body">
+    <button class="btn btn-success" type="button" ng-click="create()" ng-hide="isHaveData">创建自定义菜单</button>
+
+    <label ng-hide="identical" style="color: #8B6421;"><i class="fa fa-exclamation-circle fa-lg"></i>
+      <span class="m-left-xs">当前信息已经修改,与线上信息不一致,您是否需要发布?</span>
+    </label>
+    <div class="tab-content" ng-show="isHaveData">
+      <div class="tab-pane fade in active" id="home1">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="col-md-2">菜单名称</th>
+              <th class="col-md-6">菜单链接</th>
+              <th class="col-md-4">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color:#f5f5f5" ng-click="edit(model[0].fatherMenu)" ng-show="model[0]">
+              <td>
+                <span ng-hide="model[0].fatherMenu.isEdit">{{model[0].fatherMenu.name}}</span>
+                <form action="" name="nameForm" ng-class="{'has-error':nameForm.name.$invalid&&nameForm.name.$dirty}">
+                  <input ng-if="model[0].fatherMenu.isEdit" type="text" name="name" class="form-control input-md" ng-model="model[0].fatherMenu.name" required="">
+                  <label class="control-label" ng-show="nameForm.name.$invalid&&nameForm.name.$dirty">不能为空</label>
+                </form>
+              </td>
+              <td>
+                <span ng-hide="model[0].childMenu.length>0||model[0].fatherMenu.isEdit">{{model[0].fatherMenu.content}}</span>
+                <form action="" name="contentForm" ng-class="{'has-error':contentForm.content.$invalid&&contentForm.content.$dirty}">
+                  <input ng-if="model[0].fatherMenu.isEdit" type="text" name="content" class="form-control input-md" ng-model="model[0].fatherMenu.content" ng-pattern="/^http(s)?:\/\//" required="">
+                  <label class="control-label" ng-show="contentForm.content.$invalid&&contentForm.content.$dirty">必须为http://,https://开头的完整网址</label>
+                </form>
+              </td>
+              <td>
+                <div ng-show="model[0].fatherMenu.isEdit">
+                  <input class="btn btn-info btn-sm" type="button" value="保存" ng-disabled="nameForm.$invalid||contentForm.$invalid" ng-click="save(model[0].fatherMenu)">
+                  <a class="btn btn-default btn-sm gap-left" type="reset" ng-click="cancle(model[0].fatherMenu,$event,'f')">取消</a>
+                </div>
+                <a ng-hide="model[0].fatherMenu.isEdit" class="btn bg-danger btn-sm delCustomModal_open" type="reset" ng-click="delFatherData($event,$index)">删除</a>
+              </td>
+            </tr>
+
+            <tr ng-repeat="x in model[0].childMenu" ng-click="edit(x)">
+              <td>
+                <span ng-hide="x.isEdit">∟ {{x.name}}</span>
+                <form action="" name="nameForm" ng-class="{'has-error':nameForm.name.$invalid&&nameForm.name.$dirty}">
+                  <input ng-if="x.isEdit" type="text" name="name" class="form-control input-md" ng-model="x.name" placeholder="菜单名称" required>
+                  <label class="control-label" ng-show="nameForm.name.$invalid&&nameForm.name.$dirty">不能为空</label>
+                </form>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.content}}</span>
+                <form action="" name="contentForm" ng-class="{'has-error':contentForm.content.$invalid&&contentForm.content.$dirty}">
+                  <input ng-if="x.isEdit" type="text" class="form-control input-md" name="content" ng-model="x.content" placeholder="必须为http://,https://开头的完整网址" ng-pattern="/^http(s)?:\/\//" required="">
+                  <label class="control-label" ng-show="contentForm.content.$invalid&&contentForm.content.$dirty">必须为http://,https://开头的完整网址</label>
+                </form>
+              </td>
+              <td>
+                <div ng-show="x.isEdit">
+                  <buttom class="btn btn-info btn-sm" ng-disabled="nameForm.$invalid||contentForm.$invalid" ng-click="save(x)">保存</buttom>
+                  <a class="btn btn-default btn-sm gap-left" type="reset" ng-click="cancle(x,$event)">取消</a>
+                </div>
+                <a ng-hide="x.isEdit" class="btn btn-danger btn-sm delCustomModal_open" type="reset" ng-click="delData($event,$index)">删除</a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-pane fade" id="profile1">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="col-md-2">菜单名称</th>
+              <th class="col-md-6">菜单链接</th>
+              <th class="col-md-4">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color:#f5f5f5" ng-click="edit(model[1].fatherMenu)" ng-show="model[1]">
+              <td>
+                <span ng-hide="model[1].fatherMenu.isEdit">{{model[1].fatherMenu.name}}</span>
+                <form action="" name="nameForm1" ng-class="{'has-error':nameForm1.name.$invalid&&nameForm1.name.$dirty}">
+                  <input ng-if="model[1].fatherMenu.isEdit" type="text" name="name" class="form-control input-md" ng-model="model[1].fatherMenu.name" required="">
+                  <label class="control-label" ng-show="nameForm1.name.$invalid&&nameForm1.name.$dirty">不能为空</label>
+                </form>
+              </td>
+              <td>
+                <span ng-hide="model[1].childMenu.length>0||model[1].fatherMenu.isEdit">{{model[1].fatherMenu.content}}</span>
+                <form action="" name="contentForm1" ng-class="{'has-error':contentForm1.content.$invalid&&contentForm1.content.$dirty}">
+                  <input ng-if="model[1].fatherMenu.isEdit" type="text" name="content" class="form-control input-md" ng-model="model[1].fatherMenu.content" ng-pattern="/^http(s)?:\/\//" required="">
+                  <label class="control-label" ng-show="contentForm1.content.$invalid&&contentForm1.content.$dirty">必须为http://,https://开头的完整网址</label>
+                </form>
+              </td>
+              <td>
+                <div ng-show="model[1].fatherMenu.isEdit">
+                  <input class="btn btn-info btn-sm" type="button" value="保存" ng-disabled="nameForm1.$invalid||contentForm1.$invalid" ng-click="save(model[1].fatherMenu)">
+                  <a class="btn btn-default btn-sm gap-left" type="reset" ng-click="cancle(model[1].fatherMenu,$event,'f')">取消</a>
+                </div>
+                <a ng-hide="model[1].fatherMenu.isEdit" class="btn bg-danger btn-sm delCustomModal_open" type="reset" ng-click="delFatherData($event,$index)">删除</a>
+              </td>
+            </tr>
+
+            <tr ng-repeat="x in model[1].childMenu" ng-click="edit(x)">
+              <td>
+                <span ng-hide="x.isEdit">∟ {{x.name}}</span>
+                <form action="" name="nameForm" ng-class="{'has-error':nameForm.name.$invalid&&nameForm.name.$dirty}">
+                  <input ng-if="x.isEdit" type="text" name="name" class="form-control input-md" ng-model="x.name" placeholder="菜单名称" required>
+                  <label class="control-label" ng-show="nameForm.name.$invalid&&nameForm.name.$dirty">不能为空</label>
+                </form>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.content}}</span>
+                <form action="" name="contentForm" ng-class="{'has-error':contentForm.content.$invalid&&contentForm.content.$dirty}">
+                  <input ng-if="x.isEdit" type="text" class="form-control input-md" name="content" ng-model="x.content" placeholder="必须为http://,https://开头的完整网址" ng-pattern="/^http(s)?:\/\//" required="">
+                  <label class="control-label" ng-show="contentForm.content.$invalid&&contentForm.content.$dirty">必须为http://,https://开头的完整网址</label>
+                </form>
+              </td>
+              <td>
+                <div ng-show="x.isEdit">
+                  <buttom class="btn btn-info btn-sm" ng-disabled="nameForm.$invalid||contentForm.$invalid" ng-click="save(x)">保存</buttom>
+                  <a class="btn btn-default btn-sm gap-left" type="reset" ng-click="cancle(x,$event)">取消</a>
+                </div>
+                <a ng-hide="x.isEdit" class="btn btn-danger btn-sm delCustomModal_open" type="reset" ng-click="delData($event,$index)">删除</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button class="btn btn-success pull-left" type="button" ng-click="addMenu()" ng-show="isHaveData&&( !model[tabIndex].fatherMenu.isEdit&&model[tabIndex].childMenu.length<5||!model[tabIndex])">添加子菜单</button>
+    <div class="pull-right" ng-hide="!isHaveData">
+      <button class="btn btn-info lightCustomModal_open" type="button" ng-click="releaseBtn()">发布</button>
+      <button class="btn btn-success" type="button" ng-click="showMenu()">预览</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade menu-preview-modal" aria-hidden="false" aria-labelledby="modalTitle4" role="dialog" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header sr-only">
+        <h4 class="modal-title" id="modalTitle4">预览</h4>
+      </div>
+      <div class="modal-body">
+        <div class="menu-preview">
+          <div class="preview-panel">
+
+
+            <div class="preview-item" ng-show="!!model[0]" ng-class="{
+                          'preview-item-width-1':model.length==0,
+                          'preview-item-width-2':model.length==1,
+                          'preview-item-width-3':model.length==2,
+                        }">
+              <a class="preview-toggle" href="javascript:void(0);"><i></i>{{model[0].fatherMenu.name}}</a>
+              <ul class="preview-list fade in" ng-hide="model[0].childMenu.length==0">
+                <li ng-repeat="x in model[0].childMenu"><a href="javascript:void(0);">{{x.name}}</a></li>
+              </ul>
+            </div>
+
+            <div class="preview-item" ng-show="!!model[1]" ng-class="{
+                          'preview-item-width-1':model.length==0,
+                          'preview-item-width-2':model.length==1,
+                          'preview-item-width-3':model.length==2,
+                        }">
+              <a class="preview-toggle" href="javascript:void(0);"><i></i>{{model[1].fatherMenu.name}}</a>
+              <ul class="preview-list fade in" ng-hide="model[1].childMenu.length==0">
+                <li ng-repeat="x in model[1].childMenu"><a href="javascript:void(0);">{{x.name}}</a></li>
+              </ul>
+            </div>
+
+
+            <div class="preview-item" ng-class="{
+                          'preview-item-width-1':model.length==0,
+                          'preview-item-width-2':model.length==1,
+                          'preview-item-width-3':model.length==2,
+                        }">
+              <a class="preview-toggle" href="javascript:void(0);">会员卡</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" type="button">退出预览</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--	<div class="custom-popup light width-100" id="delCustomModal" style="display:none">
+		<div class="padding-md">
+			<h4 class="m-top-none"> 您确定要删除该菜单?</h4>
+		</div>
+
+		<div class="text-center">
+			<a href="#" class="btn btn-success m-right-sm delCustomModal_close" ng-click="delData()">确定</a>
+			<a href="#" class="btn btn-danger delCustomModal_close">取消</a>
+		</div>
+	</div>-->

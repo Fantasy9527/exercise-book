@@ -1,0 +1,254 @@
+<div class="panel panel-default add-product" id="container">
+  <script id="tpl" type="text/ractive">
+    <ul class="list-group">
+      <li class="list-group-item"> <i class="fa fa-bar-chart-o fa-lg grey"></i>
+        <span class="m-left-xs"><strong>餐桌类型:</strong></span>
+        <span class="m-right-xs goods-group {{tableType == -1? 'bg-success':''}}" on-click="OnFilterType:-1">所有<small class="text-muted">({{typeTotal}})</small></span> {{#types}}
+        <span class="m-right-xs goods-group {{tableType == .id ? 'bg-success':''}}" on-click="OnFilterType:{{.id}}">
+           {{.name}}<small class="text-muted">({{.count}})</small>
+       </span> {{/types}}
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-glass fa-lg grey"></i>
+        <span class="m-left-xs"><strong>餐桌区域:</strong></span>
+        <span class="m-right-xs goods-group {{tableGroup == -1? 'bg-success':''}}" on-click="OnFilterGroup:-1">所有<small class="text-muted">({{groupTotal}})</small></span> {{#groups}}
+        <span class="m-right-xs goods-group {{tableGroup == .id ? 'bg-success':''}}" on-click="OnFilterGroup:{{.id}}">
+           {{.name}}<small class="text-muted">({{.count}})</small>
+       </span> {{/groups}}
+        <a on-click="OnRemoveGroup" class="m-left-xs pull-right btn btn-danger btn-xs {{.tableGroup == -1 ? 'disabled':''}}" title="删除" title="删除该区域" data-toggle="tooltip" data-placement="top">
+          <i class="fa fa-minus"></i>
+        </a>
+        <a on-click="OnEditGroup" class="m-left-xs pull-right btn btn-success btn-xs {{.tableGroup == -1 ? 'disabled':''}}" title="编辑" title="编辑区域名称" data-toggle="tooltip" data-placement="top">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a on-click="OnAddGroup" class="m-left-xs pull-right btn btn-success btn-xs" title="新增" title="新增区域" data-toggle="tooltip" data-placement="top">
+          <i class="fa fa-plus"></i>
+        </a>
+      </li>
+      {{#editingGroup != -1}}
+      <li class="list-group-item" on-escape="OnCancelSaveGroup" on-enter="OnSaveGroup" id="groupform">
+        <div class="panel-body">
+          <div class="form-inline no-margin pull-right">
+            <div class="form-group">
+              <label class="sr-only">区域名称</label>
+              <input type="text" id="groupName" class="form-control input-sm" placeholder="区域名称" value='{{groupName}}' data-required="true" data-minlength="1" />
+            </div>
+            <a class="btn btn-info btn-sm gap-left" on-click='OnSaveGroup'>保存</a>
+            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSaveGroup">取消</a>
+          </div>
+        </div>
+      </li>
+      {{/editingGroup}}
+    </ul>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-success" on-click="OnAddModel">
+                <i class="fa fa-plus"></i> 新增餐桌
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <input type="text" class="form-control input-sm">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-default">查找</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped gap-top">
+            <thead>
+              <tr>
+                <th width="40px">#</th>
+                <th class="col-md-2">名称</th>
+                <th class="col-md-2 text-center">餐桌类型</th>
+                <th class="col-md-2 text-center">餐桌区域</th>
+                <th class="col-md-1 text-center">座位数</th>
+                <th class="col-md-3">区域打印机</th>
+                <th class="col-md-2 text-center">备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#editing == 0}}
+              <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+                <td>{{editing > 0 ? num+1:''}}</td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" />
+                  <small class="text-muted">餐桌的名称, 可以是数字, 例如 1; 也可以是名字如庐山号</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{editingModel.tableType}}" data-required="true" data-min="1">
+                    {{#types}}
+                    <option value="{{.id}}">{{.name}}</option>
+                    {{/types}}
+                  </select>
+                  <small class="text-muted">餐桌的类型</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{editingModel.tableGroup}}" data-required="true" data-min="1">
+                    {{#groups}}
+                    <option value="{{.id}}">{{.name}}</option>
+                    {{/groups}}
+                  </select>
+                  <small class="text-muted">餐桌的区域</small>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.size}}" data-required="true" data-min="1" />
+                  <small class="text-muted">座位数</small>
+                </td>
+                <td>
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.printer}}" value="{{null}}" data-required="true" /><span class="custom-radio"></span> 不使用区域打印
+                    </label>
+                  </div>
+                  {{#printers}}
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.printer}}" value="{{.id}}" data-required="true" /><span class="custom-radio"></span> {{.name}}
+                      <span class="small text-muted">
+               {{._printerType.name}}
+               {{#.printerType == 2}}
+                 {{.serialPort}} {{.baudRate}}
+               {{/}}
+               {{#.printerType == 1}}
+                 {{.ip}}:{{.ipPort}}
+               {{/}}
+             </span>
+                    </label>
+                  </div>
+                  {{/}}
+                  <div class="radio">
+                    <small class="text-muted">
+           1) 若收银机、点菜宝已设置了打印机，则优先使用它们的打印机;<br />
+           2) 否则使用区域打印机, 即该桌子的<strong class="text-danger">点菜单</strong>和<strong class="text-danger">预打单</strong>会在区域打印机上打印。
+         </small>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{editingModel.remark}}" />
+                  <small class="text-muted">备注信息, 可以为空</small>
+                  <div class="gap-top">
+                    <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                    <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                    <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                    <div>
+                      <small class="text-danger pull-right">警告: 删除餐桌后，该餐桌将不再使用.</small>
+                    </div>
+                    {{/}}
+                  </div>
+                </td>
+              </tr>
+              {{/editing == 0}} {{#showingModels:num}} {{#editing == .id}}
+              <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+                <td>{{editing > 0 ? num+1:''}}</td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" />
+                  <small class="text-muted">餐桌的名称, 可以是数字, 例如 1; 也可以是名字如庐山号</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{editingModel.tableType}}" data-required="true" data-min="1">
+                    {{#types}}
+                    <option value="{{.id}}">{{.name}}</option>
+                    {{/types}}
+                  </select>
+                  <small class="text-muted">餐桌的类型</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{editingModel.tableGroup}}" data-required="true" data-min="1">
+                    {{#groups}}
+                    <option value="{{.id}}">{{.name}}</option>
+                    {{/groups}}
+                  </select>
+                  <small class="text-muted">餐桌的区域</small>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.size}}" data-required="true" data-min="1" />
+                  <small class="text-muted">座位数</small>
+                </td>
+                <td>
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.printer}}" value="{{null}}" data-required="true" /><span class="custom-radio"></span> 不使用区域打印
+                    </label>
+                  </div>
+                  {{#printers}}
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.printer}}" value="{{.id}}" data-required="true" /><span class="custom-radio"></span> {{.name}}
+                      <span class="small text-muted">
+               {{._printerType.name}}
+               {{#.printerType == 2}}
+                 {{.serialPort}} {{.baudRate}}
+               {{/}}
+               {{#.printerType == 1}}
+                 {{.ip}}:{{.ipPort}}
+               {{/}}
+             </span>
+                    </label>
+                  </div>
+                  {{/}}
+                  <div class="radio">
+                    <small class="text-muted">
+           1) 若收银机、点菜宝已设置了打印机，则优先使用它们的打印机;<br />
+           2) 否则使用区域打印机, 即该桌子的<strong class="text-danger">点菜单</strong>和<strong class="text-danger">预打单</strong>会在区域打印机上打印。
+         </small>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{editingModel.remark}}" />
+                  <small class="text-muted">备注信息, 可以为空</small>
+                  <div class="gap-top">
+                    <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                    <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                    <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                    <div>
+                      <small class="text-danger pull-right">警告: 删除餐桌后，该餐桌将不再使用.</small>
+                    </div>
+                    {{/}}
+                  </div>
+                </td>
+              </tr>
+              {{/editing == .id}} {{#editing != .id}}
+              <tr>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+                <td class="" on-click="OnEditModel:{{.id}}" on-hover="OnShowingBtn:{{.id}}">
+                  <div class="pull-left">
+                    {{name}}
+                  </div>
+                  <div class="pull-right">
+                    {{#showingBtn == .id}} {{#num > 0}} <a class="text-muted small" on-click="OnSwap:{{num}}, {{num-1}}">上移</a> {{/}} {{#num
+                    < models.length - 1}}<a class="text-muted small" on-click="OnSwap:{{num}},{{num+1}}">下移</a> {{/}} {{/}}
+                  </div>
+                </td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{getTableType(.tableType).name}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{getTableGroup(.tableGroup).name}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.size}}</td>
+                <td on-click="OnEditModel:{{.id}}">
+                  {{._printer.name}}
+                  <span class="small text-muted">
+         {{._printer._printerType.name}}
+         {{#._printer.printerType == 2}}
+           {{._printer.serialPort}} {{._printer.baudRate}}
+         {{/}}
+         {{#._printer.printerType == 1}}
+           {{._printer.ip}}:{{._printer.ipPort}}
+         {{/}}
+       </span>
+                </td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.remark}}</td>
+              </tr>
+              {{/editing != .id}} {{/showingModels}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </script>
+</div>

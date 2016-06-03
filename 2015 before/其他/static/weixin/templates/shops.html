@@ -1,0 +1,12 @@
+  <div class="fadeInDown" ng-hide="isLoding">
+ <ul class="shopList">
+  <li ng-repeat="x in model">
+   <a href="tel:{{x.mobile}}">
+    <strong class="shop-name">{{x.name}}</strong>
+    <div class="shop-phone f-fs1">{{x.mobile}}</div>
+    <div class="shop-address f-fs1">{{x.address}}</div>
+    <div class="list-phone"></div>
+    </a>
+  </li>
+</ul>
+</div>

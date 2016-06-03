@@ -1,0 +1,62 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product" id="container">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div ng-include="'/assets/templates/system/goodsNav.html'"></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <button type="button" ng-click="addUnitType()" class="btn btn-sm btn-success">
+                    <i class="fa fa-plus"></i> 新增规格</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped gap-top">
+                <thead>
+                  <tr>
+                    <th style="width:40px">#</th>
+                    <th class="col-md-2">规格名称</th>
+                    <th class="col-md-10">备注</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in unitTypeData" ng-click="editing(x)" ng-keydown="savePayment(x,$event)" ng-class="{editing:x.editing}">
+                    <td style="width:10px">{{$index+1}}</td>
+                    <td><span ng-hide="x.editing">{{x.name}}</span>
+                      <span ng-show="x.editing">
+                                        <input ng-model="x.name" type="text" class="form-control input-md" ng-class="{'parsley-error':x.nameError}">
+                                        <small class="text-muted" ng-hide="x.nameError">名称</small>
+                                        <small class="text-muted" ng-show="x.nameError">不能为空</small>
+                                    </span>
+                    </td>
+                    <td><span ng-hide="x.editing">{{x.remark}}</span>
+                      <span ng-show="x.editing">
+                                        <input ng-model="x.remark"  type="text"  class="form-control input-md">
+                                        <small class="text-muted">备注信息,可以为空</small>
+                                    </span>
+                      <div ng-show="x.editing" class="gap-top">
+                        <button ng-click="savePayment(x,$event)" type="button" class="btn btn-info btn-sm">保存</button>
+                        <button ng-click=cancelEdit(x,$event) type="button" class="btn btn-default btn-sm">
+                          </i> 取消</button>
+                        <button ng-click="updateState(x,$index)" ng-show="x.state==1 && x.editing" type="button" class="btn btn-danger btn-sm  pull-right">
+                          </i> 删除</button>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

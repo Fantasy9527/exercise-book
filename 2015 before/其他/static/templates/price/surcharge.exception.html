@@ -1,0 +1,126 @@
+<div class="panel-body" id="container">
+  <div class="spinner" ng-show="isLoading">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+  </div>
+  <div ng-hide="isLoading" class="fadeInDown">
+  <div>
+    <a class="return-up" href="javascript:history.back()">
+      <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>{{tableName}}例外菜品管理
+  </div>
+  <div class="seperator"></div>
+
+  <div class="btn-group">
+    <button class="btn btn-sm btn-success" type="button" ng-click="addException()"><i class="fa fa-plus"></i> 添加例外菜品</button>
+    <div class="dropdown-menu" style="width:460px; display:block;" ng-hide="addVegetableShow">
+      <div class="panel-heading">
+        <strong>可添加的菜品
+                        </strong>
+        <button type="button" class="close" ng-click="closeVegeTable()">
+          ×
+        </button>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <select class="input-sm form-control inline" ng-model="groupsValue" ng-change="groupsChange()">
+              <option value="default">
+                菜品大类
+              </option>
+              <option ng-repeat="x in groups" value="{{x.id}}">
+                {{x.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-5 col-sm-5">
+            <select class="input-sm form-control inline" ng-model="subGroupsValue" ng-change="subGroupsChange()">
+              <option value="default">
+                菜品小类
+              </option>
+              <option ng-repeat="x in subgroups" value="{{x.id}}">
+                {{x.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <a class="btn btn-success pull-right" ng-hide="addVegetableShow" ng-click="addVegetableTable()">
+                                    保存
+                                </a>
+          </div>
+          <div class="padding-md">
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover" style="margin-bottom:0;" id="responsiveTable">
+        <thead>
+          <tr>
+            <th>
+              <label class="label-checkbox">
+                <input type="checkbox" ng-click="selFoodChkAll()" ng-model="chkAllBtn" id="chk-all">
+                <span class="custom-checkbox">
+                                        </span>
+              </label>
+            </th>
+            <th class="col-md-5">
+              菜品
+            </th>
+            <th class="col-md-3">
+              菜品大类
+            </th>
+            <th class="col-md-3">
+              菜品小类
+            </th>
+          </tr>
+        </thead>
+      </table>
+      <div class="table-overflow-auto">
+        <table class="table table-striped table-hover" id="responsiveTable">
+          <tbody>
+            <tr ng-repeat="x in selFoodModels" ng-click="selFoodTable($index)" class="cursor-pointer">
+              <td>
+                <input type="checkbox" ng-model="x.sel" class="chk-row">
+                <span class="custom-checkbox"></span>
+              </td>
+              <td>{{x.name}} ({{x.unitTypeName}})</td>
+              <td>{{x.group}}</td>
+              <td>{{x.subGroup}}</td>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="seperator"></div>
+
+  <div class="panel panel-default add-product">
+    <div class="panel-heading">{{tableName}}例外菜品管理</div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th width="40px">#</th>
+          <th class="col-md-3">菜品</th>
+          <th class="col-md-3">大类</th>
+          <th class="col-md-3">小类</th>
+          <th class="col-md-3">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="model in VegetableArr">
+          <td>{{$index+1}}</td>
+          <td>{{model.name}} ({{model.unitTypeName}})</td>
+          <td>{{model.group}}</td>
+          <td>{{model.subGroup}}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" type="button" ng-click="delModel(model,$index)">删除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>

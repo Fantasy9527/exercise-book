@@ -1,0 +1,140 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+<div class="panel panel-default">
+  <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="btn-group city-plug padding-l-15">
+        <button class="btn btn-default dropdown-toggle pull-left">
+          <span class="pull-left " id="shopName">{{indexShop}}</span>
+          <div class="city-plug-t text-right">
+            <span class="caret"></span>
+          </div>
+        </button>
+        <a href="" ng-click="refreshShop()" class="refresh-widget pull-left" style="width:30px;height:30px;line-height:30px;text-align:center"><i class="fa fa-refresh"></i></a>
+        <div class="dropdown-menu city-menu" style="width:300px; left:15px; display:block" ng-show="isMenuOpen">
+          <!--省-->
+          <ul class="f-cb province-ul">
+            <li data-citytype="country" data-areaId="1" ng-repeat="x in countryData" ng-click="selCountry(x)"><a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+            </li>
+          </ul>
+          <div ng-show="cities">
+            <div class="divider" style="clear:both"></div>
+            <!--城市-->
+            <ul class="f-cb city-ul">
+              <li data-citytype="city" ng-repeat="x in cities" ng-click="selCity(x)">
+                <a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <ul class="dropdown-menu shop-menu" style="width:300px; left:320px; max-height: 300px;
+  overflow-y: auto; display:block" ng-hide="!isMenuOpen||shopsData.length==0">
+          <li ng-repeat="x in shopsData" ng-click="selShop(x)">
+            <a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="list-group list-inline gap-top">
+      <li><i class="fa fa-umbrella fa-lg font-14"></i> <span class="m-left-xs"><strong>状态:</strong></span>
+      </li>
+      <li class="cursor-pointer font-14" ng-class="{'bg-success':x.sel}" ng-repeat="x in states" ng-click="statesTab(x)">{{x.name}}
+      </li>
+    </ul>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-success" ng-click="newDiscount()"><i class="fa fa-plus"></i> 新增折扣方案</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped gap-top">
+          <thead>
+            <tr>
+              <th width="40px">#</th>
+              <th class="col-md-2 ">方案名称</th>
+              <th class="col-md-2">当前状态</th>
+              <th class="col-md-2">生效时间</th>
+              <th class="col-md-2">结束时间</th>
+              <th class="col-md-3">备注</th>
+              <th class="col-md-1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in model" ng-click="edit(x)" ng-class="{'editing':x.isEdit}">
+              <td>
+                {{($index+1)+pages.current*pages.pageSize}}
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.name}}</span>
+                <input type="text" ng-show="x.isEdit" ng-model="x.name" class="form-control input-md">
+                <small ng-show="x.isEdit" class="text-muted">方案的名称, 例如 A方案</small>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x._state.name}}</span>
+                <select ng-show="x.isEdit" class="form-control input-md" ng-model="x.state" ng-change="stateChange(x)" ng-options="y.id as y.name for y in states">
+
+                </select>
+                <small ng-show="x.isEdit" class="text-muted">当前的状态</small>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.beginTime}}</span>
+                <input type="text" ng-show="x.isEdit" ng-model="x.beginTime" class="form-control input-md timepicker time-cursor-pointer"  data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly>
+                <small ng-show="x.isEdit" class="text-muted">该定价方案生效的时间</small>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.endTime}}</span>
+                <input type="text" ng-show="x.isEdit" ng-model="x.endTime" class="form-control input-md timepicker time-cursor-pointer"  data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly>
+                <small ng-show="x.isEdit" class="text-muted">该定价方案结束的时间</small>
+              </td>
+              <td>
+                <span ng-hide="x.isEdit">{{x.remark}}</span>
+                <input type="text" ng-show="x.isEdit" ng-model="x.remark" class="form-control input-md">
+                <small ng-show="x.isEdit" class="text-muted">备注信息, 可以为空</small>
+                <div class="gap-top" ng-show="x.isEdit">
+                <a class="btn btn-info btn-sm" ng-click="save(x,$event)" ng-disabled="isSaving">保存</a>
+                <a class="btn btn-default btn-sm gap-left" ng-click="cancel(x,$event)">取消</a>
+                </div>
+              </td>
+              <td>
+                <div class="operation" ng-hide="x.isEdit"><a class="btn btn-sm btn-success" ui-sref="system.discount.detail({discount:x.id})" target="_blank"><i class="fa fa-edit"></i> 设置</a></div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="clearfix text-center">
+          <ul class="pagination" ng-hide="pages.max==0">
+            <li ng-hide="pages.previous==null" ng-click="pagePrevious(auditlogData.pages.previous)"><a href="">«</a>
+            </li>
+            <li ng-repeat="x in pageShowing" ng-class="{active:pages.current==x.name-1}" ng-click="indexPage(x.name)">
+              <a href="">
+  							{{x.name}}
+  							<!--<span ng-show="x==null">...</span>-->
+  						</a>
+            </li>
+            <li ng-hide="pages.next==null" ng-click="pageNext(pages.next)"><a href="">»</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+    </div>
+  </div>
+</div>

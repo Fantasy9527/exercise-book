@@ -1,0 +1,80 @@
+<div class="panel fadeInDown">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="f-pr">
+          <button class="btn btn-success" type="button" ng-click="addMemberTable()">
+            <i class="fa fa-plus"></i> 添加会员类型</button>
+          <div class="dropdown-menu" style="width:460px; display:block;" ng-show="addMemberShow">
+            <div class="panel-heading ">
+              <strong>可添加的会员类型
+                        </strong>
+              <button type="button" class="close" ng-click="closeTable()">
+                ×
+              </button>
+            </div>
+            <table class="table table-striped table-hover" style="margin-bottom:0;" id="responsiveTable">
+              <thead>
+                <tr>
+                  <th class="text-left col-xs-2">
+                    #
+                  </th>
+                  <th class="text-left col-xs-4">
+                    会员类型
+                  </th>
+                  <th class="text-left col-xs-8">
+                    操作
+                  </th>
+                </tr>
+              </thead>
+            </table>
+            <div class="table-overflow-auto">
+              <table class="table table-striped table-hover" id="responsiveTable">
+                <tbody>
+                  <tr ng-repeat="x in memberTypes track by $index" ng-click="selmember(x)">
+                    <td class="text-left col-xs-2">{{$index+1}}</td>
+                    <td class="text-left col-xs-5">{{x.name}}</td>
+                    <td class="text-left col-xs-5">
+                      <div class="btn btn-xs btn-success" ng-show="x.isDefault==undefined" ng-click="addMember(x,$index)">增加</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped table-hover gap-top" id="responsiveTable">
+          <thead>
+            <tr>
+              <th class="col-md-5">会员类型</th>
+              <th class="col-md-1">默认</th>
+              <th class="col-md-6">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in currentMemberTypes track by $index">
+              <td>{{x.name}}</td>
+              <td>
+                <i ng-show="x.isDefault==1" class="fa fa-check"></i>
+                <a ng-show="x.isDefault==0" ng-click="setDefault(x)">
+                  <small class="text-muted">设置默认</small>
+                </a>
+              </td>
+              <td>
+                <button type="button" class="btn btn-sm btn-danger" ng-hide="x.isDefault==1" ng-click="delData(x,$index)"> 取消</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

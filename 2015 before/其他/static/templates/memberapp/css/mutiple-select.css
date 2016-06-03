@@ -1,0 +1,23 @@
+
+.mutiple-selected{
+	color : #CCCCCC !important;
+	background-color: color:#E4E4E4;
+	disabled:true;
+}
+
+.getFocus {
+	background-color:#3c8dbc;
+	color:white !important;
+}
+
+.floatLeft{
+	float:left;
+}
+
+.user-defined-shadow{
+	box-shadow:0 2px 10px 0 #AAAAAA ;
+}
+
+.div-disabled{
+	background-color: #cccccc;
+}

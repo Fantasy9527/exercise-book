@@ -1,0 +1,141 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product" >
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div ng-include="'/assets/templates/system/goodsNav.html'"></div>
+        <div id="container"></div>
+        <script id="tpl" type="text/ractive">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="btn-toolbar">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-success" on-click="OnAddModel">
+                      <i class="fa fa-plus"></i> 新增大类
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input type="text" class="form-control input-sm">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-sm btn-default">查找</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped gap-top">
+                  <thead>
+                    <tr>
+                      <th width="40px">#</th>
+                      <th class="col-md-3">菜品大类</th>
+                      <th class="col-md-3">菜品小类</th>
+                      <th class="col-md-6"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#editing == 0 && type == 'group'}}
+                    <tr on-enter="OnSaveModel" on-escape="OnCancelSave">
+                      <td></td>
+                      <td>
+                        <div id="form">
+                          <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" placeholder="菜品大类名称" />
+                          <small class="text-muted">菜品大类名称</small>
+                          <input type="text" class="form-control input-md" value="{{editingModel.remark}}" placeholder="备注" />
+                          <small class="text-muted">备注，可以为空</small>
+                          <div class="gap-top">
+                            <a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+                            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                            <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a> {{/}}
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td>
+                      </td>
+                    </tr>
+                    {{/}} {{#models:num}}
+                    <tr>
+                      <td>{{num+1}}</td>
+                      {{#type == 'group' && editing == .id}}
+                      <td on-enter="OnSaveModel" on-escape="OnCancelSave" id="form">
+                        <div id="form">
+                          <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" placeholder="菜品大类名称" />
+                          <small class="text-muted">菜品大类名称</small>
+                          <input type="text" class="form-control input-md" value="{{editingModel.remark}}" placeholder="备注" />
+                          <small class="text-muted">备注，可以为空</small>
+                          <div class="gap-top">
+                            <a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+                            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                            <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a> {{/}}
+                          </div>
+                        </div>
+                      </td>
+                      {{/}} {{^(type == 'group' && editing == .id)}}
+                      <td on-click="OnEditModel:'group', {{.id}}" on-hover="OnShowingGroupBtn:{{.id}}">
+                        <div class="pull-left">
+                          {{name}} <small class="text-muted">{{.remark}}</small>
+                        </div>
+                        <div class="pull-right">
+                          {{#showingBtn == .id}} {{#num > 0}} <a class="text-muted small" on-click="OnSwapGroup:{{num}}, {{num-1}}">上移</a> {{/}} {{#num
+                          < models.length - 1}}<a class="text-muted small" on-click="OnSwapGroup:{{num}},{{num+1}}">下移</a> {{/}} {{/}}
+                        </div>
+                      </td>
+                      {{/}}
+                      <td on-enter="OnSaveSubGroup" on-escape="OnCancelSave">
+                        {{#.subgroups:i}} {{#type == 'subgroup' && editing == .id}}
+                        <div id="subform">
+                          <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" placeholder="菜品小类名称" />
+                          <small class="text-muted">菜品小类名称</small>
+                          <input type="text" class="form-control input-md" value="{{editingModel.remark}}" placeholder="备注" />
+                          <small class="text-muted">备注，可以为空</small>
+                          <div class="gap-top">
+                            <a class="btn btn-info btn-sm" on-click='OnSaveSubGroup'>保存</a>
+                            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                            <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveSubGroup'>删除</a> {{/}}
+                          </div>
+                        </div>
+
+                        {{/}} {{^(type == 'subgroup' && editing == .id)}}
+                        <div class="gap-top" on-click="OnEditModel:'subgroup', {{.id}}" on-hover="OnShowingSubBtn:{{.id}}">
+                          {{.name}} <small class="text-muted">{{.remark}}</small> {{#showingSubBtn == .id}}
+                          <div class="pull-right">
+                            {{#i > 0}} <a class="text-muted small" on-click="OnSwapSubGroup:{{group}},{{i}},{{i-1}}">上移</a> {{/}} {{#i
+                            < subgroups.length - 1}}<a class="text-muted small" on-click="OnSwapSubGroup:{{group}},{{i}},{{i+1}}">下移</a> {{/}}
+                          </div>
+                          {{/}}
+                        </div>
+                        {{/}} {{/}} {{#type == 'subgroup' && groupid == .id && editing == 0}}
+
+                        <div id="subform">
+                          <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" placeholder="菜品小类名称" />
+                          <small class="text-muted">菜品小类名称</small>
+                          <input type="text" class="form-control input-md" value="{{editingModel.remark}}" placeholder="备注" />
+                          <small class="text-muted">备注，可以为空</small>
+                          <div class="gap-top">
+                            <a class="btn btn-info btn-sm" on-click='OnSaveSubGroup'>保存</a>
+                            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                            <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveSubGroup'>删除</a> {{/}}
+                          </div>
+                        </div>
+                        {{/}}
+                        <a on-click="OnAddSubGroup:{{.id}}" class="btn btn-default btn-xs gap-top" title="新增菜品小类">
+                          <i class="fa fa-plus"></i>
+                        </a>
+                      </td>
+                      <td></td>
+                    </tr>
+                    {{/}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,241 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div id="container"></div>
+        <script id="tpl" type="text/ractive">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="btn-toolbar">
+                  <div class="btn-group">
+                    <button type="button" on-click='OnAddTeam' class="btn btn-sm btn-success">
+                      <i class="fa fa-plus"></i> 新增群组
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#addingTeam}}
+            <div class="row">
+              <div class="col-md-12 gap-top">
+                <div class="panel panel-default" intro='fade' outro='fade'>
+                  <div class="panel-heading">创建群组</div>
+                  <div class="panel-body">
+                    <div class="form-horizontal" id="form" on-enter="OnSaveTeam" on-escape="OnCancelModel">
+                      <div class="form-group">
+                        <label for="teamName" class="col-lg-2 control-label">群组名称</label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control input-sm" id="teamName" placeholder="群组名称" value="{{team.name}}" data-required="true" data-minlength="1">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="teamRemark" class="col-lg-2 control-label">备注</label>
+                        <div class="col-lg-6">
+                          <input type="text" class="form-control input-sm" id="teamRemark" placeholder="备注" value="{{team.remark}}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-6">
+                          <button type="submit" class="btn btn-success btn-sm" on-click="OnSaveTeam">保存</button>
+                          <button type="submit" class="btn btn-default btn-sm" on-click="OnCancelModel">取消</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/}}
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fa fa-bar-chart-o fa-lg grey"></i>
+              <span class="m-left-xs"><strong>群组:</strong></span> {{#teams}}
+              <span on-click="OnTeamFilter:{{.id}}" class='{{teamid === .id ? "bg-success" : ""}} m-right-xs goods-group'>{{.name}}</span> {{/}}
+            </li>
+          </ul>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="panel panel-default bg-default">
+                  <div class="panel-body">
+                    {{#editingTeam}}
+                    <div id="teamForm" on-enter="OnUpdateTeam" on-escape="OnCancelModel">
+                      <small class="text-muted">群组名称</small>
+                      <input type="text" class="form-control input-md" id="teamName" value="{{team.name}}" data-required="true" data-minlength="1" placeholder="群组名称" />
+                      <small class="text-muted gap-top">备注，可以为空</small>
+                      <input type="text" class="form-control input-md" value="{{team.remark}}" placeholder="备注" />
+                      <div class="gap-top">
+                        <a class="btn btn-info btn-sm" on-click='OnUpdateTeam'>保存</a>
+                        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a>
+                      </div>
+                    </div>
+                    {{/}} {{^editingTeam}}
+                    <div>
+                      <div class="pull-left">
+                        <strong class="font-16 text-bold">{{current.name}}</strong>
+                        <br/>
+                        <small class="text-muted">{{current.remark}}</small>
+                      </div>
+                      {{^current.isAdmin}}
+                      <div class="pull-right">
+                        <span on-click="OnEditTeam" data-toggle="tooltip" title="编辑" class="pull-right">
+                    <i class="fa fa-edit fa-lg"></i>
+                    </span>
+                      </div>
+                      {{/}}
+                    </div>
+                    {{/}}
+                  </div>
+                  <div class="panel-footer">
+                    <div>
+                      <small class="text-muted">成员数: {{current.members.length}}</small>
+                      <small class="pull-right text-muted">门店数: {{current.shops.length}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="panel panel-default bg-default">
+                  <div class="panel-tab clearfix">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#member" data-toggle="tab"><i class="fa fa-user"></i> 成员</a></li>
+                      <li class=""><a href="#shop" data-toggle="tab"><i class="fa fa-windows"></i> 门店</a></li>
+                    </ul>
+                  </div>
+                  <div class="panel-body">
+                    <div class="tab-content">
+                      <div class="tab-pane fade active in" id="member">
+                        <div class="btn-group">
+                          <button type="button" on-click='OnAddMember' class="btn btn-sm btn-success">
+                            <i class="fa fa-plus"></i> 新增成员
+                          </button>
+                        </div>
+                        {{#addingMember == 1}}
+                        <div class="row gap-top" id="memberForm" on-enter="OnFindMember" on-escape="OnCancelModel">
+                          <div class="col-md-5">
+                            <input type="text" class="form-control input-md" name="email" id="email" value="{{editingMember.account}}" placeholder="成员 Email或者手机" data-required="true" data-type="email" autofocus>
+                          </div>
+                          <div class="col-md-7">
+                            <button type="button" on-click='OnFindMember' class="btn btn-sm btn-info">
+                              <i class="fa fa-search fa-lg"></i> 查找
+                            </button>
+                            <button type="button" on-click='OnCancelModel' class="btn btn-sm btn-default">取消</button>
+                          </div>
+                        </div>
+                        {{/}} {{#addingMember == 2}}
+                        <div class="row gap-top" id="memberForm" on-enter="OnCreateMember" on-escape="OnCancelModel">
+                          <div class="col-md-12">
+                            <div class="alert alert-warning" role="alert">
+                              该账号不存在，您现在可以创建它。
+                            </div>
+                          </div>
+
+
+                          <div class="panel-body createMemberForm">
+                            <div class="form-group">
+                              <label>邮箱</label>
+                              <input type="text" class="form-control input-md" name="name" id="email" value="{{editingMember.email}}" ng-readonly="addReadonly=='email'" placeholder="邮箱">
+                            </div>
+                            <div class="form-group">
+                              <label>手机</label>
+                                <input type="text" class="form-control input-md" name="mobile" id="mobile" value="{{editingMember.mobile}}"placeholder="手机" required ng-readonly="addReadonly=='mobile'">
+                            </div>
+                            <div class="form-group">
+                              <label>姓名</label>
+                                <input type="text" class="form-control input-md"  name="name" id="name" value="{{editingMember.name}}"placeholder="姓名" required>
+                            </div>
+                            <div class="form-group">
+                              <label>密码</label>
+                                <input type="password" class="form-control input-md"  name="password" id="password" value="{{editingMember.password}}" placeholder="密码" required>
+                            </div>
+                            <div class="pull-right">
+                              <button type="button" class="btn btn-sm btn-info" on-click='OnCreateMember' ><i class="fa fa-plus fa-lg"></i> 创建账号</button>
+                              <button type="button" class="btn btn-sm btn-default" on-click='OnCancelModel' >取消</button>
+                            </div>
+                          </div>
+                        </div>
+                        {{/}} {{#addingMember == 3}}
+                        <div class="row gap-top" id="memberForm" on-enter="OnSaveMember" on-escape="OnCancelModel">
+                          <div class="col-md-12">
+                            <div class="alert alert-warning" role="alert">
+                              {{editingMember.email}} 已{{foundOrCreated}}，是否要添加到 {{current.name}} 群组中?
+                            </div>
+                          </div>
+                          <div class="col-md-4 gap-top">
+                            <span class='text-bold h4'>{{editingMember.email}}</span> <small class="text-muted">{{editingMember.name}}</small>
+                          </div>
+                          <div class="col-md-8">
+                            <button type="button" on-click='OnSaveMember' class="btn btn-sm btn-danger">
+                              <i class="fa fa-plus fa-lg"></i> 添加到 {{current.name}} 群组</button>
+                            <button type="button" on-click='OnCancelModel' class="btn btn-sm btn-default">取消</button>
+                          </div>
+                        </div>
+                        {{/}}
+                        <div class="panel panel-default gap-top" intro='fade' outro='fade'>
+                          <ul class="list-group">
+                            {{#current.members:i}}
+                            <li class="list-group-item">
+                              {{i+1}}<span class='m-right-xs gap-left'>{{.email}}</span> <small class="text-muted">{{.name}}</small>
+                              <span on-click="OnRemoveMember:{{.id}}" title="移除该成员" data-toggle="tooltip" data-placement="top" class="pull-right">
+      <i class="fa fa-minus-circle fa-lg"></i>
+      </span>
+                            </li>
+                            {{/}}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="shop">
+                        {{#current.isAdmin}}
+                        <div class="btn-group">
+                          本群组能够管理品牌下所有的门店。
+                        </div>
+                        {{/}} {{^current.isAdmin}}
+                        <div class="btn-group">
+                          <button type="button" on-click='OnAddShop' class="btn btn-sm btn-success">
+                            <i class="fa fa-plus"></i> 新增门店
+                          </button>
+                        </div>
+                        {{/}} {{#addingShop}}
+                        <div class="panel panel-default gap-top" intro='fade' outro='fade' on-escape='OnCancelModel'>
+                          <ul class="list-group">
+                            {{#selectShops.length == 0}}
+                            <li class="list-group-item">没有门店</li>
+                            {{/}} {{#selectShops:i}}
+                            <li class="list-group-item">
+                              <span class='m-right-xs gap-left'>{{.name}}</span> <small class="text-muted">{{.address}}</small>
+                              <span on-click="OnSaveShop:{{.id}}" title="新增该门店" data-toggle="tooltip" data-placement="top" class="pull-right"><i class="fa fa-plus fa-lg"></i></span>
+                            </li>
+                            {{/}}
+                          </ul>
+                          <div class="panel-footer text-right">
+                            <button type="button" on-click='OnCancelModel' class="btn btn-sm btn-default">关闭</button>
+                          </div>
+                        </div>
+                        {{/}}
+                        <div class="panel panel-default gap-top" intro='fade' outro='fade'>
+                          <ul class="list-group">
+                            {{#current.shops:i}}
+                            <li class="list-group-item">
+                              {{i+1}}<span class='m-right-xs gap-left'>{{.name}}</span> <small class="text-muted">{{.address}}</small> {{^current.isAdmin}}
+                              <span on-click="OnRemoveShop:{{.id}}" data-toggle="tooltip" title="移除该门店" class="pull-right">
+      <i class="fa fa-minus-circle fa-lg"></i>
+      </span> {{/}}
+                            </li>
+                            {{/}}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

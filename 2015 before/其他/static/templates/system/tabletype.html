@@ -1,0 +1,87 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div id="container"></div>
+        <script id="tpl" type="text/ractive">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="btn-toolbar">
+                  <div class="btn-group">
+                    <button type="button" id="addBtn" class="btn s btn-sm btn-success" on-click='addModel'>
+                      <i class="fa fa-plus"></i> 新增
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped gap-top">
+                  <thead>
+                    <tr>
+                      <th width="40px">#</th>
+                      <th class="col-md-3">类型名称</th>
+                      <th class="col-md-3">备注</th>
+                      <th class="col-md-6"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tablebody">
+                    {{#adding}}
+                    <tr on-escape='cancelSave' on-enter='saveModel' id="form">
+                      <td></td>
+                      <td>
+                        <input type="text" class="form-control input-md" id="model-name" value="{{addingModel.name}}" data-required="true" data-minlength="1" />
+                        <small class="text-muted">餐桌类型的名称, 例如 大堂</small>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control input-md" value="{{addingModel.remark}}" />
+                        <small class="text-muted">备注信息</small>
+                        <div class="gap-top">
+                          <a class="btn btn-info btn-sm" on-click='saveModel'>保存</a>
+                          <a class="btn btn-default btn-sm gap-left" on-click="cancelSave">取消</a>
+                        </div>
+                      </td>
+                    </tr>
+                    {{/adding}} {{#models:num}} {{#id != editing}}
+                    <tr>
+                      <td>{{num+1}}</td>
+                      <td on-click="editModel:{{id}}">
+                        {{.name}}
+                      </td>
+                      <td on-click="editModel:{{id}}">
+                        {{.remark}}
+                      </td>
+                      <td></td>
+                    </tr>
+                    {{/id != editing}} {{#id == editing}}
+                    <tr on-escape='cancelUpdate' on-enter='updateModel:{{.id}}' id="form">
+                      <td>{{num+1}}</td>
+                      <td>
+                        <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" />
+                        <small class="text-muted">餐桌类型的名称, 例如 大堂</small>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control input-md" value="{{editingModel.remark}}" />
+                        <small class="text-muted">备注信息</small>
+                        <div class="gap-top">
+                          <a class="btn btn-info btn-sm" on-click='updateModel:{{id}}'>保存</a>
+                          <a class="btn btn-default btn-sm gap-left" on-click="cancelUpdate">取消</a> {{#editing > 0}}
+                          <a class="btn btn-danger btn-sm pull-right" on-click='removeModel'>删除</a> {{/}}
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+                    {{/id == editing}} {{/models}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

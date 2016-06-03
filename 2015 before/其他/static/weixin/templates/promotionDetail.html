@@ -1,0 +1,14 @@
+<div class="fadeInDown" ng-hide="isLoding">
+ <div class="promotionDetail fadeInDown" ng-hide="isLoding">
+  <div class="promotionDetail-h">
+    活动详情
+  </div>
+  <div class="promotionDetail-title">
+  <p>活动名称:{{model.name}}</p>
+  <p>适用门店: <span ng-repeat="x in model.shops">{{x.name}}<q ng-hide="$last">,</q></span></p>
+  </div>
+  <div class="promotionDetail-b">
+    活动说明:{{model.remark}}
+  </div>
+</div>
+</div>

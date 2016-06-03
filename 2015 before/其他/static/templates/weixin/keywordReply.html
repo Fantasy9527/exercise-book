@@ -1,0 +1,35 @@
+<div class="panel fadeInDown">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-success" type="button" ui-sref="replyDetail({auId:auId})">添加关键字自动回复</button>
+        <div class="seperator"></div>
+          <table class="table table-hover table-striped" id="responsiveTable">
+            <thead>
+              <tr>
+                <th class="col-md-3">规则名称</th>
+                <th class="col-md-3">关键字</th>
+                <th class="col-md-4">自动回复消息类型</th>
+                <th class="col-md-2">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="model in models">
+                <td>{{model.regName}}</td>
+                <td>
+                <span ng-repeat="word in model.words">{{word.name}} <dfn ng-hide="$last">,</dfn></span>
+                </td>
+                <td>
+                {{model.content | limitTo:20}} <span ng-show="model.content.length>=20">...</span>
+                </td>
+                <td>
+                <button class="btn btn-sm btn-success" type="button" ng-click="skipSet(model)">修改</button>
+                <button class="btn btn-sm btn-danger" type="button" ng-click="delReg(model,$index)">删除</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

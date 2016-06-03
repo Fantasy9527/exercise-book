@@ -1,0 +1,264 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div id="container">
+        <div class="panel panel-default add-product">
+          <div ng-show="showAlert==1" class="alert alert-success fadeInLeft animation-delay1" style="font-size: 11px;width:100%; position: fixed;z-index:9999;top:45px"><span>新增会员类型已保存</span></div>
+          <div class="panel-heading">
+            <a class="return-up" id="showAlert" ui-sref='member.type'>
+              <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a> 新增会员类型
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6 fadeInRight memberType-img" style="width:auto!important; width:40%;max-width: 300px;">
+                <a href="">
+                  <img src="/assets/images/phone.png">
+                  <div class="imgBox">
+                    <img ng-show="!!model.image_url" ng-src="{{model.image_url}}" alt="">
+                  </div>
+                  <p class="memberType-name">VIP</p>
+                  <p class="number">0000 0000 0000</p>
+                </a>
+              </div>
+
+              <form ng-submit="saveModel()" name="createMemberTypeForm">
+                <div class="col-md-6 fadeInLeft" style="font-size: 14px; width: 550px;">
+                  <div class="panel-body">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        类型名称
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label>会员类型名称</label>
+                          <div ng-class='{"has-error":createMemberTypeForm.name.$invalid && createMemberTypeForm.name.$dirty}'>
+                            <input type="text" class="form-control input-sm" ng-blur="checkDupName(model.name)" ng-focus="hideWarningArea()" placeholder="建议填写品牌名，最多十个汉字" name="name" maxlength=10 ng-model="model.name" required>
+                          </div>
+                          <div class="error" ng-show="(model.name==undefined || model.name.length==0) && createMemberTypeForm.name.$error.required==true" style="color:#bb4442;"><small>必填项</small></div>
+                          <div ng-if="showWaringArea==1" style="postion:absulute;font-size:10px !important;width:135px ;color:#bb4442;">该会员类型名称已存在</div>
+                        </div>
+                        <!--<div class="form-group">
+                                <label class="normal">背景图片:</label>
+                                <input type="file"  ng-model="model.image">
+                            </div>-->
+                        <div class="form-group">
+                          <label class="normal">卡片样式:</label>
+                          <input type="file" uploader="uploader" nv-file-select accept="image/*">
+                        </div>
+                        <label style="color: #8B6421;"><i class="fa fa-exclamation-circle fa-lg"></i><span class="m-left-xs">会员卡必须为宽540像素,高320像素的图片</span></label>
+                        <div class="thumbnail relative gap-top" style="width:278px; height:168px;">
+                          <img style="width:270px; height:160px;" ng-src="{{model.image_url}}" alt="">
+                        </div>
+
+                        <!--  <div class="form-group">
+                                <label style="color: #8B6421;"><i class="fa fa-exclamation-circle fa-lg"></i><span class="m-left-xs">会员卡会显示部分必要信息(如左图),请注意</span></label>
+                            </div>-->
+                        <div class="form-group">
+                          <label class="label-checkbox" style="font-weight: normal;">
+                            <input type="checkbox" ng-model="model.is_cash">
+                            <span class="custom-checkbox" style="margin-top: -3px;"></span>允许充值
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="label-checkbox" style="font-weight: normal;">
+                            <input type="checkbox" ng-model="model.is_debit">
+                            <span class="custom-checkbox" style="margin-top: -3px;"></span>可以挂账
+                          </label>
+                        </div>
+                        <div class="form-group" ng-if="model.is_debit==true">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <label class="normal">挂账额度:</label>
+                              <div ng-class='{"has-error":createMemberTypeForm.debitCredit.$invalid && createMemberTypeForm.debitCredit.$dirty}'>
+                                <input name="debitCredit" type="text" class="form-control input-sm" set-focus ng-model="model.debit_credit" ng-pattern="/^[0-9]*$/" maxlength="9" required>
+                              </div>
+                              <div class="error" ng-show="(model.debit_credit==undefined || model.debit_credit.length==0) && createMemberTypeForm.debitCredit.$error.required==true" style="color:#bb4442;"><small>必填项</small></div>
+                              <div class="error" ng-show="createMemberTypeForm.debitCredit.$invalid && createMemberTypeForm.debitCredit.$dirty && createMemberTypeForm.debitCredit.$error.required==undefined" style="color:#bb4442;"><small>挂账额度必须是数字</small></div>
+                            </div>
+                            <div class="col-md-6">
+                              <label class="normal">挂账有效期:</label>
+                              <select class="form-control" ng-model="model.debit_validity">
+                                <option>5年</option>
+                                <option>2年</option>
+                                <option>1年</option>
+                                <option>6个月</option>
+                                <option>3个月</option>
+                                <option>1个月</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        会员归属设置
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label class="normal">添加关联门店</label>
+                          <div class="form-inline">
+                            <div class="form-group" style="width:130px;">
+                              <select style="width:100%;" class="input-sm form-control inline" ng-model="selectedProvince" ng-options="province as province.name for province in provinces" ng-change="selectProvince(selectedProvince)"></select>
+                            </div>
+                            <div class="form-group" style="width:130px;">
+                              <select style="width:100%;" class="input-sm form-control inline" ng-model="selectedCity" ng-options="city as city.name for city in selectedProvince.cities" ng-change="selectCity(selectedCity)"></select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>
+                                  <label class="label-checkbox">
+                                    <input type="checkbox" ng-model="isSelectAll" ng-change="selectAllShop()">
+                                    <span class="custom-checkbox"></span>
+                                  </label>
+                                </th>
+                                <th>省份</th>
+                                <th>城市</th>
+                                <th>门店</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="s in shops">
+                                <td>
+                                  <label class="label-checkbox">
+                                    <input type="checkbox" ng-model="s.isSelected" ng-change="addOrRemoveSelectedShop(s)">
+                                    <span class="custom-checkbox"></span>
+                                  </label>
+                                </td>
+                                <td ng-bind="s.province.name"></td>
+                                <td ng-bind="s.city.name"></td>
+                                <td ng-bind="s.shop.name"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div page></div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="normal">会员类型详细说明:</label>
+                          <div>
+                            <textarea class="normal form-control parsley-validated" rows="3" ng-model="model.remark" name="remark" maxlength="100"></textarea>
+                          </div>
+                        </div>
+                        <!--
+                            <div class="form-group">
+                                <label class="label-checkbox" style="font-weight: normal;">
+                                    <input type="checkbox" ng-model="model.need_card" >
+                                    <span class="custom-checkbox" style="margin-top: -3px;" ></span>绑定实体会员卡
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="label-checkbox" style="font-weight: normal;">
+                                    <input type="checkbox" ng-model="model.is_weixin" ng-click="choseWeixin()">
+                                    <span class="custom-checkbox" style="margin-top: -3px;" ></span>添加微信会员
+                                </label>
+                            </div>
+                        -->
+                      </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        积分特权设置
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label class="normal">积分规则:</label>
+                          <select class="form-control" ng-model="model.point_change_type" ng-options="p.id as p.name for p in pointChangeTypes ">
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <label class="normal">每</label>
+                            </div>
+                            <div class="form-group" ng-if="model.point_change_type==2" ng-class='{"has-error":createMemberTypeForm.amount.$invalid && createMemberTypeForm.amount.$dirty}'>
+                              <input type="text" name="amount" class="form-control input-sm" ng-model="model.change_amount" ng-maxlength="8" ng-pattern="/^[0-9]*$/" required>
+                              <div class="error" ng-show="(model.model.change_amount==undefined || model.model.change_amount.length==0) && createMemberTypeForm.amount.$error.required==true" style="color:#bb4442;"><small>必填项</small></div>
+                              <div class="error" ng-show="createMemberTypeForm.amount.$invalid && createMemberTypeForm.amount.$dirty && createMemberTypeForm.amount.$error.required==undefined" style="color:#bb4442;"><small>金额必须是数字</small></div>
+                            </div>
+                            <div class="form-group" ng-if="model.point_change_type==2">
+                              <label class="normal">元</label>
+                            </div>
+                            <div class="form-group" ng-if="model.point_change_type==1">
+                              <label class="normal">次</label>
+                            </div>
+                            <div class="form-group">
+                              <label class="normal">积</label>
+                            </div>
+                            <div class="form-group" ng-class='{"has-error":createMemberTypeForm.point.$invalid && createMemberTypeForm.point.$dirty}'>
+                              <input type="text" name="point" ng-maxlength="8" class="form-control input-sm" ng-model="model.change_point" ng-pattern="/^[0-9]*$/" required>
+                              <div class="error" ng-show="(model.model.change_point==undefined || model.model.change_point.length==0) && createMemberTypeForm.point.$error.required==true" style="color:#bb4442;"><small>必填项</small></div>
+                              <div class="error" ng-show="createMemberTypeForm.point.$invalid && createMemberTypeForm.point.$dirty && createMemberTypeForm.point.$error.required==undefined" style="color:#bb4442;"><small>积分必须是数字</small></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="normal">分</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <label>会员类型说明:</label>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label class="normal">商家简介<span style="color:#d2d2d2">(选填)</span></label>
+                          <textarea class="form-control" rows="3" ng-model="model.shop_description" maxlength="1000"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label class="normal">有效期:</label>
+                          <select class="form-control" ng-model="model.validity">
+                            <option>10年</option>
+                            <option>5年</option>
+                            <option>2年</option>
+                            <option>1年</option>
+                            <option>6个月</option>
+                            <option>3个月</option>
+                            <option>1个月</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label class="label-checkbox" style="font-weight: normal;">
+                            <input type="checkbox" ng-model="model.show_all_shop_info">
+                            <span class="custom-checkbox" style="margin-top: -3px;"></span>展示全部门店信息<span style="color:#d2d2d2;">(包括各门店联系电话及详细地址)</span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="label-checkbox" style="font-weight: normal;">
+                            <input type="checkbox" ng-model="model.show_service_phone">
+                            <span class="custom-checkbox" style="margin-top: -3px;"></span>展示统一服务电话
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                      <label style="color: #8B6421;"><i class="fa fa-exclamation-circle fa-lg"></i><span class="m-left-xs">系统会自动生成会员类型号</span></label>
+                    </div>
+
+                    <div style="margin-right:20px;;margin-top: 20px;">
+                      <div class="pane1-footer text-right">
+                        <input class="btn btn-success btn-sm" type="submit" ng-disabled="createMemberTypeForm.$invalid" value="保存">
+                        <input type="reset" class="btn btn-default btn-sm" value="取消">
+                      </div>
+                    </div>
+                  </div>
+              </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

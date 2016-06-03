@@ -1,0 +1,122 @@
+<div class="panel-heading">
+  <a class="return-up" href="javascript:history.back()">
+    <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>{{tableName}}例外菜品管理
+</div>
+<div class="panel-body" id="container">
+  <div class="spinner" ng-show="isLoading">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+  <div ng-hide="isLoading" class="fadeInDown">
+    <div class="f-pr" ng-hide="isEnable==2">
+      <button class="btn btn-sm btn-success" type="button" ng-click="addException()"><i class="fa fa-plus"></i> 添加例外菜品</button>
+      <div class="dropdown-menu" style="width:460px; display:block;" ng-show="addVegetableShow">
+        <div class="panel-heading ">
+          <strong>可添加的菜品
+                        </strong>
+          <button type="button" class="close" ng-click="closeVegeTable()">
+            ×
+          </button>
+        </div>
+        <table class="table table-striped table-hover" style="margin-bottom:0;" id="responsiveTable">
+          <thead>
+            <tr>
+              <th>
+                <label class="label-checkbox">
+                  <input type="checkbox" id="chk-all" ng-click="cheAll()" ng-model="checkall">
+                  <span class="custom-checkbox"></span>
+                </label>
+              </th>
+              <th class="col-md-5">
+                菜品
+              </th>
+              <th class="col-md-2">大类</th>
+              <th class="col-md-2">小类</th>
+              <th class="col-md-3">
+                操作
+              </th>
+            </tr>
+          </thead>
+        </table>
+        <div class="table-overflow-auto">
+          <table class="table table-striped table-hover" id="responsiveTable">
+            <tbody>
+              <tr ng-repeat="x in selFoodModels | filter : filerGoods" ng-click="selFoodTable(x,$index)" class="cursor-pointer">
+                <td>
+                  <label class="label-checkbox">
+                    <input type="checkbox" class="chk-row" ng-model="x.sel">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </td>
+
+                <td class="col-md-5 text-center">{{x.name}} ({{x.unitType}})</td>
+                <td class="col-md-2">{{x.groupName}}</td>
+                <td class="col-md-2">{{x.subName}}</td>
+                <td class="col-md-3 text-center">
+                  <a class="btn btn-success _pull-right" ng-click="addVegetableTable(x,$event)">
+                    <i class="fa fa-plus fa-lg"></i>
+                  </a>
+                </td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <div class="col-md-12 col-sm-12">
+            <a class="btn btn-success pull-right" ng-click="batchAdd()">
+             批量添加
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="seperator"></div>
+
+    <div class="panel panel-default add-product">
+      <div class="panel-heading">{{tableName}}例外菜品管理</div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th width="40px">#</th>
+            <th class="col-md-3">菜品</th>
+            <th class="col-md-2">大类</th>
+            <th class="col-md-2">小类</th>
+            <th class="col-md-2">折扣</th>
+            <th class="col-md-3"> <span ng-hide="isEnable==2">操作</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in selFoodModels | filter : filerGoods2" ng-click=edit(x)>
+            <td>{{$index+1}}</td>
+            <td>{{x.name}} ({{x.unitType}})</td>
+            <td>{{x.groupName}}</td>
+            <td>{{x.subName}}</td>
+            <td>
+              <span ng-hide="x.isEdit">{{x.percentage}}%</span>
+              <div ng-show="x.isEdit" class="input-group">
+                <input type="text" class="form-control input-md" name="percentage" required="" ng-model="x.percentage" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/">
+                <span class="input-group-addon">&nbsp;%</span>
+              </div>
+            </td>
+            <td>
+              <div ng-hide="isEnable==2">
+                <div ng-show="x.isEdit">
+                  <a class="btn btn-info btn-sm" ng-click="save(x,$event)">保存</a>
+                  <a class="btn btn-default btn-sm gap-left" ng-click="cancel(x,$event)">取消</a>
+                </div>
+                <button ng-hide="x.isEdit" class="btn btn-sm btn-danger pull-left" type="button" ng-click="delModel(x,$index,$event)">删除</button>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

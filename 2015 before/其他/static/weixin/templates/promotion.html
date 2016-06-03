@@ -1,0 +1,23 @@
+<div class="fadeInDown" ng-hide="isLoding">
+  <div class="bd" ng-show="model.length==0">
+    <div class="weui_msg">
+      <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_waiting"></i></div>
+      <div class="weui_text_area">
+        <h2 class="weui_msg_title">没有优惠信息</h2>
+        <p class="weui_msg_desc">抱歉,没有任何优惠信息.请关注后续详情</p>
+      </div>
+      <div class="weui_opr_area">
+        <p class="weui_btn_area">
+          <a href="javascript:;" ui-sref="home" class="weui_btn weui_btn_primary">确定</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="promotionList">
+    <li class="f-pr" ng-repeat="x in model" ui-sref="promotionDetail({authId:{{authId}},brand:{{x.brandId}},promotion:{{x.promotionId}}})">
+      <p>{{x.name}}</p>
+      <span>详情</span>
+    </li>
+  </ul>
+</div>

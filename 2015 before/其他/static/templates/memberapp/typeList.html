@@ -1,0 +1,111 @@
+<div class="panel-heading">
+	<i class="fa fa-user-md"></i> 类型资料
+</div>
+<div>
+	<div class="panel-body">
+		<div class="row" style="margin-left: 0px;">
+			<div class="input-group">
+				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:300px;" ng-click="showOrHideChoseArea()">
+					<div class="row">
+						<div style="text-align: left !important;float:left!important;"><span ng-bind="selectedAreaName" style="margin-left:15px;"></span></div>
+						<div style="margin-left:15px;margin-left:250px"><span class="caret"></span></div>
+					</div>
+				</button>
+			</div>
+		</div>
+		<form class="form-inline" style="position:absolute;z-index:10;margin-left:0px;" ng-click="stopPropagation($event)">
+			<div class="form-group fadeInDown animation-delay1" ng-if="showCityArea==1" style="width:300px; height:auto;background-color: #ffffff;border:1px solid #e5e5e5">
+				<ul class="list-inline">
+					<ul style="margin-left:10px;margin-top:10px;"><a class="btn getFocus" ng-click="selectArea(1)">中国</a></ul>
+					<hr style="height: 1px;margin:9px 0;overflow: hidden;background-color: #e5e5e5;"></hr>
+					<li ng-repeat="province in country" style="width:25%;margin-left:-1px;margin-top: 3px;" ng-mouseOver="highLightArea(province)">
+						<a class="btn" style="width:114% !important;" ng-class="{'getFocus':province==focusProvince}" ng-click="selectArea(1,province)"><span ng-bind="province.name"></span></a>
+					</li>
+					<hr ng-if="focusProvince.cities.length>0" style="height: 1px;margin:9px 0;overflow: hidden;background-color: #e5e5e5;"></hr>
+					<li ng-repeat="city in focusProvince.cities" style="width:25%;margin-left:-1px;margin-top: 3px;" ng-mouseOver="highLightArea(focusProvince,city)">
+						<a class="btn" style="width:114% !important;" ng-class="{'getFocus':city==focusCity}" ng-click="selectArea(1,focusProvince,city)"><span ng-bind="city.name"></span></a>
+					</li>
+				</ul>
+			</div>
+			<div ng-if="showCityArea==1" class="form-group fadeInUp animation-delay1" style="width:auto;height:auto;background-color: #ffffff;border:1px solid #e5e5e5;vertical-align:top !important;">
+				<ul class="list-inline" style="margin:5px;" ng-repeat="shop in focusCity.shops" ng-mouseover="highLightArea(focusProvince,focusCity,shop)">
+					<a class="btn" ng-class="{'getFocus':shop==focusShop}" ng-click="selectArea(1,focusProvince,focusCity,shop)" ng-bind="shop.name"></a>
+				</ul>
+			</div>
+		</form>
+
+		<div class="row" style="margin-left: 0px;background-color:#F9F9F9; margin-top:10px;">
+			<div class="form-inline" role="form">
+				<div class="form-group" style="margin-left: 0;">
+					<ul class="list-inline" style="margin-top: 5px;font-weight: normal;">
+						<li><strong>积分方式：</strong></li>
+						<li class="m-right-xs goods-group {{currentPointChangeTypeId==pointChangeType.id ? 'bg-success':''}}" ng-repeat="pointChangeType in pointChangeTypes" ng-click="chosePointChangeType(pointChangeType.id)">{{pointChangeType.remark}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin-left: 0px;">
+			<div class="form-inline" role="form">
+				<div class="form-group" style="margin-left: 0;">
+					<ul class="list-inline" style="margin-top: 5px;font-weight: normal;">
+						<li><strong>是否支持充值：</strong></li>
+						<li class="m-right-xs goods-group {{currentRechargeId==recharge.id ? 'bg-success':''}}" ng-repeat="recharge in recharges" ng-click="choseRecharge(recharge.id)">{{recharge.name}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin-left: 0px;">
+			<div class="form-inline" role="form">
+				<div class="form-group" style="margin-left: 0;">
+					<a type="button" class="btn btn-sm btn-success" ng-click="addMemberType()"><i class="fa fa-plus"></i>  新增会员类型</a>
+				</div>
+			</div>
+		</div>
+
+		<table class="table table-striped gap-top">
+			<thead>
+				<tr>
+					<th class="text-center" width="10px">#</th>
+					<th class="text-center" >会员类型名称</th>
+					<th class="text-center" >会员数量</th>
+					<th class="text-center" >是否支持充值</th>
+					<th class="text-center" >充值余额</th>
+					<th class="text-center" >赠送余额</th>
+					<th class="text-center" >累计充值</th>
+					<th class="text-center" >累计赠送</th>
+					<th class="text-center" >累计消费</th>
+					<th class="text-center" >积分方式</th>
+					<th class="text-center" >是否可以挂账</th>
+					<th class="text-center" >发放有效期</th>
+					<th class="text-center" >操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="model in models">
+					<td class="text-center">{{($index+1)+(page-1)*pageSize}}</td>
+					<td class="text-center">
+						<a ng-bind='model.name' href="" ng-click="skipToDetail(model)" style="color:#6bafca;"></a>
+					</td>
+					<td class="text-center" ng-bind="model.memberCount"></td>
+					<td class="text-center" ng-bind='model.is_cash.name'></td>
+					<td class="text-center" ng-bind="formatMoney(model.chargeBalance)"></td>
+					<td class="text-center" ng-bind="formatMoney(model.giftBalance)"></td>
+					<td class="text-center" ng-bind="formatMoney(model.chargeValue)"></td>
+					<td class="text-center" ng-bind="formatMoney(model.giftValue)"></td>
+					<td class="text-center" ng-bind="formatMoney(model.chargeConsume)"></td>
+					<td class="text-center" ng-bind='model.point_change_type.name'></td>
+					<td class="text-center" ng-bind='model.is_debit'></td>
+					<td class="text-center" ng-bind='model.validity'></td>
+					<td class="text-center">
+						<a class="btn btn-sm btn-danger" href="#" ng-click="stopMemberType(model)">
+							<i class="fa fa-square-o fa-lg"></i> 停用
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div page></div>
+	</div>
+</div>

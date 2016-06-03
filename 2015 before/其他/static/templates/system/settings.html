@@ -1,0 +1,65 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <button type="button" id="pickfiles" class="hidden"></button>
+        <div id="container"></div>
+        <script id="tpl" type="text/ractive">
+          <div class="panel-heading">
+            基本设置
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center col-md-3">设置参数</th>
+                    <th class="col-md-12">设置值</th>
+                  </tr>
+                </thead>
+                <tbody id="modelsbody" on-escape="OnCancelModel" on-enter='OnSaveModel' id="form">
+                  <tr>
+                    <td class="text-center">品牌名称</td>
+                    {{^item == 'brand.name'}}
+                    <td on-click="OnEditModel:'brand.name'">{{brand.name}} <small class="text-muted">{{brand.remark}}</small></td>
+                    {{/}} {{#item == 'brand.name'}}
+                    <td>
+                      <input type="text" class="form-control input-md" id="model-name" value="{{name}}" data-required="true" data-minlength="1" />
+                      <small class="text-muted">品牌的名称</small>
+                      <input type="text" class="form-control input-md" value="{{remark}}" />
+                      <small class="text-muted">品牌的备注</small>
+                      <div class="gap-top">
+                        <a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+                        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a>
+                      </div>
+                    </td>
+                    {{/}}
+                  </tr>
+                  <tr class="image-picker">
+                    <td class="text-center">品牌 Logo</td>
+                    {{^item == 'brand.logo'}}
+                    <td on-click="OnEditModel:'brand.logo'">
+                      {{#brand.logo}}
+                      <img src='{{brand.logo}}' class="middle" /> {{/}}
+                    </td>
+                    {{/}} {{#item == 'brand.logo'}}
+                    <td>
+                      {{#brand.logo}}
+                      <img src='{{brand.logo}}' class="middle" /> {{/}}
+                      <div class="gap-top">
+                        <a class="btn btn-info btn-sm" id="model-name" on-click='OnUploadImage'>选择文件</a>
+                        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a>
+                      </div>
+                    </td>
+                    {{/}}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

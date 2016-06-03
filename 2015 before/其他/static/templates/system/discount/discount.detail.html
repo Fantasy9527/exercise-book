@@ -1,0 +1,121 @@
+<div class="right-content">
+      <div  class="panel panel-default add-product">
+        <div class="panel-heading">
+          <a class="return-up" ui-sref="system.discount">
+            <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>{{goodsTypeName}}
+        </div>
+        <div ng-include="'/assets/templates/system/discount/discount.detail.nav.html'"></div>
+        <div  id="container"></div>
+        <script id="tpl" type="text/ractive">
+          <div class="panel panel-default add-product">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <i class="fa fa-shopping-cart fa-lg grey"></i>
+                <span class="m-left-xs"><strong>折扣:</strong></span>
+                <span on-click="OnConfigFilter:true" class="{{configed ? 'bg-success' : ''}} m-right-xs goods-group">
+            有折扣 <small class="text-muted">({{ stats.configed }})</small>
+          </span>
+                <span on-click="OnConfigFilter:false" class="{{configed ? '' : 'bg-success'}} m-right-xs goods-group">
+            没有折扣 <small class="text-muted">({{ stats.unconfiged }})</small>
+          </span>
+              </li>
+              <li class="list-group-item">
+                <i class="fa fa-bar-chart-o fa-lg grey"></i>
+                <span class="m-left-xs"><strong>大类:</strong></span>
+                <span on-click="OnGroupFilter:-1" class='{{group === -1 ? "bg-success" : ""}} m-right-xs goods-group'>
+            所有 <small class="text-muted">({{configed ? stats.configed : stats.unconfiged}})</small>
+          </span> {{#groups}}
+                <span on-click="OnGroupFilter:{{.id}}" class='{{group === .id ? "bg-success" : ""}} m-right-xs goods-group'>
+              {{.name}} <small class="text-muted">({{configed ? stats[.id].configed : stats[.id].unconfiged}})</small>
+            </span> {{/groups}}
+              </li>
+            </ul>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3" id="batchForm" on-enter="OnBatchSet">
+                  {{#batchSet}}
+                  <div class="input-group" intro="fade" outro="fade">
+                    <span class="input-group-addon">折扣率</span>
+                    <input type="text" id="discountInput" class="form-control input-sm" value='{{batchDiscount}}' autofocus data-range="[0, 100]" />
+                    <span class="input-group-addon">%</span>
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-sm btn-success" on-click='OnBatchSet'>批量设置</button>
+                    </div>
+                  </div>
+                  {{/}}
+                </div>
+
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-striped gap-top multi-selected">
+                    <thead>
+                      <tr>
+                        <th width="40px">
+                          <label class="label-checkbox">
+                            <input type="checkbox" class="check-all" checked='{{selectedAll}}'>
+                            <span class="custom-checkbox"></span>
+                          </label>
+                        </th>
+                        <th width="40px">#</th>
+                        <th class="col-md-2 text-center">菜品大类</th>
+                        <th class="col-md-2 text-center">菜品小类</th>
+                        <th class="col-md-2">折扣率</th>
+                        <th class="col-md-4">例外菜品</th>
+                        <th class="col-md-2"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#showingModels:num}} {{#subgroup == .id}}
+                      <tr on-enter='OnSaveModel' on-escape='OnCancelModel' id="form">
+                        <td>
+                          <label class="label-checkbox">
+                            <input type="checkbox" class="check-all" checked='{{selectedAll}}'>
+                            <span class="custom-checkbox"></span>
+                          </label>
+                        </td>
+                        <td class="text-center">{{num+1}}</td>
+                        <td class="text-center">{{editingModel._group.name}}</td>
+                        <td class="text-center">{{editingModel.name}}</td>
+                        <td>
+                          <div class="input-group">
+                            <input type="text" class="form-control input-md" id="model-value" value="{{editingModel._discount.percentage}}" data-range="[0, 100]" />
+                            <span class="input-group-addon">%</span>
+                          </div>
+                          <small class="text-muted">该类型菜品的折扣率</small>
+                          <div class="">
+                            <a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+                            <a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a>
+                          </div>
+                        </td>
+                        <td></td>
+                      </tr>
+                      {{/subgroup == .id}} {{^subgroup == .id}}
+                      <tr>
+                        <td>
+                          <label class="label-checkbox">
+                            <input type="checkbox" class='check-item' on-click="SelectRow" id="{{.id}}">
+                            <span class="custom-checkbox"></span>
+                          </label>
+                        </td>
+                        <td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+                        <td class="text-center" on-click="OnEditModel:{{.id}}">{{._group.name}}</td>
+                        <td class="text-center" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+                        <td on-click="OnEditModel:{{.id}}, {{._subgroup.id}}">{{#if(._discount.percentage != undefined)}} {{._discount.percentage + '%'}} {{#if(._discount.percentage == 0)}}<small style="color: #d9534f !important">(免费)</small> {{/if}} {{/if}}</td>
+                        <td>{{._discount.besides}}</td>
+                        <td>
+                          <a href="#/system/discount/exception/discount/{{discount}}/subgroup/{{.id}}" target="_blank" class="btn btn-sm btn-success">例外菜品</a>
+                        </td>
+                      </tr>
+                      {{/subgroup == .id}} {{/showingModels:num}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+</div>

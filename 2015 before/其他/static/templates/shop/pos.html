@@ -1,0 +1,190 @@
+<div class="panel panel-default add-product" id="container">
+  <script id="tpl" type="text/ractive">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-success" on-click="OnEditModel:0">
+                <i class="fa fa-plus"></i> 新增收银机
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <input type="text" class="form-control input-sm">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-default">查找</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped gap-top">
+            <thead>
+              <tr>
+                <th width="40px">#</th>
+                <th class="col-md-2">名称</th>
+                <th class="col-md-1 text-center">类型</th>
+                <th class="col-md-1 text-center">IP 地址</th>
+                <th class="col-md-1 text-center">版本</th>
+                <th class="col-md-2 text-center">接入码</th>
+                <th class="col-md-3">使用打印机</th>
+                <th class="col-md-2 text-center">备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#editing == 0}}
+              <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+                <td>{{editing == 0 ? '' : num+1}}</td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" />
+                  <small class="text-muted">收银机的名称</small>
+                </td>
+                {{#editing == 0}}
+                <td class="text-center" colspan="3">
+                  <small class="text-muted">这些参数由收银机自动上报.</small>
+                </td>
+                <td class="text-center">
+                  <small class="text-muted">服务器生成接入码.</small>
+                </td>
+                {{/}} {{^editing == 0}}
+                <td class="text-center">{{.is_master?"主机":"备机"}}</td>
+                <td class="text-center">{{.ip}}</td>
+                <td class="text-center">{{.version}}</td>
+                <td class="text-center">{{.access_code}}</td>
+                {{/}}
+                <td>
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.use_printer_id}}" value="{{null}}" id="model-name" /><span class="custom-radio"></span> 无
+                    </label>
+                  </div>
+                  {{#printers}}
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.use_printer_id}}" value="{{.id}}" /><span class="custom-radio"></span> {{.name}}
+                      <span class="small text-muted">
+              {{._printerType.name}}
+              {{#.printerType == 2}}
+                {{.serialPort}} {{.baudRate}}
+              {{/}}
+              {{#.printerType == 1}}
+                {{.ip}}:{{.ipPort}}
+              {{/}}
+            </span>
+                    </label>
+                  </div>
+                  {{/}}
+                  <div class="radio">
+                    <small class="text-muted">收银机使用的打印机，一般是和收银机连接的串口打印机，也可以是网络打印机。</small>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{editingModel.remark}}" />
+                  <small class="text-muted">备注</small>
+                  <div class="gap-top">
+                    <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                    <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                    <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                    <div>
+                      <small class="text-danger pull-right">警告: 删除终端设备后，该设备将不再使用.</small>
+                    </div>
+                    {{/}}
+                  </div>
+                </td>
+              </tr>
+              {{/editing == 0}} {{#models:num}} {{#editing == .id}}
+              <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+                <td>{{editing == 0 ? '' : num+1}}</td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{editingModel.name}}" data-required="true" data-minlength="1" />
+                  <small class="text-muted">收银机的名称</small>
+                </td>
+                {{#editing == 0}}
+                <td class="text-center" colspan="3">
+                  <small class="text-muted">这些参数由收银机自动上报.</small>
+                </td>
+                <td class="text-center">
+                  <small class="text-muted">服务器生成接入码.</small>
+                </td>
+                {{/}} {{^editing == 0}}
+                <td class="text-center">{{.is_master?"主机":"备机"}}</td>
+                <td class="text-center">{{.ip}}</td>
+                <td class="text-center">{{.version}}</td>
+                <td class="text-center">{{.access_code}}</td>
+                {{/}}
+                <td>
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.use_printer_id}}" value="{{null}}" id="model-name" /><span class="custom-radio"></span> 无
+                    </label>
+                  </div>
+                  {{#printers}}
+                  <div class="radio">
+                    <label>
+                      <input class="gap-top" type="radio" name="{{editingModel.use_printer_id}}" value="{{.id}}" /><span class="custom-radio"></span> {{.name}}
+                      <span class="small text-muted">
+              {{._printerType.name}}
+              {{#.printerType == 2}}
+                {{.serialPort}} {{.baudRate}}
+              {{/}}
+              {{#.printerType == 1}}
+                {{.ip}}:{{.ipPort}}
+              {{/}}
+            </span>
+                    </label>
+                  </div>
+                  {{/}}
+                  <div class="radio">
+                    <small class="text-muted">收银机使用的打印机，一般是和收银机连接的串口打印机，也可以是网络打印机。</small>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{editingModel.remark}}" />
+                  <small class="text-muted">备注</small>
+
+                  <div class="gap-top">
+
+                    <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                    <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+                    <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                    <div>
+                      <small class="text-danger pull-right">警告: 删除终端设备后，该设备将不再使用.</small>
+                    </div>
+                    {{/}}
+                  </div>
+                </td>
+              </tr>
+              {{/editing == .id}} {{#editing != .id}}
+              <tr>
+                <td class="" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+                <td class="" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.is_master?"主机":"备机"}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.ip}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.version}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.access_code}}</td>
+                <td on-click="OnEditModel:{{.id}}">
+                  {{._use_printer.name}}
+                  <span class="small text-muted">
+        {{._use_printer._printerType.name}}
+        {{#._use_printer.printerType == 2}}
+          {{._use_printer.serialPort}} {{._use_printer.baudRate}}
+        {{/}}
+        {{#._use_printer.printerType == 1}}
+          {{._use_printer.ip}}:{{._use_printer.ipPort}}
+        {{/}}
+      </span>
+                </td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.remark}}</td>
+              </tr>
+              {{/editing != .id}} {{/models}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </script>
+</div>

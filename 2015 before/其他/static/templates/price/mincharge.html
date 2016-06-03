@@ -1,0 +1,56 @@
+<div class="panel-body" id="container">
+	<script id="tpl" type="text/ractive">
+		<div class="panel panel-default add-product">
+			<div class="panel-heading">
+				<i class="fa fa-spinner"></i> 低消设置
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th width="40px">#</th>
+						<th class="col-md-2 text-center">餐桌类型</th>
+						<th class="col-md-2 text-center">最低消费(元)</th>
+						<th class="col-md-8">备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#models:num}} {{#editing == .id}}
+					<tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+						<td class="text-center">{{num+1}}</td>
+						<td class="text-center">{{editingModel.name}}</td>
+						<td>
+							<div class="input-group">
+								<input type="text" class="form-control input-md" id="model-price" value="{{editingModel._editing.value}}" data-required="true" data-min="0" />
+								<span class="input-group-addon">元</span>
+							</div>
+							<small class="text-muted">该类型桌子的最低消费, 单位:元</small>
+						</td>
+						<td>
+							<input type="text" class="form-control input-md" value="{{editingModel._editing.remark}}" />
+							<small class="text-muted">备注信息, 可以为空</small>
+
+							<div class="gap-top">
+								<a class="btn btn-info btn-sm" on-click='OnSaveModel:{{id}}'>保存</a>
+								<a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a> {{#editingModel._editing.id}}
+								<a class="btn btn-danger btn-sm pull-right" on-click="OnRemoveModel">删除</a>
+								<div>
+									<small class="text-danger pull-right">删除后，该低消设置将失效</small>
+								</div>
+								{{/}}
+							</div>
+						</td>
+					</tr>
+					{{/editing == .id}} {{^editing == .id}}
+					<tr>
+						<td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+						<td class="text-center" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+						<td class="text-center" on-click="OnEditModel:{{.id}}">{{._mincharge.value}}</td>
+						<td on-click="OnEditModel:{{.id}}">{{._mincharge.remark}}</td>
+					</tr>
+					{{/editing == .id}} {{/models:num}}
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+</div>

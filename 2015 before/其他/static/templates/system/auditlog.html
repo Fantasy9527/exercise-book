@@ -1,0 +1,110 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product" id="container">
+         <div class="panel-heading">
+           <a class="return-up" ui-sref="system">
+     <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>审计日志
+         </div>
+         <div class="panel-body">
+           <div class="row padding-t-10">
+             <div class="btn-group city-plug padding-l-15">
+               <button class="btn btn-default dropdown-toggle pull-left">
+                 <span class="pull-left " id="shopName">{{indexShop}}</span>
+                 <div class="city-plug-t text-right">
+                   <span class="caret"></span>
+                 </div>
+               </button>
+               <a href="" ng-click="refreshShop()" class="refresh-widget pull-left" style="width:30px;height:30px;line-height:30px;text-align:center"><i class="fa fa-refresh"></i></a>
+               <div class="dropdown-menu city-menu" style="width:300px; left:15px; display:block" ng-show="isMenuOpen">
+                 <!--省-->
+                 <ul class="f-cb province-ul">
+                   <li data-citytype="country" data-areaId="1" ng-repeat="x in countryData" ng-click="selCountry(x)"><a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+                   </li>
+                 </ul>
+                 <div ng-show="cities">
+                   <div class="divider" style="clear:both"></div>
+                   <!--城市-->
+                   <ul class="f-cb city-ul">
+                     <li data-citytype="city" ng-repeat="x in cities" ng-click="selCity(x)">
+                       <a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+                     </li>
+                   </ul>
+                 </div>
+               </div>
+               <ul class="dropdown-menu shop-menu" style="width:300px; left:320px; max-height: 300px;
+     overflow-y: auto; display:block" ng-hide="!isMenuOpen||shopsData.length==0">
+                 <li ng-repeat="x in shopsData" ng-click="selShop(x)">
+                   <a href="javascript:void(0);" ng-class="{active:x.sel}">{{x.name}}</a>
+                 </li>
+               </ul>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-md-12">
+                       <ul class="list-group list-inline padding-t-10">
+               <li><i class="fa fa-clock-o fa-lg"></i><span class="m-left-xs"><strong>操作时间:</strong></span>
+               </li>
+               <li ng-repeat="x in dayspan" ng-click="timeset(x)" class="btn btn-xs" ng-class="{'btn-success':x.sel}">{{x.name}}
+               </li>
+             </ul>
+                <div class="dropdown-menu" style="width: 400px; display: block;left: 63px;top: 35px;" ng-show="otherTime">
+                 <div class="col-md-5">
+                   <input type="text" class="form-control input-sm time-cursor-pointer" id="beginTime" data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly="" ng-model="otherBegin"> <small class="text-muted">开始时间</small>
+                 </div>
+                 <div class="col-md-5">
+                   <input type="text" class="form-control input-sm time-cursor-pointer" id="endTime" data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly="" ng-model="otherEnd"> <small class="text-muted">结束时间</small>
+                 </div>
+                 <div class="col-md-2" style="padding-left:0">
+                   <button class="btn btn-success" ng-click="setOtherTime()">确定</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+               <div class="row">
+           <div class="col-md-12">
+                   <table class="table table-striped" id="responsiveTable">
+             <thead>
+               <tr class="text-center">
+                 <th style="width:10px">#</th>
+                 <th class="col-md-2">操作人</th>
+                 <th class="col-md-2">门店</th>
+                 <th class="col-md-3">操作</th>
+                 <th class="col-md-3">时间</th>
+                 <th class="col-md-2">IP</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr ng-repeat="x in auditlogData.auditlogs">
+                 <td>{{x.id}}</td>
+                 <td>{{x.managerName}}</td>
+                 <td>{{x.shopName}}</td>
+                 <td>{{x.description}}</td>
+                 <td>{{x.createon}}</td>
+                 <td>{{x.ip}}</td>
+               </tr>
+             </tbody>
+           </table>
+           </div>
+         </div>
+         </div>
+           <div class="panel-footer clearfix text-center">
+             <ul class="pagination" ng-hide="auditlogData.pages.max==0">
+               <li ng-hide="auditlogData.pages.previous==null" ng-click="pagePrevious(auditlogData.pages.previous)"><a href="">«</a>
+               </li>
+               <li ng-repeat="x in pageShowing" ng-class="{active:auditlogData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+                 <a href="">
+     							{{x.name}}
+     							<!--<span ng-show="x==null">...</span>-->
+     						</a>
+               </li>
+               <li ng-hide="auditlogData.pages.next==null" ng-click="pageNext(auditlogData.pages.next)"><a href="">»</a>
+               </li>
+             </ul>
+           </div>
+       </div>
+
+    </div>
+  </div>
+</div>

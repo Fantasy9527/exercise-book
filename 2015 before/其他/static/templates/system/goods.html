@@ -1,0 +1,278 @@
+<div class="right-content">
+  <div class="row">
+
+    <div class="col-md-12 col-lg-8" style="margin-bottom: 300px">
+      <div class="panel panel-default add-product" id="container" ng-controller="goodsController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div ng-include="'/assets/templates/system/goodsNav.html'"></div>
+        <link rel="stylesheet" href="/assets/bootstrap-select/bootstrap-select.min.css">
+        <div class="spinner fadeInDown " ng-show="isLoding">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+        <div class="panel-body fadeInDown goodsMain" ng-hide="isLoding" style="visibility: hidden">
+          <div class="row">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <i class="fa fa-bar-chart-o fa-lg grey"></i>
+                <span class="m-left-xs">
+                  <strong>大类:</strong>
+                </span>
+                <span class="m-right-xs goods-group" ng-click="selGroups(x)" ng-repeat="x in groups" ng-class="{'bg-success':x.sel}">
+                  {{x.name}}
+                  <small class="text-muted">({{x.goodsCount}})</small>
+                </span>
+              </li>
+              <li class="list-group-item">
+                <i class="fa fa-shopping-cart fa-lg grey"></i>
+                <span class="m-left-xs">
+                  <strong>小类:</strong>
+                </span>
+                <span class="m-right-xs goods-group" ng-click="selSubGroups(x)" ng-repeat="x in subgroups" ng-show="x.show" ng-class="{'bg-success':x.sel}">{{x.name}}
+                  <small class="text-muted">({{x.goodsCount}})</small>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <button ng-click="addGood()" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> 新增菜品</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-md-offset-8">
+              <select class="input-sm form-control inline pull-right" style="width:130px;" ng-model="pageSize" ng-change="pageChange()" ng-options="x.size as x.name for x in pageData">
+              </select>
+              <!--  <a class="btn btn-default btn-sm">Apply</a> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="input-group gap-top">
+                <input type="text" class="form-control input-sm" ng-model="searchData" ng-keypress="enterSearch($event)" placeholder="菜品名字、拼音首字母">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-sm btn-success" ng-click="search($event)">搜索菜品</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" ng-show="batchMethod">
+            <div class="col-md-2 gap-top">
+              <div class="btn-group  bootstrap-select show-tick form-control">
+                <button ng-click="batchGoodsMethodsToogle(x)" type="button" class="btn dropdown-toggle selectpicker btn-default">
+                  <span class="filter-option pull-left">做法批量设置</span>&nbsp;
+                  <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu open" style="display:block; max-height: 360px; overflow: hidden; min-height: 92px;" ng-show="isBatchgoodsMethodsShow">
+                  <div class="bootstrap-select-searchbox" style="position:absolute;top:0;left:0;width:100%;z-index:99;background:#fff;">
+                    <a class="btn btn-success block" ng-click="bathSetMethod()">批量设置</a>
+                  </div>
+                  <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 320px; overflow-y: auto; min-height: 80px; padding-top:42px;">
+                    <li ng-repeat="goodsMethod in goodsMethods" ng-click="selGoodsMethod(goodsMethod)" ng-class="{selected:goodsMethod.sel}">
+                      <a>
+                        <span class="text">{{goodsMethod.name}}</span>
+                        <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-2 gap-top">
+                        <div class="btn-group  bootstrap-select show-tick form-control">
+                            <button ng-click="batchUnitTypeToogle(x)" type="button" class="btn dropdown-toggle selectpicker btn-default"><span class="filter-option pull-left">规格批量设置</span>&nbsp;<span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu open" style="display:block; max-height: 360px; overflow: hidden; min-height: 92px;" ng-show="isUnitTypeShow">
+                                <div class="bootstrap-select-searchbox" style="position:absolute;top:0;left:0;width:100%;z-index:99;background:#fff;">
+                                    <a class="btn btn-success block" ng-click="BathSetUnitType()">批量设置</a>
+                                </div>
+                                <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 320px; overflow-y: auto; min-height: 80px; padding-top:42px;">
+                                    <li ng-repeat="unitType in unitTypes" ng-click="selGoodsMethod(unitType)" ng-class="{selected:unitType.sel}">
+                                        <a>
+                                            <span class="text">{{unitType.name}}</span>
+                                            <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover table-striped gap-top">
+                <thead>
+                  <tr>
+                    <th style="width:40px;" ng-click="chkAll($event)">
+                      <label class="label-checkbox">
+                        <input type="checkbox" ng-model="selAllInput">
+                        <span class="custom-checkbox"></span>
+                      </label>
+                    </th>
+                    <th class="col-md-2">菜品名称</th>
+                    <th class="col-md-2">大类</th>
+                    <th class="col-md-2">小类</th>
+                    <th class="col-md-2">
+                      <span class="refresh-widget" data-toggle="tooltip" data-placement="top" title="" data-original-title="多规格菜品做法请点击设置查看详情">做法 <i class="fa fa-info-circle fa-lg" style="font-size: 9px !important;"></i></span>
+                    </th>
+                    <th class="col-md-2">规格</th>
+                    <th class="col-md-1">
+                      <span class="refresh-widget" data-toggle="tooltip" data-placement="top" title="" data-original-title="多规格菜品销售方式请点击设置查看详情">销售方式 <i class="fa fa-info-circle fa-lg" style="font-size: 9px !important;"></i></span>
+                    </th>
+                    <th class="col-md-1">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in goods" ng-click="editGoods(x)" ng-keydown="saveData(x,$event)">
+                    <td style="width:40px;" ng-click="check($event)">
+                      <label class="label-checkbox">
+                        <input type="checkbox" ng-model="x.sel">
+                        <span class="custom-checkbox"></span>
+                      </label>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td class="set-up-parent">
+                      <span ng-hide="x.edit" class="pull-left">
+                        <div ng-click="uploadImage(x,$event)" class=" pull-left" style="margin-bottom: 0;
+      margin-right: 10px; position:relative;cursor: pointer">
+                          <img ng-srcset="{{x.image56_56}}" style="width: 18px; height: 18px;">
+                          <div class="dropdown-menu" ng-if="x.isImageShow" style="padding:0;display:block;min-width: 360px !important;">
+                            <img ng-srcset="{{x.sourceImage}}">
+                          </div>
+                        </div>
+                        {{x.name}}</span>
+                      <div class="pull-right set-up" ng-hide="x.edit">
+                        <a class="text-muted small" ng-hide="$first" ng-click="setswap($event,'up',x,$index)">上移</a>
+                        <a class="text-muted small" ng-hide="$last" ng-click="setswap($event,'down',x,$index)">下移</a>
+                      </div>
+                      <div>
+                        <input type="text" ng-show="x.edit" ng-model="x.name" class="form-control input-md" data-required="true">
+                      </div>
+                      <small ng-show="x.edit" class="text-muted">名称 </small>
+                      <div class="gap-top" ng-show="x.edit">
+                        <img src="{{x.image56_56}}" style="width: 34px; height: 34px;">
+                        <div class="btn-group">
+                          <div class="btn btn-success btn-sm">
+                            上传图片
+                            <input class="" nv-file-select type="file" uploader="uploader" accept="image/*" style="opacity: 0;width: 100%;height: 34px;position: absolute;top: 0;left: 0;" />
+                          </div>
+                          <div class="btn btn-danger btn-sm" ng-hide="x.image56_56==null" ng-click="delImage(x)">删除图片</div>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td>
+                      <span ng-hide="x.edit">{{x.groupName}}</span>
+                      <div>
+                        <select ng-show="x.edit" class="form-control input-md" ng-model="x.group" ng-change="groupChange(x,x.group)" ng-options="y.id as y.name for y in x.allGroups">
+                        </select>
+                      </div>
+                      <small ng-show="x.edit" class="text-muted">大类 </small>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td>
+                      <span ng-hide="x.edit">{{x.subgroupName}}</span>
+                      <div>
+                        <select ng-show="x.edit" class="form-control input-md" ng-model="x.subgroup" ng-options="y.id as y.name for y in x.subGroups">
+                        </select>
+                      </div>
+                      <small ng-show="x.edit" class="text-muted">小类</small>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td>
+                      <span ng-hide="x.edit" ng-repeat="goodsMethod in x.unitTypes[0].goodsMethods">{{goodsMethod.name}} </span>
+                      <div ng-show="x.edit" class="btn-group bootstrap-select show-tick form-control">
+                        <button ng-click="goodsMethodsToogle(x)" type="button" class="btn dropdown-toggle selectpicker btn-default">
+                          <span class="filter-option pull-left">添加做法</span>&nbsp;
+                          <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu open" style="display:block; max-height: 360px; overflow-y: auto; min-height: 92px;" ng-show="x.isgoodsMethodsShow">
+                          <!-- 做法搜索 -->
+                          <div class="bootstrap-select-searchbox">
+                            <input type="text" class="input-block-level form-control" ng-model="goodsMethodSearch">
+                          </div>
+                          <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 848px; overflow-y: auto; min-height: 80px;">
+                            <li ng-repeat="goodsMethod in x.goodsMethods |  filter:goodsMethodSearch" ng-click="selGoodsMethod(goodsMethod)" ng-class="{selected:goodsMethod.sel}">
+                              <a>
+                                <span class="text">{{goodsMethod.name}}</span>
+                                <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <small ng-show="x.edit" class="text-muted">做法</small>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td>
+                      <span ng-hide="x.edit" ng-repeat="unit in x.unitTypes">{{unit.unitTypeName}} </span>
+                      <div ng-show="x.edit" class="btn-group bootstrap-select show-tick form-control">
+                        <button ng-click="unitTypeToogle(x)" type="button" class="btn dropdown-toggle selectpicker btn-default">
+                          <span class="filter-option pull-left">添加规格</span>&nbsp;
+                          <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu open" style="display:block; max-height: 360px; overflow-y: auto; min-height: 92px;" ng-show="x.isUnitTypeShow">
+                          <div class="bootstrap-select-searchbox">
+                            <input type="text" class="input-block-level form-control" ng-model="unitTypeSearch">
+                          </div>
+                          <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 848px; overflow-y: auto; min-height: 80px;">
+                            <li ng-repeat="unitType in x.allUnitTypes |  filter:unitTypeSearch" ng-click="selUnitType(unitType)" ng-class="{selected:unitType.sel}">
+                              <a>
+                                <span class="text">{{unitType.name}}</span>
+                                <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- ----------------------------------------------------------- -->
+                    <td colspan="2" ng-if="x.edit">
+                      <div class="col-md-12">
+                        <select ng-show="x.edit" class="form-control input-md" ng-disabled="x.proDis" ng-model="x.productType" ng-options="y.id as y.name for y in x.allProductTypes">
+                        </select>
+                        <small ng-show="x.edit" class="text-muted">消费方式</small>
+                      </div>
+                      <div class="col-md-12 pull-right" ng-show="x.edit">
+                        <a class="btn btn-info btn-sm" ng-click="saveData(x,$event)">保存</a>
+                        <a class="btn btn-default btn-sm" ng-click="cancelEidit($index)">取消</a>
+                        <a class="btn btn-danger btn-sm pull-right" ng-click="delData(x,$index)">删除</a>
+                        <div>
+                          <small class="text-danger pull-right">警告: 删除菜品后，该菜品将不再销售.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td ng-if="x.edit == false"><span>{{x.unitTypes[0].productTypeName}}</span></td>
+                    <td ng-if="x.edit == false">
+                      <div><a class="btn btn-sm btn-success" ui-sref="system.goods.detail({goodsTypeId:x.id})" target="_blank"><i class="fa fa-edit"></i> 设置</a></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer clearfix text-center">
+          <ul class="pagination" ng-hide="goodsData.pages.max==0">
+            <li ng-hide="goodsData.pages.previous==null" ng-click="pagePrevious(goodsData.pages.previous)"><a href="">«</a>
+            </li>
+            <li ng-repeat="x in pageShowing" ng-class="{active:goodsData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+              <a href="">
+                                {{x.name}}
+                            </a>
+            </li>
+            <li ng-hide="goodsData.pages.next==null" ng-click="pageNext(goodsData.pages.next)"><a href="">»</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

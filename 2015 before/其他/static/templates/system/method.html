@@ -1,0 +1,132 @@
+<div class="right-content">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="panel panel-default add-product" id="container">
+        <div ng-include="'/assets/templates/system/return.bar.html'"></div>
+        <div ng-include="'/assets/templates/system/goodsNav.html'"></div>
+        <div class="panel-body">
+          <div class="row">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <i class="fa fa-bar-chart-o fa-lg grey"></i>
+                <span class="m-left-xs"><strong>大类:</strong></span>
+                <span class="m-right-xs goods-group" ng-click="selGroups(x)" ng-repeat="x in groups" ng-class="{'bg-success':x.sel}">
+        				{{x.name}}
+        				<small class="text-muted">({{x.count}})</small>
+        				</span>
+              </li>
+
+              <li class="list-group-item">
+                <i class="fa fa-shopping-cart fa-lg grey"></i>
+                <span class="m-left-xs"><strong>小类:</strong></span>
+                <span class="m-right-xs goods-group" ng-click="selSubGroups(x)" ng-repeat="x in subgroups" ng-show="x.show" ng-class="{'bg-success':x.sel}">{{x.name}}
+        				<small class="text-muted">({{x.count}})</small>
+        				</span>
+              </li>
+            </ul>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <button type="button" ng-click="addMethod()" class="btn btn-sm btn-success">
+                    <i class="fa fa-plus"></i> 新增做法</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped gap-top">
+                <thead>
+                  <tr>
+                    <th style="width:40px">#</th>
+                    <th class="col-md-2">做法名称</th>
+                    <th class="col-md-2">大类</th>
+                    <th class="col-md-2">小类</th>
+                    <th class="col-md-5">备注</th>
+                    <th class="col-md-1">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in methodData" ng-click="editing(x)" ng-keydown="saveMethod(x,$event)" ng-class="{editing:x.edit}">
+                    <td style="width:10px">{{$index+1}}</td>
+                    <td><span ng-hide="x.edit">{{x.name}}</span>
+                      <span ng-show="x.edit">
+                                            <input ng-model="x.name" type="text" class="form-control input-md" ng-class="{'parsley-error':x.nameError,'parsley-error':x.name==''}">
+                                            <small class="text-muted" ng-hide="x.nameError">名称</small>
+                                            <small class="text-muted" ng-show="x.nameError">不能为空</small>
+                                        </span>
+                    </td>
+
+                    <td>
+                      <span ng-hide="x.edit">{{x.groupName}}</span>
+                      <div>
+                        <select ng-show="x.edit" class="form-control input-md" ng-model="x.group" ng-change="groupChange(x,x.group)" ng-options="y.id as y.name for y in x.allGroups">
+
+                        </select>
+                      </div>
+                      <small ng-show="x.edit" class="text-muted">大类  </small>
+                    </td>
+
+
+                    <!--------------------------------------------------------------->
+
+                    <td>
+                      <span ng-hide="x.edit">{{x.subgroupName}}</span>
+                      <div>
+                        <select ng-show="x.edit" class="form-control input-md" ng-model="x.subgroup" ng-options="y.id as y.name for y in x.subGroups">
+                        </select>
+                      </div>
+
+                      <small ng-show="x.edit" class="text-muted">小类</small>
+                    </td>
+
+                    <td><span ng-hide="x.edit">{{x.remark}}</span>
+                      <span ng-show="x.edit">
+                                            <input ng-model="x.remark" type="text" class="form-control input-md">
+                                            <small class="text-muted">备注信息,可以为空</small>
+                                        </span>
+                      <div ng-show="x.edit" class="gap-top">
+                        <button ng-click="saveMethod(x,$event)" type="button" class="btn btn-info btn-sm">保存</button>
+
+                        <button ng-click=cancelEdit(x,$event) type="button" class="btn btn-default btn-sm">
+                          </i>取消</button>
+                        <button ng-click="delMethod(x,$index)" ng-show="x.state==1 && x.edit" type="button" class="btn btn-danger btn-sm  pull-right">
+                          </i>删除</button>
+
+                      </div>
+                    </td>
+                    <td>
+                      <div ng-if="!x.edit"><a class="btn btn-sm btn-success" ng-click="goDetail($event, x.id)"><i class="fa fa-edit"></i> 设置</a></div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer clearfix text-center">
+          <ul class="pagination" ng-hide="goodsData.pages.max==0">
+            <li ng-hide="goodsData.pages.previous==null" ng-click="pagePrevious(goodsData.pages.previous)"><a href="">«</a>
+            </li>
+            <li ng-repeat="x in pageShowing" ng-class="{active:goodsData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+              <a href="">
+        							{{x.name}}
+        						</a>
+            </li>
+            <li ng-hide="goodsData.pages.next==null" ng-click="pageNext(goodsData.pages.next)"><a href="">»</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

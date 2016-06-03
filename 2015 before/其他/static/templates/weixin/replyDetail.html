@@ -1,0 +1,46 @@
+<div class="panel panel-default fadeInDown">
+  <div class="panel-heading">
+    <a class="return-up" ui-sref="weixinSet.keywordReply({auId:{{auId}}})">
+      <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>
+      设置关键字自动回复
+  </div>
+  <div class="panel-body">
+    <form action="" name="replyForm" class="form-horizontal form-border">
+      <div class="form-group"
+       ng-class="{'has-error':replyForm.name.$invalid&&replyForm.name.$dirty}">
+        <label class="col-lg-2">规则名称 :</label>
+        <div class="col-lg-10">
+          <input class="form-control" name="name" type="text" placeholder="规则名称" ng-model="regName" ng-maxlength="30" required>
+          <label class="control-label" ng-show="replyForm.name.$error.maxlength&&replyForm.name.$dirty">您的字数已经超过最大限制</label>
+          <label class="control-label" ng-show="replyForm.name.$error.required&&replyForm.name.$dirty">不能为空</label>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error':replyForm.tags.$invalid&&replyForm.tags.$dirty}">
+        <label class="col-lg-2">关键字 :</label>
+        <div class="col-lg-10">
+          <tags-input ng-model="tags" name="tags" placeholder="添加关键字"  min-length="1" required>
+          </tags-input>
+          <label class="control-label" ng-show="replyForm.tags.$error.required&&replyForm.tags.$dirty">不能为空</label>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error':replyForm.regText.$invalid&&replyForm.regText.$dirty}">
+        <label class="col-lg-2">文字回复内容 :</label>
+        <div class="col-lg-10">
+          <textarea class="form-control" rows="3" style="resize:none" name="regText" ng-model="regText" ng-maxlength="200" required></textarea>
+          <label class="control-label" ng-show="replyForm.regText.$error.maxlength&&replyForm.regText.$dirty">您的字数已经超过最大限制</label>
+          <label class="control-label" ng-show="replyForm.regText.$error.required&&replyForm.regText.$dirty">不能为空</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-sm btn-info" type="button" ui-sref="weixinSet.keywordReply({auId:{{auId}}})">取消</button>
+        <button class="btn btn-sm btn-success" ng-disabled="replyForm.$invalid" type="button" ng-click="saveData()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

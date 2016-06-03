@@ -1,0 +1,22 @@
+<div class="panel-body">
+	<div style="font-size: 14px;" ng-cloak>
+		<div ng-if="showAlert==1" class="alert alert-success fadeInLeft animation-delay1" style="font-size: 11px;"><span>门店参数已保存</span></div>
+		<div ng-if="showWarning==1" class="alert alert-warning fadeInLeft animation-delay1" style="font-size: 11px;"><span>正在保存...</span></div>
+		<div ng-repeat="model in models">
+			<label style="font-size: 14px;">{{model.groupName}}</label>
+			<div style="margin-left: 55px;">
+				<div style="margin-top: 8px;" ng-repeat="key in model.keys">
+					<label class="label-checkbox" style="font-size: 14px;">
+						<span ng-class="{'div-disabled':key.is_disable==true}">
+							<input type="checkbox" ng-model="key.value" ng-change="choseCheckBox(model,key)" ng-disabled="key.is_disable" ng-class="{'div-disabled':key.is_disable}">
+							<span class="custom-checkbox" style="margin-top: -3px;"></span><span>{{key.keyName}}</span><small class="text-muted" style="font-weight: 500;font-family: "微软雅黑","Helvetica Neue",Helvetica, Arial,sans-serif !important" ng-show="key.remark">({{key.remark}})</small>
+						</span>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="pane1-footer text-center" style="margin-top:20px;">
+			<a class="btn btn-success btn-sm" href="#" ng-click="saveModel()">保存</a>
+		</div>
+	</div>
+	</div>

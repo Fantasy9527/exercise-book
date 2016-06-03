@@ -1,0 +1,370 @@
+<div class="row">
+  <div class="col-lg-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a class="return-up" ui-sref="promotion">
+          <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级
+        </a>
+        <i class="glyphicon glyphicon-list"></i>
+        <span ng-hide="promotionType==7">促销活动明细</span>
+        <span ng-show="promotionType==7">代金券明细</span>
+
+      </div>
+      <div class="panel-tab clearfix">
+        <ul class="nav nav-tabs">
+          <li ng-repeat="x in tabData" ng-class="{active:x.active}" ng-click="tabChange(x)">
+            <a href="">
+            {{x.name}}
+          </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel-body font-14 promotionDetail">
+        <form class="form-horizontal form-border" name="promotionForm" novalidate>
+
+          <div class="panel panel-default" ng-show="showPanel==1">
+            <div class="panel-heading ">
+              <strong>基本信息</strong>
+            </div>
+            <div class="panel-body">
+
+              <!-- 代金券 -->
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">代金券名称 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.name}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">代金券类型 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model._typetype.name}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">面值 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.value}} 元</label>
+                </div>
+              </div>
+
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">结算价 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.realValue}}元</label>
+                </div>
+              </div>
+
+              <div class="form-group" ng-show="promotionType==7&&model.effectiveType==1">
+                <label class="col-md-2 control-label">使用时间: </label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.beginTime}} 至 {{model.endTime}}</label>
+                </div>
+              </div>
+
+              <div class="form-group" ng-show="promotionType==7&&model.effectiveType==2">
+                <label class="col-md-2 control-label">使用时间: </label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.effectiveDays}} 天</label>
+                </div>
+              </div>
+
+
+              <!--普通-->
+              <div class="form-group" ng-hide="promotionType==7">
+                <label class="col-md-2 control-label">活动名称 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.name}}</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">状态 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model._state.name}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==7">
+                <label class="col-md-2 control-label">类型 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model._promotionType.name}}</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">创建时间 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.createon}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==7||promotionType==12">
+                <label class="col-md-2 control-label">开始时间 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.beginTime}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==7||promotionType==12">
+                <label class="col-md-2 control-label">结束时间 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.endTime}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==9||promotionType==12">
+                <!--会员充值隐藏-->
+                <label class="col-md-2 control-label">市别 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{promotionServiceHour}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==12">
+                <label class="col-md-2 control-label" ng-hide="promotionType==7">每周参加时间 :</label>
+                <label class="col-md-2 control-label" ng-show="promotionType==7">每周使用时间 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{promotionWeek}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==12||promotionType==9">
+                <label class="col-md-2 control-label">参加门店 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{promotionShop}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==12">
+                <label class="col-md-2 control-label">公众号 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{details[0]._weixin.name}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==9||promotionType==10">
+                <label class="col-md-2 control-label">会员类型 :</label>
+                <div class="col-md-10">
+                  <label class="control-label"><span ng-repeat="x in model.memberTypes">{{x.name}}   </span></label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==11">
+                <label class="col-md-2 control-label">会员类型 :</label>
+                <div class="col-md-10">
+                  <label class="control-label"><span ng-repeat="x in model.memberTypes">{{x.name}}   </span></label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==11&&model.staffRoles.length!=0">
+                <label class="col-md-2 control-label">授权岗位 :</label>
+                <div class="col-md-10">
+                  <label class="control-label"><span ng-repeat="x in model.staffRoles">{{x.name}}   </span></label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">抵扣服务费 :</label>
+                <div class="col-md-10">
+                  <label class="control-label" ng-show="model.forSurcharge">可以</label>
+                  <label class="control-label" ng-hide="model.forSurcharge">不可以</label>
+                </div>
+              </div>
+              <div class="form-group" ng-show="promotionType==7">
+                <label class="col-md-2 control-label">代金券使用规则 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.remark}}</label>
+                </div>
+              </div>
+              <div class="form-group" ng-hide="promotionType==7">
+                <label class="col-md-2 control-label">备注 :</label>
+                <div class="col-md-10">
+                  <label class="control-label">{{model.remark}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="panel panel-default" ng-show="showPanel==2&&promotionType==1">
+            <div class="panel-heading ">
+              <strong>特价商品</strong>
+            </div>
+            <table class="table table-bordered table-condensed table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+                  <th class="text-center col-md-4">菜品名称</th>
+                  <th class="text-center col-md-4">原价</th>
+                  <th class="text-center col-md-4">特价</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in details">
+                  <td class="text-center">{{x._goods.name}}
+                    <span ng-show="!!x.unitTypeName">({{x.unitTypeName}})</span>
+                  </td>
+                  <td class="text-center">{{x._product.price}}</td>
+                  <td class="text-center">{{x.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div ng-show="showPanel==4&&promotionType==7">
+            <div class="panel panel-default" ng-repeat="x in subgroups">
+              <div class="panel-heading ">
+                <strong> {{x.groupName}}</strong>
+              </div>
+              <table class="table table-bordered" id="responsiveTable">
+                <tbody>
+                  <tr ng-repeat="y in x.subgroups" style="background:#f5f5f5">
+                    <td>- {{y.subgroupName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+          <div class="panel panel-default voucher" ng-show="showPanel==9&&promotionType==12">
+            <div class="panel-heading ">
+              <strong>参加门店</strong>
+            </div>
+            <table class="table table-hover table-striped table-vertical-center table-bordered">
+              <thead>
+                <tr>
+
+                  <th class="text-center col-md-4">省</th>
+                  <th class="text-center col-md-4">市</th>
+                  <th class="text-center col-md-4">门店</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in model.shops">
+
+                  <td class="text-center">{{x._province.name}}</td>
+                  <td class="text-center">{{x._city.name}}</td>
+                  <td class="text-center">{{x.name}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <div class="panel panel-default voucher" ng-show="showPanel==10&&promotionType==12">
+            <div class="panel-heading ">
+              <strong>赠送的代金券</strong>
+            </div>
+            <table class="table table-bordered table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+
+                  <th class="text-center col-md-3">名称</th>
+                  <th class="text-center col-md-4">会员类型</th>
+                  <th class="text-center col-md-5">数量</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in details">
+
+                  <td class="text-center">{{x._voucherType.name}}</td>
+                  <td class="text-center">{{x._memberType.name}}</td>
+                  <td class="text-center">{{x.quantity}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="panel panel-default" ng-show="showPanel==5&&promotionType==9">
+            <div class="panel-heading ">
+              <strong>充值规则</strong>
+            </div>
+            <table class="table table-bordered table-condensed table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+                  <th class="text-center col-md-4">充值金额</th>
+                  <th class="text-center col-md-8">赠送金额</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in details">
+                  <td class="text-center">{{x.charge}}</td>
+                  <td class="text-center">{{x.gift}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="panel panel-default" ng-show="showPanel==7&&promotionType==10">
+            <div class="panel-heading ">
+              <strong>会员价</strong>
+            </div>
+            <table class="table table-bordered table-condensed table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+                  <th class="text-center col-md-4">菜品名称</th>
+                  <th class="text-center col-md-4">原价</th>
+                  <th class="text-center col-md-4">会员价</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in details">
+                  <td class="text-center">{{x._goods.name}}
+                    <span ng-show="!!x.unitTypeName">({{x.unitTypeName}})</span>
+                  </td>
+                  <td class="text-center">{{x._product.price}}</td>
+                  <td class="text-center">{{x.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="panel panel-default" ng-show="showPanel==8&&promotionType==11">
+            <div class="panel-heading ">
+              <strong>打折详情</strong>
+            </div>
+            <table class="table table-bordered table-condensed table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+                  <th class="text-center col-md-4">大类</th>
+                  <th class="text-center col-md-4">小类</th>
+                  <th class="text-center col-md-4">折扣率</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in details">
+                  <td class="text-center">{{x.goodsGroup.name}}</td>
+                  <td class="text-center">{{x.goodsSubGroup.name}}</td>
+                  <td class="text-center">{{x.percentage}}% <span ng-show="x.percentage==0" style="color:red">(免费)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="panel panel-default table-responsive" ng-show="showPanel==6">
+            <div class="panel-heading">不参加活动时间段 :</div>
+            <table class="table table-bordered table-condensed table-hover table-striped table-vertical-center">
+              <thead>
+                <tr>
+                  <th class="text-center col-md-4">开始时间</th>
+                  <th class="text-center col-md-4">结束时间</th>
+                  <th class="text-center col-md-4">市别</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="x in model.excludes">
+                  <td class="text-center">{{x.beginDate}}</td>
+                  <td class="text-center">{{x.endDate}}</td>
+                  <td class="text-center">{{x._serviceHour.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+          <div class="padding-md"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

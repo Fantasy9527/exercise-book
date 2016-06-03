@@ -1,0 +1,18 @@
+<div class="fadeInDown" ng-hide="isLoding">
+  <div class="integral-main">
+    <div class="title">我的余额</div>
+    <div class="num">{{model.charge_balance+model.gift_balance | currency:"￥"}}</div>
+  </div>
+  <div class="balance-box" ng-hide="balancePromotions.length==0">
+  <ul class="balance-list f-cb">
+    <li ng-repeat="y in balancePromotions" ng-class="{active:y.active}" ng-click="selRecharge(y)">
+      <div>
+        <p class="title">{{y.charge}}元</p>
+        <p class="content">送{{y.gift}}元</p>
+      </div>
+    </li>
+  </ul>
+    <a ng-show="isWxPay" class="form-button"  ng-click="recharge()">充值</a>
+    <a ng-hide="isWxPay" class="form-button a-disabled">当前门店不支持微信支付,请到门店充值</a>
+  </div>
+</div>

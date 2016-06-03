@@ -1,0 +1,166 @@
+ <div class="coupon-group fadeInDown" ng-hide="isLoding||model.willExDate.length==0" >
+    <h3><!--{{model.memberName}}-->即将过期的代金券</h3>
+
+    <ul ng-repeat="voucherType in model.willExDate">
+      <li ng-repeat="voucher in voucherType.vouchers" ng-click="open(voucher)" ng-class="{open:voucher.open}">
+      <div class="sign">
+        <img src="./images/will.png" alt="">
+      </div>
+      <div class="coupon">
+        <div class="coupon-box-left"></div>
+      <div class="coupon-box-right"></div>
+       <div class="coupon-box">
+         <div class="coupon-r f-fr">
+        </div>
+         <div class="coupon-l">
+          <h2 class="text-over">{{voucher.voucherAmount}}元</h2>
+          <p>{{voucher.beginTime}}至{{voucher.endTime}}</p>
+        </div>
+
+       </div>
+      </div>
+      <div class="coupon-detail">
+        <div class="coupon-detail-head">
+         <p class="f-fs3">No. {{voucher.sn}}</p>
+         <p class="f-fs1">代金券名称:{{voucher.voucherName}}</p>
+         <p class="f-fs1">会员类型:{{model.typeName}}</p>
+          <p>使用规则:{{voucher.remark}}</p>
+        </div>
+        <div class="coupon-detail-img">
+         <div class="coupon-detail-img-parent">
+           <img ng-src="{{voucher.qrc}}" alt="">
+         </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+   <div class="coupon-group fadeInDown" ng-hide="isLoding||model.notUseVouchers.length==0" >
+    <h3><!--{{model.memberName}}-->未使用的代金券</h3>
+
+    <ul ng-repeat="voucherType in model.notUseVouchers">
+      <li ng-repeat="voucher in voucherType.vouchers" ng-click="open(voucher)" ng-class="{open:voucher.open}">
+      <div class="coupon">
+        <div class="coupon-box-left"></div>
+      <div class="coupon-box-right"></div>
+       <div class="coupon-box">
+         <div class="coupon-r f-fr">
+        </div>
+         <div class="coupon-l">
+          <h2 class="text-over">{{voucher.voucherAmount}}元</h2>
+          <p>{{voucher.beginTime}}至{{voucher.endTime}}</p>
+        </div>
+
+       </div>
+      </div>
+      <div class="coupon-detail">
+        <div class="coupon-detail-head">
+          <p class="f-fs3">No. {{voucher.sn}}</p>
+         <p class="f-fs1">代金券名称:{{voucher.voucherName}}</p>
+         <p class="f-fs1">会员类型:{{model.typeName}}</p>
+          <p>使用规则:{{voucher.remark}}</p>
+        </div>
+        <div class="coupon-detail-img">
+         <div class="coupon-detail-img-parent">
+           <img ng-src="{{voucher.qrc}}" alt="">
+         </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+   <div class="coupon-group fadeInDown gray" ng-hide="isLoding||model.useVouchers.length==0" >
+    <h3><!--{{model.memberName}}-->已使用的代金券</h3>
+    <ul ng-repeat="voucherType in model.useVouchers">
+      <li ng-repeat="voucher in voucherType.vouchers" ng-click="open(voucher)" ng-class="{open:voucher.open}">
+      <div class="sign">
+        <img src="./images/used.png" alt="">
+      </div>
+      <div class="coupon">
+        <div class="coupon-box-left"></div>
+      <div class="coupon-box-right"></div>
+       <div class="coupon-box">
+         <div class="coupon-r f-fr">
+        </div>
+         <div class="coupon-l">
+          <h2 class="text-over">{{voucher.voucherAmount}}元</h2>
+          <p>{{voucher.beginTime}}至{{voucher.endTime}}</p>
+        </div>
+
+       </div>
+      </div>
+      <div class="coupon-detail">
+        <div class="coupon-detail-head">
+         <p class="f-fs3">No. {{voucher.sn}}</p>
+         <p class="f-fs1">代金券名称:{{voucher.voucherName}}</p>
+         <p class="f-fs1">会员类型:{{model.typeName}}</p>
+          <p>使用规则:{{voucher.remark}}</p>
+        </div>
+        <div class="coupon-detail-img">
+         <div class="coupon-detail-img-parent">
+           <img ng-src="{{voucher.qrc}}" alt="">
+         </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+     <div class="coupon-group fadeInDown gray" ng-hide="isLoding||model.expiresVouchers.length==0" >
+    <h3><!--{{model.memberName}}-->已过期的代金券</h3>
+    <ul ng-repeat="voucherType in model.expiresVouchers">
+      <li ng-repeat="voucher in voucherType.vouchers" ng-click="open(voucher)" ng-class="{open:voucher.open}">
+       <div class="sign">
+        <img src="./images/end.png" alt="">
+      </div>
+      <div class="coupon">
+        <div class="coupon-box-left"></div>
+      <div class="coupon-box-right"></div>
+       <div class="coupon-box">
+         <div class="coupon-r f-fr">
+        </div>
+         <div class="coupon-l">
+          <h2 class="text-over">{{voucher.voucherAmount}}元</h2>
+          <p>{{voucher.beginTime}}至{{voucher.endTime}}</p>
+        </div>
+
+       </div>
+      </div>
+      <div class="coupon-detail">
+        <div class="coupon-detail-head">
+         <p class="f-fs3">No. {{voucher.sn}}</p>
+         <p class="f-fs1">代金券名称:{{voucher.voucherName}}</p>
+         <p class="f-fs1">会员类型:{{model.typeName}}</p>
+          <p>使用规则:{{voucher.remark}}</p>
+        </div>
+        <div class="coupon-detail-img">
+         <div class="coupon-detail-img-parent">
+           <img ng-src="{{voucher.qrc}}" alt="">
+         </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+    <div class="bd fadeInDown"  ng-show="model.expiresVouchers.length==0&&model.notUseVouchers.length==0&&model.useVouchers.length==0&&model.willExDate.length==0">
+    <div class="weui_msg">
+      <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_waiting"></i></div>
+      <div class="weui_text_area">
+        <h2 class="weui_msg_title">没有代金券</h2>
+        <p class="weui_msg_desc">抱歉,没有代金券信息</p>
+      </div>
+      <div class="weui_opr_area">
+        <p class="weui_btn_area">
+          <a href="javascript:;" ui-sref="home" class="weui_btn weui_btn_primary">确定</a>
+        </p>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,179 @@
+<div class="panel-heading">
+    <a class="return-up" href="/home/brand/{{brandId}}/newGoods#?group={{superParams.group}}&subgroup={{superParams.subgroup}}&page={{superParams.page}}&pageSize={{superParams.pageSize}}">
+        <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>{{goodsTypeName}}
+</div>
+<div class="panel-tab clearfix">
+    <ul class="nav nav-tabs">
+        <li class="active">
+        <a href="/home/brand/{{brandId}}/goodsType/{{goodsTypeId}}/detail#?group={{superParams.group}}&subgroup={{superParams.subgroup}}&page={{superParams.page}}&pageSize={{superParams.pageSize}}"><i class="fa fa-home"></i> 菜品详情</a>
+        </li>
+        <li>
+        <a href="/home/brand/{{brandId}}/goodsType/{{goodsTypeId}}/set#?group={{superParams.group}}&subgroup={{superParams.subgroup}}&page={{superParams.page}}&pageSize={{superParams.pageSize}}"><i class="fa fa-bars"></i> 菜品定价</a>
+        </li>
+    </ul>
+</div>
+
+<div class="panel-body">
+    <div class="tab-content">
+        <div class="tab-pane fade in active">
+    <link rel="stylesheet" href="/assets/bootstrap-select/bootstrap-select.min.css">
+    <form name="myForm">
+        <div style="padding: 0px;">
+            <table class="table table-bordered table-condensed table-hover table-striped" >
+                <tbody>
+                    <tr>
+                        <td colspan="4" style="background: #f1f6fc;text-align: center;">
+                            <label style="margin-left:auto;margin-right:auto;">基本信息</label>
+                            <span ng-if="!goodsTypeEdit" class="fc-button fc-button-prev fc-state-default" style="float:right;background: #f1f6fc;" ng-click="enterGoodsTypeEdit()">
+                                <i class="fa fa-pencil"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr ng-click="enterGoodsTypeEdit()">
+                        <td style="width:15%; background: #f9f9f9;"><label>菜品名称</label></td>
+                        <td style="width:35%;background: #ffffff;">
+                            <span ng-show="!goodsTypeEdit" ng-bind="model.name"></span>
+                            <div ng-show="!goodsTypeEdit" ng-click="uploadImage(x,$event)" class="pull-left" style="margin-bottom: 0;margin-right: 10px; position:relative;cursor: pointer">
+                                <img ng-show="model.f56_56_image != undefined" ng-srcset="{{model.f56_56_image}}" style="width: 36px; height: 36px;" ng-click="openSourceImage()">
+                                <div ng-if="showSourceImage" class="dropdown-menu" style="padding:0;display:block;min-width: 360px !important;">
+                                    <img ng-srcset="{{model.source_image}}">
+                                </div>
+                            </div>
+                            <div ng-show="goodsTypeEdit">
+                                <input type="text" class="input-sm form-control" style="width:180px;" ng-model="model.name">
+                                <div class="gap-top">
+                                    <div ng-click="uploadImage(x,$event)" class="pull-left" style="margin-right: 5px; position:relative;cursor: pointer">
+                                        <div ng-show="uploading" class="progress progress-striped active m-top-sm m-bottom-none" style="width:30px;height: 28px;margin-top: -0px;">
+                                            <div class="progress-bar progress-bar-success" style="width:{{percentage}}%;padding-top:4px;"><small class="text-muted">{{percentage}}%</small></div>
+                                        </div>
+                                        <img ng-show="!uploading && model.f56_56_image != undefined" ng-srcset="{{model.f56_56_image}}" style="width: 26px; height: 26px;" ng-click="openSourceImage()">
+                                        <div ng-if="showSourceImage" class="dropdown-menu" style="padding:0;display:block;min-width: 360px !important;">
+                                            <img ng-srcset="{{model.source_image}}">
+                                        </div>
+                                    </div>
+                                    <div class="btn-group">
+                                        <div class="btn btn-success btn-sm">上传图片
+                                            <input nv-file-select="" type="file" uploader="uploader" accept="image/*" style="opacity: 0;width: 100%;height: 34px;position: absolute;top: 0;left: 0;">
+                                        </div>
+                                        <div class="btn btn-danger btn-sm" ng-hide="model.f56_56_image==undefined" ng-click="deleteImage(model)" style="margin-left:4px;">删除图片</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:15%;background: #f9f9f9;"><label>编码</label></td>
+                        <td style="width:35%;background: #ffffff;">
+                            <span  ng-bind="model.sn"></span>
+                            <!--<div ng-show="goodsTypeEdit" ng-class='{"has-error":myForm.sn.$invalid && myForm.sn.$dirty}'>
+                                <input type="text" class="input-sm form-control" style="width:180px;" name="sn" ng-model="model.sn" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/">
+                                <div class="error" ng-show="myForm.sn.$invalid && myForm.sn.$dirty" style="color:#bb4442;"><small>编码只能是大于或等于0的数字</small></div>
+                            </div>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:15%;background: #f9f9f9;" ng-click="enterGoodsTypeEdit()"><label>大类</label></td>
+                        <td style="width:35%;background: #ffffff;">
+                            <div ng-click="enterGoodsTypeEdit()"><span ng-show="!goodsTypeEdit" ng-bind="model.groupName"></span></div>
+                            <select ng-show="goodsTypeEdit" class="input-sm form-control inline pull-center" style="width:180px;" ng-model="model.group" ng-options="p.id as p.name for p in groups" ng-change="filterSubgroup(model.group)"></select>
+                        </td>
+                        <td style="width:15%; background: #f9f9f9;" ng-click="enterGoodsTypeEdit()"><label>小类</label></td>
+                        <td style="width:35%;background: #ffffff;">
+                            <div ng-click="enterGoodsTypeEdit()"><span ng-show="!goodsTypeEdit" ng-bind="model.subgroupName"></span></div>
+                            <select ng-show="goodsTypeEdit" class="input-sm form-control inline pull-center" style="width:180px;" ng-model="model.subgroup" ng-options="p.id as p.name for p in subgroups"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <label ng-show="!goodsTypeEdit"></label>
+                            <a class="btn btn-danger btn-sm pull-right" ng-click="deleteGoodsType(model)">删除</a>
+                            <a ng-show="goodsTypeEdit" type="button" class="btn btn-sm btn-default pull-right" style="margin-right: 5px;" ng-click="cancelGoodsTypeEdit($event)">取消</a>
+                            <a ng-show="goodsTypeEdit" type="button" class="btn btn-info btn-sm pull-right" style="margin-right: 5px;" ng-click="saveGoodsType()">保存</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="background: #f1f6fc !important;text-align: center;">
+                            <label style="margin-left:auto;margin-right:auto;">规格列表</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="table table-striped" style="margin-top:-20px;border-color: #23e6e4 !important;">
+            <tbody>
+                <tr>
+                    <td style="width:40px;"><label>#</label></td>
+                    <td class="text-center"><label>规格名称</label></td>
+                    <td class="text-center"><label>销售方式</label></td>
+                    <td><span><label>做法</label></span>
+                        <!--<span class="badge badge-success m-right-xs pull-right"><i class="fa fa-plus"></i></span>-->
+                        <button type="button" class="btn btn-sm btn-success pull-right" ng-click="addUnitType()"><i class="fa fa-plus"></i> 添加规格</button>
+                    </td>
+                </tr>
+                <tr ng-if="showAddUnitType">
+                    <td></td>
+                    <td class="col-md-1 text-center">
+                        <select class="input-sm form-control inline pull-center" style="width:80%;" ng-model="addModel.unitType" ng-options="u.id as u.name for u in unitTypes"></select>
+                    </td>
+                    <td class="col-md-2 text-center">
+                        <select class="input-sm form-control inline pull-center" style="width:80%;" ng-model="addModel.productType" ng-options="p.id as p.name for p in productTypes"></select>
+                    </td>
+                    <td class="col-md-9" >
+                        <div class="btn-group bootstrap-select show-tick form-control" style="width:150px;" ng-click="stopPopArea($event)">
+                            <button ng-click="goodsMethodToggle($event)" type="button" class="btn dropdown-toggle selectpicker btn-default" style="width:150px;">
+                                <span class="filter-option pull-left">选择做法</span>&nbsp;
+                                <span class="caret"></span>
+                            </button>
+                            <div ng-show="methodSearchArea" class="dropdown-menu open" style="display:block; overflow-y: hidden !important;">
+                                <div style="padding-left:4px; padding-right: 4px;">
+                                    <input type="text" class="form-control" ng-model="searchKey" ng-change="goodsMethodSearch(searchKey)">
+                                </div>
+                                <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 360px; overflow-y: auto; min-height: 40px;padding-bottom: 5px;">
+                                    <li ng-repeat="gm in goodsMethods" ng-click="selectGoodsMethod(gm)" ng-class="{selected: gm.selected}">
+                                        <a><span class="text" ng-bind="gm.name"></span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a type="button" class="btn btn-sm btn-default pull-right" ng-click="cancelEdit($event)">取消</a>
+                        <a type="button" class="btn btn-info btn-sm pull-right" style="margin-right: 5px;" ng-click="addGoods()">保存</a>
+                    </td>
+                </tr>
+                <tr ng-repeat="g in model.goodses" ng-click="enterEdit(g)">
+                    <td ng-bind="$index + 1"></td>
+                    <td class="col-md-1 text-center" ng-bind="g.unitTypeName"></td>
+                    <td ng-show="g.isEdit==false" class="col-md-2 text-center" ng-bind="g.productTypeName"></td>
+                    <td ng-show="g.isEdit==true" class="col-md-2 text-center">
+                        <select class="input-sm form-control inline pull-center" style="width:80%;" ng-model="g.productType" ng-options="p.id as p.name for p in productTypes"></select>
+                    </td>
+                    <td ng-show="g.isEdit==false" class="col-md-9" ng-bind="g.goodsMethodName"></td>
+                    <td ng-show="g.isEdit==true" class="col-md-9">
+                        <div class="btn-group bootstrap-select show-tick form-control" style="width:150px;" ng-click="stopPopArea($event)">
+                            <button ng-click="goodsMethodToggle($event,g)" type="button" class="btn dropdown-toggle selectpicker btn-default" style="width:150px;">
+                                <span class="filter-option pull-left">选择做法</span>&nbsp;
+                                <span class="caret"></span>
+                            </button>
+                            <div ng-show="g.methodSearchArea" class="dropdown-menu open" style="display:block; overflow-y: hidden;">
+                                <div style="padding-left:4px; padding-right: 4px;">
+                                    <input type="text" class="form-control" ng-model="model.searchKey" ng-change="goodsMethodSearch(model.searchKey, g)">
+                                </div>
+                                <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 160px; overflow-y: auto; min-height: 40px;padding-bottom: 5px;">
+                                    <li ng-repeat="gm in goodsMethods" ng-click="selectGoodsMethod(gm)" ng-class="{selected: gm.selected}">
+                                        <a><span class="text" ng-bind="gm.name"></span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger btn-sm pull-right" ng-click="deleteGoods(g)">删除</a>
+                        <a type="button" class="btn btn-sm btn-default pull-right" ng-click="cancelEdit($event,g)" style="margin-right: 5px;">取消</a>
+                        <a type="button" class="btn btn-info btn-sm pull-right" ng-disabled="isSaving" style="margin-right: 5px;" ng-click="saveEdit(g)">保存</a>
+                        <div><small class="text-danger pull-right">警告: 删除菜品后，该菜品将不再销售.</small></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <!--<div>
+        <a type="button" class="btn btn-sm btn-danger" ng-click="hideEdit()">添加规格</a>
+    </div>-->
+            </div>
+        </div>
+</div>

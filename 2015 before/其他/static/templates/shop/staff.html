@@ -1,0 +1,200 @@
+<div class="panel panel-default add-product" id="container">
+  <script id="role-tpl" type="text/ractive">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="fa fa-bar-chart-o fa-lg grey"></i>
+        <span class="m-left-xs"><strong>岗位:</strong></span>
+        <span class="m-right-xs goods-group {{roleid == -1? 'bg-success':''}}" on-click="OnFilterRole:-1">所有<small class="text-muted">({{modelTotal}})</small></span> {{#models}}
+        <span class="m-right-xs goods-group {{roleid == .role.id ? 'bg-success':''}}" on-click="OnFilterRole:{{.role.id}}">
+          {{.role.name}}<small class="text-muted">({{.count}})</small>
+      </span> {{/models}}
+      </li>
+    </ul>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-success" on-click="OnAddModel"><i class="fa fa-plus"></i> 新增员工</button>
+      </div>
+</div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control input-sm">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-sm btn-default">查找</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<div class="row">
+        <div class="col-md-12">
+        <table class="table table-striped gap-top">
+          <thead>
+            <tr>
+              <th width="40px">#</th>
+              <th class="col-md-2 text-center">姓名</th>
+              <th class="col-md-1 text-center">工号</th>
+              <th class="col-md-1 text-center">密码</th>
+              <th class="col-md-2 text-center">ID标识</th>
+              <th class="col-md-2">岗位</th>
+              <th class="col-md-1 text-center">性别</th>
+              <th class="col-md-1 text-center">工资</th>
+              <th class="col-md-1 text-center">出生日期</th>
+              <th class="col-md-1 text-center">入职日期</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#adding}}
+            <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+              <td>{{adding ? '' : num+1}}</td>
+              <td>
+                <input type="text" class="form-control input-md" id="model-name" value="{{addingModel.name}}" data-required="true" data-minlength="1"/>
+                <small class="text-muted">员工的姓名</small>
+              </td>
+              <td>
+                {{#editing>0}}
+                <input type="text" class="form-control input-md" value="{{addingModel.sn}}" data-required="true" data-rangelength="[5,5]" data-type="number" readonly/>
+                {{/}}
+                {{#editing==-1}}
+                <input type="text" class="form-control input-md" value="{{addingModel.sn}}" data-required="true" data-rangelength="[5,5]" data-type="number"/>
+                {{/}}
+                <small class="text-muted">员工的工号(5位数字), 也是登录收银系统的账号</small>
+              </td>
+              <td>
+                <input type="password" class="form-control input-md" value="{{addingModel.password}}" data-required="true" data-rangelength="[3,3]"/>
+                <small class="text-muted">登录收银系统的密码(推荐使用3位数字)</small>
+              </td>
+              <td>
+                <input type="text" class="form-control input-md" value="{{addingModel.rfid}}"/>
+                <small class="text-muted">ID 卡标识。通过刷卡登录系统；如果没有，可以为空</small>
+              </td>
+              <td>
+                <select class="form-control input-md" value="{{addingModel.role}}">
+                  {{#getRoles()}}
+                  <option value="{{.id}}">{{.name}}</option>
+                  {{/getRoles()}}
+                </select>
+                <small class="text-muted">岗位名称, 可以在<a href="#/role">岗位类型</a>中设置</small>
+              </td>
+              <td>
+                <select class="form-control input-md" value="{{addingModel.sex}}">
+                  <option value="male">男</option>
+                  <option value="female">女</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control input-md" value="{{addingModel.salary}}"/>
+                <small class="text-muted">每月的薪水(元)</small>
+              </td>
+              <td colspan='2'>
+                <input type="text" id="birthday" class="form-control input-md" value="{{addingModel.birthday}}"
+                  data-required="true" data-date-pickTime='false' data-date-language='zh-cn' data-date-showToday='true'/>
+                <small class="text-muted">员工的出生的日期</small>
+                <input type="text" id="workday" class="form-control input-md" value="{{addingModel.workday}}" data-required="true"
+                 data-date-pickTime='false' data-date-language='zh-cn' data-date-showToday='true'/>
+                <small class="text-muted">员工的入职日期</small>
+                <div class="gap-top">
+                <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+                {{#editing > 0}}
+                  <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                  <div>
+                    <small class="text-danger">警告: 删除员工后，该员工将无法操作收银机.</small>
+                  </div>
+                {{/}}
+                </div>
+              </td>
+            </tr>
+            {{/adding}}
+            {{#showingModels:num}}
+              {{#editing == .id}}
+              <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+                <td>{{adding ? '' : num+1}}</td>
+                <td>
+                  <input type="text" class="form-control input-md" id="model-name" value="{{addingModel.name}}" data-required="true" data-minlength="1"/>
+                  <small class="text-muted">员工的姓名</small>
+                </td>
+                <td>
+                  {{#editing>0}}
+                  <input type="text" class="form-control input-md" value="{{addingModel.sn}}" data-required="true" data-rangelength="[5,5]" data-type="number" readonly/>
+                  {{/}}
+                  {{#editing==-1}}
+                  <input type="text" class="form-control input-md" value="{{addingModel.sn}}" data-required="true" data-rangelength="[5,5]" data-type="number"/>
+                  {{/}}
+                  <small class="text-muted">员工的工号(5位数字), 也是登录收银系统的账号</small>
+                </td>
+                <td>
+                  <input type="password" class="form-control input-md" value="{{addingModel.password}}" data-required="true" data-rangelength="[3,3]"/>
+                  <small class="text-muted">登录收银系统的密码(推荐使用3位数字)</small>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{addingModel.rfid}}"/>
+                  <small class="text-muted">ID 卡标识。通过刷卡登录系统；如果没有，可以为空</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{addingModel.role}}">
+                    {{#getRoles()}}
+                    <option value="{{.id}}">{{.name}}</option>
+                    {{/getRoles()}}
+                  </select>
+                  <small class="text-muted">岗位名称, 可以在<a href="#/role">岗位类型</a>中设置</small>
+                </td>
+                <td>
+                  <select class="form-control input-md" value="{{addingModel.sex}}">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="text" class="form-control input-md" value="{{addingModel.salary}}"/>
+                  <small class="text-muted">每月的薪水(元)</small>
+                </td>
+                <td colspan='2'>
+                  <input type="text" id="birthday" class="form-control input-md" value="{{addingModel.birthday}}"
+                    data-required="true" data-date-pickTime='false' data-date-language='zh-cn' data-date-showToday='true'/>
+                  <small class="text-muted">员工的出生的日期</small>
+                  <input type="text" id="workday" class="form-control input-md" value="{{addingModel.workday}}" data-required="true"
+                   data-date-pickTime='false' data-date-language='zh-cn' data-date-showToday='true'/>
+                  <small class="text-muted">员工的入职日期</small>
+                  <div class="gap-top">
+                  <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+                  <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+                  {{#editing > 0}}
+                    <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+                    <div>
+                      <small class="text-danger">警告: 删除员工后，该员工将无法操作收银机.</small>
+                    </div>
+                  {{/}}
+                  </div>
+                </td>
+              </tr>
+              {{/editing == .id}}
+              {{#editing != .id}}
+              <tr>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.sn}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">***</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.rfid}}</td>
+                <td on-click="OnEditModel:{{.id}}">
+                <div>{{getRole(.role).name}}</div>
+                <small class='text-muted'>已用额度: {{Math.round(100*.creditUsedMonth)/100}} 元 还剩: {{getRole(.role).creditMonth > .creditUsedMonth ? Math.round(100*(getRole(.role).creditMonth - .creditUsedMonth))/100 : 0}} 元</span>
+                </td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.sex == 'male' ? '男':'女'}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.salary}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.birthday}}</td>
+                <td class="text-center" on-click="OnEditModel:{{.id}}">{{.workday}}</td>
+              </tr>
+              {{/editing != .id}}
+            {{/showingModels}}
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+</script>
+</div>

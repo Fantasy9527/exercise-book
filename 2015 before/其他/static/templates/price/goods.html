@@ -1,0 +1,190 @@
+<div class="spinner fadeInDown " ng-show="isLoding">
+	<div class="rect1"></div>
+	<div class="rect2"></div>
+	<div class="rect3"></div>
+	<div class="rect4"></div>
+	<div class="rect5"></div>
+</div>
+<div class="tab-content fadeInDown" ng-hide="isLoding">
+	<div class="tab-pane fade in active">
+		<div class="panel panel-default add-product gap-top" id="container">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<i class="fa fa-shopping-cart fa-lg grey"></i>
+					<span class="m-left-xs"><strong>定价:</strong></span>
+					<span class="m-right-xs goods-group" ng-repeat="x in priceState" ng-class="{'bg-success':x.sel}" ng-click="selPriceState(x)">{{x.name}}<small class="text-muted">({{x.count}})</small></span>
+				</li>
+				<li class="list-group-item">
+					<i class="fa fa-bar-chart-o fa-lg grey"></i>
+					<span class="m-left-xs"><strong>大类:</strong></span>
+					<span class="m-right-xs goods-group" ng-repeat="x in groups" ng-class="{'bg-success':x.sel}" ng-click="selGroups(x)">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+
+				</li>
+				<li class="list-group-item">
+					<i class="fa fa-shopping-cart fa-lg grey"></i>
+					<span class="m-left-xs"><strong>小类:</strong></span>
+					<span class="m-right-xs goods-group" ng-repeat="x in subgroups" ng-class="{'bg-success':x.sel}" ng-click="selSubGroups(x)" ng-show="x.show">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+				</li>
+			</ul>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-striped gap-top">
+							<thead>
+							<tr>
+								<th width="40px">#</th>
+								<th class="col-md-2">菜品名称</th>
+								<th class="col-md-1" ng-hide="newPriceHide">当前价格(元)</th>
+								<th class="col-md-3" ng-class="{'col-md-2':newPriceHide}">新价格(元)</th>
+								<th class="col-md-1">市别</th>
+								<th class="col-md-5">销售时间</th>
+								<!-- <th class="col-md-1">销售方式</th> -->
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="x in goodsTypeProducts" ng-click="editing(x)" ng-class="{editing:x.edit}" ng-keydown="saveData(x,$event,$index)">
+								<td>{{$index+1}}</td>
+								<td>{{x.name}}
+									<small class="text-muted" style="margin-left:4px;">{{x.groupName}} {{x.subgroupName}}</small> </td>
+								<td ng-hide="newPriceHide">
+									<div class="unitTypePrice" ng-repeat="unitType in x.unitTypes">{{unitType.product.price}} <span ng-show="x.edit||unitType.product.price">元 ({{unitType.unitTypeName}})</span></div>
+								</td>
+								<td>
+									<form name="unitTypeForm">
+										<div ng-repeat="unitType in x.unitTypes"
+											 ng-class="{'has-error':unitTypeForm.newPrice{{$index}}.$invalid&&unitTypeForm.newPrice{{$index}}.$dirty}"
+											 class="newPriceInput" ng-hide="newPriceHide&&unitType.product">
+													<span ng-hide="x.edit">{{unitType.newPrice}}
+														<i ng-hide="unitType.newPrice==undefinded">({{unitType.unitTypeName}})</i>
+													</span>
+											<input ng-show="x.edit" type="text" class="form-control input-md" ng-model="unitType.newPrice" required="" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/" name="newPrice{{$index}}" data-required="true" data-min="0">
+											<!--
+                                        unitTypeForm.price1.$invalid&&promotionForm.price1.$dirty
+                                    -->
+											<div class="parsley-error" ng-show="unitTypeForm.newPrice{{$index}}.$invalid&&unitTypeForm.newPrice{{$index}}.$dirty&&x.edit">
+												只能输入数字
+											</div>
+											<small ng-show="x.edit" class="text-muted">规格: ({{unitType.unitTypeName}})</small>
+											<small ng-show="x.edit" class="text-muted" style="padding-left:10px;">销售方式: ({{unitType.productTypeName}})</small>
+										</div>
+									</form>
+								</td>
+								<td>
+									<span ng-hide="x.edit">{{x.commonProduct.serviceHourName}} </span>
+									<div ng-show="x.edit">
+										<select ng-show="x.edit" class="form-control input-md" ng-model="x.commonProduct.serviceHour" ng-options="y.id as y.name for y in serviceHours">
+										</select>
+										<small class="text-muted">市别</small>
+									</div>
+								</td>
+								<td>
+									<div ng-hide="x.edit">
+										<span ng-show="x.commonProduct.monday">周一  </span>
+										<span ng-show="x.commonProduct.tuesday">周二  </span>
+										<span ng-show="x.commonProduct.wednesday">周三  </span>
+										<span ng-show="x.commonProduct.thursday">周四  </span>
+										<span ng-show="x.commonProduct.friday">周五  </span>
+										<span ng-show="x.commonProduct.saturday">周六  </span>
+										<span ng-show="x.commonProduct.sunday">周日</span>
+									</div>
+									<div ng-show="x.edit">
+										<div><small class="text-muted">星期几销售:</small>
+										</div>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.monday">
+											<span class="custom-checkbox"></span>周一</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.tuesday">
+											<span class="custom-checkbox"></span>周二</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.wednesday">
+											<span class="custom-checkbox"></span>周三</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.thursday">
+											<span class="custom-checkbox"></span>周四</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.friday">
+											<span class="custom-checkbox"></span>周五</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.saturday">
+											<span class="custom-checkbox"></span>周六</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" value="true" ng-model="x.commonProduct.sunday">
+											<span class="custom-checkbox"></span>周日</label>
+										<div class="gap-top"><small class="text-muted">生效时间:</small>
+											<input ng-model="x.commonProduct.beginTime" class="form-control
+													datepicker
+													datepickerTime
+													time-cursor-pointer" type="text" placeholder="生效时间" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" datepicker-dir="" readonly="" required="">
+
+										</div>
+										<div class="gap-top">
+											<a class="btn btn-info btn-sm" ng-click="saveData(x,$event,$index)">保存</a>
+											<a class="btn btn-default btn-sm" ng-click=cancelEdit(x,$event)>取消</a>
+											<a class="btn btn-danger btn-sm pull-right" ng-click="delPrice(x,$index)">删除</a>
+											<div>
+												<small class="text-danger pull-right">删除该菜品定价后，该定价不再有效</small>
+											</div>
+										</div>
+
+									</div>
+
+								</td>
+								<!-- <td>{{x.unitTypes[0].productTypeName}}</td> -->
+								<td></td>
+							</tr>
+
+
+
+							<tr ng-repeat="x in models" ng-click="editing(x)">
+								<td>{{$index+1}}</td>
+								<td>{{x.goods.name}} <small class="text-muted" style="margin-left:4px;">{{x.groupName.name}} {{x.subgroupName.name}}</small> </td>
+								<td>{{x.product.price}}</td>
+								<td class="text-left">
+									<span ng-hide="x.edit">{{x.newPrice}}</span>
+											<span ng-show="x.edit">
+                                    <input ng-model="x.newPrice" type="text" class="form-control input-md"
+										   ng-class="{'parsley-error':x.nameError,'parsley-error':x.name==''}">
+                                </span>
+									<small ng-show="x.edit" class="text-muted" style="margin-left:4px;">新价格</small>
+
+
+								</td>
+								<td>
+									<div ng-show="x.edit">
+										<button ng-click="saveData(x,$event,$index)" type="button" class="btn btn-info btn-sm">保存</button>
+										<button ng-click=cancelEdit(x,$event) type="button" class="btn btn-default btn-sm">
+											</i> 取消</button>
+										<button ng-show="x.product" ng-click="delPrice(x,$index)" type="button" class="btn btn-danger btn-sm  pull-right">
+											</i> 删除</button>
+									</div>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="panel-footer clearfix text-center">
+				<ul class="pagination" ng-hide="goodsData.pages.max==0">
+					<li ng-hide="goodsData.pages.previous==null" ng-click="pagePrevious(goodsData.pages.previous)"><a href="">«</a>
+					</li>
+					<li ng-repeat="x in pageShowing" ng-class="{active:goodsData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+						<a href="">
+							{{x.name}}
+						</a>
+					</li>
+					<li ng-hide="goodsData.pages.next==null" ng-click="pageNext(goodsData.pages.next)"><a href="">»</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,186 @@
+<div class="panel-body" id="container">
+	<script id="tpl" type="text/ractive">
+		<div class="panel panel-default add-product">
+			<div class="panel-heading">
+				<i class="fa fa-fire"></i> 茶位设置
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<button type="button" class="btn btn-sm btn-success" on-click="OnAddModel">
+									<i class="fa fa-plus"></i> 新增茶位费
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<input type="text" class="form-control input-sm">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-sm btn-default">查找</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped gap-top">
+					<thead>
+						<tr>
+							<th width="40px">#</th>
+							<th class="col-md-2 text-center">市别</th>
+							<th class="col-md-2 text-center">状态</th>
+							<th class="col-md-2 text-center">类型</th>
+							<th class="col-md-6">菜品</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#editing == 0}}
+						<tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+							<td class="text-center">
+								{{#editing != 0}} {{num+1}} {{/}}
+							</td>
+							<td>
+								<select class="form-control input-md" id="model-price" value="{{editingModel.serviceHour}}">
+									{{#serviceHours}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">市别</small>
+							</td>
+							<td>
+								<select class="form-control input-md" value="{{editingModel.state}}">
+									{{#states}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">如果是停止状态，则不使用这个茶位费。</small>
+							</td>
+							<td>
+								<select class="form-control input-md" value="{{editingModel.teafeeType}}">
+									{{#teafeeTypes}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">茶位费类型</small>
+							</td>
+							<td>
+								<div class="row">
+									<div class="col-md-3">
+										<select class="form-control input-md" value="{{goods.group}}">
+											{{#groups}}
+											<option value="{{.id}}">{{.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">大类</small>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control input-md" value="{{goods.subgroup}}">
+											{{#getSubGroups(goods.group)}}
+											<option value="{{.id}}">{{.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">小类</small>
+									</div>
+									<div class="col-md-6">
+										<select class="form-control input-md" value="{{editingModel.product}}" data-required="true">
+											{{#getProducts(goods.subgroup, editingModel.serviceHour)}}
+											<option value="{{.id}}">{{._goods.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">菜品的名称</small>
+									</div>
+								</div>
+								<div class="gap-top">
+									<a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+									<a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+									<a class="btn btn-danger btn-sm pull-right" on-click="OnRemoveModel">删除</a>
+									<div>
+										<small class="text-danger pull-right">删除茶位费后，此茶位费不再有效</small>
+									</div>
+									{{/}}
+								</div>
+							</td>
+						</tr>
+						{{/}} {{#models:num}} {{#editing == .id}}
+						<tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+							<td class="text-center">
+								{{#editing != 0}} {{num+1}} {{/}}
+							</td>
+							<td>
+								<select class="form-control input-md" id="model-price" value="{{editingModel.serviceHour}}">
+									{{#serviceHours}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">市别</small>
+							</td>
+							<td>
+								<select class="form-control input-md" value="{{editingModel.state}}">
+									{{#states}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">如果是停止状态，则不使用这个茶位费。</small>
+							</td>
+							<td>
+								<select class="form-control input-md" value="{{editingModel.teafeeType}}">
+									{{#teafeeTypes}}
+									<option value="{{.id}}">{{.name}}</option>
+									{{/}}
+								</select>
+								<small class="text-muted">茶位费类型</small>
+							</td>
+							<td>
+								<div class="row">
+									<div class="col-md-3">
+										<select class="form-control input-md" value="{{goods.group}}">
+											{{#groups}}
+											<option value="{{.id}}">{{.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">大类</small>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control input-md" value="{{goods.subgroup}}">
+											{{#getSubGroups(goods.group)}}
+											<option value="{{.id}}">{{.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">小类</small>
+									</div>
+									<div class="col-md-6">
+										<select class="form-control input-md" value="{{editingModel.product}}" data-required="true">
+											{{#getProducts(goods.subgroup, editingModel.serviceHour)}}
+											<option value="{{.id}}">{{._goods.name}}</option>
+											{{/}}
+										</select>
+										<small class="text-muted">菜品的名称</small>
+									</div>
+								</div>
+								<div class="gap-top">
+									<a class="btn btn-info btn-sm" on-click='OnSaveModel'>保存</a>
+									<a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a> {{#editing > 0}}
+									<a class="btn btn-danger btn-sm pull-right" on-click="OnRemoveModel">删除</a>
+									<div>
+										<small class="text-danger pull-right">删除茶位费后，此茶位费不再有效</small>
+									</div>
+									{{/}}
+								</div>
+							</td>
+						</tr>
+						{{/}} {{^editing == .id}}
+						<tr>
+							<td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+							<td class="text-center" on-click="OnEditModel:{{.id}}">{{._serviceHour.name}}</td>
+							<td class="text-center" on-click="OnEditModel:{{.id}}">{{._state.name}}</td>
+							<td class="text-center" on-click="OnEditModel:{{.id}}">{{._teafeeType.name}}</td>
+							<td on-click="OnEditModel:{{.id}}">{{._product._goods.name}}</td>
+						</tr>
+						{{/}} {{/}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</script>
+</div>

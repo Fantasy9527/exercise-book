@@ -1,0 +1,200 @@
+<div class="right-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-user"></i> 会员资料
+        </div>
+        <div class="panel-body">
+            <div class="row" style="margin-left: 0px;">
+                <div class="form-inline" role="form">
+                    <div class="form-group" style="margin-left: 0;">
+                        <ul class="list-inline" style="margin-top: 5px;font-weight: normal;">
+                            <li><strong>会员类型:</strong></li>
+                            <li ng-repeat="memberType in base.memberTypes" class="m-right-xs goods-group" ng-class="{'bg-success':memberType.sel}" ng-click="selMemberType(memberType)">
+                                {{memberType.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0px;">
+                <div class="form-group">
+                    <ul class="list-inline">
+                        <li><strong>最近消费时间 : </strong></li>
+                        <li class="m-right-xs goods-group" ng-class="{'bg-success':dayspan.sel}" ng-repeat="dayspan in base.dateSpans" ng-click="selTime(dayspan)" ng-bind="dayspan.name">
+                        </li>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="dropdown-menu" style="width: 400px; display: block; left:176px;" ng-show="otherTime">
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control input-sm time-cursor-pointer" id="beginTime" data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly="" ng-model="otherBegin"> <small class="text-muted">开始时间</small>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control input-sm time-cursor-pointer" id="endTime" data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" readonly="" ng-model="otherEnd"> <small class="text-muted">结束时间</small>
+                                    </div>
+                                    <div class="col-md-2" style="padding-left:0">
+                                        <button class="btn btn-success" ng-click="setOtherTime()">确定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0px;">
+                <div class="form-inline" role="form">
+                    <div class="form-group" style="margin-left: 0;">
+                        <ul class="list-inline" style="font-weight: normal;">
+                            <li><strong>会员状态：</strong></li>
+                            <li class="m-right-xs goods-group" ng-class="{'bg-success':state.sel}" ng-repeat="state in memberState" ng-click="selState(state)">{{state.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0px;">
+                <div class="form-inline" role="form">
+                    <div class="form-group" style="margin-left: 0;">
+                        <ul class="list-inline" style="font-weight: normal;">
+                            <li><strong>积分：</strong></li>
+                            <li class="m-right-xs goods-group" ng-class="{'bg-success':p.sel}" ng-repeat="p in points" ng-click="selectPoint(p)">{{p.name}}</li>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="dropdown-menu" style="width: 410px; display: block; left:164px; top:-23px;" ng-show="otherPoint">
+                                        <form class="form-inline no-margin" style="padding-left: 5px;">
+                                            <div class="form-group">
+                                                <label class="sr-only">最小值</label>
+                                                <input class="form-control input-sm" ng-model="pointBegin" type="number" placeholder="最小值">
+                                            </div>
+                                            <div class="form-group">至</div>
+                                            <div class="form-group">
+                                                <label class="sr-only">最大值</label>
+                                                <input class="form-control input-sm" ng-model="pointEnd" type="number" placeholder="最大值">
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-success" ng-click="commitPoint()" ng-disabled="pointBegin > pointEnd && pointEnd != undefined">确定</button>
+                                            </div>
+                                            <div class="form-group" ng-show="pointBegin > pointEnd && pointEnd != undefined"><span style="color:red;">最小值不能大于最大值</span></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0px;">
+                <div class="form-inline" role="form">
+                    <div class="form-group" style="margin-left: 0;">
+                        <ul class="list-inline" style="font-weight: normal;">
+                            <li><strong>消费次数：</strong></li>
+                            <li class="m-right-xs goods-group" ng-class="{'bg-success':s.sel}" ng-repeat="s in consumes" ng-click="selectConsume(s)">{{s.name}}</li>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="dropdown-menu" style="width: 410px; display: block; left:192px; top:-23px;" ng-show="otherConsume">
+                                        <form class="form-inline no-margin" style="padding-left: 5px;">
+                                            <div class="form-group">
+                                                <label class="sr-only">最小值</label>
+                                                <input class="form-control input-sm" ng-model="consumeBegin" type="number" placeholder="最小值">
+                                            </div>
+                                            <div class="form-group">至</div>
+                                            <div class="form-group">
+                                                <label class="sr-only">最大值</label>
+                                                <input class="form-control input-sm" ng-model="consumeEnd" type="number" placeholder="最大值">
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-success" ng-click="commitConsume()" ng-disabled="consumeBegin > consumeEnd && consumeEnd != undefined">确定</button>
+                                            </div>
+                                            <div class="form-group" ng-show="consumeBegin > consumeEnd && consumeEnd != undefined && consumeEnd != ''"><span style="color:red;">最小值不能大于最大值</span></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm" ng-model="searchData" ng-keypress="enterSearch($event)" placeholder="会员卡号、姓名、手机号">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-success" ng-click="search($event)">搜索</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped gap-top">
+                        <thead>
+                            <tr>
+                                <th style="width:10px !important;" class="text-center">
+                                    #
+                                </th>
+                                <th>姓名</th>
+                                <th>手机号</th>
+                                <th>会员卡号</th>
+                                <th>会员类型</th>
+                                <th>余额</th>
+                                <th>充值余额</th>
+                                <th>赠送余额</th>
+                                <th>积分</th>
+                                <th>累计充值</th>
+                                <th>累计赠送</th>
+                                <th>累计余额抵扣</th>
+                                <th>累计消费</th>
+                                <th>累计消费次数</th>
+                                <th>累计折扣</th>
+                                <th>状态</th>
+                                <th>最近消费时间</th>
+                                <th>入会时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="model in models" ng-class="{'warning': model.state==2}">
+                                <td style="width:15px !important;">{{($index+1)+pageModel.current*pageModel.pageSize}}</td>
+                                <td>
+                                    <a ui-sref="member.data.detail({memberId:model.id})" target="_blank" ng-bind="model.name" style="color:#6bafca;"></a>
+                                </td>
+                                <td ng-bind="model.mobile"></td>
+                                <td ng-bind="model.cardno"></td>
+                                <td ng-bind="model.memberTypeName"></td>
+                                <td class="text-center">
+                                    {{model.chargeBalance + model.giftBalance}}
+                                </td>
+                                <td>{{model.chargeBalance}}</td>
+                                <td>{{model.giftBalance}}</td>
+                                <td ng-bind="model.point"></td>
+                                <td ng-bind="model.totalChargeValue"></td>
+                                <td ng-bind="model.totalGiftValue"></td>
+                                <td ng-bind="model.totalConsumeValue"></td>
+                                <td ng-bind="model.totalConsumeAmount" style="color:#FF2400"></td>
+                                <td ng-bind="model.totalConsumeCount"></td>
+                                <td ng-bind="model.totalPromotionValue"></td>
+                                <td ng-bind="model.stateName"></td>
+                                <td>{{model.lastConsumeTime|limitTo:10}}</td>
+                                <td ng-bind="model.createon"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer clearfix text-center">
+                    <ul class="pagination" ng-hide="pageModel.max==0">
+                        <li ng-hide="pageModel.previous==null" ng-click="pagePrevious(pageModel.previous)"><a href="">«</a>
+                        </li>
+                        <li ng-repeat="x in pageShowing" ng-class="{active:pageModel.current==x.name-1}" ng-click="indexPage(x.name)">
+                            <a href="">
+                  {{x.name}}
+                  </a>
+                        </li>
+                        <li ng-hide="pageModel.next==null" ng-click="pageNext(pageModel.next)">
+                            <a href="">»</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="right-content">
+    <div class="row">
+        <div class="col-md-12 col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <i class="fa fa-group fa-lg"></i> 消费记录
+                </div>
+                <div ng-include="'/assets/templates/member/data/detail.nav.html'"></div>
+
+									<div class="panel-body">
+										  <div ng-if="models.length==0" style="text-align:center;">
+											<label class="normal">无消费记录</label>
+										  </div>
+								          <table ng-if="models.length>0" class="table-bordered table-condensed table-hover table-striped" style="width:100%;">
+								            <thead>
+								              <tr>
+								                <th width="10%" style="border-right:1px solid #eeeeee;border-left:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><label>序号</label></th>
+								                <th width="15%" style="border-right:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><label>营业日</label></th>
+												<th width="20%" style="border-right:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><label>门店</label></th>
+								                <th width="15%" style="border-right:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><label>消费金额</label></th>
+								                <th width="40%" style="border-right:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><label>消费账单</label></th>
+								              </tr>
+								            </thead>
+								            <tbody>
+								              <tr ng-repeat="model in models">
+								                <td colspan="5" style="padding:0px !important;border-right:1px solid #eeeeee;border-left:1px solid #eeeeee;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;">
+								                  <table style="width:100%;margin-bottom: 0px!important;border-spacing:0px !important; border-collapse:collapse !important;" border="0" cellpadding="0" cellspacing="0">
+								                    <tbody>
+								                    <tr style="height: 26px;">
+								                      <td ng-bind="$index+1" width="10%" style="border-right:1px solid #eeeeee;padding-left: 5px;"></td>
+								                      <td ng-bind="model.stat.business" width="15%" style="border-right:1px solid #eeeeee;padding-left:5px;"></td>
+													  <td ng-bind="model.stat.shop.name" width="20%" style="border-right:1px solid #eeeeee;padding-left:5px;"></td>
+								                      <td ng-bind="model.stat.stat.total.amount" width="15%" style="border-right:1px solid #eeeeee;padding-left: 5px;"></td>
+								                      <td width="40%"><a href="" style="color:#6bafca;padding-left: 5px;" ng-bind="model.sn" ng-click="showOrHideDetailArea(model.stat.bill)"></a></td>
+								                    </tr>
+								                    <tr ng-if="showDetail== model.stat.bill" style="background-color: #f9f9f9;">
+								                      <td colspan="3" valign="top"  style="border-top:1px solid #eeeeee;">
+								                          <div class="col-md-12">
+								                             <div style="padding-left:15px;padding-right:20px;padding-top:20px;">
+								                              <span><label>桌号  : </label><span ng-bind="tableNames"></span></span>
+								                              <span style="margin-left:38%"><label>人数  : </label><span ng-bind="personCount">人</span></span>
+								                              <span class="pull-right"><label>数量  : </label><span ng-bind="goodsCount"></span></span></span>
+								                            </div>
+								                            <div class="panel panel-default" style="margin-left:15px !important;overflow-y:auto;height:300px;">
+								                              <table style="width:100%;border:1px solid #eeeeee;">
+								                                <thead>
+								                                  <tr style="height:26px;">
+								                                    <th class="text-center" style="font-weight:normal !important;">#</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">菜品</th>
+																	<th class="text-center" style="font-weight:normal !important;">规格</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">原价(元)</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">价格(元)</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">数量</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">退量</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">总额(元)</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">点菜员</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">授权员</th>
+								                                    <th class="text-center" style="font-weight:normal !important;">下单时间</th>
+								                                  </tr>
+								                                </thead>
+																<tbody>
+								                                  <tr style="height: 26px;" ng-repeat="order in orders">
+								                                    <td class="text-center" ng-bind="$index+1"></td>
+								                                    <td class="text-center" ng-bind="order._goods.name"></td>
+																	<td class="text-center" ng-bind="order.unitType"></td>
+								                                    <td class="text-center" ng-bind="order.origin_price"></td>
+								                                    <td class="text-center" ng-bind="order.current_price"></td>
+								                                    <td class="text-center" ng-bind="order.quantity"></td>
+								                                    <td class="text-center" ng-bind="order.void_quantity"></td>
+								                                    <td class="text-center" ng-bind="order.realValue"></td>
+								                                    <td class="text-center" ng-bind="order._staff.name"></td>
+								                                    <td class="text-center" ng-bind="order._authStaff.name"></td>
+								                                    <td class="text-center" ng-bind="order.order_time"></td>
+								                                  </tr>
+								                                </tbody>
+								                              </table>
+								                            </div>
+								                          </div>
+													   </td>
+													   <td colspan="2" valign="top" style="border-top:1px solid #eeeeee;border-left:1px solid #eeeeee;">
+								                          <div class="col-md-12">
+								                            <div class="panel panel-default" style="margin-top:20px;margin-right:10px;">
+								                              <table style="width:100%;" class="table table-condensed">
+								                                <thead>
+								                                  <tr style="height:26px;">
+								                                    <th width="17%" class="text-center">消费金额</th>
+																	<th width="17%" class="text-center">促销优惠</th>
+								                                    <th width="16%" class="text-center">折扣</th>
+								                                    <th width="17%" class="text-center">低消差</th>
+								                                    <th width="17%" class="text-center">服务费</th>
+																	<th width="16%" class="text-center">抹零</th>
+								                                  </tr>
+								                                </thead>
+								                                <tbody>
+								                                  <tr style="height:26px;">
+								                                    <td class="text-center" ng-bind="modelDetail.stat.total.origin"></td>
+																	<td class="text-center" ng-bind="modelDetail.stat.waive.promotion"></td>
+								                                    <td class="text-center" ng-bind="modelDetail.stat.waive.discount"></td>
+								                                    <td class="text-center" ng-bind="modelDetail.stat.waive.mincharge"></td>
+								                                    <td class="text-center" ng-bind="modelDetail.stat.waive.surcharge"></td>
+																	<td class="text-center" ng-bind="modelDetail.stat.waive.rounding"></td>
+								                                  </tr>
+								                                  <tr style="height:26px;">
+								                                    <td colspan="4"><label style="margin-left:15px;">应收  :</label><span style="margin-left: 4px;" ng-bind="modelDetail.account"></span></td>
+								                                  </tr>
+								                                </tbody>
+								                              </table>
+								                            </div>
+								                            <div class="panel panel-default" style="margin-right:10px;">
+								                              <table style="width:100%;" class="table table-condensed">
+								                                <thead>
+								                                <tr style="height:26px;">
+								                                  <th width="50%" class="text-center">收款方式</th>
+								                                  <th width="50%" class="text-center">金额</th>
+								                                </tr>
+								                                </thead>
+								                                <tbody>
+
+								                                <tr style="height:26px;" ng-if="modelDetail.stat.pay.cash>0">
+								                                  <td class="text-center">现金</td><td class="text-center" ng-bind="modelDetail.stat.pay.cash"></td>
+								                                </tr>
+								                                <tr style="height:26px;" ng-if="modelDetail.stat.pay.card>0">
+								                                  <td class="text-center">银行卡</td><td class="text-center" ng-bind="modelDetail.stat.pay.card"></td>
+								                                </tr>
+								                                <tr style="height:26px;" ng-if="modelDetail.stat.pay.alipay>0">
+								                                  <td class="text-center">支付宝</td><td class="text-center" ng-bind="modelDetail.stat.pay.alipay"></td>
+								                                </tr>
+								                                <tr style="height:26px;" ng-if="modelDetail.stat.pay.tenpay>0">
+								                                  <td class="text-center">微信</td><td class="text-center" ng-bind="modelDetail.stat.pay.tenpay"></td>
+								                                </tr>
+																<tr style="height:26px;" ng-if="modelDetail.stat.pay.voucher>0">
+								                                  <td class="text-center">代金券</td><td class="text-center" ng-bind="modelDetail.stat.pay.voucher"></td>
+								                                </tr>
+																<tr style="height:26px;" ng-if="modelDetail.stat.pay.debit>0">
+								                                  <td class="text-center">挂单</td><td class="text-center" ng-bind="modelDetail.stat.pay.debit"></td>
+								                                </tr>
+																<tr style="height:26px;" ng-if="modelDetail.stat.pay.storevalue>0">
+								                                  <td class="text-center">充值卡</td><td class="text-center" ng-bind="modelDetail.stat.pay.storevalue"></td>
+								                                </tr>
+																<tr style="height:26px;"  ng-if="modelDetail.stat.pay.waive>0">
+								                                  <td class="text-center">免单</td><td class="text-center" ng-bind="modelDetail.stat.pay.waive"></td>
+								                                </tr>
+																<tr style="height:26px;"  ng-if="modelDetail.stat.pay.custom>0">
+								                                  <td class="text-center">其他</td><td class="text-center" ng-bind="modelDetail.stat.pay.custom"></td>
+								                                </tr>
+								                                <tr style="height:26px;">
+								                                  <td>
+								                                    <label style="margin-left:15px;">合计  :</label><span style="margin-left:4px;" ng-bind="modelDetail.totalAmount"></span>
+								                                  </td>
+								                                </tr>
+								                                </tbody>
+								                              </table>
+								                            </div>
+								                          </div>
+								                      </td>
+								                    </tr>
+								                    </tbody>
+								                  </table>
+								                </td>
+								              </tr>
+								            </tbody>
+								          </table>
+										  <div page></div>
+								        </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

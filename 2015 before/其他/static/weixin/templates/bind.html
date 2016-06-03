@@ -1,0 +1,35 @@
+<div class="fadeInDown" ng-hide="isLoding">
+ <div class="g-title ">
+  请输入您在注册会员时留下的手机号码
+</div>
+<form action="" name="bind">
+  <div class="person-input person-code bind-phone">
+    <span class="f-fl">手机号</span>
+    <a class="f-fr identifying-btn" ng-click="getVerify()" ng-class="{'a-disabled':getCodeTime!='获取验证码'}">{{getCodeTime}} <t ng-show="getCodeTime!='获取验证码'">秒</t></a>
+    <div class="input-box">
+      <input type="tel" ng-model="mobile" placeholder="手机号" ng-pattern="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" required>
+    </div>
+  </div>
+
+<div class="person-detail">
+  <div class="person-input">
+    <span class="f-fl">验证码</span>
+    <div class="input-box">
+      <input type="tel" ng-model="code" placeholder="请输入验证码"  required>
+      <span ng-show="isRegister">{{name}}</span>
+    </div>
+  </div>
+</div>
+
+<a class="form-button" ng-hide="isRegister" ng-class="{'a-disabled':bind.$invalid}" ng-click="bindCard(bind.$invalid)">绑定实体卡</a>
+</form>
+</div>
+
+
+<!-- <div class="spinner fadeInDown" ng-show="isLoding">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+</div> -->

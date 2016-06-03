@@ -1,0 +1,147 @@
+<div class="spinner fadeInDown" ng-show="isLoding">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+<div class="fadeInDown" ng-hide="isLoding">
+  <div class="panel panel-default add-product" id="container">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="fa fa-tasks fa-lg"></i>
+        <span class="m-left-xs"><strong>打印方案:</strong></span>
+        <span class="m-right-xs goods-group" ng-repeat="x in plan" ng-class="{'bg-success':x.sel}" ng-click="selPlan(x)">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-bar-chart-o fa-lg grey"></i>
+        <span class="m-left-xs"><strong>大类:</strong></span>
+        <span class="m-right-xs goods-group" ng-repeat="x in groups" ng-class="{'bg-success':x.sel}" ng-click="selGroups(x)">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-shopping-cart fa-lg grey"></i>
+        <span class="m-left-xs"><strong>小类:</strong></span>
+        <span class="m-right-xs goods-group" ng-repeat="x in subgroups" ng-class="{'bg-success':x.sel}" ng-click="selSubGroups(x)" ng-show="x.show">{{x.name}} <small class="text-muted">({{x.count}})</small></span>
+      </li>
+    </ul>
+
+    <div class="checkbox" ng-repeat="printing in x.Plans" ng-show="x.edit">
+      <label>
+        <input type="checkbox" ng-model="printing.sel">
+        <span class="custom-checkbox"></span> {{printing.name}}
+        <span class="small text-muted">({{printing.printer.name}} {{printing.printPlan.name}} {{printing.printer.ip}} {{printing.kitchenPrintingType.name}})</span>
+      </label>
+    </div>
+
+
+    <div class="panel-body">
+      <div class="row" ng-show="bathShow">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-addon">打印方案</span>
+
+            <div class="btn-group  bootstrap-select show-tick form-control">
+              <button ng-click="batchToogle()" type="button" class="btn dropdown-toggle selectpicker btn-default" style="border-radius: 0px;"><span class="filter-option pull-left">打印方案批量设置</span>&nbsp;<span class="caret"></span>
+              </button>
+              <div class="dropdown-menu open" style="display:block; max-height: 360px; overflow: hidden; min-height: 92px;" ng-show="isBatchMenuShow">
+                <ul class="dropdown-menu inner selectpicker" role="menu">
+                  <li ng-repeat="printing in batchPlans" ng-click="selbatchPlan(printing)" ng-class="{selected:printing.sel}">
+                    <a>
+                      <span class="custom-checkbox"></span> {{printing.name}}
+                      <span class="small text-muted">({{printing.printer.name}} {{printing.printPlan.name}} {{printing.printer.ip}} {{printing.kitchenPrintingType.name}})</span>
+                      </label>
+                      <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-sm btn-success" ng-click="batchSetPlan()">批量设置</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped gap-top">
+            <thead>
+              <tr>
+                <th width="40px" ng-click="selAllPlanFn()">
+                  <label class="label-checkbox">
+                    <input type="checkbox" class="check-all" ng-model="selAllPlan">
+                    <span class="custom-checkbox"></span>
+                  </label>
+                </th>
+                <th width="40px">#</th>
+                <th class="col-md-2">菜品名称</th>
+                <th class="col-md-2 text-center">大类</th>
+                <th class="col-md-2 text-center">小类</th>
+                <th class="col-md-6">打印方案</th>
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in goodsData.goodsTypePlans" ng-click="editing(x)" ng-keydown="saveData(x,$event)" ng-class="{editing:x.edit}">
+                <td ng-click="selThisPlan(x,$event)">
+                  <label class="label-checkbox">
+                    <input type="checkbox" class="check-item" ng-model="x.sel"> <span class="custom-checkbox"></span>
+                  </label>
+                </td>
+                <td class="text-center">{{x.No}}</td>
+                <td>{{x.name}} ({{x.unitTypeName}})</td>
+                <td class="text-center">{{x.groupName}}</td>
+                <td class="text-center">{{x.subgroupName}}</td>
+                <td>
+                  <div ng-repeat="printing in x.printings" ng-hide="x.edit">
+                    {{printing.name}}
+                    <span class="small text-muted">(
+                    {{printing.printer.name}}
+                    {{printing.printer.ip}}
+                    {{printing.kitchenPrintingType.name}})</span>
+                  </div>
+                  <!-- ----------------------------------------------------------- -->
+                  <div class="checkbox" ng-repeat="printing in x.Plans" ng-show="x.edit">
+                    <label>
+                      <input type="checkbox" ng-model="printing.sel">
+                      <span class="custom-checkbox"></span> {{printing.name}}
+                      <span class="small text-muted">
+                      (
+                      {{printing.printer.name}}
+                      {{printing.printer.ip}}
+                      {{printing.kitchenPrintingType.name}}
+                      )</span>
+                    </label>
+                  </div>
+                  <div class="radio gap-top" ng-show="x.edit">
+                    <a class="btn btn-info btn-sm" ng-click="saveData(x,$event)">保存</a>
+                    <a class="btn btn-default btn-sm gap-left" ng-click="cancelEdit(x,$event)">取消</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="panel-footer clearfix text-center">
+      <ul class="pagination" ng-hide="goodsData.pages.max==0">
+        <li ng-hide="goodsData.pages.previous==null" ng-click="pagePrevious(goodsData.pages.previous)"><a href="">«</a>
+        </li>
+        <li ng-repeat="x in pageShowing" ng-class="{active:goodsData.pages.current==x.name-1}" ng-click="indexPage(x.name)">
+          <a href="">
+          {{x.name}}
+        </a>
+        </li>
+        <li ng-hide="goodsData.pages.next==null" ng-click="pageNext(goodsData.pages.next)"><a href="">»</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

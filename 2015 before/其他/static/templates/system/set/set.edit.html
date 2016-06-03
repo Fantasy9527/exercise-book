@@ -1,0 +1,234 @@
+<div class="right-content">
+  <div class="row">
+    <div class="panel panel-default add-product col-lg-8" id="container">
+      <div class="panel-heading">
+        <a class="return-up" href="#/setHome">
+          <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a>{{goodsTypeName}}
+      </div>
+      <div class="panel-tab clearfix">
+        <ul class="nav nav-tabs">
+          <li class="active">
+          <a ng-href="#/system/set/edit?set={{paramGoods}}"><i class="fa fa-home"></i> 套餐详情</a>
+          </li>
+          <li>
+          <a ng-href="#/system/set/price?set={{paramGoods}}"><i class="fa fa-bars"></i> 套餐定价</a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-sm btn-success" ng-click="newItems()"><i class="fa fa-plus"></i> 新增道菜</button>
+          </div>
+        </div>
+
+        <div class="row" ng-show="isCreateItem">
+          <div class="gap-top">
+            <div class="panel panel-default">
+              <div class="panel-heading">创建道菜</div>
+              <div class="panel-body">
+                <form action="" name="createItem">
+                  <div class="form-horizontal" id="form">
+                    <div class="form-group">
+                      <label for="inputBrandName" class="col-lg-2 control-label">道菜名称</label>
+                      <div class="col-lg-6 gap-top">
+                        <input type="text" class="form-control input-sm" ng-model="itemName" placeholder="道菜名称" data-required="true" data-minlength="1" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-6">
+                        <button type="button" class="btn btn-success btn-sm" ng-click="saveItem()" ng-disabled="createItem.$invalid">保存道菜</button>
+                        <button type="button" ng-click="closeCreateItem()" class="btn btn-default btn-sm">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="panel panel-default gap-top fadeInDown" ng-repeat="x in sets.items">
+          <div class="panel-heading">
+            {{x.name}}
+            <ul class="tool-bar">
+              <li ng-click="editItemName(x)">
+                <a href="" class="refresh-widget" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="编辑道菜名字"><i class="fa fa-edit"></i></a>
+              </li>
+              <li class="lightCustomModal_open" ng-click="openDeleteItem(x,$index)"><a href="" data-toggle="collapse" class=""><i class="fa fa-trash-o"></i></a></li>
+            </ul>
+          </div>
+          <div class="panel-body">
+            <button type="button" class="btn btn-sm btn-info" ng-click="openDishModal(x)">
+              <i class="fa fa-plus"></i> 新增子菜</button>
+
+          </div>
+          <table class="table table-hover table-striped" id="responsiveTable">
+            <thead>
+              <tr>
+                <th class="col-md-3">菜品</th>
+                <th class="col-md-1">大类</th>
+                <th class="col-md-1">小类</th>
+                <th class="col-md-2">数量</th>
+                <th class="col-md-2">加价</th>
+                <th class="col-md-1">默认</th>
+                <th class="col-md-2">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="details in x.details" ng-click="edit(details,x)">
+                <td>{{details.name}} ({{details.unitTypeName}})</td>
+                <td>{{details.groupName}}</td>
+                <td>{{details.subgroupName}}</td>
+                <td>
+                  <span ng-hide="details.isEdit">{{details.quantity}}</span>
+                  <form ng-if="details.isEdit" action="" name="TableForm" ng-class="{'has-error':TableForm.quantity.$invalid}">
+                  <span>
+              <input type="text" class="form-control input-sm" name="quantity" ng-model="details.quantity"  placeholder="子菜数量"  ng-pattern="/^\+?[1-9][0-9]*$/" required>
+                  </span>
+                    <label class="control-label" ng-show="TableForm.quantity.$invalid">请输入正整数</label>
+                    <small class="text-muted" ng-hide="!details.isEdit||TableForm.quantity.$invalid">子菜数量</small>
+                  </form>
+                </td>
+                <td>
+                  <span ng-hide="details.isEdit">{{details.plusPrice}}</span>
+                  <form action="" name="TableForm2" ng-class="{'has-error':TableForm2.plusPrice.$invalid}">
+               <span ng-if="details.isEdit">
+              <input type="text" class="form-control input-sm" ng-model="details.plusPrice" name="plusPrice"  placeholder="子菜加价" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/" required>
+              <label class="control-label" ng-show="TableForm2.plusPrice.$invalid">请输入正数(保留两位)</label>
+              <small class="text-muted" ng-hide="TableForm2.plusPrice.$invalid">子菜加价</small>
+              </span>
+                  </form>
+                </td>
+                <td>
+                  <i ng-show="details.isDefault" class="fa fa-check"></i>
+                  <a ng-hide="details.isDefault" ng-click="default(details,x,$event)">
+                    <small class="text-muted">设置默认</small>
+                  </a>
+                </td>
+                <td>
+                  <div ng-hide="details.isEdit">
+                    <button type="button" ng-click="deleteData(details,x,$index,$event)" class="btn btn-sm btn-danger">删除</button>
+                  </div>
+                  <div ng-show="details.isEdit">
+                    <a class="btn btn-info btn-sm" ng-click="saveData(details,x,$event)" ng-disabled="TableForm.$invalid||TableForm2.$invalid">保存</a>
+                    <a class="btn btn-default btn-sm" ng-click="cancelEidit(details,x,$event)">取消</a>
+                    <a class="btn btn-danger btn-sm pull-right" ng-hide="details.isDefault" ng-click="deleteData(details,x,$index)">删除</a>
+                  </div>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="saveItemName">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>修改道菜名字</h4>
+        </div>
+        <div class="modal-body">
+          <form name="ItemNameForm">
+            <div class="form-group" ng-class="{'has-error':ItemNameForm.itemName.$invalid}">
+              <label>名字</label>
+              <input type="text" name="itemName" class="form-control input-sm" ng-model="itemName" placeholder="道菜名字" required>
+              <label class="control-label" ng-show="ItemNameForm.itemName.$invalid">不能为空</label>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">关闭</button>
+          <button class="btn btn-success btn-sm" ng-click="saveItemName()" ng-disabled="ItemNameForm.$invalid">保存</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+
+  <div class="modal fade" id="addDishModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>添加子菜</h4>
+        </div>
+        <div class="modal-body">
+          <form name="Form">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>菜品大类</label>
+                  <select class="form-control input-md" ng-model="group" ng-options="y.id as y.name for y in allGroup" ng-change="groupChange()">
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>菜品小类</label>
+                  <select class="form-control input-md" ng-model="subgroup" ng-options="y.id as y.name for y in allSubgroup" ng-change="subgroupChange()">
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>菜品名称</label>
+                  <select class="form-control input-md" ng-model="goods">
+                    <option ng-repeat="y in allGoods" value="{{y.id}}" ng-selected="$first">
+                      {{y.name}}({{y.unitTypeName}})</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error':Form.quantity.$invalid}">
+              <label>数量</label>
+              <input type="text" name="quantity" class="form-control input-sm" ng-model="quantity" placeholder="数量" ng-pattern="/^\+?[1-9][0-9]*$/" required>
+              <label class="control-label" ng-show="Form.quantity.$invalid">请输入正整数</label>
+            </div>
+            <div class="form-group" ng-class="{'has-error':Form.plusPrice.$invalid}">
+              <label>加价</label>
+              <input type="text" name="plusPrice" class="form-control input-sm" ng-model="plusPrice" placeholder="加价" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/" required>
+              <label class="control-label" ng-show="Form.plusPrice.$invalid">请输入正数(最多保留两位)</label>
+            </div>
+            <!-- /form-group -->
+            <div class="form-group">
+              <label class="label-checkbox">
+                <input type="checkbox" class="regular-checkbox" ng-model="isDefault" />
+                <span class="custom-checkbox"></span> 默认菜
+              </label>
+            </div>
+            <!-- /form-group -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">关闭</button>
+          <button class="btn btn-success btn-sm" ng-click="addDish()" ng-disabled="Form.$invalid">添加</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</div>
+
+<div class="custom-popup light width-100" id="lightCustomModal" style="display:none">
+  <div class="padding-md">
+    <h4 class="m-top-none"> 您确定要删除此道菜?</h4>
+  </div>
+
+  <div class="text-center">
+    <a href="#" class="btn btn-success m-right-sm lightCustomModal_close" ng-click="deleteItem()">确定</a>
+    <a href="#" class="btn btn-danger lightCustomModal_close">取消</a>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="fadeInDown" ng-hide="isLoding||consume.length==0">
+ <!-- <div class="g-title">
+  消费记录
+</div> -->
+<div class="account">
+  <ul>
+      <li ng-repeat="x in consume">
+       <div class="account-h">{{x.shop.shopName}}</div>
+       <div class="account-b">
+         <p>消费时间:{{x.time}}</p>
+         <p>消费金额:{{x.value}}</p>
+         <p>积分:{{x.point}}</p>
+       </div>
+       <!--<div class="account-f">
+         <a class="btn f-fr">评价</a>
+       </div>-->
+      </li>
+  </ul>
+</div>
+</div>
+
+
+    <div class="bd fadeInDown" ng-show="consume.length==0">
+    <div class="weui_msg">
+      <div class="weui_icon_area"><i class="weui_icon_msg weui_icon_waiting"></i></div>
+      <div class="weui_text_area">
+        <h2 class="weui_msg_title">您还没有在本店消费哦</h2>
+        <p class="weui_msg_desc">抱歉,没有相关信息</p>
+      </div>
+      <div class="weui_opr_area">
+        <p class="weui_btn_area">
+          <a href="javascript:;" ui-sref="home" class="weui_btn weui_btn_primary">确定</a>
+        </p>
+      </div>
+    </div>
+  </div>

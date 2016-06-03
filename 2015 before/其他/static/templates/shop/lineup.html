@@ -1,0 +1,93 @@
+<div class="panel panel-default add-product" id="container">
+
+
+
+<script id="tpl" type="text/ractive">
+
+
+<div class="panel-heading" >
+
+
+<i class="fa fa-stack-exchange"></i>
+ 排队设置 <small class="text-muted">(需要安装排队 App)</small>
+
+</div>
+
+
+<div class="panel-body" >
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="col-md-1 text-center">排队分组</th>
+        <th class="col-md-2 text-center">最小人数</th>
+        <th class="col-md-2 text-center">最大人数</th>
+        <th class="col-md-3 text-center">备注</th>
+        <th class="col-md-4 text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#models: num}}
+        {{#editing == .name}}
+
+  <tr on-escape="OnCancelModel" on-enter="OnSaveModel:{{.name}}" id="form">
+    <td class="text-center">{{.name}}</td>
+    <td>
+      <select class="form-control input-md" id="minSize" value="{{editingModel.minSize}}">
+        {{#persons}}
+        <option value="{{.}}">{{.}} 人</option>
+        {{/}}
+      </select>
+      <small class="text-muted">最小人数(包含最小值)</small>
+    </td>
+    <td>
+      <select class="form-control input-md" value="{{editingModel.maxSize}}">
+        {{#persons}}
+        <option value="{{.}}">{{.}} 人</option>
+        {{/}}
+      </select>
+      <small class="text-muted">最大人数(包含最大值)</small>
+    </td>
+    <td>
+      <input type="text" class="form-control input-md" value="{{editingModel.remark}}"/>
+      <small class="text-muted">备注信息, 可以为空</small>
+    </td>
+    <td>
+
+<div class="" >
+
+        <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.name}}'>保存</a>
+        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelModel">取消</a>
+        {{#.id > 0}}
+          <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel:{{.id}}'>删除</a>
+        {{/}}
+
+</div>
+
+    </td>
+  </tr>
+
+        {{/}}
+        {{#editing != .name}}
+
+  <tr>
+    <td class="text-center" on-click="OnEditModel:{{.name}}">{{.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.name}}">{{.minSize}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.name}}">{{.maxSize}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.name}}">{{.remark}}</td>
+    <td></td>
+  </tr>
+
+        {{/}}
+      {{/}}
+    </tbody>
+  </table>
+
+
+</div>
+
+
+</script>
+
+</div>

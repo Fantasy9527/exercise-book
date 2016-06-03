@@ -1,0 +1,28 @@
+<div class="panel fadeInDown">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success mb-10 fadeInDown" ng-show="changeDone" >
+          <strong>OK!</strong> 您的欢迎用语已经设置成功.
+        </div>
+        <div class="alert alert-danger mb-10 fadeInDown" ng-show="delDone">
+          <strong>OK!</strong> 您的欢迎用语已经删除.
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="seperator"></div>
+        <form name="welcomeForm">
+          <textarea class="form-control" rows="3" ng-model="content" ></textarea>
+          还可以输入 {{200-content.length}}个字
+        </form>
+        <div class="seperator"></div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn  btn-success" ng-show="welcomeForm.$dirty" ng-disabled="welcomeForm.$invalid" type="button" ng-click="saveData()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

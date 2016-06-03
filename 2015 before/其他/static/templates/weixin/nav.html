@@ -1,0 +1,14 @@
+<div class="panel panel-default clean-panel ">
+ <div class="panel-heading">
+  <a class="return-up" href="#/weixin">
+    <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a><i class="icon iconfont icon-weixin"></i> 公众号设置
+</div>
+</div>
+
+<div class="panel-tab clearfix">
+  <ul class="nav nav-tabs">
+    <li ng-repeat="x in navList" ng-class="{active:x.sel}" ng-click="changeNav(x)" ui-sref-active="active">
+      <a ui-sref="{{x.sref}}">{{x.name}}</a>
+    </li>
+  </ul>
+</div>

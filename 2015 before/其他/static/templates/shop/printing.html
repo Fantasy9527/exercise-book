@@ -1,0 +1,235 @@
+<div class="panel panel-default add-product" id="container">
+  <script id="tpl" type="text/ractive">
+<div class="panel-body" >
+<div class="row" >
+<div class="col-md-8" >
+<div class="btn-toolbar" >
+<div class="btn-group" >
+          <button type="button" class="btn btn-sm btn-success" on-click="OnAddModel">
+<i class="fa fa-plus"></i>
+ 新增打印方案</button>
+</div>
+</div>
+</div>
+<div class="col-md-4" >
+<div class="input-group" >
+
+        <input type="text" class="form-control input-sm">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-sm btn-default">查找</button>
+        </div>
+
+</div>
+
+</div>
+</div>
+<div class="row" >
+
+
+<div class="col-md-12" >
+
+            <table class="table table-striped gap-top">
+              <thead>
+                <tr>
+                  <th width="40px">#</th>
+                  <th class="col-md-2">名称</th>
+                  <th class="col-md-2 text-center">厨打类型</th>
+                  <th class="col-md-2 text-center">打印条码</th>
+                  <th class="col-md-1 text-center">打印张数</th>
+                  <th class="col-md-3">使用打印机</th>
+                  <th class="col-md-2 text-center">打印标识</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#editing == 0}}
+
+  <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+    <td>{{editing == 0 ? '' : num+1}}</td>
+    <td>
+      <input type="text" class="form-control input-md" id="model-name" value="{{addingModel.name}}" data-required="true" data-minlength="1"/>
+      <small class="text-muted">打印方案名称</small>
+    </td>
+    <td class="text-center">
+      <select class="form-control input-md" value="{{addingModel.kitchenPrintingType}}">
+        {{#kitchenPrintingTypes}}
+          <option value="{{.id}}">{{.name}}</option>
+        {{/kitchenPrintingTypes}}
+      </select>
+      <small class="text-muted">选择厨打方式</small>
+    </td>
+    <td class="text-center">
+      <label class="label-checkbox">
+        <input type="checkbox" class="form-control input-md" value="{{addingModel.printBarcode}}" checked="{{addingModel.printBarcode}}">
+        <span class="custom-checkbox"></span> 打印条码
+      </label>
+      <small class="text-muted">在出品单上是否要打印条码</small>
+    </td>
+    <td class="text-center">
+      <select class="form-control input-md" value="{{addingModel.numOfCopy}}">
+          <option value="1">1 张</option>
+          <option value="2">2 张</option>
+          <option value="3">3 张</option>
+          <option value="4">4 张</option>
+          <option value="5">5 张</option>
+      </select>
+      <small class="text-muted">打印张数</small>
+    </td>
+    <td>
+      {{#printers}}
+        <div class="radio">
+          <label>
+            <input class="gap-top" type="radio" name="{{addingModel.printer}}" value="{{.id}}" data-required="true"/><span class="custom-radio"></span>
+            {{.name}}
+            <span class="small text-muted">
+              {{._printerType.name}}
+              {{#.printerType == 2}}
+                {{.serialPort}} {{.baudRate}}
+              {{/}}
+              {{#.printerType == 1}}
+                {{.ip}}:{{.ipPort}}
+              {{/}}
+            </span>
+          </label>
+        </div>
+      {{/}}
+      <div class="radio">
+        <small class="text-muted">选择所需的打印机，如果还没有打印机，请先创建打印机。</small>
+      </div>
+    </td>
+    <td>
+      <input type="text" class="form-control input-md" value="{{addingModel.remark}}" maxlength="10"/>
+      <small class="text-muted">打印标识</small>
+
+<div class="gap-top" >
+
+        <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+        {{#editing > 0}}
+          <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+          <div>
+            <small class="text-danger pull-right">警告: 删除打印方案时,也会删除相应的厨打关联设置.</small>
+          </div>
+        {{/}}
+
+</div>
+
+    </td>
+  </tr>
+
+                {{/editing == 0}}
+                {{#models:num}}
+                  {{#editing == .id}}
+
+  <tr on-escape="OnCancelSave" on-enter="OnSaveModel:{{.id}}" id="form">
+    <td>{{editing == 0 ? '' : num+1}}</td>
+    <td>
+      <input type="text" class="form-control input-md" id="model-name" value="{{addingModel.name}}" data-required="true" data-minlength="1"/>
+      <small class="text-muted">打印方案名称</small>
+    </td>
+    <td class="text-center">
+      <select class="form-control input-md" value="{{addingModel.kitchenPrintingType}}">
+        {{#kitchenPrintingTypes}}
+          <option value="{{.id}}">{{.name}}</option>
+        {{/kitchenPrintingTypes}}
+      </select>
+      <small class="text-muted">选择厨打方式</small>
+    </td>
+    <td class="text-center">
+      <label class="label-checkbox">
+        <input type="checkbox" class="form-control input-md" value="{{addingModel.printBarcode}}" checked="{{addingModel.printBarcode}}">
+        <span class="custom-checkbox"></span> 打印条码
+      </label>
+      <small class="text-muted">在出品单上是否要打印条码</small>
+    </td>
+    <td class="text-center">
+      <select class="form-control input-md" value="{{addingModel.numOfCopy}}">
+          <option value="1">1 张</option>
+          <option value="2">2 张</option>
+          <option value="3">3 张</option>
+          <option value="4">4 张</option>
+          <option value="5">5 张</option>
+      </select>
+      <small class="text-muted">打印张数</small>
+    </td>
+    <td>
+      {{#printers}}
+        <div class="radio">
+          <label>
+            <input class="gap-top" type="radio" name="{{addingModel.printer}}" value="{{.id}}" data-required="true"/><span class="custom-radio"></span>
+            {{.name}}
+            <span class="small text-muted">
+              {{._printerType.name}}
+              {{#.printerType == 2}}
+                {{.serialPort}} {{.baudRate}}
+              {{/}}
+              {{#.printerType == 1}}
+                {{.ip}}:{{.ipPort}}
+              {{/}}
+            </span>
+          </label>
+        </div>
+      {{/}}
+      <div class="radio">
+        <small class="text-muted">选择所需的打印机，如果还没有打印机，请先创建打印机。</small>
+      </div>
+    </td>
+    <td>
+      <input type="text" class="form-control input-md" value="{{addingModel.remark}}" maxlength="10"/>
+      <small class="text-muted">打印标识</small>
+
+<div class="gap-top" >
+
+        <a class="btn btn-info btn-sm" on-click='OnSaveModel:{{.id}}'>保存</a>
+        <a class="btn btn-default btn-sm gap-left" on-click="OnCancelSave">取消</a>
+        {{#editing > 0}}
+          <a class="btn btn-danger btn-sm pull-right" on-click='OnRemoveModel'>删除</a>
+          <div>
+            <small class="text-danger pull-right">警告: 删除打印方案时,也会删除相应的厨打关联设置.</small>
+          </div>
+        {{/}}
+
+</div>
+
+    </td>
+  </tr>
+
+                  {{/editing == .id}}
+                  {{#editing != .id}}
+
+  <tr>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{num+1}}</td>
+    <td class="" on-click="OnEditModel:{{.id}}">{{.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{._kitchenPrintingType.name}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.printBarcode?'打印':'不打印'}}</td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.numOfCopy}} 张</td>
+    <td on-click="OnEditModel:{{.id}}">
+      {{._printer.name}}
+      <span class="small text-muted">
+        {{._printer._printerType.name}}
+        {{#._printer.printerType == 2}}
+          {{._printer.serialPort}} {{._printer.baudRate}}
+        {{/}}
+        {{#._printer.printerType == 1}}
+          {{._printer.ip}}:{{._printer.ipPort}}
+        {{/}}
+      </span>
+    </td>
+    <td class="text-center" on-click="OnEditModel:{{.id}}">{{.remark}}</td>
+  </tr>
+
+                  {{/editing != .id}}
+                {{/models}}
+              </tbody>
+            </table>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</script>
+</div>

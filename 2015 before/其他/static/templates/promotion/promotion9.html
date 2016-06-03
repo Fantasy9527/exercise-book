@@ -1,0 +1,273 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="return-up" ui-sref="promotion">
+                    <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级
+                </a>
+                <i class="glyphicon glyphicon-list"></i> 会员充值营销
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-border" name="promotionForm">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <strong>输入基本信息</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">活动名称 :</label>
+                                <div class="col-lg-10" ng-class="{'has-error':promotionForm.activity.$invalid&&promotionForm.activity.$dirty}">
+                                    <input class="form-control" type="text" name="activity" placeholder="活动名称" ng-model="activity" required datepicker-dir>
+                                    <label class="control-label" ng-show="promotionForm.activity.$invalid&&promotionForm.activity.$dirty">必填项</label>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">开始时间 :</label>
+                                <div class="col-lg-10" ng-class="{'has-error':promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty}">
+                                    <div class="input-group" ng-class="{'parsley-error':promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty}">
+                                        <input name="promotionBeginTime" ng-model="promotionBeginTime" class="form-control
+                             datepicker
+                             datepickerTime
+                             time-cursor-pointer" type="text" placeholder="开始时间" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" datepicker-dir readonly required>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <label class="control-label" ng-show="promotionForm.promotionBeginTime.$invalid&&promotionForm.promotionBeginTime.$dirty">必填项</label>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">结束时间 :</label>
+                                <div class="col-lg-10" ng-class="{'has-error':promotionForm.promotionEndTime.$invalid&&promotionForm.promotionEndTime.$dirty}">
+                                    <div class="input-group">
+                                        <input type="text" name="promotionEndTime" ng-model="promotionEndTime" class="form-control datepicker datepickerTime time-cursor-pointer" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" placeholder="结束时间" datepicker-dir readonly>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <label class="control-label" ng-show="promotionForm.promotionEndTime.$invalid&&promotionForm.promotionEndTime.$dirty">必填项</label>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">每周参加时间 :</label>
+                                <div id="selTimebox" class="col-lg-10" style="position:relative;top:5px">
+                                    <div class="col-lg-12 special-pb-10">
+                                        <label class="label-radio inline cursor-pointer">
+                                            <input type="radio" name="inline-radio" ng-model="weekChecked" value="AllWeek">
+                                            <span class="custom-radio"></span> 周一至周日
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12 special-pb-10">
+                                        <label class="label-radio inline cursor-pointer">
+                                            <input type="radio" name="inline-radio" ng-model="weekChecked" value="manDay">
+                                            <span class="custom-radio"></span> 周一至周五
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12 special-pb-10">
+                                        <label class="label-radio inline cursor-pointer">
+                                            <input type="radio" name="inline-radio" ng-model="weekChecked" value="weekend">
+                                            <span class="custom-radio"></span> 周六至周日
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label class="label-radio inline cursor-pointer">
+                                            <input type="radio" name="inline-radio" value="custom" ng-model="weekChecked" ng-model>
+                                            <span class="custom-radio"></span> 自定义
+                                            <div class='selTime-c' ng-show="weekShow">
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="monday" ng-model="customMonday">
+                                                    <span class="custom-checkbox"></span> 周一
+                                                </label>
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="tuesday" ng-model="customTuesday">
+                                                    <span class="custom-checkbox"></span> 周二
+                                                </label>
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="wednesday" ng-model="customWednesday">
+                                                    <span class="custom-checkbox"></span> 周三
+                                                </label>
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="thursday" ng-model="customThursday">
+                                                    <span class="custom-checkbox"></span> 周四
+                                                </label>
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="friday" ng-model="customFriday">
+                                                    <span class="custom-checkbox"></span> 周五
+                                                </label>
+                                                <label class="label-radio inline">
+                                                    <input type="checkbox" name="inline-radio" value="saturday" ng-model="customSaturday">
+                                                    <span class="custom-checkbox"></span> 周六
+                                                </label>
+                                                <label class="label-checkbox inline">
+                                                    <input type="checkbox" name="inline-radio" value="sunday" ng-model="customSunday">
+                                                    <span class="custom-checkbox"></span> 周日
+                                                </label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">参加市别 :</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" ng-init="selServicehour=0" ng-model="selServicehour">
+                                        <option ng-repeat="x in servicehours" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>-->
+                            <!-- <div class="form-group special-no-pb">
+                                <label class="col-lg-2 control-label">参加门店:</label>
+                                <div class="col-lg-3 special-pb">
+                                    <select class="form-control" ng-model='ProvinceValue' ng-change="selectProvince()">
+                                        <option value='0'>选择省</option>
+                                        <option ng-repeat="x in initProvinceArr" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 special-pb">
+                                    <select class="form-control" ng-model='cityValue' ng-change="selectCity()">
+                                        <option value='0'>选择城市</option>
+                                        <option ng-repeat="y in initCityArr" value="{{y.id}}">{{y.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 special-pb">
+                                    <select class="form-control" ng-model="shopValue" ng-change="getVipType()">
+                                        <option value='0'>选择门店</option>
+                                        <option ng-repeat="z in initShopArr" value="{{z.id}}">{{z.name}}</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">会员类型:</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control"  ng-model="selMemberType">
+                                        <option ng-repeat="x in memberTypes" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="col-lg-2 control-label">优惠方式</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control">
+                                        <option>会员价</option>
+                                    </select>
+
+                                </div>
+
+                            </div>-->
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">备注:</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" rows="3" style="resize:none" ng-init="remark=''" ng-model="remark"></textarea>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" ng-init="meanwhile=false" ng-model="meanwhile">
+                                        <span class="custom-checkbox"></span> 不与其他促销活动同时进行
+                                    </label>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <strong>充值赠送规则</strong>
+                            <ul class="tool-bar">
+                                <li>
+                                    <a href="#" class="refresh-widget">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-body" id="rechargeMoney">
+                            <a class="btn btn-default" ng-repeat="x in rechargeData" ng-click="Recharge($index);">{{x.value}}元<i ng-show="x.selected"></i></a>
+                        </div>
+                        <style>
+                        #activite td,
+                        #stoped td,
+                        #responsiveTable td {
+                            vertical-align: middle !important;
+                        }
+                        </style>
+                        <table class="table table-striped" id="responsiveTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        充值金额基数(元)
+                                    </th>
+                                    <th>赠送金额(元)</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class='font-14'>
+                                <tr ng-repeat="x in rechargeData" ng-if="x.selected">
+                                    <td>{{x.value}}</td>
+                                    <td ng-class="{'has-error':promotionForm.money{{$index}}.$invalid&&promotionForm.money{{$index}}.$dirty}">
+                                        <input style="width:80px;" type="text" class="form-control" name="money{{$index}}" ng-model="x.money" required ng-pattern="/^[0-9]*$/" placeholder="必填项">
+                                        <label class="control-label" ng-show="promotionForm.money{{$index}}.$invalid&&promotionForm.money{{$index}}.$dirty">必须是数字</label>
+                                    </td>
+                                    <td>
+                                        <buttom class="btn btn-danger btn-xs" ng-click="Recharge($index)"><i class="fa fa-trash-o"></i> 删除</buttom>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel panel-default" id="nonparticipator">
+                        <div class="panel-heading ">
+                            <strong>不参加活动时间</strong>
+                        </div>
+                        <table class="table table-striped" id="responsiveTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        开始时间
+                                    </th>
+                                    <th>结束时间</th>
+                                    <th>
+                                        市别
+                                    </th>
+                                    <th>
+                                        操作
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in nonparticipatorTimeData">
+                                    <td>
+                                        <input ng-model="nonparticipatorTimeData[$index].beginTime" name="{{'begintime'+$index}}" style="width:92px;" type="text" class="form-control datepicker datepickerTime time-cursor-pointer" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" datepicker-dir readonly placeholder="必填项">
+                                    </td>
+                                    <td ng-class="{'has-error':promotionForm['endtime'+$index].$invalid&&promotionForm['endtime'+$index].$dirty}">
+                                        <input ng-model="nonparticipatorTimeData[$index].endTime" name="{{'endtime'+$index}}" style="width:92px;" type="text" class="form-control datepicker datepickerTime time-cursor-pointer" data-required="true" data-date-picktime="false" data-date-language="zh-cn" data-date-showtoday="true" datepicker-dir readonly placeholder="必填项">
+                                    </td>
+                                    <td>
+                                        <select style="width:120px;" class="form-control" ng-model="x.serviceHour">
+                                            <option ng-repeat="y in servicehours" ng-selected="x.serviceHour==y.id" value="{{y.id}}">{{y.name}}</option>
+                                        </select>
+                                    </td>
+                                    <td><a class="btn btn-xs btn-danger del-btn" ng-click="delNonparticipator($index)"><i class="fa fa-trash-o"></i>  删除</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="panel-footer clearfix">
+                            <a id="addTimeTable" class="btn btn-success pull-right" ng-click="nonparticipator()">添加</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="padding-md text-center">
+                            <button type="submit" ng-disabled="isPosting||promotionForm.$invalid" class="btn btn-success btn-small" ng-click="submitData()">保存<span ng-show="isPosting">中...</span></button>
+                        </div>
+                    </div>
+                    <div class="padding-md"></div>
+                    <div class="padding-md"></div>
+                    <div class="padding-md"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

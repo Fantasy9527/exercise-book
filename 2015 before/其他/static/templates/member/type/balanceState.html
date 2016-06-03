@@ -1,0 +1,52 @@
+<div class="panel panel-defaule">
+<div ng-include="'/assets/templates/member/type/nav.html'"></div>
+
+  <div class="panel-heading">
+    <a class="return-up" ui-sref="member.type">
+      <i class="glyphicon glyphicon-arrow-up"></i> 返回上一级</a><i class="fa fa-user-md"></i> 余额变动
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped" id="responsiveTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="text-center">营业日</th>
+                                <th class="text-center">充值金额</th>
+                                <th class="text-center">充值赠送</th>
+                                <th class="text-center">抵扣金额</th>
+								<th class="text-center">充值余额手动调整</th>
+								<th class="text-center">赠送余额手动调整</th>
+                                <th class="text-center">余额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in model">
+                                <td>
+                                    {{($index+1)+pageModel.current*pageModel.pageSize}}
+                                </td>
+                                <td class="text-center">{{x.day}}</td>
+                                <td class="text-center">{{formatMoney(x.charge)}}</td>
+                                 <td class="text-center">{{formatMoney(x.chargeGift)}}</td>
+                                <td class="text-center">{{formatMoney(x.consumeCharge+x.consumeGift)}}</td>
+                                <td class="text-center">{{formatMoney(x.manualCharge)}}</td>
+                                <td class="text-center">{{formatMoney(x.manualGift)}}</td>
+                                <td class="text-center">{{formatMoney(x.chargeBalance+x.giftBalance)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+         <div class="panel-footer clearfix text-center">
+            <ul class="pagination" ng-hide="pageModel.max==0">
+                <li ng-hide="pageModel.previous==null" ng-click="pagePrevious(pageModel.previous)"><a href="">«</a>
+                </li>
+                <li ng-repeat="x in pageShowing" ng-class="{active:pageModel.current==x.name-1}" ng-click="indexPage(x.name)">
+                    <a href="">
+        {{x.name}}
+        </a>
+      </li>
+      <li ng-hide="pageModel.next==null" ng-click="pageNext(pageModel.next)">
+        <a href="">»</a>
+      </li>
+    </ul>
+  </div>
+</div>

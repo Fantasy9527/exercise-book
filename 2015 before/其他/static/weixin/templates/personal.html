@@ -1,0 +1,72 @@
+<div class="fadeInDown" ng-hide="isLoding">
+ <!-- <div class="g-title ng-show="isRegister"">
+  无卡消费,便捷充值,分分钟搞定!
+</div> -->
+
+<div class="worning" ng-hide="!voucher||isRegister">
+  <p class="title">{{voucher.promotionName}}</p>
+  <p>{{voucher.remark}}</p>
+</div>
+<form action="" name="personal">
+<div class="person-phone">
+  <div class="person-input">
+    <span class="f-fl">手机</span>
+    <div class="input-box">
+      <input  type="text" ng-model="mobile" placeholder="请输入手机号" ng-hide="isRegister" ng-pattern="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" required />
+      <span ng-show="isRegister">{{mobile}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="person-detail">
+  <div class="person-input">
+    <span class="f-fl">姓名</span>
+    <div class="input-box">
+      <input type="text" ng-model="name" placeholder="输入姓名" ng-hide="isRegister" required>
+      <span ng-show="isRegister">{{name}}</span>
+    </div>
+  </div>
+
+  <div class="person-input">
+    <span class="f-fl">性别</span>
+    <div class="input-box">
+      <select ng-model="sex" ng-hide="isRegister">
+        <option ng-repeat="x in sexSelect" value="{{x.id}}">{{x.name}}</option>
+      </select>
+      <span ng-show="isRegister">{{sex == 1 ? "男" : "女"}}</span>
+    </div>
+
+
+  </div>
+
+  <div class="person-input">
+    <span class="f-fl">生日</span>
+    <div class="input-box">
+      <input class="person-birthday" ng-readonly="isRegister" ng-hide="isRegister"  type="date" ng-model="birthday" placeholder="请输入生日">
+      <span ng-show="isRegister">{{_birthday}}</span>
+    </div>
+
+  </div>
+
+  <div class="person-input person-code" ng-hide="isRegister">
+    <span class="f-fl">验证码</span>
+    <a class="f-fr identifying-btn" ng-click="getCode()" ng-class="{'a-disabled':getCodeTime!='获取验证码'}">{{getCodeTime}} <t ng-show="getCodeTime!='获取验证码'">秒</t></a>
+    <div class="input-box">
+      <input type="text" ng-model="code" placeholder="请输入验证码" required>
+    </div>
+  </div>
+
+</div>
+
+<a class="form-button" ng-hide="isRegister" ng-class="{'a-disabled':personal.$invalid}" ng-click="saveData(personal.$invalid)">保存</a>
+</form>
+</div>
+
+
+<!-- <div class="spinner fadeInDown" ng-show="isLoding">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+</div> -->
