@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<meta charset="utf-8"></meta>
+
+<title>事件</title>
+<script type="text/javascript">
+window .onload =function(){
+	document.onclick=function(ev){
+		//alert(event.x+','+event.y) // IE
+		//alert( ev.x)  //火狐
+
+
+		var oEvent=ev||event;
+		alert(oEvent.clientX+','+oEvent.clientY)
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

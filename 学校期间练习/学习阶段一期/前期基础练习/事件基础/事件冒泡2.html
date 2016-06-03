@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<meta charset="utf-8"></meta>
+
+<title>事件</title>
+<script type="text/javascript">
+window.onload=function(){
+var oBtn=document.getElementById("btn")
+var oDiv=document.getElementById("div1")
+
+
+oBtn.onclick=function(ev){
+	var oEvent=ev||event;
+    oEvent.cancelBubble=true;
+	oDiv.style.display="block"
+	alert("按钮")
+}
+document.onclick=function(){
+	
+	oDiv.style.display="none"
+}
+}
+</script>
+
+<style type="text/css">
+div{ width:400px; height:400px; display: none; background:#ccc;}
+
+</style>
+</head>
+<body>
+<button id="btn" >显示</button>
+<div id="div1"></div>
+
+</body>
+</html>

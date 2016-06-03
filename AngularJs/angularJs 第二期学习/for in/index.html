@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myCtrl">
+  <form name="test_form" ng-controller="TestCtrl" ng-init="o=[0,1,2,3];">
+    <select ng-model="a" ng-options="x for x in o">
+      <option value="">可以加这个空值</option>
+    </select>
+  </form>
+  
+  <script type="text/javascript">
+  var TestCtrl = function($scope){
+    $scope.show = function(){
+      console.log($scope.a);
+    }
+  }
+  
+  angular.bootstrap(document.documentElement);
+  </script>
+</body>
+</html>

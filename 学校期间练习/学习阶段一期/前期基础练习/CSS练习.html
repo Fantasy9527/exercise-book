@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+.box{width: 100%; height: 40px; background: #000 ; display:-webkit-box; -webkit-box-orient:horizontal;overflow: hidden;}
+.item{ float:left; height: 100px; background: #ccc; margin-top: 5px; margin-right: 5px; z-index: 10}
+
+.item:nth-child(1){ width: 200px;-webkit-box-flex:0;box-flex: 0;}
+.item:nth-child(2){ -webkit-box-flex:1;box-flex: 1}
+.item:nth-child(3){ -webkit-box-flex:1;box-flex: 1}
+	
+	</style>
+</head>
+<body>
+<div class="box">
+<div class="item">column 1</div>
+<div class="item">column 2</div>
+<div class="item">column 3</div>
+</div>
+</body>
+</html>

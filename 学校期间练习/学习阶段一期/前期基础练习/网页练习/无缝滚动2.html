@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+
+#div1{ width:1200px; height:375px; margin:auto; position:relative; overflow:hidden}
+ul{ position:absolute;}
+li{float:left; width:600px; height:375px; list-style:none;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv=document.getElementById('div1')
+	var oUl=oDiv.getElementsByTagName('ul')[0]
+	var aLi=oUl.getElementsByTagName('li')
+	var aA=document.getElementsByTagName('a')
+	var speed=1
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+	
+	function move(){
+	if(oUl.offsetLeft<-oUl.offsetWidth/2)
+	   {
+		  oUl.style.left='0'
+		   }
+		   if(oUl.offsetLeft>0)
+		   {
+			   oUl.style.left=-oUl.offsetWidth/2+'px'}
+		       oUl.style.left=oUl.offsetLeft+speed+'px';
+			                                              }
+	
+	var timer=setInterval(move,1)
+	
+	oDiv.onmouseover=function()
+	{clearInterval(timer)};
+	oDiv.onmouseout=function()
+	{timer=setInterval(move,1)}
+	
+	 aA[0].onclick=function()
+	 {speed=-1;}
+	
+	 aA[1].onclick=function()
+	 {speed=1;}
+	}
+</script>
+</head>
+
+<body>
+<a id="zuo" href="javascript:;">左</a>
+<a id="you" href="javascript:;">右</a>
+<div id="div1">
+<ul>
+
+<li><img src="3.jpg" width="600" height="375" /></li>
+<li><img src="4.jpg" width="600" height="375" /></li>
+</ul>
+
+
+</div>
+</body>
+</html>

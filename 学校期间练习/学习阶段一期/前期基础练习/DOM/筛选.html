@@ -1,0 +1,85 @@
+<!doctype>
+<html>
+<head>
+<meta charset="utf-8">
+<title>搜索</title>
+
+<script type="text/javascript">
+window.onload=function(){
+	var oTb=document.getElementsByTagName('table')[0];
+	var oTxt=document.getElementsByTagName('input')[0];
+	var oBtn=document.getElementsByTagName('input')[1];
+	
+	oBtn.onclick=function(){
+
+		for (var i = 0; i < oTb.tBodies[0].rows.length; i++) {
+			var oNr=oTb.tBodies[0].rows[i].cells[2].innerHTML.toLowerCase();
+			var oSe=oTxt.value.toLowerCase();  					//toLowerCase  表示把字符串转成小写
+			var arr=oSe.split(" ");    							//split  切除关键字
+			oTb.tBodies[0].rows[i].style.display="none";
+			for (var j = 0; j < arr.length; j++) {     
+				if (oNr.search(arr[j])!=-1) {					//不等于1表示找到了
+				oTb.tBodies[0].rows[i].style.display="block";
+				}
+			}
+		}
+
+	}
+}
+
+</script>
+</head>
+<body>
+<input type="text"/>
+<input type="button" value="搜索"/>
+<table border="1px" width="500px">
+<thead>
+<td>ID</td>
+<td>年龄</td>
+<td>姓名</td>
+<td>操作</td>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>张三</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>32</td>
+<td>李四</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>43</td>
+<td>王五</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>54</td>
+<td>Gary</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>65</td>
+<td>TT</td>
+<td></td>
+</tr>
+
+
+
+
+
+</tbody>
+
+</table>
+</body>
+</html>

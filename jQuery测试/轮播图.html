@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    html,body{
+      overflow-x: hidden;
+    }
+    .box{
+      width: 100%;
+      height: 120px;
+      overflow: hidden;
+      position: relative      
+    }
+    .box ul{
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-transform:translate3d(0,0,0)
+    }
+    .box ul li{
+        width: 320px;
+        height:120px;
+        float: left;
+      list-style: none;
+    }
+  </style>
+  <script src="jquery-2.1.1.min.js"></script>
+  <script>
+    $(function(){      
+      var aLi=$(".box ul li");
+      var oBox=$(".box");
+      var isMove=true;
+      $(".box ul").width(aLi.length*aLi.width());
+      var indexPage=0;
+      oBox.on("touchstart",function(e){
+       
+             var disX=e.originalEvent.touches[0].pageX;
+          var oUlLeft=oBox.find("ul").offset().left;
+          var nowX;
+        oBox.on("touchmove",function(e){
+            nowX=e.originalEvent.touches[0].pageX-disX;
+            oBox.find("ul").css("-webkit-transform","translate3d("+(oUlLeft+nowX)+"px,0,0)")
+          
+        })
+        oBox.on("touchend",function(){
+          if(nowX>10){
+            indexPage--;
+            indexPage<0&&(indexPage=0);
+          }else if(nowX<10){            
+            indexPage++;
+            indexPage>aLi.length-1&&(indexPage=aLi.length-1);
+          }else{
+            isMove=true;
+          }
+          
+          oBox.find("ul").css({
+            webkitTransform:"translate3d("+(-indexPage*aLi.width())+"px,0,0)",
+            webkitTransition:"-webkit-transform 0.4s"
+          })
+          oBox.on("webkitTransitionEnd",function(){
+            oBox.find("ul").css({
+            webkitTransition:""
+          })
+            isMove=true;
+          // alert(isMove) 
+          })
+            oBox.off("touchmove");
+            oBox.off("touchend"); 
+           
+        })
+                
+      })
+      //alert($(window).width())
+      //alert(oBox.width())
+    })
+      
+    
+  </script>
+</head>
+<body>
+  
+  <div class="box">
+    <ul>
+      <li style="background:red"></li>
+      <li style="background:yellow"></li>
+      <li style="background:green"></li>
+    </ul>
+  </div>
+</body>
+</html>

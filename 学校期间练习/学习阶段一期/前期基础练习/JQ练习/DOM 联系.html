@@ -1,0 +1,30 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery练习</title>
+<script  src="jquery-2.0.2.js"> </script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+$("ul:first").find("li:last").css("background","yellow")
+$("ul").eq(1).find("li").odd.css("background","red")
+
+})
+</script>
+</head>
+<body>
+<ul>
+<li>111</li>
+<li>111</li>
+<li>111</li>
+<li>111</li>
+</ul>
+<ul>
+<li>111</li>
+<li>111</li>
+<li>111</li>
+<li>111</li>
+</ul>
+</body>
+</html>

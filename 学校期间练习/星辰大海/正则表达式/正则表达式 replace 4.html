@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式 replace</title>
+		<script type="text/javascript">
+		// s :空格
+		// S :非空格
+		// d :数字
+		// D :非数字
+		// w :字符
+		// W :非字符
+		// 标识 g(全局匹配)
+		
+		//var str="ds4211ada15shjkh312kj231xfsdfsdf123"
+		//var re=/\d/g
+		//alert(str.replace(re,"被替换"))
+
+		var str="2014-05-17"
+		var re=/(\d+)(-)/g;
+		alert(str.replace(re,function(d,g,c){
+			alert(g)
+			return g+"."
+
+
+		})	)
+		
+
+		</script>
+	</head>
+	<body>

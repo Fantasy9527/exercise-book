@@ -1,0 +1,135 @@
+<!doctype>
+<html>
+<head>
+<meta charset="utf-8">
+<title>碎片</title>
+
+<script type="text/javascript">
+window.onload=function(){
+	var oTb=document.getElementsByTagName('table')[0];
+	//var oldColor=""; //关于这里不是特别明白
+var oName=document.getElementsByTagName('input')[0];
+var oAge=document.getElementsByTagName('input')[1];
+var oBtn=document.getElementsByTagName('input')[2];
+var oID=oTb.tBodies[0].rows.length+1;
+
+function bianse(){for (var i = 0; i < oTb.tBodies[0].rows.length; i++) {
+
+	if(i%2)
+		{
+			oTb.tBodies[0].rows[i].style.background="green"}
+	
+	oTb.tBodies[0].rows[i].onmouseover=function(){
+	oldColor=this.style.background;
+	this.style.background="red"
+}
+	oTb.tBodies[0].rows[i].onmouseout=function(){
+	this.style.background=oldColor;
+	}
+
+}
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+oBtn.onclick=function tianjia(){
+
+	var oTr=document.createElement("tr");
+
+
+	var oTd=document.createElement("td")
+	oTd.innerHTML=oID++;
+	oTr.appendChild(oTd);
+
+	var oTd=document.createElement("td")
+	oTd.innerHTML=oAge.value;
+	oTr.appendChild(oTd);
+
+	var oTd=document.createElement("td")
+	oTd.innerHTML=oName.value;
+	oTr.appendChild(oTd);
+
+	var oTd=document.createElement("td")
+	oTd.innerHTML='<a href="javascript:;">删除</a>';
+	oTr.appendChild(oTd);
+ 
+
+	oTd.getElementsByTagName('a')[0].onclick=function(){
+		oTb.tBodies[0].removeChild(this.parentNode.parentNode)
+	}
+	oTb.tBodies[0].appendChild(oTr);
+
+bianse();
+
+}
+
+
+
+
+}
+
+</script>
+</head>
+<body>
+	年龄:<input type="text"/>姓名:<input type="text"/><input type="button" value="添加"/>
+<table border="1px" width="500px">
+<thead>
+<td>ID</td>
+<td>年龄</td>
+<td>姓名</td>
+<td>操作</td>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>该罚的</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>32</td>
+<td>该突然的</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>43</td>
+<td>突然</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>54</td>
+<td>莪突然</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>65</td>
+<td>太热</td>
+<td></td>
+</tr>
+
+
+
+
+
+</tbody>
+
+</table>
+</body>
+</html>

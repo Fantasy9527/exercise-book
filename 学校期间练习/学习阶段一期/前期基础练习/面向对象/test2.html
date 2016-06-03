@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象 工厂模式</title>
+<script>
+function createPerson(name,age){
+var obj =new Object();
+obj.name=name;
+obj.age=age;
+obj.showName=function(){
+alert(this.name)
+}
+obj.showAge=function(){
+alert(this.age)
+}
+return obj
+}
+
+
+
+var obj1=createPerson("Gary",20)   //传参赋值
+obj1.showName(); //调用里面的方法
+obj1.showAge()
+</script>
+</head>
+<body>
+
+</body>
+</html>

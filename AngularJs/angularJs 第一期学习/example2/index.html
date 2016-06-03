@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<script src="js/angular.min.js"></script>
+<body ng-app='watch' >
+    <input type="checkbox"  ng-checked='name'/>
+    <div>change count: {{name}}</div>
+    
+    <label>someProperty = {{someProperty}}</label>
+<input type="checkbox"
+ ng-checked="someProperty"
+ ng-init="someProperty = true"
+ ng-model="someProperty">
+    <script>
+        angular.module('watch',[])
+                     .run(['$rootScope',function($rootScope){
+                           
+                            
+                            $rootScope.$apply(function(){
+                                $rootScope.name=$rootScope.name
+                            })
+                     }]);
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>窗口拖拽 </title>
+<style type="text/css">
+*{list-style: none; margin: 0;padding:0;}
+#div1{width:20px; height:20px;background: #000; position: absolute;}
+#fu{width: 600px; background:#ccc; height:20px; margin:10px auto; position: relative;}
+#main{background:green;width: 600px; height:200px; margin:10px auto;position: relative; overflow:hidden;}
+p{position: absolute;width: 600px; height:auto;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+
+var oDiv=document.getElementById('div1');
+var oFu=document.getElementById('fu');
+var oMain=document.getElementById('main');
+var op=document.getElementById('main_p');
+
+
+	var disX=0;
+	
+
+
+oDiv.onmousedown=function(ev){
+
+	oEvent=ev||event;
+	disX=oEvent.clientX-oDiv.offsetLeft;
+
+if (oDiv.setCapture) {
+	oDiv.onmousemove=mousemove;
+	oDiv.onmouseup=mouseup;
+ 	oDiv.setCapture();
+
+}
+else{
+	document.onmousemove=mousemove;
+	document.onmouseup=mouseup;
+}
+
+
+
+
+return false;
+}
+
+
+
+	function mousemove(ev){
+	oEvent=ev||event;
+	var l=oEvent.clientX-disX;
+	
+
+if(l <0){
+    l=0;
+} else if(l > oFu.offsetWidth - oDiv.offsetWidth){
+          l = oFu.offsetWidth - oDiv.offsetWidth;
+}
+
+
+
+  	  	oDiv.style.left=l+"px";
+		Bili=document.title=l/oFu.offsetWidth;
+		op.style.top=-Bili*(op.offsetHeight-oMain.offsetHeight)+"px";
+	
+
+}
+
+function mouseup(){
+	
+	
+	this.onmousemove=null;
+	this.onmouseup=null;
+if  (this.releaseCapture) {
+	this.releaseCapture();
+};
+}
+
+}
+</script>
+
+</head>
+<body>
+<div id="fu">
+<div id="div1"> </div>
+</div>
+<div id="main">
+	<p id="main_p">
+		  本文版权归W3Cfuns.com所有，转载需在文章页面明显位置以链接的方式给出原文链接，否则W3Cfuns.com将根据《中华人民共和国著作权法》向北京市人民法院提交相关材料，追究侵权责任。
+
+       “珍惜生命，远离IE6”，IE6中的bug令很多Web前端开发人员实为头疼，因此不知道烧了多少脑细胞，在众多的Bug中最令人抓狂的就是IE对png图片的不支持，导致设计师和重构师放弃了很多很炫的效果，为了让大家在这方面少烧点脑细胞，KwooShung我就舍身一把，把当前最流行最实用的IE6支持PNG图片的方案整理到本贴内，以供大家学习参考！
+
+
+
+
+方案1 - 滤镜解决方案：
+
+介绍：滤镜从IE4.0被微软正式引入，所以我们可以使用滤镜解决IE6的PNG透明问题，滤镜不仅可以实现目前CSS3的一些旋转效果而且还可以引入图片。注意：此方法在部分版本的IETest中无效，建议使用标准的IE6来进行测试！
+
+  本文版权归W3Cfuns.com所有，转载需在文章页面明显位置以链接的方式给出原文链接，否则W3Cfuns.com将根据《中华人民共和国著作权法》向北京市人民法院提交相关材料，追究侵权责任。
+
+       “珍惜生命，远离IE6”，IE6中的bug令很多Web前端开发人员实为头疼，因此不知道烧了多少脑细胞，在众多的Bug中最令人抓狂的就是IE对png图片的不支持，导致设计师和重构师放弃了很多很炫的效果，为了让大家在这方面少烧点脑细胞，KwooShung我就舍身一把，把当前最流行最实用的IE6支持PNG图片的方案整理到本贴内，以供大家学习参考！
+
+
+
+
+方案1 - 滤镜解决方案：
+
+介绍：滤镜从IE4.0被微软正式引入，所以我们可以使用滤镜解决IE6的PNG透明问题，滤镜不仅可以实现目前CSS3的一些旋转效果而且还可以引入图片。注意：此方法在部分版本的IETest中无效，建议使用标准的IE6来进行测试！
+
+  本文版权归W3Cfuns.com所有，转载需在文章页面明显位置以链接的方式给出原文链接，否则W3Cfuns.com将根据《中华人民共和国著作权法》向北京市人民法院提交相关材料，追究侵权责任。
+
+       “珍惜生命，远离IE6”，IE6中的bug令很多Web前端开发人员实为头疼，因此不知道烧了多少脑细胞，在众多的Bug中最令人抓狂的就是IE对png图片的不支持，导致设计师和重构师放弃了很多很炫的效果，为了让大家在这方面少烧点脑细胞，KwooShung我就舍身一把，把当前最流行最实用的IE6支持PNG图片的方案整理到本贴内，以供大家学习参考！
+
+
+
+
+方案1 - 滤镜解决方案：
+
+介绍：滤镜从IE4.0被微软正式引入，所以我们可以使用滤镜解决IE6的PNG透明问题，滤镜不仅可以实现目前CSS3的一些旋转效果而且还可以引入图片。注意：此方法在部分版本的IETest中无效，建议使用标准的IE6来进行测试！
+
+
+		
+	</p>
+</div>	
+</body>
+
+</html>

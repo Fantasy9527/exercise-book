@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+<title>canvas</title>
+<style>
+body{ background:#000;}
+#canvas1{ background: #fff}
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+
+	var oC=document.getElementById('canvas1');
+	var oGc=oC.getContext("2d");
+	oGc.moveTo(200,200);
+	oGc.arc(200,200,150,0,90*Math.PI/180,false) //起始位置X,Y,半径,起始弧度,结束弧度 角度*圆周率/180,false代表逆时针,true代表顺时针
+oGc.stroke()
+	
+
+}
+
+
+
+</script>
+<body>
+<canvas id="canvas1" width="400" height="400" ></canvas>
+</body>
+</html>

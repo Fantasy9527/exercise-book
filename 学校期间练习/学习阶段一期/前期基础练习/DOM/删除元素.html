@@ -1,0 +1,35 @@
+<!doctype>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 操作</title>
+
+<script type="text/javascript">
+window.onload=function(){
+	var aUl=document.getElementsByTagName('ul')[0];
+	var aLi=document.getElementsByTagName('li');
+	var aA=document.getElementsByTagName('a');
+	for (var i = 0; i < aLi.length; i++) {
+		aA.index=i;
+		aA[i].onclick=function(){
+			aUl.removeChild(this.parentNode)
+
+		}
+	};
+	
+}
+
+</script>
+</head>
+<body>
+	
+	<ul>
+<li>ghjg424hj<a href="javascript:;">删除</a></li>
+<li>ghjg32hj<a href="javascript:;">删除</a></li>
+<li>g42424j<a href="javascript:;">删除</a></li>
+<li>ghj424ghj<a href="javascript:;">删除</a></li>
+<li>ghjgh323ghj<a href="javascript:;">删除</a></li>
+<li>ghj545jghj<a href="javascript:;">删除</a></li>
+	</ul>
+</body>
+</html>

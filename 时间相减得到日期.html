@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+        console.log(isPreTime(year-1, month, day + 1))
+
+        function isPreTime(year, month, day) {
+            var oTime = {};
+            oTime.year = year;
+            oTime.month = month;
+            oTime.day = day;
+
+            if (oTime.day < 1) {
+                //如果天数小于1则为上个月
+                oTime.month = oTime.month - 1;
+                //计算天数
+                dValue();
+
+            }
+
+            //如果相减后,月份小于1,则为去年
+            if (oTime.month < 1) {
+                oTime.year = oTime.year - 1;
+                oTime.month = 12 + oTime.month;
+                oTime.day = day;
+                console.log(day)
+                if (oTime.day < 1) {
+                    //计算天数
+                    dValue()
+                }
+            }
+
+            if (oTime.month == 2) {
+                oTime.day = day;
+                console.log(day)
+                //如果为2月,判断这一年是否为闰年
+                if (oTime.year % 4 == 0) {
+                    oTime.day = 29// + oTime.day;
+                } else {
+                    oTime.day = 28// + oTime.day;
+                }
+
+            }
+
+            function dValue() {
+                if (isBigMonth(oTime.month)) {
+                    //如果为大月,则31天减去相差天数
+                    oTime.day = 31 + oTime.day;
+
+                } else if (oTime.month == 2) {
+                    //如果为2月,判断这一年是否为闰年
+                    if (oTime.year % 4 == 0) {
+                        oTime.day = 29 + oTime.day;
+                    } else {
+                        oTime.day = 28 + oTime.day;
+                    }
+
+                } else {
+                    //其他均为小月
+                    oTime.day = 30 + oTime.day;
+                }
+
+            }
+            return oTime;
+        }
+
+        function isBigMonth(month) {
+            var bigArr = [1, 3, 5, 7, 8, 10, 12];
+            for (var i = 0; i < bigArr.length; i++) {
+                if (month == bigArr[i]) {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

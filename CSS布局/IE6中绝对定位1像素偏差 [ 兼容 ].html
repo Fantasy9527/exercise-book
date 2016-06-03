@@ -1,0 +1,51 @@
+           <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box{
+            position: relative;
+            width: 501px;
+            height: 50px;
+            background: red;
+        }
+    .box div{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ccc;
+    }
+    .con1{
+        left: 0;
+        top: 0;
+        
+    }
+    .con2{
+        right:0;
+        top:0;
+    }
+        
+    .con3{
+        left:0;
+        bottom:0;
+        
+    }
+    .con4{
+        left: 100%;
+        bottom:0;
+    
+    }
+        /* 当用到l ,r , t, b四个属性为 0  ,100% 的时候,父级宽高为单数,则会出现1个像素的偏差 */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="con1"></div>
+        <div class="con2"></div>
+        <div class="con3"></div>
+        <div class="con4"></div>
+        
+    </div>
+</body>
+</html>

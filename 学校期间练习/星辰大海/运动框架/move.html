@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>运动框架 基础版</title>
+		<style>
+			#moveDiv {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				opacity: 0.3;
+				left: 0;
+				top:10px;
+				filter: alpha(opacity=30)
+			}
+
+		</style>
+		<script>
+			window.onload = function() {
+				var oDiv = document.getElementById("moveDiv");
+				var oBtn = document.getElementsByTagName("input")[0];
+				var timer = null;
+				
+				oBtn.onclick = function() {
+					move(oDiv, {
+						
+						left:600,top:600
+						
+					})
+
+				};
+
+				function move(obj, json) {
+
+					clearInterval(obj.timer)
+
+					obj.timer = setInterval(function() {
+					
+					var onOff=true
+						for (attr in json) {
+							iTaget = json[attr]
+							
+							if (attr == "opacity") {
+								var oValue = Math.round(css(obj, attr) * 100);
+
+							} else {
+
+								var oValue = parseInt(css(obj, attr));
+								
+							}
+							iSpeed=(iTaget-oValue)/8
+							if (oValue != iTaget) {
+								onOff=false
+								
+								oValue = oValue + iSpeed
+								if (attr == "opacity") {
+									obj.style[attr] = oValue / 100;
+									obj.style[attr] = "filter:alpha(opacity=" + oValue + ")"
+
+								}
+
+								obj.style[attr] = oValue + "px"
+							}
+							
+							
+						}
+						if(onOff){
+							clearInterval(obj.timer);
+							
+							}
+					}, 30)
+
+				}
+
+				function css(obj, attr) {
+
+					if (obj.currentStyle) {
+
+						return obj.currentStyle[attr]
+
+					} else {
+						return getComputedStyle(obj,false)[attr]
+					}
+
+				}
+
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点击移动"/>
+		<div id="moveDiv"></div>
+		
+	</body>
+</html>

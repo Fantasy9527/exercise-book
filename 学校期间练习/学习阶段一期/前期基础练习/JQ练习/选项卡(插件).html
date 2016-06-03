@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery练习</title>
+<style type="text/css">
+#tab div{ width: 150px; height: 150px;background: #ccc; position: absolute; display: none;
+ }
+.ainput{background:yellow}
+</style>
+<script  src="jquery-2.0.2.js"> </script>
+<script type="text/javascript">
+
+
+/*$(function(){
+		$("#tab").find("input").eq(0).attr("class","ainput");
+		$("#tab").find("div").eq(0).css("display","block");
+
+	$("#tab").find("input").mouseover(function(){
+		$("#tab").find("input").attr("class","");
+		$("#tab").find("div").css("display","none");
+		$(this).attr("class","ainput")
+		$("#tab").find("div").eq($(this).index()).css("display","block");
+	}
+)
+
+})*/
+(function($){
+
+
+		$.fn.Tab=function(){
+
+				
+					$(this).find("input").eq(0).attr("class","ainput");
+					$(this).find("div").eq(0).css("display","block");
+					var This=this;
+				$(this).find("input").mouseover(function(){
+					$(This).find("input").attr("class","");
+					$(This).find("div").css("display","none");
+					$(this).attr("class","ainput")
+					$(This).find("div").eq($(this).index()).css("display","block");
+				})
+			
+
+
+}
+
+})(jQuery)
+
+</script>
+<script type="text/javascript">
+$(function(){
+
+$("#tab").Tab();
+
+
+})
+</script>
+</head>
+<body>
+<div id="tab">
+<input type="button" value="111">
+<input type="button" value="222">
+<input type="button" value="333">
+<div>111</div>
+<div>222</div>
+<div>333</div>
+
+</div>
+</body>
+</html>

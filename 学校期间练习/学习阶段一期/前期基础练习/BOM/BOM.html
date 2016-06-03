@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BOM</title>
+<script type="text/javascript">
+/*
+if (confirm("选择")) {
+	alert("确定")
+}
+else{alert("取消")}
+var box= prompt("请输入一个数字")
+alert(box)
+
+print() //调用打印机
+open("http://baidu.com","_parent")//第一个参数 表示要去的网址,第二个参数表示窗口配置的功能,parent,表示在本窗口直接加载
+
+
+*/
+
+window.onload=function(){
+	var oTxt1=document.getElementById('txt1');
+	var oBtn=document.getElementById("btn");
+
+	oBtn.onclick=function(){
+
+		window.open("about:blank").document.write(oTxt1.value)
+	}
+
+
+}
+
+
+
+
+
+
+
+</script>
+
+
+</head>
+
+
+<body>
+<textarea id="txt1"></textarea> <br/>
+<input id="btn" type="button" value="打开窗口">
+</body>
+</html>

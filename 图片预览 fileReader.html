@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<input type="file" id="fileEle" accept="image/*">
+	<br>
+	<br>
+	<script>
+	document.getElementById('fileEle').onchange=function(){
+		var oFile=this.files[0];
+		var reader=new FileReader();
+		reader.onload=function(){
+            
+			var oImg=new Image;
+			oImg.src=this.result;
+			document.body.appendChild(oImg);
+		}
+        console.log(reader)
+		reader.readAsDataURL(oFile);
+	}
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 { width:200px;
+        height:200px;
+		background:#F00}
+		
+</style>
+
+<script>
+function setcolor(color)
+{var oDiv=document.getElementById('div1');
+     oDiv.style.background=color;
+	}
+/*function toGreen()
+{
+	 var oDiv=document.getElementById('div1');
+     oDiv.style.background='green';
+
+  
+	}
+	function toBlack()
+	{var oDiv=document.getElementById('div1')
+	 oDiv.style.background='black';
+		}
+    function toYellow()
+	{var oDiv=document.getElementById('div1')
+	 oDiv.style.background='yellow';
+		}
+		*/
+</script>
+</head>
+
+<body>
+<input type="button" value="变绿" onclick="setcolor('green')" />
+<input type="button" value="变黑" onclick="setcolor('black')" />
+<input type="button" value="变黄" onclick="setcolor('yellow')" />
+<div id="div1">
+</body>
+</html>

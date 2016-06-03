@@ -1,0 +1,45 @@
+<!doctype>
+<html>
+<head>
+<meta charset="utf-8">
+<title>排序1</title>
+<script type="text/javascript">
+window.onload=function(){
+	var oUl =document.getElementsByTagName('ul')[0];
+	var aLi= oUl.getElementsByTagName('li');
+	var oBtn =document.getElementsByTagName('input')[0];
+	oBtn.onclick=function(){
+		var arr=[];
+		for (var i = 0; i < aLi.length; i++) {
+			arr[i]=aLi[i];
+			
+		};
+		arr.sort(function(li1,li2){
+			var n1=parseInt(li1.innerHTML);
+			var n2=parseInt(li2.innerHTML);
+			return n1-n2
+
+		})
+		for (var i = 0; i < aLi.length; i++) {
+			oUl.appendChild(arr[i])
+			
+		};
+	}
+}
+
+</script>
+</head>
+<body>
+<input type="button" value="排序"/>
+<ul>
+	<li>4</li>
+	<li>54</li>
+	<li>387</li>
+	<li>445</li>
+	<li>654</li>
+	<li>34</li>
+</ul> 
+
+
+</body>
+</html>

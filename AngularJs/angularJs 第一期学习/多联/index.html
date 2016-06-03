@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head >
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="" ng-controller="ctrl.select.cascade">
+    <div class="row">
+  <div class="col-md-4">
+    <select class="form-control" ng-model="vm.country" ng-options="country.label for country in vm.countries">
+      <option value="">-- 请选择国家 --</option>
+    </select>
+  </div>
+  <div class="col-md-4" ng-if="vm.country.provinces">
+    <select class="form-control" ng-model="vm.province"
+            ng-options="province.label for province in vm.country.provinces">
+      <option value="">-- 请选择省份/州 --</option>
+    </select>
+  </div>
+  <div class="col-md-4" ng-if="vm.province.cities">
+    <select class="form-control" ng-model="vm.city" ng-options="city.label for city in vm.province.cities">
+      <option value="">-- 请选择城市/县区 --</option>
+    </select>
+  </div>
+</div>
+<div>您选择的是：{{vm.country.label}} - {{vm.province.label}} - {{vm.city.label}}</div>
+<div class="alert alert-info">
+  这里使用ng-if指令来达到下一级有数据才显示下一级的效果
+</div>
+
+
+<script>
+    angular.module('ngShowcaseApp').controller('ctrl.select.cascade', function ($scope, CityData) {
+  var vm = $scope.vm = {};
+  vm.countries = CityData;
+  // 更换国家的时候清空省
+  $scope.$watch('vm.country', function(country) {
+    vm.province = null;
+  });
+  // 更换省的时候清空城市
+  $scope.$watch('vm.province', function(province) {
+    vm.city = null;
+  });
+});
+    
+    
+    
+    angular.module('ngShowcaseApp').constant('CityData', [
+  {
+    label: '中国',
+    flag: 'cn.png',
+    provinces: [
+      {
+        label: '北京',
+        cities: [
+          {
+            label: '朝阳区'
+          },
+          {
+            label: '宣武区'
+          },
+          {
+            label: '海淀区'
+          }
+        ]
+      },
+      {
+        label: '河北',
+        cities: [
+          {
+            label: '石家庄'
+          },
+          {
+            label: '承德'
+          },
+          {
+            label: '唐山'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label: '美国',
+    flag: 'us.png',
+    provinces: [
+      {
+        label: '纽约',
+        cities: [
+          {
+            label: '曼哈顿区'
+          },
+          {
+            label: '皇后区'
+          }
+        ]
+      },
+      {
+        label: '德克萨斯州',
+        cities: [
+          {
+            label: '休斯顿'
+          },
+          {
+            label: '达拉斯'
+          }
+        ]
+      },
+      {
+        label: '加利福尼亚州'
+      }
+    ]
+  }
+]);
+
+    </script>
+</body>
+</html>

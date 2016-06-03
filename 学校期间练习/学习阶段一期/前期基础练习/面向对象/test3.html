@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象  this</title>
+<script>
+function createPerson(name,age){
+var obj =new Object();
+this.name=name;
+this.age=age;
+
+
+}
+createPerson.prototype.showName=function(){
+	alert(this.name)
+}
+createPerson.prototype.showAge=function(){
+	alert(this.age)
+}
+
+var obj1= new createPerson("Gary",20)   //传参赋值
+obj1.showName(); //调用里面的方法
+obj1.showAge();
+var obj2= new createPerson("yang",21);
+obj2.showName();
+obj2.showAge()
+alert(obj1.showName==obj2.showName)
+</script>
+</head>
+<body>
+
+</body>
+</html>

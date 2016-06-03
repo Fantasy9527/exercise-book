@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    function creat(){
+      this.name="aaaaa";
+      this.bbb="bbb";      
+    }
+    creat.prototype.fn1=function(){
+      alert(this.name)
+    }
+    
+    var a= new creat()
+    a.fn1();    
+    function dsdsdsd(){
+      this.ccc="ccc";
+      creat.call(this);
+    };
+    dsdsdsd.prototype=new creat();
+    dsdsdsd.prototype.fn2=function(){
+        alert(this.bbb)      
+    }
+    var b = new dsdsdsd();
+    b.fn2();
+    b.fn1();
+    
+    
+    function extend(obj1,obj2){
+      for( i in obj2){
+        obj1[i]=obj2[i]
+      }
+      
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

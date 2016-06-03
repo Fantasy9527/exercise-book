@@ -1,0 +1,127 @@
+.artist_l {
+	WIDTH: 960px;
+	POSITION: relative;
+	HEIGHT: 354px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+}
+.artist_l .a1 {
+	LEFT: 0px; POSITION: absolute; TOP: 0px
+}
+.artist_l .a2 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a3 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a4 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a5 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a6 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a7 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a8 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a9 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a10 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a11 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a12 {
+	LEFT: 240px; OVERFLOW: hidden; WIDTH: 110px; POSITION: absolute; TOP: 0px; HEIGHT: 110px
+}
+.artist_l .a3 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a4 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a5 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a6 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a8 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a7 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a10 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a11 A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 90px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a2 A {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 30px; FONT-SIZE: 18px; PADDING-BOTTOM: 15px; OVERFLOW: hidden; WIDTH: 182px; PADDING-TOP: 45px; HEIGHT: 172px
+}
+.artist_l .a12 A {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 30px; FONT-SIZE: 18px; PADDING-BOTTOM: 15px; OVERFLOW: hidden; WIDTH: 182px; PADDING-TOP: 45px; HEIGHT: 172px
+}
+.artist_l .a9 A {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 192px; PADDING-TOP: 10px; HEIGHT: 90px
+}
+.artist_l .a2 {
+	WIDTH: 232px; HEIGHT: 232px
+}
+.artist_l .a3 {
+	LEFT: 240px; TOP: 244px
+}
+.artist_l .a4 {
+	LEFT: 362px; TOP: 244px
+}
+.artist_l .a5 {
+	LEFT: 482px; TOP: 0px
+}
+.artist_l .a6 {
+	LEFT: 604px; TOP: 0px
+}
+.artist_l .a7 {
+	LEFT: 482px; TOP: 120px
+}
+.artist_l .a8 {
+	LEFT: 604px; TOP: 120px
+}
+.artist_l .a9 {
+	LEFT: 482px; WIDTH: 232px; TOP: 244px
+}
+.artist_l .a10 {
+	LEFT: 726px; TOP: 0px
+}
+.artist_l .a11 {
+	LEFT: 848px; TOP: 0px
+}
+.artist_l .a12 {
+	LEFT: 726px; WIDTH: 232px; TOP: 120px; HEIGHT: 232px
+}
+.artist_l A {
+	BACKGROUND: #ff0048;
+	FILTER: alpha(opacity=90);
+	LEFT: 0px;
+	COLOR: #fff;
+	FONT-FAMILY: 'Microsoft YaHei';
+	POSITION: absolute;
+	TOP: 0px;
+	opacity: .9;
+	background-color: #333333;
+}
+.artist_l A:hover {
+	COLOR: #fff
+}
+.artist_l A STRONG {
+	LINE-HEIGHT: 2em
+}

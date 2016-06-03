@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>选项卡</title>
+<style type="text/css">
+.active{ background:#000;color: #fff}
+div{width:220px;height:200px;background:red;color:black;display: none}
+
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	
+	var aBox =document.getElementsByTagName('input');
+	//for (var i = 0; i < aBox.length; i++) {	aBox[i].checked =true}
+	
+ 
+	 	if(aBox[0].checked==false){
+		aBox[0].onclick=function(){
+			for (var i = 1; i < aBox.length; i++) {	aBox[i].checked =true}
+}
+	}		
+
+ 		else if (aBox[0].checked==true) {
+		aBox[0].onclick=function(){
+			for (var i = 1; i < aBox.length; i++) {	aBox[i].checked =false}
+		}
+
+
+}
+		
+
+
+}
+</script>
+</head>
+<body>
+<input id="all"type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+
+</body>
+
+</html>

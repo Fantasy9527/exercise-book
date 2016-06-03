@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery练习</title>
+<script  src="jquery-2.0.2.js"> </script>
+<script type="text/javascript">
+$(document).ready(function(){
+//$("div").insertAfter($("p")) // 功能类似,但是操作的元素不一样
+
+//$("p").after($("div"))
+//$("p").append($("div")) 
+$("div").appendTo("p")  //p插入到div里面
+
+})
+</script>
+</head>
+<body>
+<div>
+div
+</div>
+
+<p>
+p
+</p>
+
+
+</body>
+</html>

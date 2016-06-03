@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象</title>
+<script>
+window.onload=function()
+{
+
+function createObj(name,age){
+
+var obj = new Object();
+
+obj.name=name;
+obj.age=age;
+
+obj.run=function(){
+return this.name+" "+this.age;
+
+
+}
+return obj;
+
+
+
+}
+
+
+box1 = createObj("Gary",20)
+
+alert(box1.run())
+
+
+box2 =createObj("Jack",30);
+alert(box2.run())
+
+
+
+
+
+
+}
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

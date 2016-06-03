@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>TAB切换</title>
+<style type="text/css">
+body{
+	margin:0;
+	}
+.div_bg{
+	background-image:url(images/bg.jpg);
+	background-repeat:no-repeat;
+	width:169px;
+	height:290px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	}
+td{
+	font-size:12px;
+	line-height:20px;
+	color: #414141;
+	
+	}
+.white{font-size:12px;
+       color:#FFFFFF;
+	   padding-top:2px;
+	   cursor:pointer;
+	   text-align:center;
+	   display:block;
+	   background:url(images/menu2.gif) 0 0 no-repeat;
+	   }
+.white:hover{font-size:12px;
+             color:#FFFFFF;
+			 padding-top:2px; 
+			 cursor:pointer;
+			 text-align:center;
+			 display:block;
+			 }
+
+a {
+	color: #06329b;text-decoration: none;line-height:24px;
+}
+a:hover {
+	color: #cc0000;text-decoration: none;line-height:24px;
+}
+.bg{background-image: url(images/menu1.gif);
+	   background-repeat:no-repeat;
+	   height:23px;
+	   width:47px;
+	   }
+.nobg{background-image: url(images/menu2.gif);
+	   background-repeat:no-repeat;
+	   height:23px;
+	   width:47px;
+	   }
+		 
+#myTable{
+	width:145px;
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+   var oWhite= document.getElementsByClassName("white");
+   var	Book= document.getElementsByClassName("book");
+
+	
+	for( var i=0;i<oWhite.length;i++){
+	oWhite[i].index=i;
+	
+	oWhite[i].onmouseover=function(){
+		 
+		for(var i=0;i<oWhite.length;i++){
+		Book[i].style.display="none";
+		oWhite[i].style.background="";
+	  }
+	  this.style.background="url(images/menu1.gif) 0 0 no-repeat";
+	  Book[this.index].style.display="block";
+	}
+	 
+	  
+	}
+
+}
+
+</script>
+</head>
+
+<body>
+<div class="div_bg"><table id="myTable" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="height:50px;" colspan="3"></td>
+  </tr>
+  <tr>
+    <td width="46" id="bg1" name="bj" ><a class="white" >小说</a></td>
+    <td width="47" id="bg2" name="bj" ><a class="white" >非小说</a></td>
+    <td width="52" id="bg3" name="bj" ><a class="white" >少儿</a></td>
+  </tr> 
+  <tr>
+    <td colspan="3" style="padding-top:10px; padding-left:5px; text-align:left;"><div id="book1"class="book" style="display:block;">
+    <a  href="#" target=_blank>1.时间旅行者的妻子</a><br>
+    <a   href="#" target=_blank>2.女心理师（下）</a><br>
+    <a   href="#" target=_blank>3.鬼吹灯之精绝古城</a><br>
+    <a   href="#" target=_blank>4.女心理师（上）</a><br>
+    <a   href="#" target=_blank>5.小时候</a><br>
+    <a   href="#" target=_blank>6.追风筝的人</a><br>
+    <a   href="#" target=_blank>7.盗墓笔记2</a><br>
+    <a   href="#" target=_blank>8.输赢</a>
+		 </div>
+<div id="book2"  class="book"style="display:none;">
+<a   href="#" target=_blank>1.人生若只如初见</a><br>
+<a   href="#" target=_blank>2.高效能人士的七个..</a><br>
+<a   href="#" target=_blank>3.求医不如求己</a><br>
+<a   href="#" target=_blank>4.人体使用手册</a><br>
+<a   href="#" target=_blank>5.孩子，把你的手给我</a><br>
+<a   href="#" target=_blank>6.别笑！我是英文单词书</a><br>
+<a   href="#" target=_blank>7.人体经络使用手册</a><br>
+<a   href="#" target=_blank>8.股市稳赚</a>
+		 </div>
+	<div id="book3"class="book" style="display:none;">
+    <a   href="#" target=_blank>1.斯凯瑞金色童书·..</a><br>
+    <a   href="#" target=_blank>2.哈利·波特与“混..</a><br>
+    <a   href="#" target=_blank>3.不一样的卡梅拉（..</a><br>
+    <a   href="#" target=_blank>4.它们是怎么来的</a><br>
+    <a   href="#" target=_blank>5.五·三班的坏小子..</a><br>
+    <a   href="#" target=_blank>6.男生日记</a><br>
+    <a   href="#" target=_blank>7.哈利·波特与魔法石</a><br>
+    <a   href="#" target=_blank>8.噼里啪啦丛书(全7册)</a>
+		 </div></td>
+  </tr>
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>购物车数量调整</title>
+<style>
+.amount {
+	margin: 20px 200px;
+}
+a {
+	display: inline-block;
+	width: 9px;
+	height: 9px;
+	line-height: 9px;
+	background: white;
+	text-decoration: none;
+	text-align: center;
+	color: #555;
+	border: 1px solid #ccc;
+}
+a:hover {
+	border-color: red;
+}
+.disabled,
+.disabled:hover {
+	color: #ccc;
+	border-color: #ccc;
+}
+input {
+	display: inline-block;
+	width: 28px;
+	padding: 1px 3px;
+	text-align: right;
+	color: #666;
+}
+#note {
+	position: relative;
+	width: 68px;
+	margin-top: 6px;
+	padding: 4px;
+	line-height: 16px;
+	border: 1px solid #FEC3A8;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	background: white;
+	
+}
+#note b,
+#note i {
+	position: absolute;
+	left: 30px;
+	width: 18px;
+	height: 7px;
+	font: 16px/21px Simsun;
+	overflow: hidden;
+}
+#note b {
+	top: -8px;
+	color: #FEC3A8;
+}
+#note i {
+	top: -7px;
+	color: white;
+}
+#note em {
+	font-size: 12px;
+	font-style: normal;
+	color: #F40;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+</style>
+<!--<script src="jquery-1.10.1.min.js"></script>-->
+<script>
+window.onload=function(){
+	var oPlus=document.getElementById('plus');
+	var oMinus =document.getElementById('minus')
+	var oText= document.getElementById("text");
+	var oNote=document.getElementById('note');
+	var oValue=oText.value
+	oPlus.onclick=function(){
+		
+		if (oText.value>=5) {
+			oNote.children[2].innerHTML="最大不超过"+oText.getAttribute("data-max")+"个"
+			oNote.style.display="block"
+		}else{
+			oNote.style.display="none"
+			oText.value++
+
+
+		}
+
+	}
+
+
+	oMinus.onclick=function(){
+		
+		if (oText.value<=0) {
+			oNote.children[2].innerHTML="最小不超过"+oText.getAttribute("data-min")+"个"
+			oNote.style.display="block"
+		}else{
+			oNote.style.display="none"
+			oText.value--
+
+
+		}
+
+	}
+
+	oText.onkeyup=function(){
+		if (oText.value<0) {
+			//oText.value=oValue
+			oNote.children[2].innerHTML="最小不超过"+oText.getAttribute("data-min")+"个"
+			oNote.style.display="block"
+		}else if (oText.value>5){
+			//oText.value=oValue
+			oNote.children[2].innerHTML="最大不超过"+oText.getAttribute("data-max")+"个"
+			oNote.style.display="block"
+		}
+		else{
+			oNote.style.display="none"
+		}
+
+
+
+	}
+
+
+}
+
+</script>
+</head>
+
+<body>
+<div class="amount"> <a href="#" id="minus">-</a>
+	<input type="text" id="text" value="1" data-max='5' data-min='0'>
+	<a href="#" id="plus">+</a>
+	<p id="note" class="hide"> <b>◆</b> <i>◆</i> <em></em> </p>
+</div>
+
+</body>
+</html>

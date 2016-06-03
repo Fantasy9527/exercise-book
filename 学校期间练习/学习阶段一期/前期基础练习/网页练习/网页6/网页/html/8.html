@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NIKE 官方网站</title>
+<link href="../css/div2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/javascript.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+    </script>
+    
+    
+    
+<style> 
+ #box2 {
+	height: 640px;
+	width: 100%;
+	float: none;
+	position: relative;
+	clear: both;
+	margin: 0px;
+	background-image: url(../images/121919312b505D0J.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center top;
+}   
+    
+</style>
+</head>
+
+
+</body>
+
+<div id="box">
+<div id="menu2" class="menu">
+      <ul>
+      <li><a href="#">首　　页</a></li>
+      <li><a href="#">企业文化</a></li>
+      <li><a href="#">产品展示</a></li>
+      <li><a href="#">新闻中心</a></li>
+      <li><a href="#">阳光服务</a></li>
+      <li><a href="#">加盟代理</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+    </ul>
+      <div class="menu">  
+      </div>
+  </div>
+</div> 
+<div id="box2">
+ <div class="menu" id="xbox">
+   <div class="content" id="content">
+   <div id="logo"></div>
+   <div id="main">
+    <div id="main top">
+      <h1>_______________________ </h1>
+      <h1> JUST DO IT.</h1>
+      <h1><span class="solid_line">网站地图<br />
+      </span></h1>
+      <p>-----------</p>
+      <p class="solid_line">IN SPORTS,NO ONE WILL TELL YOU NO!!<br />
+    </div>
+    
+    </div>
+    <div id="mainbottom">
+      <p>CARE TO KNOW MORE ABOUT US?</p>
+            
+    </div>
+   </div>   
+    </div>
+    </div>
+
+<div id="box3">
+<div class="content" id="content2">
+  <div id="Privacy"><img src="../images/websitemap.png" width="1004" height="150" /></div><hr />
+
+  <ul> 
+<li>主页</li>
+<li>Nike 2013 春季 Air Max 90 Premium 鞋履系列</li> 
+<li>NIKE AIR MAX+2013REFLECTIVE PACK鞋履系列</li> 
+<li>Nike耐克 2013春季 Air Force 1 Hi Kobe 系列鞋款</li> 
+<li> 王力宏加入科比讲堂最新Nike创意广告</li> 
+<li>关于我们</li> 
+<li>隐私申明</li> 
+<li>使用条款</li> 
+ 
+ 
+ 
+</ul> 
+<hr />
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  
+  
+</div>
+
+
+</div>
+<div id="box4">
+
+<div id="nike about">
+<div id="about">
+</div>
+       <div class="content" id="content3"></div>
+  
+  
+<div id="daohang">
+         <div id="daohangmain"><a href="#">HOME</a></div>
+<div id="daohangmain"><a href="#">ABOUT</a></div>
+         <div id="daohangmain"><a href="#">NEWS</a></div>
+         <div id="daohangmain"><a href="#">PORTFOLIO</a></div>
+         <div id="daohangmain"><a href="#">SERVICE</a></div>
+         <div id="daohangmain"><a href="#">CONTACT</a></div>
+       </div>
+<div id="contact">
+  <h3>
+             <h1>ABOUT ME</h1>
+</h3>
+           <h4>Nike,is an American multinational corporation that is engaged in the design, development and worldwide marketing and selling of footwear, apparel, equipment, accessories and services.he company is headquartered near Beaverton, Oregon, in the Portland metropolitan area. It is the world's leading supplier of athletic shoes and apparel[3] and a major manufacturer of sports equipment, with revenue in excess of US$24.1 billion in its fiscal year 2012 (ending May 31, 2012). As of 2012, it employed more than 44,000 people worldwide.</h4>
+           <p>&nbsp;</p>
+    </div>
+  </div>
+</div>  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+</div>
+   <div id="box5">
+   <div class="copyright" id="copyright">
+   
+     <div id="copyrightmain">
+       <div id="copyright1">隐私申明</div>
+       <div id="copyright2">使用条款</div>
+       <div id="copyright3">©2011 NIKE, INC. ALL RIGHTS RESERVED</div>
+     </div>
+   </div>
+   </div>
+  
+</body>
+</html>

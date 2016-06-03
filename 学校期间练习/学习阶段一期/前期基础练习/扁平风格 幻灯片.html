@@ -1,0 +1,325 @@
+<!DOCTYPE HTML	>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扁平风格幻灯片</title>
+
+<style>
+*{margin:0 ;padding:0;}
+#box{ width: 450px; height: 602px; border: 3px solid #2C3E50; margin: 50px auto; position: relative;overflow: hidden}
+.pic{ width: 450px ;height: 450px; float: left;overflow: hidden; }
+.pic li{width: 450px ;height: 450px; list-style-type: none; position: absolute; }
+.pic1{ background:#1ABC9C;z-index: 6; }
+.pic2{ background:#3498DB }
+.pic3{ background:#9B59B6 }
+.pic4{ background:#E74C3C }
+.pic5{ background:#E67E22 }
+.pic6{ background:#7F8C8D }
+.run_pic ul{ position: absolute; left: 0;overflow: hidden}
+.run_pic li{width: 150px; height: 150px; list-style-type: none; float: left; opacity:0.3}
+.run_pic1{ background:#1ABC9C}
+.run_pic2{ background:#3498DB}
+.run_pic3{ background:#9B59B6 }
+.run_pic4{ background:#E74C3C }
+.run_pic5{ background:#E67E22 }
+.run_pic6{ background:#7F8C8D }
+
+
+.run_pic{ width: 450px; height: 150px; float: left; background: #34495E; overflow: hidden; border-top: 2px solid #2C3E50; }
+
+.left{width: 200px; height: 400px;position: absolute;left: 0; z-index: 30000}
+.right{width: 200px; height: 400px;position: absolute;right: 0;z-index: 30000}
+.btn_left{width: 40px; height: 40px;position: absolute;left: 0; top: 180px; line-height: 40px;text-align: center; background: #2C3E50;border-radius: 0 20px 20px 0;color:#fff; opacity:0;  filter:alpha(opacity=0); cursor: pointer;}
+.btn_right{width: 40px; height: 40px;position: absolute;right: 0;top: 180px;line-height: 40px;text-align: center; background: #2C3E50;border-radius: 20px 0 0 20px;color:#fff; opacity: 0; filter:alpha(opacity=0); cursor: pointer;}
+</style>
+ 
+
+<script type="text/javascript">
+
+window.onload =function(){
+var box =document.getElementById('box');
+var left=getByClass(box,'left')[0];
+var right=getByClass(box,'right')[0];
+var pic=box.getElementsByTagName("ul")[0].getElementsByTagName("li");
+
+var btn_left=getByClass(box,'btn_left')[0];
+var btn_right=getByClass(box,'btn_right')[0];
+
+var run_pic=getByClass(box,'run_pic')[0];
+
+var rUl=run_pic.getElementsByTagName("ul")[0];
+var rLi=rUl.getElementsByTagName("li");
+var oLi=rUl.getElementsByTagName("li")[0];
+var now=0;
+
+
+
+
+var nowZindex=6
+
+
+oLi.style.opacity="1";
+rUl.style.width=rLi.length*oLi.offsetWidth+"px";
+left.onmouseover=function(){
+
+	startMove(btn_left,{opacity:100});
+
+}
+
+right.onmouseover=function(){
+
+	startMove(btn_right,{opacity:100});
+
+}
+
+
+left.onmouseout=function(){
+
+	startMove(btn_left,{opacity:0});
+
+}
+
+right.onmouseout=function(){
+
+	startMove(btn_right,{opacity:0});
+
+}
+
+
+for (var i = 0; i < rLi.length; i++) {
+	rLi[i].index=i;
+
+	
+
+
+
+
+
+
+	rLi[i].onmouseover=function(){
+	
+		startMove(this,{opacity:100})
+	}
+
+	rLi[i].onmouseout=function(){
+		if (this.index!=now){
+		
+		startMove(this,{opacity:30})
+		
+		}
+		else{
+			startMove(this,{opacity:100})
+		}
+	}
+
+
+
+	
+	rLi[i].onclick=function(){
+		if (this.index==now) {
+			
+			return
+		}
+		else{now=this.index}
+			
+		tab();
+	
+	}
+
+};
+
+function tab(){
+
+	for (var i = 0; i < rLi.length; i++) {
+				startMove(rLi[i],{opacity:30})
+			};
+		startMove(rLi[now],{opacity:100})
+		pic[rLi[now].index].style.zIndex=nowZindex++;
+		pic[rLi[now].index].style.height=0;
+		startMove(pic[rLi[now].index],{height:450});
+		
+
+		if (now==0) {
+			startMove(rUl,{left:0});
+		}
+		else if(now==rLi.length-1){
+			startMove(rUl,{left:-(now-2)*oLi.offsetWidth});
+		}
+		else
+		{
+			startMove(rUl,{left:-(now-1)*oLi.offsetWidth});
+		}
+		
+}
+
+left.onclick=function(){
+	now--;
+	if (now==-1) {
+		now=rLi.length-1
+	};
+	tab()
+
+}
+
+
+right.onclick=function (){
+	now++;
+	if (now==rLi.length) {
+		now=0
+	};
+	tab()
+
+}
+
+
+
+timer= setInterval(right.onclick,2000)
+
+box.onmouseover=function(){
+	clearInterval(timer)
+}
+
+
+box.onmouseout=function(){
+	
+timer= setInterval(right.onclick,2000)
+}
+
+}
+
+
+
+
+
+
+
+
+function getByClass(oParent,sClass){
+	var aEle=oParent.getElementsByTagName('*');
+	var aResult=[];
+
+	for (var i = 0; i < aEle.length; i++) {
+		if(aEle[i].className ==sClass)
+		{
+			aResult.push(aEle[i]);
+		}
+	};
+	return aResult;
+}
+
+
+
+function getStyle(obj, attr)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[attr];
+	}
+	else
+	{
+		return getComputedStyle(obj, false)[attr];
+	}
+}
+
+function startMove(obj, json, fn)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var bStop=true;		
+		for(var attr in json)
+		{
+			
+			var iCur=0;
+			
+			if(attr=='opacity')
+			{
+				iCur=parseInt(parseFloat(getStyle(obj, attr))*100);
+			}
+			else
+			{
+				iCur=parseInt(getStyle(obj, attr));
+			}
+			
+			
+			var iSpeed=(json[attr]-iCur)/8;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			
+		
+			if(iCur!=json[attr])
+			{
+				bStop=false;
+			}
+			
+			if(attr=='opacity')
+			{
+				obj.style.filter='alpha(opacity:'+(iCur+iSpeed)+')';
+				obj.style.opacity=(iCur+iSpeed)/100;
+			}
+			else
+			{
+				obj.style[attr]=iCur+iSpeed+'px';
+			}
+		}
+		
+		if(bStop)
+		{
+			clearInterval(obj.timer);
+			
+			if(fn)
+			{
+				fn();
+			}
+		}
+	}, 30)
+}
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+<div id="box">
+<div class="pic">
+	<div class="left" >
+		<div class="btn_left">左</div>
+	</div>
+	
+	<div class="right" >
+		<div class="btn_right">右</div>
+
+	</div>
+	<ul>
+			<li class="pic1"></li>
+			<li class="pic2"></li>
+			<li class="pic3"></li>
+			<li class="pic4"></li>
+			<li class="pic5"></li>
+			<li class="pic6"></li>
+	</ul>
+</div>
+
+<div class="run_pic">
+	<ul>
+				<li class="run_pic1"></li>
+				<li class="run_pic2"></li>
+				<li class="run_pic3"></li>
+				<li class="run_pic4"></li>
+				<li class="run_pic5"></li>
+				<li class="run_pic6"></li>
+
+	</ul>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

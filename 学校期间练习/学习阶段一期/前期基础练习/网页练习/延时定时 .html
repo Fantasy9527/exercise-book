@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>延时定时演示</title>
+<style>
+div{ float:left; margin:10px}
+#div1{ width:100px; height:100px; background:#000;}
+#div2{width:400px; height:400px; background: #030 ; display:none}
+
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2')
+	var timer=null;
+	oDiv2.onmouseover=oDiv1.onmouseover=function()
+	{clearTimeout(timer)
+     oDiv2.style.display='block'}
+	oDiv2.onmouseout=oDiv1.onmouseout=function()
+	{timer=setTimeout (function(){oDiv2.style.display='none'},500)}
+	
+	}
+
+
+</script>
+</head>
+
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>瀑布流</title>
+<style type="text/css">
+*{ padding: 0; margin: 0;}	
+.box{width: 1000px; border: 1px solid red; margin: 50px auto; position: relative;}
+.box img { position: absolute; }
+.loading { width: 100%; height: 60px; background: url('loader.gif') no-repeat center #FFF; position: fixed; bottom: 0; left: 0;  }
+</style>
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//计算列
+		var iWidth =200;//列宽
+		var iSpace= 10;// 间隔宽
+		var iOuterWidth=iWidth+iSpace// 列实际宽
+		var iCells= 0;
+		var sUrl = 'http://www.wookmark.com/api/json/popular?callback=?';
+		var iPage=0;
+		var arrT=[];
+		var arrL=[]
+		var Btn=true
+		setiCells()
+		
+		function setiCells(){
+			iCells=Math.floor($(window).innerWidth()/iOuterWidth);
+			document.title=iCells
+			$(".box").width(iCells*iOuterWidth-iSpace)
+
+		}
+
+
+		 for (var i = 0; i < iCells; i++) {
+		 	arrT.push(0)
+		 	arrL.push(i*iOuterWidth)
+		 };
+
+
+
+
+		getData()
+ 		dsdsd()
+		 function getData(){
+		 	if (Btn==true) {
+		 		Btn=false
+		$.getJSON(sUrl,iPage,function(data){
+
+			$(".loading").show()
+			$.each(data,function(index,obj){
+				var oImg=$("<img />");
+
+				oImg.attr("src",obj.preview)
+
+				$(".box").append(oImg);
+			
+			
+			var iHeight=iWidth/obj.width*obj.height;
+				oImg.css({
+					width:iWidth,
+					height:iHeight,
+				
+				})
+
+				var MinIndex=getMin()
+
+
+				
+
+				
+
+				oImg.css({
+					left:arrL[MinIndex],
+					top:arrT[MinIndex]
+
+				})
+				//alert(arrT[MinIndex])
+				arrT[MinIndex]+=iHeight+10
+
+
+			})
+			$(".loading").hide()
+			Btn=true
+
+		})
+
+			
+		};
+		
+		 }
+
+		
+		 function dsdsd(){
+
+		 		$(window).on("scroll",function(){
+		 			var iMin=getMin();
+
+		 			iH=$(window).scrollTop()+$(window).innerHeight();
+		 			if (arrT[iMin]<iH) {
+
+		 				iPage++;
+		 					getData()
+		 				
+		 			};
+
+
+		 		})
+
+
+
+
+		 }
+
+
+
+
+
+
+		 $(window).on("resize",function(){
+
+		 	setiCells()
+		 	arrT=[];
+		 	arrL=[];
+		 	for (var i = 0; i < iCells; i++) {
+		 		arrT.push(0);
+		 		arrL.push(i*iOuterWidth)
+
+		 	};
+
+		 	$(".box").find("img").each(function(){
+		 		var iMin=getMin();
+
+		 		$(this).animate({
+		 			left:arrL[iMin],
+		 			top:arrT[iMin]
+
+
+		 		},200)
+		 		arrT[iMin]+=$(this).height()+10
+
+		 	})
+
+
+
+
+
+		 })
+
+		function getMin(){
+			var _index=0
+			var iv=arrT[0];
+			for (var i = 1; i < arrT.length; i++) {
+				 if (arrT[i]<iv) {
+				 	iv=arrT[i];
+				 	_index=i;
+
+				 };
+				
+
+			};
+
+			 return _index;
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+	})
+
+
+
+</script>
+</head>
+
+
+<body>
+
+	<div class="box"></div>
+	<div class="loading"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+<title>canvas</title>
+<style>
+body{ background:#000;}
+#canvas1{ background: #fff}
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+
+	var oC=document.getElementById('canvas1');
+	var oGc=oC.getContext("2d");
+	oGc.fillRect(50,50,100,100);
+	oGc.strokeRect( 200.5,100.5,100,100)
+}
+
+
+
+</script>
+<body>
+<canvas id="canvas1" width="400" height="400" ></canvas>
+</body>
+</html>

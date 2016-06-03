@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+body{ background:#000; font-size:60px; color:#FFF}
+</style>
+<script>
+function toDou(n)
+{
+	if(n<10)
+	{return('0'+n)
+		}
+		else{return(''+n)}
+	}
+window.onload=function()
+{  var aImg=document.getElementsByTagName('img');
+   function tick(){
+	var oDate= new Date();
+	var str= toDou(oDate.getHours())+ toDou(oDate.getMinutes())+ toDou(oDate.getSeconds());
+	for (var i=0;i<aImg.length;i++)
+	
+	{
+              aImg[i].src= 'time/'+str[i]+'.png';
+		
+		}
+   }
+   
+   setInterval(tick,1000) 
+	tick();
+	
+	
+	
+	}
+
+
+
+</script>
+<body>
+
+<img  src="time/0.png"/>
+<img  src="time/0.png"/>
+:
+<img  src="time/0.png"/>
+<img  src="time/0.png"/>
+:
+<img  src="time/0.png"/>
+<img  src="time/0.png"/>
+</body>
+</html>

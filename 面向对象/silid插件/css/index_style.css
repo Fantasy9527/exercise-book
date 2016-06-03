@@ -1,0 +1,63 @@
+@charset "utf-8";
+	/* CSS Document*/
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+.pageBox{
+    height: 100%;
+    overflow: hidden;
+    position: relative
+
+}
+.pageC {
+   
+    width: 100%;
+    min-height: 100%;
+    transition: 0s;
+    -moz-transition: 0s;    /* Firefox 4 */
+    -webkit-transition:0s;    /* Safari 和 Chrome */
+    -o-transition: 0s;    /* Opera */
+}
+.page1 {
+    background: url(../images/img1.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page2 {
+    background: url(../images/img2.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page3 {
+    background: url(../images/img3.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page4 {
+    background: url(../images/img4.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page5 {
+    background: url(../images/img5.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page6 {
+    background: url(../images/img6.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page7 {
+    background: url(../images/img7.jpg) no-repeat center center;
+    background-size: cover;
+}
+.page8 {
+    background: url(../images/img8.jpg) no-repeat center center;
+    background-size: cover;
+}

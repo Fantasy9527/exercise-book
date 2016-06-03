@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* 纯CSS3点控式幻灯hover切换  */
+        .m-demo {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+        }
+        .m-demo li:nth-child(3n-1) {
+            position: absolute;
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            -moz-transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            -ms-transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+        .m-demo:hover li:nth-child(3n-1) {
+            opacity: 0;
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+        .m-demo li:nth-child(2),
+        .m-demo li:nth-child(3n-1):hover,
+        .m-demo li:nth-child(3n+1):hover + li {
+            z-index: 2;
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+        .m-demo li:nth-child(3n+1),
+        .m-demo li:nth-child(3n) {
+            position: relative;
+            z-index: 5;
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 235px 0 0 5px;
+            border-radius: 50%;
+        }
+        .m-demo li:nth-child(3n+1),
+        .m-demo:hover li:nth-child(3n+1) {
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .m-demo li:nth-child(3n) {
+            z-index: 4;
+            margin-left: -10px;
+        }
+        .m-demo li:first-child {
+            margin-left: 325px;
+        }
+        .m-demo li:first-child,
+        .m-demo li:nth-child(3n+1):hover,
+        .m-demo li:nth-child(3n-1):hover + li {
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 0, 0.8);
+        }
+        .m-demo li:nth-child(3n-1):hover + li {
+            z-index: 6;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>

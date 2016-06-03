@@ -1,0 +1,360 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title>小蜜蜂</title>
+<style>
+*{ margin:0; padding:0;}
+li{ list-style:none;}
+#game_box{ width:800px; height:600px; overflow:hidden; background:black; margin:20px auto; position:relative;}
+#gameBtn{ color:white; font-size:20px; cursor:pointer; border:1px #FFFFFF solid; width:100px; height:30px; line-height:30px; text-align:center; position:absolute; top:285px; left:350px; background: #3498DB}
+
+#score{ color:#FFFFFF;}
+#bee{ position:relative;}
+.enemy1{ width:40px; height:28px; background:url(images/mf1.png) no-repeat; float:left;}
+.enemy2{ width:40px; height:28px; background:url(images/mf2.png) no-repeat; float:left;}
+.enemy3{ width:40px; height:28px; background:url(images/mf3.png) no-repeat; float:left;}
+
+.air1{ width:46px; height:60px; background:url(images/fj.png) no-repeat; position:absolute;}
+.bullet{ width:1px; overflow:hidden; height:10px; background:white; position:absolute;}
+</style>
+<script>
+window.onload=function(){
+		var oBtn =document.getElementById('gameBtn');
+
+		oBtn.onclick=function(){
+			this.style.display="none" ; //点击隐藏开始按钮
+			Game.init("game_box");    //开始游戏
+
+		}
+
+	
+
+
+
+
+
+}
+
+
+
+
+var Game ={
+
+	oEnemy : {  							//敌人数据
+		e1 : {style : "enemy1",blood : 1,speed : 3, score:1},
+		e2 : {style : "enemy2",blood : 1,speed : 5, score:2},
+		e3 : {style : "enemy3",blood : 3,speed : 7,score:1}
+
+	},
+gk : [  //关卡的数据
+		{
+			eMap : [
+				'e2','e2','e2','e2','e2','e2','e2','e2','e2','e2',
+				'e2','e2','e2','e2','e2','e2','e2','e2','e2','e2',
+				'e2','e2','e2','e2','e2','e2','e2','e2','e2','e2',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1'
+			],
+			colNum : 10,
+			iSpeedX : 10,
+			iSpeedY : 10,
+			times : 2000
+		},
+		{
+			eMap : [
+				'e3','e3','e3','e3','e3','e3','e3','e3','e3','e3',
+				'e3','e3','e3','e3','e3','e3','e3','e3','e3','e3',
+				'e3','e3','e3','e3','e3','e3','e3','e3','e3','e3',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1',
+				'e1','e1','e1','e1','e1','e1','e1','e1','e1','e1'
+			],
+			colNum : 10,
+			iSpeedX : 10,
+			iSpeedY : 10,
+			times : 2000
+		}
+	],
+	air:{ style:"air1",
+		  bulletStyle:"bullet"
+
+	},
+
+	init:function(id){    				//游戏初始化
+		 this.oParent= document.getElementById(id);
+		 this.createScore();
+		 this.createEnemy(0);
+		 this.createAir();
+
+	},
+
+	createScore:function(){     		//积分创建
+		var oS=document.createElement("div");
+		oS.id="score";
+		oS.innerHTML="分数:<span>0</span>";
+		this.oParent.appendChild(oS);
+		this.oSNum=oS.getElementsByTagName('span')[0];
+	},
+
+	createEnemy:function(iNow){
+		if (this.oUl) {
+			clearInterval(this.oUl.timer)
+			this.oParent.removeChild(this.oUl)
+		};
+		var gk=this.gk[iNow];
+		var arr=[];
+		var oUl =document.createElement("ul");
+			oUl.id="bee";
+			oUl.style.width=40*gk.colNum+"px";
+			this.oParent.appendChild(oUl);
+			oUl.style.left=(this.oParent.offsetWidth-oUl.offsetWidth)/2+"px";
+			this.oUl=oUl;
+
+			for (var i = 0; i < gk.eMap.length; i++) {
+				var oLi=document.createElement("li");
+					oLi.className=this.oEnemy[gk.eMap[i]].style;//不是太能理解
+					oLi.blood=this.oEnemy[gk.eMap[i]].blood;
+					oLi.speed=this.oEnemy[gk.eMap[i]].speed;
+					oLi.score = this.oEnemy[gk.eMap[i]].score;
+					oUl.appendChild(oLi)
+			};
+			this.aLi = oUl.getElementsByTagName('li');
+
+			for (var i = 0; i < this.aLi.length; i++) {
+				arr.push([this.aLi[i].offsetLeft,this.aLi[i].offsetTop])
+			};
+			for (var i = 0; i < this.aLi.length; i++) {
+				this.aLi[i].style.position="absolute";
+				this.aLi[i].style.left=arr[i][0]+"px";
+				this.aLi[i].style.top=arr[i][1]+"px";
+			};
+			this.runEnemy(gk);
+
+
+	},
+
+	runEnemy:function(gk){
+		This=this;
+		var L=0;
+		var R=this.oParent.offsetWidth-this.oUl.offsetWidth;
+		this.oUl.timer=setInterval(function(){
+			if (This.oUl.offsetLeft>R) {
+				gk.iSpeedX*=-1;
+				This.oUl.style.top=This.oUl.offsetTop+gk.iSpeedY+"px"
+				
+			}
+		
+			else if(This.oUl.offsetLeft<L){
+				gk.iSpeedX*=-1;
+				This.oUl.style.top=This.oUl.offsetTop+gk.iSpeedY+"px"
+				
+			}
+
+		This.oUl.style.left=This.oUl.offsetLeft+gk.iSpeedX+"px";
+		
+
+
+		},200)
+			
+
+		setInterval(function(){
+			This.oneMove();
+		},gk.times)
+
+
+
+	},
+	oneMove:function(){
+		var This=this;
+		var nowLi =this.aLi[Math.floor(Math.random()*this.aLi.length)]
+		
+	nowLi.timer = setInterval(function(){
+			var a= (This.oA.offsetLeft+This.oA.offsetWidth/2 )-(nowLi.offsetLeft+nowLi.parentNode.offsetLeft+ nowLi.offsetWidth/2);
+		
+
+			var b =(This.oA.offsetTop+This.oA.offsetHeight/2 )-(nowLi.offsetTop+nowLi.parentNode.offsetTop+ nowLi.offsetHeight/2);
+
+			var c=Math.sqrt(a*a+b*b) ;
+			var isX=nowLi.speed*a/c;
+			var isY =nowLi.speed*b/c;
+
+		
+					nowLi.style.left=nowLi.offsetLeft+isX+"px";
+					nowLi.style.top=nowLi.offsetTop+isY+"px";
+					
+			if (This.pz(This.oA,nowLi)) {
+			alert("游戏结束");
+			window.location.reload();
+		};
+
+
+		},30);
+		
+
+	},
+	
+
+	createAir:function(){
+		var oA=document.createElement("div");
+		oA.className=this.air.style;
+		this.oParent.appendChild(oA);
+		oA.style.top=this.oParent.offsetHeight - oA.offsetHeight+"px";
+		oA.style.left=(this.oParent.offsetWidth- oA.offsetWidth)/2+"px";
+		this.oA=oA;
+		this.bindAir();
+	},
+
+	bindAir:function(){
+		This=this;
+		var timer=null;
+		var iNum=0;
+		var L=0;
+		var R=this.oParent.offsetWidth-this.oA.offsetWidth;
+
+		document.onkeydown=function(ev){
+			
+			var oEvent=ev||event;
+	
+			if (!timer) {
+				timer=setInterval(airMove,30)
+			};
+			if (oEvent.keyCode==37) {
+				iNum=1;
+			}
+			else if(oEvent.keyCode==39){
+				iNum=2;
+			};
+
+			if (This.oA.offsetLeft<L-5) {				//让飞机不飞出界面,待研究
+			This.oA.style.left="0"
+			
+		}
+			else if(This.oA.offsetLeft>R+5){
+			This.oA.style.left=This.oParent.offsetWidth-This.oA.offsetWidth+"px";
+
+		}
+		
+	
+		
+	
+			function airMove(){
+				if (iNum==1) {
+				This.oA.style.left=This.oA.offsetLeft-10+'px';	
+				}
+				else if (iNum==2) {
+				This.oA.style.left=This.oA.offsetLeft+10+'px';
+				};
+			}
+		}
+		document.onkeyup=function(ev){
+			var oEvent=ev||event;
+			clearInterval(timer);
+			timer=null;
+			iNum=0;
+			if (oEvent.keyCode==32) {
+			This.createBullet();
+			};
+		};
+
+
+
+
+	},
+	createBullet:function(){
+		var timer=null;
+		var oB=document.createElement("div");
+		oB.className=this.air.bulletStyle;
+		this.oParent.appendChild(oB);
+		oB.style.left=this.oA.offsetLeft+this.oA.offsetWidth/2+"px";
+		oB.style.top=this.oParent.offsetHeight-this.oA.offsetHeight-10+"px";
+
+	 this.runBullet(oB);
+
+		
+	},
+	runBullet:function(oB){
+		This=this;
+	
+	 var  timer=setInterval(function(){
+
+			if (oB.offsetTop<-10) {
+				clearInterval(timer);
+				This.oParent.removeChild(oB)
+			}
+			else{
+			oB.style.top=oB.offsetTop-10+"px"
+			}
+
+			for (var i = 0; i < This.aLi.length; i++) {
+				if (This.pz(oB, This.aLi[i]))
+
+	   				{		
+	   					if (This.aLi[i].blood==1) {
+	   						clearInterval(This.aLi[i].timer);
+	   						This.oSNum.innerHTML = parseInt(This.oSNum.innerHTML) + This.aLi[i].score;
+	   					This.oUl.removeChild( This.aLi[i] );
+	   					
+	   					
+
+	   				
+	   					}
+	   				else{
+	   					This.aLi[i].blood--;
+	   					
+	   				}
+	   					
+	   					This.oParent.removeChild(oB);
+	   					clearInterval(timer)
+	   				}
+
+	   					if (This.aLi.length==0) {
+	   					This.createEnemy(1)
+	   				}
+
+
+			};
+
+
+
+		},30)
+		
+	},
+	pz:function(obj1,obj2){
+		var L1=obj1.offsetLeft;
+		var R1=obj1.offsetLeft+obj1.offsetWidth;
+		var T1=obj1.offsetTop;
+		var B1=obj1.offsetTop+obj1.offsetHeight;
+		var L2 = obj2.offsetLeft+obj2.parentNode.offsetLeft;
+		var R2 = obj2.offsetLeft + obj2.offsetWidth + obj2.parentNode.offsetLeft;
+		var T2 = obj2.offsetTop + obj2.parentNode.offsetTop;;
+		var B2 = obj2.offsetTop + obj2.offsetHeight + obj2.parentNode.offsetTop;
+
+		if (R1<L2||L1>R2||B1<T2||T1>B2) {
+			return false;
+		}
+		else{
+			return true
+		}
+
+
+
+
+	}
+
+
+
+
+
+}
+
+</script>
+</head>
+<body>
+<div id="game_box">
+	<div id="gameBtn">开始游戏</div>
+</div>
+
+</body>
+</html>

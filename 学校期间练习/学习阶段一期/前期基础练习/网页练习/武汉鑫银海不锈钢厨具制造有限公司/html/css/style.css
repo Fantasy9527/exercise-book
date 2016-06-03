@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { font-family: "宋体"; font-size: 12px;  color:#000;margin:0;padding:0; background-image:url(../images/bg.gif); background-repeat:inherit;}
+div,ul,li,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd,ol,th,td{
+	margin: 0px;
+	padding: 0px;
+	
+}
+li {list-style-type: none;}
+form,input,button,option,textarea,select{ margin: 0px;padding: 0px;}
+input,button,textarea,select{font:100% Tahoma,Helvetica,Arial,sans-serif;}
+a {;text-decoration: none;color:#000; }
+a:link,a:visited {text-decoration: none;}
+
+table {font-size:inherit;font:100%;}
+th { font-weight:normal;}
+img{ border: 0;}
+h3{
+	font-size: 14px;
+	color: #006CDB;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	line-height: 45px;
+	text-align: left;
+}
+h4 { font-size: 12px;}
+h2 {font-size:16px; color:#FFF;  font-family:"微软雅黑"; line-height:30px;}
+#header{ background-image:url(../images/h.jpg); margin-left:auto; margin-right:auto; width:1279px;  height:439px; background-repeat:no-repeat }
+#main { width:990px; margin-left:auto; margin-right:auto; padding-left:20px; padding-right:20px; background-color:#FFF}
+#zxxx{ width:990px; height:45px; line-height:45px; font-family:"微软雅黑"; font-size:14px; color:#06F; }
+
+#gsjj{ width:710px; height:220px; background-color:#FFF}
+#biaoti {width:100%; height:30px; background-image:url(../images/bt2.jpg); background-repeat:repeat}
+#biaoti span { width:148px; float:left;}
+#gsjjnr{
+	height: 130px;
+	width: 666px;
+	margin-left: 25px;
+	margin-top: 30px;
+	line-height: 22px;
+	text-align: left;
+}
+#pic{ height:105px; width:151px; float:left;}
+#gsjjnr span { font-size:14px ; color:#06F; font-weight:bold;}
+#sidebar{ width:212px;}
+#sidebar li{
+	width: 211px;
+	height: 53px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	border-bottom: dashed 1px;
+	text-align: left;
+	 text-indent: 2em;
+	 line-height:40px
+	
+}
+
+#sidebar p{ font-size:14px; font-family:"宋体" ; line-height:1px; }
+
+#lujulei{ background-image:url(../images/2.jpg)}

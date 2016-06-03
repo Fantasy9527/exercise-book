@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+
+<body ng-app="myCtrl" ng-controller="myController">
+   <input type="text" ng-model="seachVal"> 
+   <input type="button" ng-click="seachFn()" value="搜索">
+   <input type="button" ng-click="reset()" value="重置">
+    <table border="1">
+        <thead>
+            <th ng-click="fnSort('name')">名字</th>
+            <th ng-click="fnSort('age')">年龄</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in arrData">
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var app = angular.module("myCtrl", [])
+        app.controller("myController", ["$scope","$filter", function ($scope,$filter) {
+            $scope.seachFn=function(){
+                $scope.arrData=$filter("filter")(oldData,$scope.seachVal)
+            }
+            $scope.fnSort=function(ang){
+                arguments.callee["aa"+ang]=!arguments.callee["aa"+ang]
+                $scope.arrData=$filter("orderBy")($scope.arrData,ang,arguments.callee["aa"+ang])
+            
+            }
+            $scope.reset=function(){
+                $scope.arrData=oldData;
+            }
+            var oldData=[{
+                    name: "a",
+                    age: 5
+                },
+                {
+                    name: "b",
+                    age: 95
+                },
+                {
+                    name: "c",
+                    age: 4
+                },
+                {
+                    name: "d",
+                    age: 25
+                },
+                {
+                    name: "e",
+                    age: 5
+                },
+                {
+                    name: "f",
+                    age: 54
+                },
+                {
+                    name: "g",
+                    age: 75
+                },
+                {
+                    name: "h",
+                    age: 15
+                },
+                {
+                    name: "i",
+                    age: 75
+                },
+                {
+                    name: "j",
+                    age: 58
+                },
+                {
+                    name: "k",
+                    age: 54
+                }
+                       ]
+            $scope.arrData = oldData
+     }])
+    </script>
+</body>
+
+</html>

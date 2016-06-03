@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象</title>
+<script>
+window.onload=function()
+{
+
+function createObj(name,age){    
+
+
+this.name=name;   						
+this.age=age;
+
+
+
+
+
+
+}
+
+createObj.prototype.run=function(){
+
+return this.name+" "+this.age;
+
+
+}
+
+
+
+var box("kkk",20) =new createObj;       				//对象冒充
+    
+alert(box.run())
+
+
+}
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

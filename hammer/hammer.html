@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <title>Document</title>
+    <style>
+        .div1 {
+            width: 400px;
+            height: 400px;
+            background: yellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+
+    <script src="hammer.min.js"></script>
+    <script>
+        window.onload = function () {
+            var obj = Hammer(document.querySelector(".div1"));
+            console.log(obj)
+            obj.get('swipe').set({
+                direction: Hammer.DIRECTION_ALL
+            });
+            obj.on('swiperight', function (ev) {
+                alert("向右滑")
+            })
+
+
+            obj.on('swipeleft', function (ev) {
+                alert("向左滑")
+
+            })
+
+
+            obj.on('swipeup', function (ev) {
+                alert("向上滑")
+
+            })
+
+            obj.on('swipedown', function (ev) {
+                alert("向下滑")
+
+            })
+
+            obj.on('tap', function (ev) {
+                alert("点击了")
+
+            })
+
+
+        }
+    </script>
+</head>
+
+<body>
+
+
+    <div class="div1"></div>
+</body>
+
+</html>

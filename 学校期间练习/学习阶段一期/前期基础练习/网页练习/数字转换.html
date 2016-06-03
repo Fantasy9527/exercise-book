@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	n1=document.getElementById('n1')
+	n2=document.getElementById('n2')
+	b1=document.getElementById('b1')
+	
+	b1.onclick=function()
+	{
+		if(isNaN(parseFloat(n1.value)))
+		{alert('第1个不是数字')
+			}
+		else if(isNaN(parseFloat(n2.value)))
+		{alert('第2个不是数字')
+			}
+			
+			else(alert( parseFloat(n1.value)-parseFloat(n2.value)))
+		
+		//alert( parseFloat(n1.value)-parseFloat(n2.value)) 
+		
+		
+		}
+	
+	
+	
+	}
+
+</script>
+</head>
+
+<body>
+<input id="n1"type="text" />
+<input id="n2" type="text" />
+<input  id="b1"type="button" value="相减" />
+</body>
+</html>

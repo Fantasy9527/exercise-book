@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0; margin:0;}
+body{ text-align:center}
+#Camera{ height:600px; height:800px;display:none}
+#c{ }
+</style>
+<script>   
+ 
+window.addEventListener('DOMContentLoaded', function() {
+    var video = document.querySelector('video');
+  
+
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator	.mozGetUserMedia || navigator.msGetUserMedia;
+    
+	window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+ 
+    navigator.getUserMedia({video: true}, successCallback, errorCallback);
+		
+
+	   function successCallback(stream) {
+       
+        if (video.mozSrcObject !== undefined) {
+            video.mozSrcObject = stream;
+        } else {
+            video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+        }
+        video.play();
+    }
+ 
+    function errorCallback(error) {
+       alert(相机错误)
+    }
+ 
+	
+	
+	
+var Open=document.getElementById("open")
+	
+var oBtn=document.getElementById("btn");
+	
+var canvas=document.getElementById("c"); //动态创建画布对象
+var ctx=canvas.getContext("2d");
+
+Open.onclick=function(){
+	Camera.style.display="block"
+	
+	
+	}
+oBtn.onclick=function(){
+
+
+ctx.drawImage(video,0,0,720,500,0,0,400,300); //将video对象内指定的区域捕捉绘制到画布上指定的区域，可进行不等大不等位的绘制。
+Camera.style.display="none"
+
+	
+	
+	}
+
+	
+}, false);
+
+
+
+
+</script>
+</head>
+
+<body>
+<input type="button" id="open" value="打开相机"/>
+<div id="Camera">
+
+<video id="video" autoplay width="400" height="300"></video>  
+<input type="button" id="btn" value="拍照"/>
+
+
+
+</div>
+   
+<canvas id="c" width="400" height="300"></canvas>
+</body>
+</html>

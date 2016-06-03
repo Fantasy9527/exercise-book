@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>
+      捕鱼游戏练习
+    </title>
+  </head>
+  <style>
+    *{ padding:0; margin:0;} body{ background:#000; text-align:center} #canvas1{
+    background:url(images/game_bg_2_hd.jpg) center center no-repeat; margin-top:20px;}
+  </style>
+  <script>
+    function ImageLoad(arr, fn) {
+      var loaded = 0;
+      var json = {}
+      for (var i = 0; i < arr.length; i++) {
+
+        var oImg = new Image();
+        oImg.onload = function() {
+
+          loaded++
+          if (loaded == arr.length) {
+            fn(json)
+          }
+
+        }
+        oImg.src = "images/" + arr[i]
+
+        var name = arr[i].split(".")[0];
+        json[name] = oImg // 不懂的地方
+      }
+
+    }
+
+
+
+
+
+    window.onload = function() {
+      var oC = document.getElementById("canvas1");
+      var gd = oC.getContext("2d");
+      /*
+	var oImg= new Image();
+	
+	oImg.onload=function(){
+		var i=0;
+		setInterval(function(){
+			gd.clearRect(0,0,800,600)
+			gd.drawImage(oImg,
+						  0,i*60, //图片位置
+						  60,60,//图片显示的宽高
+						  0,0,//显示位置
+						  60,60//显示的大小
+						  );
+			
+			i++
+			if(i>10){
+				i=0
+				}
+			},30)
+		
+		
+		}
+	oImg.src="images/coinAni2.png";
+	*/
+      ImageLoad(["bullet1.png", "cannon1.png", "coinAni2.png", "fish1.png"],
+      function(imags) {
+        setInterval(function() {
+          gd.clearRect(0, 0, oC.width, oC.height) ;
+		  gd.drawImage(imags["cannon1"], 0, 0, 74, 66, gun_x, gun_y, 74, 66)
+          // 画炮
+          for (var i = 0; i < aBull.length; i++) {
+            gd.drawImage(imags["bullet1"], aBull[i].x, aBull[i].y)
+
+          }
+
+          //画鱼
+          for (var i = 0; i < aFish.length; i++) {
+            gd.drawImage(imags["fish1"], 0, parseInt(aFish[i].zhen) * 36, 55, 36, aFish[i].x, aFish[i].y, 55, 36)
+
+          }
+
+        },
+        100 / 60)
+
+        setInterval(function() {
+          for (var i = 0; i < aBull.length; i++) {
+            aBull[i].y -= 5
+
+          }
+
+          for (var i = 0; i < aFish.length; i++) {
+            for (var j = 0; j < aBull.length; j++) {
+
+              if (testColl(aBull[j].x, aBull[j].y, 55, 36, aFish[i].x, aFish[i].y, 24, 26)) {
+
+                aFish.splice(i, 1);
+                i--;
+                aBull.splice(j, 1);
+                j--;
+              }
+            }
+          }
+
+        },
+        100 / 60)
+
+        setInterval(function() {
+          for (var i = 0; i < aFish.length; i++) {
+            aFish[i].x += 1;
+            aFish[i].zhen += 0.1;
+            if (aFish[i].zhen >= 4) {
+
+              aFish[i].zhen = 0
+            };
+
+          }
+
+        },
+        100 / 60)
+
+      }); 
+	  
+	  
+	  
+	  
+	  var gun_x = (oC.width - 66) / 2;
+      var gun_y = oC.height - 74;
+
+      document.onkeydown = function(ev) {
+
+        var oEvent = ev || event;
+
+        switch (oEvent.keyCode) {
+        case 37:
+          gun_x -= 5;
+          break;
+
+        case 39:
+          gun_x += 5;
+          break;
+
+        case 32:
+          aBull.push({
+            x:
+            gun_x + 25,
+            y: gun_y - 24
+
+          });
+          break
+        }
+
+      } //炮移动开炮
+      var aBull = [];
+      var aFish = []
+
+      setInterval(function() {
+        aFish.push({
+          x: -50,
+          y: Math.random() * 600,
+          zhen: 0
+
+        })
+
+      },
+      300)
+
+      function testColl(x1, y1, w1, h1, x2, y2, w2, h2) {
+        var l1 = x1;
+        var r1 = x1 + w1;
+        var t1 = y1;
+        var b1 = y1 + h1;
+
+        var l2 = x2;
+        var r2 = x2 + w2;
+        var t2 = y2;
+        var b2 = y2 + h2;
+
+        if (r1 < l2 || l1 > r2 || b1 < t2 || t1 > b2) {
+          return false
+        }
+
+        else {
+
+          return true
+
+        }
+
+      }
+
+    }
+  </script>
+  
+  <body>
+    <canvas id="canvas1" width="1024" height="600">
+    </canvas>
+  </body>
+
+</html>

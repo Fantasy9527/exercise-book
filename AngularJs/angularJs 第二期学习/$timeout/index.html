@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="" ng-app="" ng-controller="myCtrl">
+        <!--<input type="text" ng-model="person.name" placeholder="You name">-->
+        <h1>Hello {{person.name}}</h1>
+        <h5>{{clock}}</h5>
+    </div>
+    <script>
+        function myCtrl($scope, $timeout) {
+            function clock(){
+                $scope.clock= new Date();
+                $timeout(function(){
+                clock()
+            },1000)
+            }
+            clock()
+            
+            };
+        
+        var i=0;
+        function timeout(){
+            i++;
+            console.log(i)
+            setTimeout(function(){
+                timeout()
+            },1000)
+        
+        }
+        timeout()
+        
+    </script>
+</body>
+</html>

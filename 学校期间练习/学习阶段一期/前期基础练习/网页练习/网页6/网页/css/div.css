@@ -1,0 +1,513 @@
+body {
+	background-image: url(../images/about%20beijin.png);
+	padding: 0px;
+	font-family: "黑体";
+	font-size: 12px;
+	color: #CCCCCC;
+	width: 100%;
+	position: relative;
+	background-repeat: repeat;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	
+
+
+}
+a:link {
+	color: #666;
+	text-decoration: none;
+}
+a:visited {
+	color: #666;
+	text-decoration: none;
+}
+a:hover {
+	color: #666;
+	text-decoration: none;
+}
+a:active {
+	color: #666;
+	text-decoration: none;
+}
+
+
+
+
+#bmtop {
+	height: 40px;
+	width: 100%;
+	background-image: url(../images/bg.jpg);
+	background-repeat: repeat;
+}
+
+#box {
+	clear: none;
+	float: none;
+	width: 100%;
+	position: relative;
+	background-repeat: repeat;
+	height: 40px;
+	background-image: none;
+	color: #FFF;
+	background-color: #000;
+	margin-top: 0px;
+}
+#xbox {
+	height: 640px;
+	width: 1004px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	background-attachment: fixed;
+	background-image: none;
+}
+#box2 {
+	height: 640px;
+	width: 100%;
+	float: none;
+	position: relative;
+	clear: both;
+	margin: 0px;
+	background-image: url(../images/121919312b505D0J.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+#logo {
+	position: absolute;
+	width: 210px;
+	left: 757px;
+	top: 21px;
+	height: 105px;
+	background-image: url(../images/nike%20logo.png);
+	background-repeat: no-repeat;
+}
+
+
+#box3 {
+	height: auto;
+	width: 100%;
+	position: relative;
+	background-image: url(../images/blue-bg.jpg);
+	background-repeat: repeat;
+	background-color: #FFF;
+	background-attachment: fixed;
+	background-position: top;
+}
+
+#about {
+	position: absolute;
+	left: 0px;
+	top: 22px;
+	background-image: url(../images/about%20me.png);
+	width: 748px;
+	height: 88px;
+	background-repeat: no-repeat;
+}
+
+#box4 {
+	height: 320px;
+	width: 100%;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	position: relative;
+}
+
+#box5 {
+	height: 99px;
+	width: 100%;
+	background-image: url(../images/png.png);
+	background-repeat: repeat-x;
+}
+
+
+#box6 {
+	height: 640px;
+	width: 100%;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	background-color: #FFF;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: center top;
+	
+}
+#box7 {
+	height: 90px;
+	width: 100%;
+	float: none;
+	position: relative;
+	clear: none;
+	margin: 0px;
+	background-image: url(../images/box%204%20beijin.png);
+	background-attachment: fixed;
+	background-repeat: repeat;
+	background-position: center top;
+}
+#daohang {
+	position: absolute;
+	left: 729px;
+	top: -5px;
+	width: 323px;
+	height: 315px;
+}
+#daohangmain {
+	height: 50px;
+	font-size: 60px;
+	font-family: "黑体";
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+
+
+#main {
+	margin-top: 0px;
+	width: 425px;
+	float: none;
+	clear: none;
+	height: 208px;
+	font-size: 16px;
+	position: absolute;
+	left: 22px;
+	top: 146px;
+}
+#copyright {
+	height: 99px;
+	width: 1004px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+#copyrightmain {
+	width: 600px;
+	left: 310px;
+	top: 2133px;
+	margin-right: auto;
+	margin-left: 200px;
+	margin-bottom: 0px;
+	height: 16px;
+	margin-top: 85px;
+	float: left;
+}
+
+
+.content {
+	height: auto;
+	width: 1004px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#content5 {
+	height: 640px;
+	width: 1004px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#content4 {
+	width: 100%;
+}
+
+#content2 {
+	position: relative;
+	height: 793px;
+	color: #CCC;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+#boxnewsmain1 {
+	height: 40px;
+	width: 50%;
+	float: left;
+}
+#boxnewsmain2 {
+	height: 40px;
+	width: 50%;
+	float: right;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+}
+#boxnewsmain3 {
+	height: 100%;
+	width: 100%;
+}
+
+#boxnews {
+	height: 793px;
+	background-image: url(../images/box%204%20beijin.png);
+	background-repeat: repeat;
+	background-color: #FFF;
+}
+
+
+#content3 {
+	background-image: url(../images/about%20beijin.png);
+	background-repeat: repeat;
+	height: 320px;
+
+}
+#aboutnike {
+	position: absolute;
+	width: 346px;
+	height: 184px;
+	left: 10px;
+	top: 26px;
+	font-size: 18px;
+	color: #CCC;
+	font-family: "微软雅黑";
+}
+#mainbottom  {
+	position: absolute;
+	left: 22px;
+	top: 404px;
+	width: 424px;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	color: #C90;
+}
+
+
+#backtop  {
+	height: 75px;
+	width: 75px;
+	margin-right: auto;
+	margin-left: auto;
+	position: absolute;
+	left: 920px;
+	top: -44px;
+	background-image: none;
+}
+
+.menu {
+	height: 40px;
+	display: block;
+	padding: 0px;
+	width: 1004px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+
+.menu ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+}
+
+.menu ul li {
+	
+			float: left;
+	overflow: hidden;
+	position: relative;
+	line-height: 40px;
+	text-align: center;
+}
+
+.menu ul li a {
+			
+			position: relative;
+			display: block;
+			width: 90px;
+			height: 40px;
+			font-family: "微软雅黑", "宋体";
+			font-size: 12px;
+			text-decoration: none;
+			cursor: pointer;
+}
+
+.menu ul li a span {
+			
+			position: absolute;
+			left: 0;
+			width: 90px;
+}
+
+		.menu ul li a span.out {
+			top: 0px;
+}
+
+		.menu ul li a span.over,
+		.menu ul li a span.bg {
+			/* hide */  
+			top: -40px;
+}
+
+
+#menu2 {
+			background: #000;		
+}
+		
+#menu2 ul li a {
+			color: #999999;
+}
+
+#menu2 ul li a span.over {
+	background-color: #f0f0f0;
+	color: #000;
+}
+#contact {
+	position: absolute;
+	left: 102px;
+	top: 5px;
+	width: 424px;
+	height: 245px;
+	font-family: "微软雅黑";
+}
+#box3main {
+	font-family: "黑体";
+	font-size: 88px;
+	position: absolute;
+	left: 327px;
+	top: 32px;
+	width: 400px;
+	height: 94px;
+}
+#copyright1 {
+	height: 20px;
+	width: 60px;
+	float: left;
+	font-size: 14px;
+	margin-right: 20px;
+}
+#copyright2 {
+	height: 20px;
+	width: auto;
+	float: left;
+	font-size: 14px;
+	margin-right: 20px;
+}
+#copyright3 {
+	height: 20px;
+	width: auto;
+	float: left;
+	font-size: 14px;
+}
+#newsmain {
+	height: 450px;
+	width: 900px;
+	background-color: #CCC;
+}
+#bm1 {
+	float: left;
+	height: 251px;
+	width: 25%;
+	left: 0px;
+	top: 40px;
+	background-image: url(../images/536865-003_L5.png);
+	background-repeat: no-repeat;
+	color: #FFF;
+	font-weight: bold;
+}
+#bm2 {
+	float: left;
+	height: 251px;
+	width: 251px;
+	position: absolute;
+	left: 251px;
+	top: 40px;
+	background-image: url(../images/525022-404_L5.png);
+	background-color: #FFF;
+}
+#bm3 {
+	float: right;
+	height: 251px;
+	width: 251px;
+	position: absolute;
+	left: 502px;
+	top: 40px;
+	background-image: url(../images/BA4391-084_M1.png);
+	background-color: #000;
+	color: #000;
+}
+#bm4 {
+	height: 251px;
+	width: 251px;
+	float: right;
+	position: absolute;
+	left: 753px;
+	top: 40px;
+	background-image: url(../images/542240-407_M1.png);
+	background-color: #FFF;
+	color: #FFF;
+}
+#bm5 {
+	height: 251px;
+	width: 251px;
+	float: right;
+	position: absolute;
+	left: -1px;
+	top: 293px;
+	background-color: #FFF;
+	background-image: url(../images/507736-547_L1.png);
+}
+#bm6 {
+	height: 251px;
+	width: 251px;
+	float: right;
+	position: absolute;
+	left: 253px;
+	top: 292px;
+	background-color: #000;
+	background-image: url(../images/506628-657_M1.png);
+}
+#bm7 {
+	height: 251px;
+	width: 25%;
+	float: right;
+	position: absolute;
+	left: 252px;
+	top: 546px;
+	background-color: #CCC;
+	background-image: url(../images/464994-010_.png);
+}
+#bm8 {
+	height: 251px;
+	width: 25%;
+	float: right;
+	position: absolute;
+	left: -2px;
+	top: 546px;
+	background-color:#000;
+	background-image: url(../images/519590-695_M3.png);
+}
+#bm9 {
+	height: 502px;
+	width: 502px;
+	float: right;
+	position: absolute;
+	left: 504px;
+	top: 293px;
+	background-color: #FFF;
+	background-image: url(../images/bg.jpg);
+	background-repeat: repeat;
+}
+#topbm1 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 24px;
+	color: #CCC;
+	font-weight: bold;
+	height: 30px;
+}
+
+
+
+
+#boxnewsmain4 {
+	height: auto;
+	width: 100%;
+	margin-top: 12px;
+}

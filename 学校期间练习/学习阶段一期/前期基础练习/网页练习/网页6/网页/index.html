@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NIKE 官方网站</title>
+
+
+<link href="css/div.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript" src="js/javascript.js"></script>
+
+<SCRIPT src="js/javascript2.js" type=text/javascript></SCRIPT>   	
+<script language="javascript">
+$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+    </script>
+
+
+   
+  
+
+
+
+
+</head>
+
+
+</body>
+
+<div id="box">
+
+<div id="menu2" class="menu">
+      <ul>
+      <li><a href="#">首　　页</a></li>
+      <li><a href="#">新闻中心</a></li>
+      <li><a href="#">新品上市</a></li>
+      <li><a href="#">NIKE广告</a></li>
+      <li><a href="#">网站地图</a></li>
+      <li><a href="#">隐私申明</a></li>
+      <li><a href="#">使用条款</a></li>
+      <li><a href="#">关于我们</a></li>
+      <li><a href="#">HOME</a></li>
+    </ul>
+      <div class="menu">  
+      </div>
+  </div>
+</div> 
+<div id="box2">
+ 
+ <div class="menu" id="xbox">
+   
+   <div class="content" id="content">
+   
+   <div id="logo"></div>
+   
+   <div id="main">
+    
+    <div id="main top">
+      <h1>_______________________ </h1>
+      <h1> JUST DO IT.</h1>
+      <h1><span class="solid_line">用运动，没人会说你不行<br />
+      </span></h1>
+      <p>-----------</p>
+      <p class="solid_line">IN SPORTS,NO ONE WILL TELL YOU NO!!<br />
+    </div>
+    
+    </div>
+    <div id="mainbottom">
+      <p>CARE TO KNOW MORE ABOUT US?</p>
+            
+    </div>
+   </div>   
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="boxnews">
+<div class="content" id="content2">
+  
+  
+    <UL class=artist_l>
+  <LI class=a1><A href="http://www.lanrentuku.com/" target=_blank><IMG 
+  src="images/m_127494367.jpg" alt=NIKE border="0" 
+  title=NIKE></A>  </LI>
+  <LI class=a2><IMG 
+  src="images/2011090607232921.jpg"> 
+  <A href="#                          " 
+  target=_blank>If you really want it <br />
+  <BR>
+  只要心够决<BR>查看详情</A> </LI>
+  <LI class=a3><IMG 
+  src="images/8447728_103810005325_2.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>重要的，不是这双鞋</STRONG><BR><SPAN>It's not about the shoes</SPAN><BR>查看详情</A> </LI>
+  <LI class=a4><IMG 
+  src="images/1265616297022.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>而是知道要往何处前进</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a5><IMG 
+  src="images/m_128102368385.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG></STRONG><BR><SPAN>Nike经典Air Max跑鞋套装发布</SPAN><BR>查看详情</A> </LI>
+  <LI class=a6><IMG 
+  src="images/536865-003_L5.png"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank>take the ball <BR><SPAN>出手夺球</SPAN><BR>查看详情</A> </LI>
+  <LI class=a7><IMG 
+  src="images/20101011104220205.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>却没忘记自己来自哪里</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a8><IMG 
+  src="images/1457.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>而是拥有面对失败的勇气</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a9><IMG 
+  src="images/2011090607232974.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>遭受打击却依然坚定</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a10><IMG 
+  src="images/WM0072-100_L5.png"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>发挥所有潜力</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a11><IMG 
+  src="images/061103nike.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>成就更出色的自己</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a12><IMG 
+  src="images/32f35532a65ed45bd4a9d4a3e2734e2b.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>勇敢做你自己</STRONG><BR><SPAN>It's about being who you are born to be</SPAN><BR>查看详情</A> 
+</LI></UL>
+  
+  
+  
+
+
+
+
+
+
+
+  
+  <UL class=artist_l>
+  <LI class=a1><A href="http://www.lanrentuku.com/" target=_blank><IMG 
+  src="images/2008063.jpg" ></A>  </LI>
+  <LI class=a2><IMG 
+  src="images/200861911317494_.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>你最好全 心关注</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a3><IMG 
+  src="images/nikechaokuxuanchuanhaibaobizhi_4313.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>因为我会全力以赴</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a4><IMG 
+  src="images/20080630075.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>用运动，没人会说你不行</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a5><IMG 
+  src="images/d3a13a37-e663-4fb1-8039-3f65443c3c77.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>无关个人是否相信</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a6><IMG 
+  src="images/091207_edu_ps2_1.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>以及内心深处的信念</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a7><IMG 
+  src="images/70716_439.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>重要的，是荣耀来临前的努力</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a8><IMG 
+  src="images/200932511103951.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>想做就做。 不做下一个谁,做第一个我!!!</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a9><IMG 
+  src="images/1455.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>从挫折中学习</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a10><IMG 
+  src="images/201104210017209.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>将所有燃烧成激情</STRONG><BR><SPAN></SPAN><BR>查看详情</A> </LI>
+  <LI class=a11><IMG 
+  src="images/m_12459006.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>你可以做到任何事</STRONG><BR><SPAN>lanrentuku.com</SPAN><BR>查看详情</A> </LI>
+  <LI class=a12><IMG 
+  src="images/00043538.jpg"> 
+  <A href="http://www.lanrentuku.com/" 
+  target=_blank><STRONG>你在乎的是赢得未来</STRONG><BR><SPAN></SPAN><BR>查看详情</A> 
+</LI></UL>
+  
+  
+  
+  
+  
+ 
+  
+  
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="box7">
+      <div id="about">
+</div>
+  
+  
+</div>
+<div id="box4">
+<div id="nike about">
+       <div class="content" id="content3">
+       
+       <div id="daohang">
+         <div id="daohangmain"><a href="#">HOME</a></div>
+<div id="daohangmain"><a href="#">ABOUT</a></div>
+         <div id="daohangmain"><a href="#">NEWS</a></div>
+         <div id="daohangmain"><a href="#">PORTFOLIO</a></div>
+         <div id="daohangmain"><a href="#">SERVICE</a></div>
+         <div id="daohangmain"><a href="#">CONTACT</a></div>
+       </div>
+       <div id="backtop"><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','images/back-to-top-hover.png',1)"><img src="images/back-to-top-hover.png" name="Image1" width="74" height="74" border="0" id="Image1" /></a></div>
+       <div id="contact">
+    <h3>
+             <h1>ABOUT ME</h1>
+</h3>
+           <h4>Nike,is an American multinational corporation that is engaged in the design, development and worldwide marketing and selling of footwear, apparel, equipment, accessories and services.he company is headquartered near Beaverton, Oregon, in the Portland metropolitan area. It is the world's leading supplier of athletic shoes and apparel[3] and a major manufacturer of sports equipment, with revenue in excess of US$24.1 billion in its fiscal year 2012 (ending May 31, 2012). As of 2012, it employed more than 44,000 people worldwide.</h4>
+           <p>&nbsp;</p>
+         </div>
+    </div>
+  </div>
+</div>
+   <div id="box5">
+   <div class="copyright" id="copyright">
+   <div id="copyrightmain">关于我们 | 隐私声明 | 使用条款 | 网站导航 | 沪ICP备10213287号© 2011 NIKE, INC. ALL RIGHTS RESERVED
+   
+    
+   </div>
+   </div>
+   </div>
+  
+</body>
+</html>

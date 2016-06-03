@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="zepto.min.js"></script>
+    <script src="touch.js"></script>
+    <script>
+        $(function () {
+            $('.gay').css("background", "#000")
+            $('.gay').tap(function () {
+                $(this).remove()
+            });
+
+            $.ajax({
+                type: "get",
+                url: "aJaxtest.html",
+                dataType: "html",
+                success: function (data) {
+
+                    alert($(data).html())
+                }
+            })
+
+
+        })
+    </script>
+    <style>
+        .green p {
+            color: green
+        }
+        .red p {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div class="green">
+        <div class="red">
+            <p>什么fdsfsdfsdfsdfsdf颜色</p>
+        </div>
+    </div>
+    <div class="red">
+        <div class="green">
+            <p>什么FDSFDFSF颜色</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

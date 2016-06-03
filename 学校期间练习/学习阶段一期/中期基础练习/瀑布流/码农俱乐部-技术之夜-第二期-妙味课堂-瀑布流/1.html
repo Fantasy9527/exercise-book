@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+* {margin: 0; padding: 0;}
+#container { width: 1000px; border: 1px solid red; position: relative; margin: 50px auto 0; }
+#container img { position: absolute; }
+
+#loader { width: 100%; height: 60px; background: url('loader.gif') no-repeat center #FFF; position: fixed; bottom: 0; left: 0; display: none; }
+</style>
+<script src="jquery-1.9.1.min.js"></script>
+<script>
+/*
+固定列：浮动布局
+定位
+*/
+$(function() {
+	
+	var oContainer = $('#container');
+	var iCells = 0;
+	var iWidth = 200;
+	var iSpace = 10;
+	var iOuterWidth = iWidth + iSpace;
+	var sUrl = 'http://www.wookmark.com/api/json/popular?callback=?';
+	var arrT = [];
+	var arrL = [];
+	var iPage = 0;
+	var iBtn = true;
+	
+	function setCell() {
+		iCells = Math.floor($(window).innerWidth() / iOuterWidth);
+		if (iCells < 3) {
+			iCells = 3;
+		} else if (iCells > 6) {
+			iCells = 6;
+		}
+		//alert(iCells);
+		oContainer.css('width', iCells * iOuterWidth) - 10;
+	}
+	setCell();
+	
+	for (var i=0; i<iCells; i++) {
+		arrT[i] = 0;
+		arrL[i] = iOuterWidth * i;
+	}
+	//console.log(iCells);
+	//console.log(arrL);
+	
+	function getData() {
+		if (!iBtn) {
+			return ;
+		}
+		iBtn = false;
+		iPage++;
+		$.getJSON(sUrl, {page:iPage}, function(jData) {
+			$('#loader').show();
+			$.each(jData, function(index, obj) {
+				
+				var oImg = $('<img />');
+				
+				//宽高
+				var iHeight = obj.height * (iWidth / obj.width);
+				oImg.css({
+					width	:	iWidth,
+					height	:	iHeight
+				});
+				
+				var _index = getMin();
+				oImg.css({
+					left	:	arrL[_index],
+					top		:	arrT[_index]
+				});
+				arrT[_index] += iHeight + 10;
+				
+				oContainer.append(oImg);
+				
+				var objImg = new Image();
+				objImg.onload = function() {
+					oImg.attr('src', this.src);
+				}
+				objImg.src = obj.preview;
+				
+				setTimeout(function() {
+					$('#loader').hide();
+				},1000)
+				
+				iBtn = true;
+				
+			})
+			
+		});
+	}
+	getData();
+	//arrT = [11,23,5,7];
+	
+	function getMin() {
+		var v = arrT[0];
+		var _index = 0;
+		
+		for (var i=1; i<arrT.length; i++) {
+			if (arrT[i] < v) {
+				v = arrT[i];
+				_index = i;
+			}
+		}
+		return _index;
+	}
+	
+	//alert(getMin());
+	
+	$(window).on('scroll', function() {
+		var _index =getMin();
+		var iH = $(window).scrollTop() + $(window).innerHeight();
+		document.title = iH + ':' + (arrT[_index] + 50);
+		if (arrT[_index] + 50 < iH) {
+			getData();
+		}
+		
+	})
+	
+	$(window).on('resize', function() {
+		var iLen = iCells;
+		setCell();
+		if (iLen == iCells) {
+			return ;
+		}
+		arrT = [];
+		arrL = [];
+		for (var i=0; i<iCells; i++) {
+			arrT[i] = 0;
+			arrL[i] = iOuterWidth * i;
+		}
+		oContainer.find('img').each(function() {
+			
+			var _index = getMin();
+			/*$(this).css({
+				left	:	arrL[_index],
+				top		:	arrT[_index]
+			});*/
+			$(this).animate({
+				left	:	arrL[_index],
+				top		:	arrT[_index]
+			}, 1000);
+			arrT[_index] += $(this).height() + 10;
+			
+		});
+	})
+	
+	
+	
+})
+</script>
+</head>
+
+<body>
+	<div id="container"></div>
+    <div id="loader"></div>
+</body>
+</html>

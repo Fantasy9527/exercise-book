@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.scrollTo.js"></script>
+<script>
+
+
+ function goto(id,speed) {
+        $("#" + id).ScrollTo(speed);
+    }
+/*$(function(){   
+    $(".nav_pro").click(function(){   
+        $.scrollTo(x,'#pro',500);   
+    });   
+    $(".nav_news").click(function(){   
+        $.scrollTo(x,'#news',800);   
+    });   
+    $(".nav_ser").click(function(){   
+        $.scrollTo(x,'#ser',1000);   
+    });   
+    $(".nav_con").click(function(){   
+        $.scrollTo('#con',1200);   
+    });   
+    $(".nav_job").click(function(){   
+        $.scrollTo('#job',1500);   
+    });   
+});  */
+</script>
+<style>
+body{ width:6000px}
+div{ width:1000px; float:left}
+ul{position:fixed;}
+li{ list-style:none;  margin:10px;  }
+</style>
+<body>
+<ul class="nav">   
+   <li><a href="#" class="nav_pro"  onclick="javascript:goto('pro',800);return false;" >产品展示</a></li>   
+   <li><a href="#" class="nav_news" onclick="javascript:goto('news',800);return false;">新闻中心</a></li>   
+   <li><a href="#" class="nav_ser" onclick="javascript:goto('ser',800);return false;">服务支持</a></li>   
+   <li><a href="#" class="nav_con" onclick="javascript:goto('con',800);return false;">联系我们</a></li>   
+   <li><a href="#" class="nav_job" onclick="javascript:goto('job',800);return false;">人才招聘</a></li>   
+</ul>
+<div id="pro" class="box">   
+   <h3>产品展示</h3>   
+</div>   
+<div id="news" class="box">   
+   <h3>新闻中心</h3>   
+</div>   
+<div id="ser" class="box">   
+   <h3>服务支持</h3>   
+</div>   
+<div id="con" class="box">   
+   <h3>联系我们</h3>   
+</div>   
+<div id="job" class="box">   
+   <h3>人才招聘</h3>   
+</div>  
+</body>
+</html>

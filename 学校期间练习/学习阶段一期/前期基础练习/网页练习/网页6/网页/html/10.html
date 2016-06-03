@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NIKE 官方网站</title>
+<script type="text/javascript" src="../js/javascript.js"></script>
+
+ 	
+<script language="javascript">
+$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {	
+
+	//Show Banner
+	$(".main_image .desc").show(); //Show Banner
+	$(".main_image .block").animate({ opacity: 0.85 }, 1 ); //Set Opacity
+
+	//Click and Hover events for thumbnail list
+	$(".image_thumb ul li:first").addClass('active'); 
+	$(".image_thumb ul li").click(function(){ 
+		//Set Variables
+		var imgAlt = $(this).find('img').attr("alt"); //Get Alt Tag of Image
+		var imgTitle = $(this).find('a').attr("href"); //Get Main Image URL
+		var imgDesc = $(this).find('.block').html(); 	//Get HTML of block
+		var imgDescHeight = $(".main_image").find('.block').height();	//Calculate height of block	
+		
+		if ($(this).is(".active")) {  //If it's already active, then...
+			return false; // Don't click through
+		} else {
+			//Animate the Teaser				
+			$(".main_image .block").animate({ opacity: 0, marginBottom: -imgDescHeight }, 250 , function() {
+				$(".main_image .block").html(imgDesc).animate({ opacity: 0.85,	marginBottom: "0" }, 250 );
+				$(".main_image img").attr({ src: imgTitle , alt: imgAlt});
+			});
+		}
+		
+		$(".image_thumb ul li").removeClass('active'); //Remove class of 'active' on all lists
+		$(this).addClass('active');  //add class of 'active' on this list only
+		return false;
+		
+	}) .hover(function(){
+		$(this).addClass('hover');
+		}, function() {
+		$(this).removeClass('hover');
+	});
+			
+	//Toggle Teaser
+	$("a.collapse").click(function(){
+		$(".main_image .block").slideToggle();
+		$("a.collapse").toggleClass("show");
+	});
+	
+});//Close Function
+</script>
+<link href="../css/div3.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+a:link {
+	color: #000;
+	text-decoration: none;
+}
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+	font-size: 14px;
+	font-family: "微软雅黑";
+}
+a {
+	font-family: "微软雅黑";
+}
+body,td,th {
+	font-size: 12px;
+	font-family: "微软雅黑";
+}
+</style>
+</head>
+
+
+</body><body>
+
+<div id="box">
+
+<div id="menu2" class="menu">
+      <ul>
+      <li><a href="#">首　　页</a></li>
+      <li><a href="#">新闻中心</a></li>
+      <li><a href="#">新品上市</a></li>
+      <li><a href="#">NIKE广告</a></li>
+      <li><a href="#">网站地图</a></li>
+      <li><a href="#">隐私申明</a></li>
+      <li><a href="#">使用条款</a></li>
+      <li><a href="#">关于我们</a></li>
+      <li><a href="#">HOME</a></li>
+    </ul>
+      <div class="menu">  
+      </div>
+  </div>
+</div> 
+<div id="box2">
+ 
+ <div class="menu" id="xbox">
+   
+   <div class="content" id="content">
+   
+   <div id="logo"><img src="../images/nike logo.png" width="200" height="82" /></div>
+   
+   <div id="main">
+    
+    <div id="main top">
+      <h1>_______________________ </h1>
+      <h1> JUST DO IT.</h1>
+      <p>&nbsp;</p>
+      <h1><span class="solid_line">用运动，没人会说你不行<br />
+      </span></h1>
+      <p>-----------</p>
+      <p class="solid_line">IN SPORTS,NO ONE WILL TELL YOU NO!!<br />
+    </div>
+    
+    </div>
+    <div id="mainbottom">
+      <p>CARE TO KNOW MORE ABOUT US?</p>
+            
+    </div>
+   </div>   
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="boxnews">
+<div class="content" id="content2">
+  <div id="bn1">
+    <div id="bnm1">
+      <div id="xbnm1">  NIKE NEWS</div>
+      <div id="xbnm2">NIKE最新时报</div>
+    </div>
+    
+    <div id="xbnm4">Air Max 90 Premium 鞋履系列
+      <div id="xxbnm4">Nike 2013 春季新品</div>
+        <div id="xxxbnm4"><img src="../images/U5637P6DT2013011116100.jpg" width="317" height="150" /></div>
+        
+    </div> 
+     
+    
+    <div id="xbnm5">Air Force 1 Hi Kobe 系列上市
+      <div id="xxbnm5">Nike 2013 春季新品</div>
+      <div id="xxxbnm5"><img src="../images/Nik.jpg" width="317" height="150" /></div>
+    </div>
+    
+    
+    <div id="xbnm4">王力宏加入科比讲堂
+      <div id="xxbnm4">最新Nike创意广告</div>
+        <div id="xxxbnm4"><img src="../images/12681214_78045.jpg" width="317" height="150" /></div>
+    </div>    
+    
+    <div id="xbnm5">REFLECTIVE PACK鞋履系列上市
+      <div id="xxbnm5">Nike 2013 春季新品</div>
+      <div id="xxxbnm5"><img src="../images/U5637P6DT201301111609.jpg" width="320" height="150" /></div>
+    </div>
+    
+     <div id="xbnm4">蛇年生肖系列产品推出近期上市
+       <div id="xxbnm4">Nike 2013 春季新品</div>
+        <div id="xxxbnm4"><img src="../images/U5637P6T12D6373606F45DT2013011116125.jpg" width="316" height="150" /></div>
+    </div>    
+    
+    <div id="xbnm5">Air Force 23  Kobe 系列上市
+      <div id="xxbnm5">Nike 2013 春季新品</div>
+      <div id="xxxbnm5"><img src="../images/U5637P6DT2013011116.jpg" width="317" height="150" /></div>
+    </div>
+     
+  
+  </div>
+  <div id="bn2">
+  
+    <div id="xbn2m1">NIKE周边新闻</div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=5" target="_blank"><strong>伍兹还未使用Covert一号木 下周难见两巨头拼耐克</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<a href="#"></a>
+
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=7" target="_blank"><strong>耐克隆重推出VR_S Covert 首创极速凹背一号木</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+<a href="#"></a></div>
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=8" target="_blank"><strong>耐克VR_S Covert一号木 全球首创凹背售价4800</strong></a> </td>
+            </tr>
+          </tbody>
+        </table>
+<a href="#"></a></div>
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=9" target="_blank"><strong>Nike Air Force 1 Low &amp; High 癸巳蛇年别注</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=11" target="_blank"><strong>B.A.P队长方容国推特晒新鞋照 感谢NIKE</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=16" target="_blank"><strong>Nike 再次推出Bruin VNTG 麂皮打造鞋款</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+    <div id="xbn2m2">
+      <div id="xxbn2m2">
+        <table cellspacing="0" cellpadding="2">
+          <tbody>
+            <tr>
+              <td colspan="2"><a href="#" mon="a=5&amp;pn=20" target="_blank"><strong>冬季必备 Nike男子精英跑步触摸手套</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+    
+    <div id="xbn2m1">
+      Cave Chat
+        <div id="tuite">
+        <img src="../images/triangle_twitter.jpg" width="112" height="23" /></div>
+    </div>
+    <div id="xbn2m3">
+      <div id="xxbn2nm3"><img src="../images/100 (2).jpg" width="50" height="50" /></div>
+      <div id="xxbn2nm4"> Limited edition with more lightweight breathable Hyperfuse vamp and visualization of palm cushion</div>
+    </div>
+     <div id="xbn2m3">
+      <div id="xxbn2nm3"><img src="../images/100 (1).jpg" width="50" height="50" /></div>
+      <div id="xxbn2nm4"> Limited edition with more lightweight breathable Hyperfuse vamp and visualization of palm cushion       </div>
+     </div>
+     <div id="xbn2m3">
+       <div id="xxbn2nm3"><img src="../images/50.jpg" width="50" height="50" /></div>
+      <div id="xxbn2nm4"> Limited edition with more lightweight breathable Hyperfuse vamp and visualization of palm cushion, </div>
+  </div>
+  <div id="xbn2m3">
+       <div id="xxbn2nm3"><img src="../images/100.jpg" width="50" height="50" /></div>
+      <div id="xxbn2nm4"> Limited edition with more lightweight breathable Hyperfuse vamp and visualization of palm cushion, </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+<div id="box7">
+      <div id="about">
+</div>
+  
+  
+</div>
+<div id="box4">
+<div id="nike about">
+       <div class="content" id="content3">
+         <div id="contact">
+           <h3>
+             <h1>ABOUT ME</h1>
+</h3>
+           <h4>Nike,is an American multinational corporation that is engaged in the design, development and worldwide marketing and selling of footwear, apparel, equipment, accessories and services.he company is headquartered near Beaverton, Oregon, in the Portland metropolitan area. It is the world's leading supplier of athletic shoes and apparel[3] and a major manufacturer of sports equipment, with revenue in excess of US$24.1 billion in its fiscal year 2012 (ending May 31, 2012). As of 2012, it employed more than 44,000 people worldwide.</h4>
+           <p>&nbsp;</p>
+     </div>
+    </div>
+  </div>
+</div>
+   <div id="box5">
+   <div class="copyright" id="copyright">
+   <div id="copyrightmain">关于我们 | 隐私声明 | 使用条款 | 网站导航 | 沪ICP备10213287号© 2011 NIKE, INC. ALL RIGHTS RESERVED
+   
+    
+   </div>
+   </div>
+   </div>
+  
+</body>
+</html>

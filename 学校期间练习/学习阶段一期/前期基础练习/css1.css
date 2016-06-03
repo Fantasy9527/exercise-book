@@ -1,0 +1,9 @@
+@charset "utf-8";
+body {
+	background:black;
+}
+input{
+	height:200px;
+	width:100px;
+	background:yellow;
+	}

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<style>
+.big{width:400px; height:400px;margin:50px auto;}
+.box{width:200px; height:200px; padding:200px;  border:1px #000 solid;  -webkit-transform-style:preserve-3d; -webkit-perspective:800px;  position:relative;-webkit-transition:2s all; }
+.box div{ height:200px; width:200px;   position:absolute; font-size:200px; color:#fff; text-align:center;}
+.box div:nth-of-type(1){ background:#000; left:0; -webkit-transform-origin:right;-webkit-transform:rotateY(-90deg) }
+.box div:nth-of-type(2){ background:#100;left:200; }
+.box div:nth-of-type(3){ background:#400;left:400px;-webkit-transform-origin:left;-webkit-transform:rotateY(90deg) }
+.box div:nth-of-type(4){ background:#300;left:200;top:200; -webkit-transform-origin:bottom; -webkit-transform:rotateX(90deg) }
+.box div:nth-of-type(5){ background:#400;left:400;top:200px;-webkit-transform-origin:top; -webkit-transform:rotateX(-90deg); }
+.box div:nth-of-type(6){ background:#500;background:#100;left:200; -webkit-transform:rotate(180deg) translateZ(-200px)  }
+
+.big:hover .box { -webkit-transform:rotateX(180deg)}
+</style>
+
+</head>
+
+<body>
+<div class="big">
+<div class="box">
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+</div>
+</div>
+</body>
+</html>

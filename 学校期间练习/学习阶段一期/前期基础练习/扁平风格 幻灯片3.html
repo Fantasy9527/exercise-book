@@ -1,0 +1,40 @@
+<!DOCTYPE HTML	>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扁平风格幻灯片</title>
+
+<style>
+*{ margin:0; padding: 0}
+#box{ width: 1366px; height: 2000px; background: url(402082-1680x1050.jpg)}
+</style>
+ 
+
+<script type="text/javascript">
+window.onload=function(){
+var oBox=document.getElementById('box');
+
+document.onmousewheel=function ()
+	{	
+		oBox.style.backgroundPosition=document.body.scrollTop/10+"px"
+		//document.body.scrollTop=
+		//alert(document.body.scrollTop);
+	}
+
+
+
+
+
+
+}
+</script>
+</head>
+<body>
+<div id="box">
+
+
+</div>
+
+</body>
+
+</html>

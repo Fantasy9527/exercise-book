@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选项卡</title>
+<style>
+.active{
+	background:#FF0;
+	}
+div{
+	 height:200px;
+     width:200px;
+     background:#FF0;
+	 display:none;}
+
+</style>
+<script>
+window.onload=function ()
+{ var a=document.getElementsByTagName('input');
+  var b=document.getElementsByTagName('div'); 
+  
+	for(var i=0;i<a.length;i++)
+	{   a[i].index=i;
+		//a[i].onmousemove=function()
+	    // {
+		  for( var i=0; i<a.length;i++)
+		    {
+				//a[i].className='';
+		        b[i].style.display='none'
+				                            //}
+		 //this.className='active';
+		 b[this.index].style.display='block';
+		
+		   }
+		}
+	
+	
+	
+	}
+
+</script>
+
+</head>
+
+
+
+<body>
+<input class="active"  type="button" value="111"/>
+<input  type="button" value="222"/>
+<input type="button" value="333"/>
+<input type="button" value="444"/>
+<div  id="div1"style="display:block">111</div>
+<div>222</div>
+<div>333</div>
+<div>444</div>
+</body>
+</html>

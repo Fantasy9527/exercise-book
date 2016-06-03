@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象</title>
+<script>
+window.onload=function(){
+new tab()
+
+};
+function tab(){
+This=this
+this.aBtn=document.getElementsByTagName("input");
+this.aDiv=document.getElementsByTagName("div");
+var oBtn=document.getElementsByTagName("input")[0];
+var oDiv=document.getElementsByTagName("div")[0]
+
+oBtn.className="active";
+oDiv.style.display="block"
+
+for(var i =0; i<this.aBtn.length; i++){
+	this.aBtn[i].index=i
+	this.aBtn[i].onmouseover=function(){
+	This.over(this)
+	}
+
+	
+	
+	
+	
+	
+
+}
+tab.prototype.over=function (Btn){
+
+		for(var i =0; i<This.aBtn.length; i++){
+		this.aBtn[i].className="";
+		this.aDiv[i].style.display="none"
+		
+		}
+		Btn.className="active";
+		this.aDiv[Btn.index].style.display="block"
+	
+	
+	}
+
+
+
+}
+</script>
+<style>
+div{width:200px; height:200px; background:yellow; display:none}
+.active{background:yellow}
+
+
+
+</style>
+</head>
+<body>
+<input type="button" value="111"/>
+<input type="button" value="222"/>
+<input type="button" value="333"/>
+<input type="button" value="444"/>
+<div>111</div>
+<div>222</div>
+<div>333</div>
+<div>444</div>
+</body>
+</html>

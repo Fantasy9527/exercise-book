@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li{
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            float: left;
+        }
+    </style>
+    <script src="jquery-2.1.1.min.js"></script>
+    <script>
+        $(function(){
+            $("li").on("click",function(){
+            
+                alert($(this).index())
+            
+            })
+        
+            $("li").eq(0).off()
+        
+        })
+    </script>
+    
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

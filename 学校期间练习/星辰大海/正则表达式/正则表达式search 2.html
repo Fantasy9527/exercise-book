@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式 search</title>
+		<script type="text/javascript">
+		// s :空格
+		// S :非空格
+		// d :数字
+		// D :非数字
+		// w :字符
+		// W :非字符
+		// 正则默认区分大小写,如果要让它不区分大小写,这让正则的最后面,也就是斜杠后面 加上 i
+		//正则全写法, new RegExp("正则","标识")
+		//search 语法 字符串.search(正则);
+
+		var str="sdasadsafd1";
+		var re=/da/i
+		alert(str.search(re))//如果找到了,返回1,没有找到返回-1
+
+		</script>
+	</head>
+	<body>

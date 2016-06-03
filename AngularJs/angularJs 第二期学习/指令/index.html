@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myCtrl">
+  <!-- <div ng-include="/tpl.html"></div>-->
+   
+    <input type="text" ng-model="times" datepicker-dir>
+    <script>
+     var app=angular.module("myCtrl",[])
+     app.directive("datepickerDir", function () {
+    return {
+        restrict: "A",
+        scope: {},
+        link: function (scope, element, attr) {
+            alert()
+            element.on("change",function () {
+                scope[attr.ngModel] = element.val();
+                console.log(scope[attr.ngModel])
+            })
+        }
+    }
+})
+
+    </script>
+</body>
+</html>

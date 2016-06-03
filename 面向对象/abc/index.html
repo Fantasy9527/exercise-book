@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>web</title>
+	<style type="text/css">
+	body{margin:0;width: 100%;height:100%;overflow: hidden;}
+	#warp,.pages,.pages-warp{width: 100%;height:100%;}
+	#warp{position: absolute;overflow: hidden;}
+	</style>
+	<script>
+	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+		var version = parseFloat(RegExp.$1);
+		if(version>2.3){
+			var phoneScale = parseInt(window.screen.width)/640;
+			document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+		}else{
+			document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+		}
+	}else{
+		document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpis">');
+	}
+
+	if(RegExp("MicroMessenger").test(navigator.userAgent)){
+		document.addEventListener('WeixinJSBridgeReady', function() {
+		});
+	}
+	</script>
+</head>
+<body>
+		<section id='warp'>
+			<section class='pages-warp'>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+				<section class='pages'></section>
+			</section>
+		</section>
+</body>
+</html>
+<script>
+	var oWarp = document.querySelector('#warp');
+	var oPagesWapr = oWarp.querySelector('.pages-warp');
+	var aPages = oPagesWapr.querySelectorAll('section');
+	var winWidth = window.innerWidth;
+	var winHeight = window.innerHeight;
+
+
+	var aImgSrc = ['./images/img1.jpg','./images/img2.jpg','./images/img3.jpg','./images/img4.jpg','./images/img5.jpg','./images/img6.jpg','./images/img7.jpg','./images/img8.jpg'];
+
+	for(var i=0;i<aPages.length;i++){
+		aPages[i].index = i;
+		aPages[i].style.height = winHeight+'px';
+		fnOnloadImg(aPages[i],aImgSrc[i]);
+	}
+
+	oWarp.addEventListener('touchstart',fnStart,false);
+	oWarp.addEventListener('touchmove',fnMove,false);
+	oWarp.addEventListener('touchend',fnEnd,false);
+	oPagesWapr.addEventListener('webkitTransitionEnd',animateEnd,false);
+
+	var disY = 0;
+	var disMoveTop = 0
+	var disTop = 0;
+	function fnStart(ev){
+		ev.preventDefault();
+		var touch = ev.touches[0];
+		disY = touch.pageY;
+
+	}
+	function fnMove(ev){
+		ev.preventDefault();
+		var touch = ev.touches[0];
+		var t = touch.pageY - disY+disMoveTop;
+		if(t >= 0){
+			t = 0;
+		}
+		oPagesWapr.style.webkitTransform = 'translate3d(0,'+t+'px,0)';
+		disTop = t;
+	}
+	function fnEnd(ev){
+		var touch = ev.changedTouches[0];
+		disMoveTop = disTop;
+		var index = touch.target.index;
+		if(touch.pageY>disY){
+			oPagesWapr.style.webkitTransform = 'translate3d(0,'+(-(index-1)*winHeight)+'px,0)';
+			oPagesWapr.style.webkitTransition = '-webkit-transform 0.3s ease-out';
+			disMoveTop = -(index-1)*winHeight;
+		}else{
+			oPagesWapr.style.webkitTransform = 'translate3d(0,'+(-(index+1)*winHeight)+'px,0)';
+			oPagesWapr.style.webkitTransition = '-webkit-transform 0.3s ease-out';
+			disMoveTop = -(index+1)*winHeight;
+		}
+
+
+		
+	}
+	function animateEnd(){
+		this.style.webkitTransition = 'none';
+	}
+
+	function fnOnloadImg(obj,sSrc){
+		var oImg = new Image();
+		oImg.onload = function(){
+			obj.style.backgroundImage = 'url('+sSrc+')';
+		}
+		oImg.src = sSrc;
+	}
+</script>

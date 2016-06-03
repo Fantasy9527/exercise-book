@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style type="text/css">
+	*{ padding: 0; margin: 0;}	
+	.box{width: 1000px; border: 1px solid red; margin: 50px auto; position: relative;}
+	.box img { position: absolute; }
+	.loading { width: 100%; height: 60px; background: url('loader.gif') no-repeat center #FFF; position: fixed; bottom: 0; left: 0;  }
+	</style>
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	var	iWidth=200;
+	var jiange=10;
+	var zongkuan=iWidth+jiange
+	var zonghe=1000;
+	var sUrl = 'http://www.wookmark.com/api/json/popular?callback=?';
+	var arrL=[];
+	var arrT=[];
+	var page=0
+	var iCell=0;
+
+		
+		iCell=Math.floor($(window).innerWidth()/zongkuan);
+
+		$(".box").width(iCell*zongkuan)
+
+		for (var i = 0; i < iCell; i++) {
+			arrT.push(0)
+			arrL.push(i*zongkuan)
+		};
+
+getDate()
+function getDate(){
+
+		$.getJSON(sUrl,page,function(data){
+
+			$.each(data,function(index,obj){
+				var oImg=$("<img/>")
+				oImg.attr("src",obj.preview);
+				
+				$(".box").append(oImg);
+					var iHeight=(iWidth/obj.width)*obj.height;
+				oImg.css({
+					width:iWidth,
+					height:iHeight,
+					
+
+				})
+				
+				var _index=getMin()
+				
+				
+				oImg.css({
+					
+					left:arrL[_index],
+					top:arrT[_index]
+
+				})
+				arrT[_index]+=iHeight+10;
+				
+
+			})
+
+
+		})
+		
+
+
+}
+
+
+
+function getMin(){
+			var _index=0
+			var iv=arrT[0];
+			for (var i = 1; i < arrT.length; i++) {
+
+				 if (arrT[i]<iv) {
+				 	iv=arrT[i];
+				 	_index=i;
+
+				 };
+				
+
+			};
+
+			 return _index;
+
+		}
+
+
+
+
+
+
+
+
+
+	})
+
+
+
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+	<div class="box"></div>
+	<div class="loading"></div>
+</body>
+</html>

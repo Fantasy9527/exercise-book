@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>滚轮</title>
+</head>
+<body style="height:900px; wigth:100%; background:#ccc; ">
+
+<script language="JavaScript" type="text/javascript">
+window.onload=function(){
+    mouseWheel(document,fun)
+
+     function fun(e){
+    var e=e||event;
+    var detail=(e.detail/3)||parseInt(-e.wheelDelta/120);
+         aa(detail)
+}
+function mouseWheel(ele,fun)
+{
+   (/firefox/i).test(navigator.userAgent)?ele.addEventListener("DOMMouseScroll",fun,false):ele.onmousewheel=fun;
+}
+     
+ function aa(detail){
+ 	// if (detail>0) {
+ 	// 	 alert('滚轮向下了')
+ 	// }else{
+ 	// 	alert('滚轮向上了')
+ 	// };
+        	alert(detail) 
+        }
+        }
+</script>
+</body>
+</html>

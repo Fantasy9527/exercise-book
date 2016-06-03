@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+    <style>
+    .red{
+      width:100px;
+      height:100px;
+      background: red
+    }
+  </style>
+</head>
+<body ng-controller="aaa">
+<div ng-class={'red':testaaa,'blue':dsds}></div>
+  
+   <button ng-mouseover='test()'>测试</button>
+    <script>
+     angular.module("myCtrl",[]).controller('aaa',function($scope){
+       $scope.testaaa=true
+      $scope.test=function(){
+        $scope.testaaa=!$scope.testaaa
+      
+      }
+     
+     })
+    </script>
+</body>
+</html>

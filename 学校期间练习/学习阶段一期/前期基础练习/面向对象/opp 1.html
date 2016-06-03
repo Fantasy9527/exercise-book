@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象</title>
+<script>
+window.onload=function(){
+
+var box =new Object();
+box.name="Gary",
+box.age=20,
+
+box.run=function(){
+
+return this.name+" "+this.age    //this表示当前作用域下的对象,也就是box
+
+}
+
+var name= "kkk"    //window 下面的 name
+alert(box.run());
+alert(name)
+
+
+
+
+
+
+}
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

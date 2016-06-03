@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0px;
+	border:0px;
+	padding:0px;
+}
+body{
+	background-image:url(../images/3401.png);
+	background-repeat:repeat-x;
+	font-family:"宋体";
+	font-size:12px;
+	color:#666666;
+	line-height:19px;
+}
+.font01 {
+	color:#144c81;
+	font-size:18px;
+	font-family:"微软雅黑";
+	line-height:50px;
+}
+.font01 {
+	color:#144c81;
+	font-size:15px;
+	font-family:"微软雅黑";
+	line-height:30px;
+}

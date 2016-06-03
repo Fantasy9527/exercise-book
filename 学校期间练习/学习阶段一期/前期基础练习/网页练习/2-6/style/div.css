@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url("div.css");
+#box{
+	width:100%;
+	height:900px;
+	background-image:url(../images/2401.jpg);
+	background-repeat:no-repeat;
+}
+#top{
+	padding-top: 10px;
+	margin-left:283px;
+	width:550px;
+	height:20px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	color:#FFF;
+}
+#top li{
+	width:110px;
+	text-align: center;
+	float:left;
+	list-style-type:none;
+}
+#top2 {
+	width:640px;
+	height:360px;
+	margin:20px 0px 0px 285px;
+	font-size:15px;
+	font-family:"宋体";
+	color:#379b99;
+	line-height:22px;
+}
+#main{
+	width:830px;
+	height:390px;
+	margin-left:95px;
+}
+#main-left{
+	width:234px;
+	height:320px;
+	margin-top:35px;
+	margin-left:40px;
+	float:left;
+	line-height:20px;
+}
+#main-zhong{
+	width:234px;
+	height:320px;
+	margin-top:35px;
+	margin-left:40px;
+	float:left;
+	line-height:20px;
+}
+#main-you{
+	width:234px;
+	height:320px;
+	margin-top:35px;
+	margin-left:40px;
+	float:left;
+	line-height:20px;
+}

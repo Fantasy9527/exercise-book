@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+   <div class="city-select">
+       <select name="" id="province">
+           <option value="0">-- 请选择省份--</option>
+           
+       </select>
+       <select name="" id="city" style="display:none">
+           <option value="0">-- 请选择市 --</option>
+           <option value="1">-- 广州 --</option>
+           <option value="2">-- 深圳 --</option>
+       </select>
+       <select name="" id="store" style="display:none">
+           <option value="0">-- 请选择门店 --</option>
+           <option value="1">-- 泰然 --</option>
+       </select>
+   </div>
+    <script>
+        $(function(){
+            
+            var aCity=[{
+        label: '北京',
+        cities: [
+          {
+            label: '朝阳区'
+          },
+          {
+            label: '宣武区'
+          },
+          {
+            label: '海淀区'
+          }
+        ]
+      },
+      {
+        label: '河北',
+        cities: [
+          {
+            label: '石家庄'
+          },
+          {
+            label: '承德'
+          },
+          {
+            label: '唐山'
+          }
+        ]
+      }
+    ] ;           
+                var str='<option value="0">-- 请选择省份--</option>';
+                for(var i=0;i<aCity.length;i++){
+                    var ele=$("#province option").val(i).html()
+                    str+="<option value="+(i+1)+">"+aCity[i].label+"</option>"
+                    }
+            $("#province").html(str)
+                
+            $(".city-select select").on("change",function(){
+                if($(this).val()==0){
+                    $(".city-select select:gt("+$(this).index()+")").css("display","none").html("")
+                }else{              
+               $(".city-select select").eq($(this).index()+1).css("display","block")
+                
+               var str='<option value="0">-- 请选择省份--</option>';
+                for(var i=0;i<aCity[$(this).val()].cities.lenth;i++){
+                    var ele=$("#province option").val(i).html()
+                    str+="<option value="+(i+1)+">"+aCity[$(this).val()-1].cities[i].label+"</option>"
+                    }
+                    console.log(str)
+                $(".city-select select").eq($(this).index()+1).html(str)
+                }
+            
+            
+            })
+
+})
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ padding:50px;}
+#div1{ background-color:red;}
+#div2{ background-color:blue;}
+#div3{ background-color:orange}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementsByTagName("div")[0]
+	//var p=getPos(oDiv3)
+	alert(oDiv.nodeType)
+	
+	function getPos(obj){
+		var pos={left:0,top:0}							//在变量里面以json的形式存两个参数
+		while(obj){										//判断obj对象是否存在,如果存在则执行下面代码
+			
+			pos.left=obj.offsetLeft+pos.left;			//让变量里的left加等于obj的offsetLeft
+			pos.top=obj.offsetTop+pos.top;				//让变量里的top加等于obj的offsetTop
+			obj=obj.offsetParent;						//如果元素的与body之间的元素有定位属性,则让obj变成相对父级,一直循环到body为止
+			
+			}
+		return pos
+		
+		}
+		
+		
+	
+	}
+
+</script>
+</head>
+
+<body>
+
+<div id="div1">
+    <div id="div2">
+        <div id="div3"></div>
+	</div>
+</div>
+</body>
+</html>

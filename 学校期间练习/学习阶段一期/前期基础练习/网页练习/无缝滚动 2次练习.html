@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无缝滚动</title>
+<style>
+*{ margin:0; padding:0;}
+li{float:left; list-style:none;width:128px; height:128px; position:relative}
+div{width:512px; height:128px; margin:auto; position:relative;  overflow:hidden}
+ul{ position:absolute}
+</style>
+<script>
+window.onload=function()
+{   var timer=null
+	var oDiv=document.getElementById('div1')
+	var oUl=document.getElementsByTagName('ul')[0]
+	var aLi=document.getElementsByTagName('li')
+	var speed=-10;
+	var oBtn1=document.getElementById('btn1')
+	var oBtn2=document.getElementById('btn2')
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px'
+	
+	
+	 function move(){
+		 if(oUl.offsetLeft>0){oUl.style.left=-oUl.offsetWidth/2+'px'
+			 }
+		 if(oUl.offsetLeft<-oUl.offsetWidth/2){oUl.style.left='0'}
+		 oUl.style.left=oUl.offsetLeft+speed+'px';
+		 
+		 }
+		 
+	 
+	 
+	timer=setInterval(move,30)
+	
+	oUl.onmouseover=function(){clearInterval(timer)}
+	oUl.onmouseout=function(){timer=setInterval(move,30)}
+	
+	
+	oBtn1.onclick=function(){speed=-10}
+    oBtn2.onclick=function(){speed=10}
+	
+	
+	
+	}
+
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="向左" />
+<input id="btn2" type="button" value="向右" />
+<div id="div1">
+<ul>
+<li><img src="gundong/1.png" alt="1"/></li>
+<li><img src="gundong/2.png" alt="2"/></li>
+<li><img src="gundong/3.png" alt="3"/></li>
+<li><img src="gundong/4.png" alt="4"/></li>
+
+</ul>
+
+</div>
+</body>
+</html>

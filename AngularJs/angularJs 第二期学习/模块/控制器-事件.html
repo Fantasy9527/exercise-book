@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="ctrl" ng-controller="evTest">
+    <input type="button" ng-click="add()">
+    <h1>{{num}}</h1>
+    </div>
+    <script>
+    angular.module("ctrl",[]).controller("evTest",function($scope){
+        $scope.num=0;
+        $scope.add=function(){
+            $scope.num+=1
+        }
+    
+    })
+    </script>
+</body>
+</html>

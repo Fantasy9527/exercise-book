@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+
+<body>
+<form role="form" action="" name="myFrome" novalidate >
+ <input class="form-control"  name="aname" type="text" required ng-model='user.name' />
+<input type="text" ng-model="user.minlength" ng-minlength="5">
+<input type="text" ng-model="user.maxlength" ng-maxlength="16">
+<input type="email" ng-model="user.email" >
+</form>
+
+
+
+
+
+<div class="col-md-12">
+        1.必填项:{{user.name}}{{myFrome.aname.$pristine}}<br>
+        2.最小长度=5:{{user.minlength}}{{myFrome.user.minlength.$pristine}}<br>
+        3.最大长度=20:{{user.maxlength}}<br>
+        4.模式匹配:{{user.pattern}}<br>
+        5.电子邮件:{{user.email}}<br>
+        6.数字:{{user.age}}<br>
+        7.URL:{{user.url}}<br>
+    </div>
+
+</body>
+
+</html>

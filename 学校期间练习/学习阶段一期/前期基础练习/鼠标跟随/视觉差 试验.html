@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+#header{ width: 1000px; height: auto; margin: 0 auto;position: relative; }
+#header img{ position: absolute;}
+#pic1{z-index: 1}
+#pic2{z-index: 2}
+#pic3{z-index: 3}
+#pic4{z-index: 4}
+#pic5{z-index: 5}
+ 
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var pic1=document.getElementById('pic1');
+	var pic2=document.getElementById('pic2');
+	var pic3=document.getElementById('pic3');
+	var pic5=document.getElementById('pic5');
+
+
+document.onmousemove=function(ev){
+	var ev=event||ev;
+	pic1.style.left=(ev.clientX)/20+"px"
+	pic1.style.top=(ev.clientY)/20+"px"
+
+	pic2.style.left=-(ev.clientX)/25+"px"
+	pic2.style.top=-(ev.clientY)/25+"px"
+
+	pic3.style.left=(ev.clientX)/10+"px"
+	pic3.style.top=(ev.clientY)/10+"px"
+
+	pic5.style.left=-(ev.clientX)/30+"px"
+	pic5.style.top=-(ev.clientY)/30+"px"
+
+
+
+
+}
+
+
+
+}
+
+
+
+</script>
+</head>
+<body>
+<div id="header">
+	<img id="pic1" src="fond1.png"/>
+	<img id="pic2" src="fond2.png"/>
+	<img id="pic3" src="fond3.png"/>
+
+	<img id="pic5" src="fond5.png"/>
+
+
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

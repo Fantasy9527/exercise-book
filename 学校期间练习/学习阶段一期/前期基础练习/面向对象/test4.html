@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象  this</title>
+<script>
+var arr =[1,323,545,76,45];
+var box=[2,434,545,232,545];
+Array.prototype.sum=function(){
+var result=0;
+
+for(var i=0; i<arr.length;i++){
+	result+=this[i]
+	
+
+}
+
+return result
+}
+alert(arr.sum())
+alert(box.sum())
+</script>
+</head>
+<body>
+
+</body>
+</html>

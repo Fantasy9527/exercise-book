@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    html,
+    body {
+      overflow-x: hidden;
+    }
+    
+    .box {
+      width: 100%;
+      height: 300px;
+      position: relative;
+    }
+    
+    .box ul {
+      height: 300px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+    
+    .box ul li {
+      height: 100%;
+      float: left;
+      list-style: none;
+    }
+  </style>
+  <script src="jquery-2.1.1.min.js"></script>
+  <script>
+    $(function () {
+      var oBox = $(".box");
+      var oUl = $(".box ul");
+      var aLi = $(".box ul li");
+      var w = $(window).width();
+      oBox.width(w);
+      oUl.width(w * aLi.length);
+      aLi.width(w);
+      var indexPage = 0;
+      var canMove = true;
+      oBox.on("touchstart", function (e) {
+        var disX = e.originalEvent.touches[0].pageX;
+        var iL = oUl.offset().left;
+        var nowX;
+        if (canMove) {
+          canMove = false
+          oBox.on("touchmove", function (e) {
+            nowX = e.originalEvent.touches[0].pageX - disX;
+            oUl.css({
+              "-webkit-transform": "translate3d(" + (iL + nowX) + "px,0,0)"
+            });
+            oUl.css({
+              "-webkit-transition": ""
+            });
+          })
+
+
+          oBox.on("touchend", function (e) {
+            if (nowX > 0) {
+              indexPage--;
+            } else if (nowX < 0) {
+              indexPage++;
+            }
+            if (indexPage < 0) {
+              indexPage = 0
+            }
+            if (indexPage > aLi.length - 1) {
+              indexPage = aLi.length - 1;
+            }
+            oUl.css({
+              "-webkit-transition": "-webkit-transform 0.4s",
+              "-webkit-transform": "translate3d(" + (-w * indexPage) + "px,0,0)"
+            });
+            oUl.on("webkitTransitionEnd", function () {
+              canMove = true;
+              oUl.css({
+                "-webkit-transition": ""
+              });
+              oUl.off("webkitTransitionEnd")
+              //alert(canMove)
+            })
+            oBox.off("touchmove");
+            oBox.off("touchend");
+          });
+        }
+      })
+
+    })
+  </script>
+</head>
+
+<body>
+  <div class="box">
+    <ul>
+      <li style="background:yellow"></li>
+      <li style="background:red"></li>
+      <li style="background:green"></li>
+      <li style="background:black"></li>
+    </ul>
+  </div>
+</body>
+
+</html>

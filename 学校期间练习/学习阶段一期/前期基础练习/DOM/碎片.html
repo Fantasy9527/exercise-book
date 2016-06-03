@@ -1,0 +1,27 @@
+<!doctype>
+<html>
+<head>
+<meta charset="utf-8">
+<title>碎片</title>
+
+<script type="text/javascript">
+window.onload=function(){
+	var aUl=document.getElementsByTagName('ul')[0];
+	var oFrag=document.createDocumentFragment(aLi);  //要放在外面,在外面创建一个塑料袋;
+	for (var i = 0; i < 10000; i++) {
+		 var aLi=document.createElement("li");
+		 oFrag.appendChild(aLi);
+		}
+	aUl.appendChild(oFrag);//塑料袋包着一堆li,一起装进ul
+	
+}
+
+</script>
+</head>
+<body>
+	
+	<ul>
+
+	</ul>
+</body>
+</html>

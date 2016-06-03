@@ -1,0 +1,4146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @charset "gbk";
+        /*CSS reset*/
+        body,
+        div,
+        table,
+        tr,
+        td,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        form,
+        input,
+        label,
+        strong,
+        em,
+        textarea,
+        p,
+        ul,
+        li,
+        dl,
+        dd,
+        dt,
+        img {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            border: 0;
+        }
+        table tr {
+            line-height: 2;
+        }
+        ol,
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            border: 0;
+            color: #546577;
+            text-decoration: none;
+            font-family: "微软雅黑";
+        }
+        a:focus,
+        input[type="button"]:focus {
+            outline: none !important;
+        }
+        *:focus {
+            outline: none;
+        }
+        input[type="reset"]::-moz-focus-inner,
+        input[type="button"]::-moz-focus-inner,
+        input[type="submit"]::-moz-focus-inner,
+        input[type="file"] > input[type="button"]::-moz-focus-inner {
+            border: none;
+        }
+        a:hover {
+            text-decoration: none;
+            color: #067bce;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 100%;
+        }
+        em {
+            font-style: normal;
+        }
+        input,
+        img {
+            vertical-align: middle;
+            -border: 0;
+        }
+        b {
+            font-weight: normal;
+        }
+        i {
+            font-style: normal;
+        }
+        /*===============通用样式==============*/
+        body {
+            background: #f6f6f6;
+            font-family: "微软雅黑";
+            font-size: 12px;
+            text-align: left;
+            color: #666;
+            line-height: 1;
+        }
+        .w1000 {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .w980 {
+            width: 980px;
+            margin: 0 auto;
+        }
+        .w262 {
+            width: 262px;
+        }
+        .clear {
+            clear: both;
+        }
+        .clr {
+            width: 0;
+            height: 0;
+            line-height: 0;
+            clear: both;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            line-height: 0;
+            font-size: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        .clearfix {
+            zoom: 1;
+        }
+        dasdasd
+        /*本文档样式*/
+        .pt50 {
+            padding-top: 50px;
+        }
+        .pb30 {
+            padding-bottom: 30px;
+        }
+        .mb40 {
+            margin-bottom: 40px;
+        }
+        .c377abe {
+            color: #377abe;
+        }
+        /*文本*/
+        .tr {
+            text-align: right;
+        }
+        .tl {
+            text-align: left;
+        }
+        .tc {
+            text-align: center;
+        }
+        .ft12 {
+            font-size: 12px;
+        }
+        .ft14 {
+            font-size: 14px;
+        }
+        .ft16 {
+            font-size: 16px;
+        }
+        .ft18 {
+            font-size: 18px;
+        }
+        .ft22 {
+            font-size: 22px;
+        }
+        .t5 {
+            text-indent: 5px;
+        }
+        .t10 {
+            text-indent: 10px;
+        }
+        .t15 {
+            text-indent: 15px;
+        }
+        .t20 {
+            text-indent: 20px;
+        }
+        .t40 {
+            text-indent: 40px;
+        }
+        .t2em {
+            text-indent: 2em;
+        }
+        .lh14 {
+            line-height: 14px;
+        }
+        .lh18 {
+            line-height: 18px;
+        }
+        .lh20 {
+            line-height: 20px;
+        }
+        .lh22 {
+            line-height: 22px;
+        }
+        .lh24 {
+            line-height: 24px;
+        }
+        .lh26 {
+            line-height: 26px;
+        }
+        .lh28 {
+            line-height: 28px;
+        }
+        .lh30 {
+            line-height: 30px;
+        }
+        .lh32 {
+            line-height: 32px;
+        }
+        .lh35 {
+            line-height: 35px;
+        }
+        .lh40 {
+            line-height: 40px;
+        }
+        .h14 {
+            height: 14px;
+        }
+        .h18 {
+            height: 18px;
+        }
+        .h20 {
+            height: 20px;
+        }
+        .h22 {
+            height: 22px;
+        }
+        .h24 {
+            height: 24px;
+        }
+        .h26 {
+            height: 26px;
+        }
+        .h28 {
+            height: 28px;
+        }
+        .h30 {
+            height: 30pxrf;
+        }
+        .h35 {
+            height: 35px;
+        }
+        .h40 {
+            height: 40px;
+        }
+        .t_line {
+            text-decoration: underline;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .normal {
+            font-weight: normal;
+        }
+        .nowarp {
+            white-space: nowrap;
+        }
+        /*颜色*/
+        .white {
+            color: #FFF;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+        .blue {
+            color: #0854BB;
+        }
+        .yellow {
+            color: #FFB914;
+        }
+        .c_0 {
+            color: #000;
+        }
+        .c_3 {
+            color: #333;
+        }
+        .c_6 {
+            color: #666;
+        }
+        .c_9 {
+            color: #999;
+        }
+        .c_40 {
+            color: #404040;
+        }
+        .c_c {
+            color: #CCC;
+        }
+        .c_58 {
+            color: #585858;
+        }
+        .c_ff2c2c {
+            color: #ff2c2c;
+        }
+        .c_ff5c10 {
+            color: #ff5c10;
+        }
+        /*橙色*/
+        .c377abe {
+            color: #377abe;
+        }
+        .cff8124 {
+            color: #ff8124
+        }
+        .c63a84d {
+            color: #63a84d
+        }
+        .bg_none {
+            background: none !important;
+        }
+        .bg-white {
+            background: #FFF;
+        }
+        /*定位*/
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .auto {
+            margin: 0 auto;
+        }
+        .pr {
+            position: relative;
+        }
+        .pa {
+            position: absolute;
+        }
+        .hide {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+        .dib {
+            display: inline-block;
+        }
+        .inline {
+            display: inline;
+        }
+        .overflow {
+            overflow: hidden;
+        }
+        .txt-9 {
+            text-indent: -9999px;
+        }
+        .vm {
+            vertical-align: middle;
+        }
+        .vm-1 {
+            vertical-align: 1px;
+        }
+        /*宽高*/
+        .w {
+            width: 100%;
+        }
+        .h {
+            height: 100%;
+        }
+        .w960 {
+            width: 960px;
+        }
+        .w980 {
+            width: 980px;
+        }
+        /*边距*/
+        .p2 {
+            padding: 2frpx;
+        }
+        .p5 {
+            padding: 5px;
+        }
+        .p10 {
+            padding: 10px;
+        }
+        .p20 {
+            padding: 20px;
+        }
+        .p25 {
+            padding: 25px;
+        }
+        .p30 {
+            padding: 30px;
+        }
+        .pt5 {
+            padding-top: 5px;
+        }
+        .pt10 {
+            padding-top: 10px;
+        }
+        .pt15 {
+            padding-top: 15px;
+        }
+        .pt20 {
+            padding-top: 20px;
+        }
+        .pt25 {
+            padding-top: 25px;
+        }
+        .pt30 {
+            padding-top: 30px;
+        }
+        .pt35 {
+            padding-top: 35px;
+        }
+        .pt40 {
+            padding-top: 40px;
+        }
+        .pt45 {
+            padding-top: 45px;
+        }
+        .pt100 {
+            padding-top: 100px;
+        }
+        .pt200 {
+            padding-top: 200px;
+        }
+        .pb5 {
+            padding-bottom: 5px;
+        }
+        .pb10 {
+            padding-bottom: 10px;
+        }
+        .pb15 {
+            padding-bottom: 15px;
+        }
+        .pb20 {
+            padding-bottom: 20px;
+        }
+        .pb25 {
+            padding-bottom: 25px;
+        }
+        .pb30 {
+            padding-bottom: 30px;
+        }
+        .pb35 {
+            padding-bottom: 35px;
+        }
+        .pb40 {
+            padding-bottom: 40px;
+        }
+        .pb50 {
+            padding-bottom: 50px;
+        }
+        .pl5 {
+            padding-left: 5px;
+        }
+        .pl10 {
+            padding-left: 10px;
+        }
+        .pl15 {
+            padding-left: 15px;
+        }
+        .pl20 {
+            padding-left: 20px;
+        }
+        .pl25 {
+            padding-left: 25px;
+        }
+        .pl30 {
+            padding-left: 30px;
+        }
+        .pl35 {
+            padding-left: 35px;
+        }
+        .pl40 {
+            padding-left: 40px;
+        }
+        .pl45 {
+            padding-left: 45px;
+        }
+        .pl50 {
+            padding-left: 50px;
+        }
+        .pl55 {
+            padding-left: 55px;
+        }
+        .pr5 {
+            padding-right: 5px;
+        }
+        .pr10 {
+            padding-right: 10px;
+        }
+        .pr15 {
+            padding-right: 15px;
+        }
+        .pr20 {
+            padding-right: 20px;
+        }
+        .pr25 {
+            padding-right: 25px;
+        }
+        .pr30 {
+            padding-right: 30px;
+        }
+        .pr35 {
+            padding-right: 35px;
+        }
+        .pr40 {
+            padding-right: 40px;
+        }
+        .pr50 {
+            padding-right: 50px;
+        }
+        .pr120 {
+            padding-right: 120px;
+        }
+        .ml0 {
+            margin-left: 0;
+        }
+        .ml5 {
+            margin-left: 5px;
+        }
+        .ml10 {
+            margin-left: 10px;
+        }
+        .ml15 {
+            margin-left: 15px;
+        }
+        .ml20 {
+            margin-left: 20px;
+        }
+        .ml25 {
+            margin-left: 25px;
+        }
+        .ml30 {
+            margin-left: 30px;
+        }
+        .ml35 {
+            margin-left: 35px;
+        }
+        .ml40 {
+            margin-left: 40px;
+        }
+        .mt5 {
+            margin-top: 5px;
+        }
+        .mt8 {
+            margin-top: 8px;
+        }
+        .mt10 {
+            margin-top: 10px;
+        }
+        .mt12 {
+            margin-top: 12px;
+        }
+        .mt15 {
+            margin-top: 15px;
+        }
+        .mt20 {
+            margin-top: 20px;
+        }
+        .mt25 {
+            margin-top: 25px;
+        }
+        .mt30 {
+            margin-top: 30px;
+        }
+        .mt35 {
+            margin-top: 35px;
+        }
+        .mt40 {
+            margin-top: 40px;
+        }
+        .mt45 {
+            margin-top: 45px;
+        }
+        .mb5 {
+            margin-bottom: 5px;
+        }
+        .mb10 {
+            margin-bottom: 10px;
+        }
+        .mb12 {
+            margin-bottom: 12px;
+        }
+        .mb15 {
+            margin-bottom: 15px;
+        }
+        .mb20 {
+            margin-bottom: 20px;
+        }
+        .mb25 {
+            margin-bottom: 25px;
+        }
+        .mb30 {
+            margin-bottom: 30px;
+        }
+        .mb35 {
+            margin-bottom: 35px;
+        }
+        .mr5 {
+            margin-right: 5px;
+        }
+        .mr10 {
+            margin-right: 10px;
+        }
+        .mr15 {
+            margin-right: 15px;
+        }
+        .mr20 {
+            margin-right: 20px;
+        }
+        .mr30 {
+            margin-right: 30px;
+        }
+        .mr35 {
+            margin-right: 35px;
+        }
+        .pl12 {
+            padding-left: 12px;
+        }
+        .pr12 {
+            padding-right: 12px;
+        }
+        .pb12 {
+            padding-bottom: 12px;
+        }
+        .pt12 {
+            padding-top: 12px;
+        }
+        .pl8 {
+            padding-left: 8px;
+        }
+        .pr8 {
+            padding-right: 8px;
+        }
+        .pb8 {
+            padding-bottom: 8px;
+        }
+        .pt8 {
+            padding-top: 8px;
+        }
+        .mb8 {
+            margin-bottom: 8px;
+        }
+        /*边框*/
+        .bd_none {
+            border: none !important;
+        }
+        /*字体*/
+        .wei {
+            font-family: "微软雅黑";
+        }
+        .ari {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*鼠标事件*/
+        .cursor {
+            cursor: pointer;
+        }
+        /*定位*/
+        .z_1 {
+            z-index: 1;
+        }
+        .left0 {
+            left: 0
+        }
+        .right0 {
+            right: 0
+        }
+        /***实现运动效果的***/
+        .transtion-bg {
+            transition: background-position 0.2s;
+            -moz-transition: background-position 0.2s;
+            -webkit-transition: background-position 0.2s;
+            -o-transition: background-position 0.2s;
+        }
+        .text {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            color: #666;
+            display: block;
+            height: 30px;
+            padding-left: 10px;
+            line-height: 30px;
+            box-shadow: 0 1px 3px #d8d5d5 inset;
+        }
+        .button {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 15px;
+            background: #4f7ca9;
+            border-radius: 4px;
+            border: 1px solid #4f7ca9;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+        .valicode {
+            position: absolute;
+            margin-top: -10px;
+            top: 50%;
+            cursor: pointer;
+            right: 10px;
+            width: 50px;
+            height: 18px;
+        }
+        .boxverify-message {
+            padding: 10px;
+        }
+        .btn {
+            display: block;
+            margin: 0 auto;
+            letter-spacing: 6px;
+            width: 216px;
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .jiathis_share_24x24 {
+            left: 0;
+            top: 50%;
+        }
+        .tabyel font {
+            font-size: 12px;
+        }
+        /****页面banner图*****/
+        body {
+            line-height: 1;
+        }
+        p {
+            padding: 0;
+        }
+        a,
+        span,
+        font,
+        input,
+        select,
+        label {
+            display: inline;
+        }
+        .box-banner,
+        .box-banner-img,
+        .box-banner-img a {
+            width: 100%;
+            height: 400px;
+        }
+        .box-banner {
+            position: relative;
+            z-index: 2;
+        }
+        .box-banner-img {
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .box-banner-img a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            display: block;
+        }
+        .box-banner-img a.banner-1 {
+            background: url(../images/banner/banner_1.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-2 {
+            background: url(../images/banner/banner_2.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-3 {
+            background: url(../images/banner/banner_3.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-4 {
+            background: url(../images/banner/banner_4.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-5 {
+            background: url(../images/banner/banner_5.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-6 {
+            background: url(../images/banner/banner_6.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-7 {
+            background: url(../images/banner/banner_7.jpg) no-repeat center 0;
+        }
+        .box-banner-img a.banner-8 {
+            background: url(../images/banner/banner_8.jpg) no-repeat center 0;
+        }
+        .small-banner-img {
+            position: absolute;
+            top: 36px;
+            right: 20px;
+            z-index: 2;
+            width: 130px;
+            -height: 280px;
+            height: 336px;
+            opacity: 0;
+            filter: alpha(opacity: 0);
+        }
+        .small-banner-img ul {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 130px;
+        }
+        .small-banner-img li {
+            position: relative;
+            width: 130px;
+            height: 56px;
+            border: 0;
+            float: left;
+        }
+        .small-banner-img li img,
+        .small-banner-img li i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130px;
+            height: 51px;
+            display: block;
+            cursor: pointer;
+        }
+        .small-banner-img li i {
+            background: url(../images/common_bg.png) no-repeat -138px -449px;
+        }
+        .small-banner-img li.current i {
+            background-position: 0 -449px;
+        }
+        /********banner下来的滚动**********/
+        .banner-box-scroll {
+            position: relative;
+            z-index: 2;
+            width: 980px;
+            margin: -50px auto 0;
+            height: 50px;
+        }
+        .box-filter-bg {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            background: #52647c;
+            opacity: 0.45;
+            filter: alpha(opacity: 45);
+        }
+        .box-scroll-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            height: 50px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .scroll-content-left,
+        .scroll-content-right {
+            position: relative;
+            width: 700px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .scroll-content-right {
+            width: 280px;
+        }
+        .scroll-content-left ul,
+        .scroll-content-right ul {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .scroll-content-left ul li,
+        .scroll-content-right ul li {
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            border: 0;
+            float: left;
+            width: 100%;
+        }
+        .scroll-content-left ul li font,
+        .scroll-content-right ul li font {
+            padding-left: 30px;
+            font-size: 14px;
+            float: left;
+        }
+        .scroll-content-left ul li span,
+        .scroll-content-right ul li span {
+            font-size: 18px;
+            float: left;
+        }
+        .scroll-content-left ul li a {
+            color: #fff;
+            padding-right: 20px;
+            font-size: 14px;
+            float: left;
+            max-width: 300px;
+            _width: 300px;
+            line-height: 14px;
+            margin-top: 18px;
+        }
+        .scroll-content-left ul li a:hover {
+            color: #fff;
+        }
+        .scroll-content-left ul li span.account,
+        .scroll-content-right ul li span.account {
+            color: #FA7342;
+            float: left;
+        }
+        .scroll-content-right ul li font {
+            padding-left: 20px;
+        }
+        .scroll-content-right ul li {
+            font-size: 14px;
+        }
+        /********关于闲钱宝************/
+        .box-home-container {
+            padding-top: 10px;
+            font-size: 14px;
+            line-height: 1;
+        }
+        .box-business-summary {
+            width: 980px;
+            margin: 0 auto;
+        }
+        .business-summary-aboutus,
+        .box-business-profit,
+        .box-business-financing,
+        .box-business-totle {
+            float: left;
+            width: 205px;
+            border: 1px solid #e0e0e0;
+            -border-radius: 4px;
+            padding: 19px 0 15px;
+            margin-right: 10px;
+            background: #fff;
+            height: 198px;
+        }
+        .business-summary-aboutus p {
+            position: relative;
+            margin: 0 20px 14px;
+            line-height: 1.8;
+        }
+        .business-summary-aboutus p span {
+            position: absolute;
+            left: 0;
+            top: -12px;
+            font-size: 26px;
+            color: #067bce;
+        }
+        .business-summary-aboutus p font {
+            text-indent: 30px;
+            font-size: 14px;
+            display: block;
+        }
+        .btn-summary-aboutus {
+            display: block;
+            width: 136px;
+            height: 34px;
+            line-height: 34px;
+            font-size: 18px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            background: url(../images/common_bg.png) no-repeat -257px 1px;
+        }
+        .btn-summary-aboutus:hover {
+            color: #fff;
+        }
+        /***********我要理财**************/
+        .box-business-profit {
+            width: 266px;
+        }
+        .business-profit-category {
+            height: 36px;
+            padding: 0 16px 5px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .business-profit-category span.profit-category-mortgage {
+            float: left;
+            width: 117px;
+        }
+        .business-profit-category i {
+            float: left;
+            margin-right: 8px;
+            width: 30px;
+            height: 36px;
+            line-height: 36px;
+            margin-right: 8px;
+            color: #fff;
+            background: url(../images/common_bg.png) no-repeat -414px 0;
+        }
+        .business-profit-category font {
+            float: left;
+            height: 36px;
+            line-height: 36px;
+            color: #333;
+            font-size: 14px;
+            font-family: "微软雅黑";
+        }
+        .business-profit-category span.profit-category-guard {
+            width: 97px;
+            float: right;
+        }
+        .profit-interest {
+            height: 28px;
+            line-height: 28px;
+            padding: 10px 16px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .profit-interest font,
+        .profit-interest b,
+        .profit-interest span {
+            float: left;
+            height: 28px;
+            line-height: 28px;
+        }
+        .profit-interest font {
+            width: 90px;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        .profit-interest b {
+            width: 97px;
+            margin-right: 8px;
+            font-size: 26px;
+            color: #067bce
+        }
+        .profit-interest span {
+            width: 28px;
+            text-align: center;
+        }
+        /*************我要融资******************/
+        .box-business-financing {
+            width: 235px;
+        }
+        .box-business-financing p {
+            margin: 0 42px;
+            line-height: 26px;
+        }
+        .box-business-financing p font {
+            font-size: 26px;
+            color: #067bce;
+            padding: 0 5px;
+        }
+        .box-business-financing p.special {} .box-business-financing p.special font {
+            font-size: 18px;
+            padding: 0 2px;
+        }
+        .box-business-financing p.special font.perfect-interest {
+            padding-right: 15px;
+        }
+        .ico-business-financing {
+            width: 60px;
+            height: 70px;
+            display: block;
+            margin: 12px auto 25px;
+            background: url(../images/common_bg.png) no-repeat -242px -43px
+        }
+        /*************项目汇总*****************/
+        .box-business-totle {
+            position: relative;
+            width: 235px;
+            height: 198px;
+            overflow: hidden;
+            float: right;
+            margin-right: 0;
+        }
+        .wrap-business-content,
+        .scroll-business-totle,
+        .content-business-totle {
+            width: 192px;
+            height: 210px;
+            border: 0;
+        }
+        .wrap-business-content {
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .scroll-business-totle {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .content-business-totle {
+            float: left;
+            overflow: hidden;
+        }
+        .box-font-investment-totle {
+            position: relative;
+        }
+        .font-investment-totle,
+        .number-investment-totle {
+            line-height: 26px;
+        }
+        .font-investment-totle font {
+            font-size: 26px;
+            color: #067bce;
+            padding-right: 5px;
+        }
+        .number-investment-totle {
+            font-size: 26px;
+            color: #067bce;
+        }
+        .ico-business-totle {
+            width: 62px;
+            height: 70px;
+            display: block;
+            margin: 12px auto 26px;
+            background: url(../images/common_bg.png) no-repeat -325px -43px;
+        }
+        .btn-scroll-totle-left,
+        .btn-scroll-totle-right {
+            position: absolute;
+            top: 95px;
+            width: 21px;
+            height: 56px;
+            cursor: pointer;
+            background-image: url(../images/common_bg.png)
+        }
+        .btn-scroll-totle-left {
+            left: 0;
+            background-position: -400px -47px;
+        }
+        .btn-scroll-totle-right {
+            right: 0;
+            background-position: -424px -47px;
+        }
+        /***********标的状态*************/
+        .box-tender {
+            width: 980px;
+            margin: 20px auto 0;
+        }
+        .title-tender {
+            height: 36px;
+            width: 230px;
+            margin: 0 auto 10px;
+            font-size: 14px;
+        }
+        .title-tender span {
+            float: left;
+            cursor: pointer;
+            height: 36px;
+            width: 107px;
+            line-height: 36px;
+            text-align: center;
+        }
+        .newest-tender-project {
+            margin-right: 15px;
+        }
+        .newest-tender-foreshow {
+            position: relative;
+        }
+        .title-tender span.current {
+            color: #067bce;
+            background: url(../images/common_bg.png) no-repeat 0 -206px;
+        }
+        .newest-tender-foreshow i {
+            position: absolute;
+            right: 2px;
+            top: -10px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+            background: url(../images/common_bg.png) no-repeat -122px -206px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .newest-tender-foreshow i.disable {
+            background-position: -157px -206px;
+        }
+        .title-tender .current i {
+            display: none;
+        }
+        .btn-more-tender,
+        .btn-more-foreshow {
+            position: absolute;
+            font-size: 12px;
+            right: 230px;
+            top: 12px;
+            color: #666;
+            display: none;
+        }
+        /***********正在招标页***************/
+        .wrap-content-tender {
+            display: none;
+        }
+        .box-content-tendering {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .detail-content-tendering {
+            position: relative;
+            z-index: 1;
+            border: 1px solid #e0e0e0;
+            -border-radius: 4px;
+            padding: 15px 18px;
+            background: #fff;
+        }
+        .img-tendering-project,
+        .img-tendering-project img {
+            width: 220px;
+            height: 152px;
+        }
+        .img-tendering-project {
+            float: left;
+            position: relative;
+            z-index: 2;
+        }
+        .img-tendering-project img {
+            border-radius: 4px;
+        }
+        .wrap-introduce-project {
+            width: 942px;
+            position: absolute;
+            z-index: 1;
+            left: 18px;
+            top: 15px;
+        }
+        .detail-introduce-project,
+        .detail-introduce-borrow-complete {
+            margin-left: 237px;
+            padding: 12px 0 0;
+        }
+        .detail-introduce-project h3 {
+            height: 30px;
+            font-size: 18px;
+        }
+        .detail-introduce-project h3 a {
+            color: #000;
+        }
+        .detail-introduce-project h3 a:hover {
+            color: #067bce;
+        }
+        .detail-introduce-outline {
+            font-size: 12px;
+            margin-bottom: 20px;
+            height: 33px;
+            overflow: hidden;
+            line-height: 17px;
+            margin-top: 3px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .detail-introduce-outline h1,
+        .detail-introduce-outline h2,
+        .detail-introduce-outline h3,
+        .detail-introduce-outline h4 {
+            font-weight: normal;
+        }
+        .tendering-relative-info .tendering-amount-total {
+            float: left;
+            text-align: center;
+            _width: 100px;
+        }
+        .tendering-relative-info ul {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            width: 360px;
+            text-align: center;
+        }
+        .tendering-relative-info ul li {
+            float: left;
+        }
+        .tendering-relative-info ul li {
+            width: 115px;
+        }
+        .tendering-relative-info ul li b {
+            font-size: 20px;
+            height: 33px;
+            display: block;
+        }
+        .tendering-relative-infor {
+            float: right;
+            width: 206px;
+        }
+        .wrap-tendering-amount-total {
+            width: 495px;
+            float: left;
+        }
+        .tendering-amount-total b {
+            font-size: 20px;
+            color: #ff2c2c;
+            height: 33px;
+            display: block;
+        }
+        .tendering-relative-infor p {
+            margin-bottom: 4px;
+            width: 100%;
+            float: left;
+            font-size: 12px;
+        }
+        .tendering-relative-infor p.box-remain-time {
+            margin-bottom: 0;
+        }
+        .tendering-relative-infor p i {
+            float: left;
+            margin-right: 10px;
+        }
+        .tendering-relative-infor p.box-mortgage-registered i {
+            width: 14px;
+            height: 14px;
+            background: url(../images/common_bg.png) no-repeat -322px -206px;
+        }
+        .tendering-relative-infor p.box-mortgage-registered i.ico-guarantee {
+            background-position: -446px -275px;
+        }
+        .tendering-relative-infor p font {
+            float: left;
+            height: 14px;
+            line-height: 14px;
+            font-size: 12px;
+        }
+        .tendering-relative-infor .box-progress-bar {
+            position: relative;
+            width: 206px;
+            height: 11px;
+            overflow: hidden;
+            background: url(../images/common_bg.png) no-repeat -161px -690px;
+        }
+        .box-progress-bar b {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 198px;
+            height: 10px;
+            background: url(../images/common_bg.png) no-repeat -161px -705px;
+        }
+        .tendering-relative-infor .box-progress-bar font {
+            position: absolute;
+            left: 80px;
+            top: 1px;
+            height: 10px;
+            line-height: 10px;
+            font-size: 8px;
+            color: #fff;
+        }
+        .box-remain-time i {
+            width: 14px;
+            height: 14px;
+            background: url(../images/common_bg.png) no-repeat -324px -229px;
+        }
+        .box-remain-time span {
+            float: left;
+            height: 16px;
+            line-height: 16px;
+        }
+        .box-progress-bar-complete {
+            height: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 5px;
+            margin-right: 15px;
+        }
+        .wrap-progress-bar {
+            float: left;
+            height: 12px;
+        }
+        .wrap-progress-bar .box-progress-bar {
+            position: relative;
+            float: left;
+            margin-right: 10px;
+            margin-top: 1px;
+            width: 168px;
+            height: 11px;
+            background: url(../images/common_bg.png) no-repeat 0 -264px;
+            overflow: hidden;
+        }
+        .wrap-progress-bar .box-progress-bar b {
+            background-position: 0 -279px;
+        }
+        .wrap-progress-bar font {
+            float: left;
+            font-size: 12px;
+            height: 12px;
+            line-height: 12px;
+            color: #999;
+        }
+        /**********满标状态***********/
+        .box-content-complete .detail-content-tendering {
+            width: 650px;
+        }
+        .box-progress-bar-complete .box-remain-time {
+            float: right;
+            height: 12px;
+            line-height: 12px;
+        }
+        .box-progress-bar-complete .box-remain-time i,
+        .box-progress-bar-complete .box-remain-time font,
+        .box-progress-bar-complete .box-remain-time span {
+            float: left;
+            height: 12px;
+            line-height: 12px;
+            color: #999;
+        }
+        .box-progress-bar-complete .box-remain-time i {
+            margin-right: 10px;
+            width: 12px;
+            overflow: hidden;
+            background: url(../images/common_bg.png) no-repeat -360px -275px;
+        }
+        .box-progress-bar-complete .box-remain-time font,
+        .box-progress-bar-complete .box-remain-time span {
+            font-size: 10px;
+        }
+        .box-progress-bar-complete .chrome_adjust font,
+        .box-progress-bar-complete .chrome_adjust span {
+            letter-spacing: 1px;
+            -webkit-transform: scale(0.8);
+        }
+        .box-progress-bar-complete .chrome_adjust span {
+            margin-left: -15px;
+        }
+        /*******预告标********/
+        .foreshow-relative-infor p.box-mortgage-registered i {
+            background-position: -394px -254px;
+        }
+        .foreshow-relative-infor p.box-mortgage-registered i.ico-guarantee {
+            background-position: -446px -254px;
+        }
+        .foreshow-relative-infor p.box-remain-time i {
+            background-position: -360px -274px;
+        }
+        /********最新理财状态按钮********/
+        .box-content-tendering .ico-borrowing,
+        .box-content-tendering .ico-full-tender,
+        .box-content-tendering .ico-overdue,
+        .box-content-tendering .ico-repaymenting,
+        .box-content-tendering .ico-closed-account,
+        .box-content-tendering .ico-success-borrow,
+        .box-content-tendering .ico-closed-account,
+        .box-content-tendering .ico-foreshow {
+            position: absolute;
+            right: 15px;
+            top: -7px;
+            z-index: 2;
+            width: 126px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            background-image: url(../images/common_bg.png);
+        }
+        .box-content-tendering .ico-borrowing {
+            background-position: 0 -162px;
+        }
+        .box-content-tendering .ico-full-tender,
+        .box-content-tendering .ico-repaymenting {
+            background-position: -191px -206px;
+        }
+        .box-content-tendering .ico-overdue {
+            background-position: -142px -162px;
+        }
+        .box-content-tendering .ico-closed-account,
+        .box-content-tendering .ico-success-borrow {
+            background-position: -280px -162px
+        }
+        .box-content-tendering .ico-foreshow {
+            background-position: -348px -206px;
+        }
+        /********满标待审的状态********/
+        .box-content-complete .ico-borrowing,
+        .box-content-complete .ico-full-tender,
+        .box-content-complete .ico-overdue,
+        .box-content-complete .ico-repaymenting,
+        .box-content-complete .ico-closed-account,
+        .box-content-complete .ico-success-borrow,
+        .box-content-complete .ico-closed-account,
+        .box-content-complete .ico-foreshow {
+            position: absolute;
+            right: -5px;
+            top: 10px;
+            z-index: 2;
+            width: 123px;
+            height: 36px;
+            padding-bottom: 4px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            background-image: url(../images/common_bg.png);
+        }
+        .box-content-complete .ico-borrowing {
+            background-position: -142px -118px;
+        }
+        .box-content-complete .ico-full-tender,
+        .box-content-tendering .ico-repaymenting {
+            background-position: -226px -254px;
+        }
+        .box-content-complete .ico-overdue {
+            background-position: -280px -118px;
+        }
+        .box-content-complete .ico-closed-account,
+        .box-content-tendering .ico-success-borrow {
+            background-position: -226px -254px
+        }
+        .box-content-complete .ico-foreshow {
+            background-position: 0 -118px;
+        }
+        /*
+.box-content-tendering  .ico-foreshow{background-position:-348px -206px}
+.box-content-tendering  .ico-repaymenting{background-position:-285px -308px;}
+*/
+        /***********已完成借款***************/
+        .box-complete-borrow {
+            width: 980px;
+            margin: 10px auto 0;
+        }
+        .left-complete-borrow {
+            float: left;
+            width: 688px;
+        }
+        .box-complete-borrow .wrap-introduce-project {
+            width: 650px;
+        }
+        .box-complete-borrow .detail-introduce-borrow-complete {
+            margin-left: 186px;
+            padding: 5px 0 0;
+        }
+        .img-complete-project,
+        .img-complete-project img {
+            width: 170px;
+            height: 118px;
+            border-radius: 4px;
+        }
+        .img-complete-project {
+            float: left;
+            position: relative;
+            z-index: 2;
+        }
+        .detail-introduce-borrow-complete h3 {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #000;
+            height: 14px;
+            width: 360px;
+        }
+        .detail-introduce-borrow-complete h3 a {
+            color: #333;
+        }
+        .content-relative-borrow-complete {
+            margin-bottom: 2px;
+            font-size: 12px;
+        }
+        .complete-total-amount {
+            float: left;
+            width: 170px;
+            height: 20px;
+        }
+        .complete-total-amount i {
+            width: 13px;
+            height: 13px;
+            margin-top: 3px;
+            margin-right: 7px;
+            float: left;
+            background: url(../images/common_bg.png) no-repeat -360px -254px;
+        }
+        .complete-total-amount b {
+            float: left;
+            height: 20px;
+            line-height: 20px;
+        }
+        .complete-total-amount font {
+            float: left;
+            color: #ff2c2c;
+            font-size: 16px;
+            height: 16px;
+            line-height: 16px;
+            margin-top: 2px;
+        }
+        .complete-mortgage-register i.ico-guarantee {
+            background-position: -446px -254px;
+        }
+        .complete-mortgage-register font {
+            color: #666;
+            font-size: 12px;
+        }
+        .complete-minimum-limit i {
+            background-position: -379px -254px;
+        }
+        .complete-minimum-limit font {
+            font-size: 12px;
+            color: #666;
+        }
+        .complete-mortgage-register,
+        .complete-rate-interest {
+            float: right;
+            left: auto;
+            width: 124px;
+        }
+        .complete-mortgage-register i {
+            width: 14px;
+            height: 14px;
+            background-position: -394px -254px;
+        }
+        .complete-date-limit i {
+            background-position: -414px -254px;
+        }
+        .complete-date-limit font,
+        .complete-rate-interest font {
+            color: #666;
+            font-size: 12px;
+        }
+        .complete-rate-interest i {
+            background-position: -430px -254px;
+        }
+        /********查看更多理财项目*************/
+        .box-more-project {
+            width: 978px;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            margin: 0 auto;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            -border-radius: 4px;
+            background: #fff;
+        }
+        /***********联系我们***************/
+        .box-primary-contact {
+            position: relative;
+            width: 980px;
+            height: 119px;
+            margin: 10px auto 0;
+        }
+        .btn-primary-contact {
+            position: relative;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+        .btn-primary-contact span {
+            position: absolute;
+            top: 0;
+            width: 119px;
+            height: 119px;
+        }
+        .btn-primary-contact span i {
+            display: block;
+            width: 119px;
+            height: 119px;
+            cursor: pointer;
+            background-image: url(../images/common_bg.png);
+        }
+        .btn-primary-contact span i.btn-phone {
+            background-position: 0 -306px;
+        }
+        .btn-primary-contact span.current {
+            width: 133px;
+        }
+        .btn-primary-contact span.current i.btn-phone {
+            width: 133px;
+        }
+        .btn-primary-contact span i.btn-qq {
+            background-position: -157px -306px;
+        }
+        .btn-primary-contact span.current i.btn-qq {
+            width: 133px;
+            background-position: -144px -306px;
+        }
+        .content-primary-contact {
+            position: absolute;
+            left: 119px;
+            top: 1px;
+            z-index: 1;
+            height: 116px;
+            width: 742px;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fff;
+        }
+        .content-phone-contact {
+            margin: 0 72px
+        }
+        .service-time {
+            margin: 32px 0 13px;
+            font-size: 16px;
+        }
+        .content-phone-contact b,
+        .content-phone-contact b {
+            font-size: 26px;
+        }
+        .content-phone-contact b,
+        .content-phone-contact span {
+            float: left;
+        }
+        /***********行业新闻*****************/
+        .box-relative-news {
+            width: 980px;
+            margin: 10px auto 0;
+        }
+        .relative-news-story {
+            float: left;
+            width: 408px;
+            height: 231px;
+            margin-right: 10px;
+            border: 1px solid #e0e0e0;
+            -border-radius: 4px;
+            background: #fff;
+        }
+        .title-relative-news {
+            padding: 0 18px;
+            height: 47px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e0e0e0
+        }
+        .title-relative-news i {
+            float: left;
+            width: 4px;
+            height: 15px;
+            line-height: 15px;
+            margin-right: 17px;
+            margin-top: 16px;
+            background: #067bce;
+        }
+        .title-relative-news font,
+        .title-relative-news a {
+            height: 47px;
+            line-height: 47px;
+            float: left;
+            font-size: 14px;
+            color: #067bce;
+        }
+        .content-news-story {
+            padding: 18px;
+            padding-top: 0;
+        }
+        .img-news-story,
+        .img-news-story {
+            width: 187px;
+            height: 147px;
+        }
+        .img-news-story {
+            float: left;
+        }
+        .intorduce-news-story {
+            float: right;
+            width: 168px;
+        }
+        .intorduce-news-story h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            width: 158px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .intorduce-news-story p {
+            font-size: 14px;
+            line-height: 24px;
+            width: 158px;
+            height: 115px;
+            overflow: hidden;
+        }
+        .relative-news-info-1 {
+            width: 267px;
+        }
+        .intorduce-news-story .content-news-info {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .intorduce-news-story .content-news-info li a {
+            width: 150px;
+        }
+        .content-news-info li a:hover {
+            color: #067bce;
+        }
+        .content-news-info {
+            padding: 0 18px 5px;
+        }
+        .content-news-info li {
+            float: left;
+            height: 14px;
+            width: 100%;
+            line-height: 14px;
+            padding-bottom: 18px;
+        }
+        .content-news-info li i {
+            float: left;
+            width: 3px;
+            height: 3px;
+            margin-top: 6px;
+            margin-right: 10px;
+            background: #d2d2d2;
+            overflow: hidden;
+        }
+        .content-news-info li.current i,
+        .content-news-info li:hover i {
+            background: #067bce;
+        }
+        .content-news-info li a {
+            float: left;
+            width: 215px;
+            height: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #666;
+        }
+        .intorduce-news-story .content-news-info-1 {
+            padding: 0;
+        }
+        .intorduce-news-story .content-news-info-1 li a {
+            width: 150px;
+        }
+        .content-news-info-1 li:hover a,
+        .content-news-info-1 li.current:hover a {
+            color: #067bce;
+        }
+        .content-news-info-1 li.current a {
+            font-weight: bolder;
+        }
+        .relative-news-info-2 {
+            width: 279px;
+            float;
+            right;
+            margin-right: 0;
+        }
+        .relative-news-info-2 ul li a {
+            width: 226px;
+        }
+        /***************网站公告***************/
+        .right-complete-borrow {
+            float: right;
+            width: 278px;
+        }
+        .box-newest-notify {
+            float: none;
+            width: auto;
+            margin-right: 0;
+            height: 440px;
+        }
+        .foot-login {
+            -border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            margin-top: 10px;
+            background: #fff;
+        }
+        .foot-content-login {
+            padding: 8px 0 30px;
+            width: 175px;
+            margin: 0 auto;
+        }
+        .foot-content-login a,
+        .foot-content-login i {
+            float: left;
+        }
+        .foot-content-login a {
+            width: 56px;
+            text-align: center;
+        }
+        .foot-content-login a span {
+            display: block;
+            width: 26px;
+            margin: 0 auto 20px;
+            height: 37px;
+            background-image: url(../images/common_bg.png)
+        }
+        .line-foot-login {
+            display: block;
+            width: 1px;
+            height: 42px;
+            background: #e0e0e0;
+            margin: 0 28px;
+        }
+        .foot-content-login a.foot-btn-register span {
+            background-position: -285px -345px;
+        }
+        .foot-content-login a.foot-btn-register:hover span {
+            background-position: -285px -384px;
+        }
+        .foot-content-login a.foot-btn-login span {
+            width: 32px;
+            height: 39px;
+            background-position: -319px -345px;
+        }
+        .foot-content-login a.foot-btn-login:hover span {
+            background-position: -319px -384px;
+        }
+        /*********bbs页面********/
+        .box-bbs,
+        .box-article-list,
+        .box-category-list {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .box-bbs dl {
+            background: url(../images/box-dl-bg.jpg) repeat-y 0 0;
+        }
+        .box-left-bbs {
+            width: 160px;
+        }
+        .bbs-username {
+            margin-bottom: 10px;
+            padding: 10px 0 10px 20px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .bbs-user-img {
+            text-align: center;
+        }
+        .bbs-user-img img {
+            width: 120px;
+            border: 1px solid #ccc;
+        }
+        .box-right-bbs {
+            width: 790px;
+            padding: 10px;
+            line-height: 2;
+        }
+        .box-right-bbs h3 {
+            font-size: 16px;
+        }
+        .bbs-article-anthor {
+            font-size: 14px;
+            margin: 10px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        .box-reply {
+            padding-bottom: 5px;
+            margin: 10px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .bbs-btn-speak {
+            float: left;
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 10px;
+            background: url(../images/bbs-common-bg.png) no-repeat 0 0;
+        }
+        .box-go-back {
+            width: 200px;
+        }
+        .btn-go-back {
+            float: left;
+            border: 1px solid #ccc;
+            height: 28px;
+        }
+        .btn-go-back i {
+            float: left;
+            height: 10px;
+            width: 5px;
+            margin: 8px 5px 0;
+            background: url(../images/bbs-common-bg.png) no-repeat 0 -102px
+        }
+        .btn-go-back font {
+            float: left;
+            height: 28px;
+            line-height: 28px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .btn-go-back:hover {
+            border: 1px solid #5c9ecb;
+        }
+        .go-back-community {
+            width: 100px;
+            margin-right: 10px;
+        }
+        .go-back-forward {
+            width: 80px;
+        }
+        .bbs-replay-content {
+            margin-bottom: 10px;
+            line-height: 2;
+        }
+        .bbs-user-replay-number {
+            padding: 5px 10px 10px;
+        }
+        .bbs-user-replay-number font {
+            padding-left: 10px;
+        }
+        .box-reply-content {
+            width: 100%;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .box-reply-content span {
+            display: block;
+            margin-bottom: 10px;
+            margin-left: 30px;
+        }
+        .btn-reply-follow-article {
+            display: block;
+            width: 50px;
+            height: 15px;
+            cursor: pointer;
+            padding-left: 22px;
+            background: url(../images/bbs-common-bg.png) no-repeat 0 -80px;
+        }
+        /*******评论框*******/
+        .module-form-post-article .text {
+            width: 970px;
+        }
+        .module-form-post-article .textarea-content {
+            width: 960px;
+            margin: 0 0 10px;
+            box-sizing: content-box
+        }
+        .module-form-post-article .box-input-text {
+            height: auto;
+        }
+        /*注册页面*/
+        .box-register {
+            width: 944px;
+            margin: 18px auto 0;
+            padding: 24px 18px;
+            background: #fff;
+        }
+        .box-register h3 {
+            font-size: 14px;
+            line-height: 1;
+            font-weight: normal;
+        }
+        .box-register h3 a {
+            color: #416e9b;
+            padding-bottom: 1px;
+            border-bottom: 1px solid #416e9b;
+            line-height: 1;
+            display: inline-block;
+        }
+        .img-register-process {
+            padding-top: 12px;
+        }
+        .content-register li {
+            margin-top: 20px;
+            width: 100%;
+            float: left;
+        }
+        .title-register-input,
+        .title-borrow-input {
+            float: left;
+            width: 142px;
+            height: 28px;
+            line-height: 28px;
+            text-align: right;
+        }
+        .title-register-input span {
+            color: #ff2c2c;
+            padding-right: 5px;
+            font-size: 14px;
+            position: relative;
+            top: 3px;
+        }
+        .title-register-input font {
+            font-size: 14px;
+        }
+        .content-register li input {
+            float: left;
+            width: 237px;
+            border: 1px solid #e0e0e0;
+            height: 26px;
+            line-height: 26px;
+            padding-left: 10px;
+            margin-right: 18px;
+        }
+        .reigster-vali-info {
+            float: left;
+            height: 26px;
+            line-height: 26px;
+            border: 1px solid #e0e0e0;
+            width: 270px;
+            padding-left: 25px;
+            font-size: 14px;
+            background: #f8f6f5;
+        }
+        .reigster-vali-info font {
+            float: left;
+            font-size: 14px;
+        }
+        .submit-register {
+            margin-top: 22px;
+            width: 151px;
+            height: 45px;
+            border: 0;
+            cursor: pointer;
+            margin-left: 142px;
+            background: url(../images/common_bg.png) no-repeat 0 0;
+        }
+        .font-permission {
+            position: relative;
+            margin-top: 18px;
+            margin-left: 142px;
+            line-height: 1;
+        }
+        .font-permission i {
+            position: absolute;
+            width: 152px;
+            height: 88px;
+            left: -155px;
+            top: -65px;
+            display: none;
+            background: url(../images/common_bg.png) no-repeat -211px -528px;
+        }
+        .font-permission input {
+            float: left;
+        }
+        .font-permission font {
+            float: left;
+            cursor: pointer;
+        }
+        .box-register-rela {
+            margin-top: 16px;
+            margin-left: 142px;
+            line-height: 14;
+            line-height: 14px;
+        }
+        .box-register-rela a {
+            float: left;
+            margin-right: 5px;
+            color: #416e9b;
+        }
+        .recommand-person a {
+            color: #4f7ca9;
+        }
+        .content-register li input.btn-obtain-secure-code {
+            height: 28px;
+            line-height: 28px;
+            width: 0;
+            padding: 0;
+            background: url(../images/common_bg.png) no-repeat 0 -51px;
+            border: 0;
+            cursor: pointer;
+            display: none;
+        }
+        .content-register li input.disable {
+            background-position: 0 -85px;
+            cursor: default;
+            font-size: 14px;
+            color: #fff;
+        }
+        .register-vali-fail i {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            margin-top: 4px;
+            float: left;
+            margin-right: 15px;
+            background: url(../images/common_bg.png) no-repeat -189px 0;
+        }
+        .register-vali-success {
+            border: 0;
+            height: 28px;
+            line-height: 28px;
+            background: none;
+        }
+        .register-vali-success i {
+            float: left;
+            margin-top: 5px;
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+            background: url(../images/common_bg.png) no-repeat -165px 0;
+        }
+        .reigster-vali-phone-number {
+            height: 26px;
+            line-height: 26px;
+            border: 1px solid #e0e0e0;
+            background: #f8f6f5;
+        }
+        /*注册第二步*/
+        .reigster-vali-realname {
+            width: 462px;
+        }
+        .reigster-vali-phone-number,
+        .reigster-vali-secure-code {
+            width: 318px;
+        }
+        .box-phone-number .register-vali-success,
+        .box-phone-number .register-vali-fail {
+            background: none;
+            border: 0;
+            height: 28px;
+            line-height: 28px;
+        }
+        /*注册第三步*/
+        .box-register-third {
+            width: 417px;
+            margin: 36px auto 0;
+        }
+        .ico-success-mark {
+            float: left;
+            width: 45px;
+            height: 45px;
+            background: url(../images/common_bg.png) no-repeat -338px -449px;
+        }
+        .register-third-right {
+            width: 340px;
+            float: right;
+            line-height: 1;
+        }
+        .register-third-right h3 {
+            font-size: 20px;
+            color: #333333;
+            font-weight: bold;
+        }
+        .register-third-user-info {
+            margin-top: 10px;
+        }
+        .register-third-user-info {
+            font-size: 14px;
+        }
+        .register-third-user-info font {
+            color: #ff2c2c
+        }
+        .register-third-btns {
+            margin-top: 18px;
+        }
+        .btn-go-tender {
+            width: 124px;
+            height: 39px;
+            float: left;
+            background: url(../images/common_bg.png) no-repeat 0 -690px;
+        }
+        .btn-go-system {
+            float: left;
+            margin-left: 26px;
+            margin-top: 10px;
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            color: #416e9b;
+        }
+        /********论坛分类************/
+        .box-category-list {
+            padding: 10px;
+            width: 690px;
+        }
+        .box-category-list .bbs-btn-speak {
+            float: right;
+        }
+        .box-category-content {
+            margin-top: 20px;
+        }
+        .box-category-content li {
+            width: 100%;
+            float: left;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .box-category-content li p {
+            float: left;
+            width: 100%;
+        }
+        .box-category-content li p a {
+            float: left;
+        }
+        .box-category-content li p a i {
+            float: left;
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: url(../images/bbs-common-bg.png) no-repeat 0 -122px;
+        }
+        .box-category-content li p a b {
+            height: 32px;
+            line-height: 32px;
+            font-weight: bolder;
+            font-size: 16px;
+        }
+        .box-category-content li p font {
+            float: left;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .box-category-content li p font {
+            width: 100px;
+            float: right;
+            margin-top: 10px;
+        }
+        .box-category-content li span {
+            float: left;
+            width: 100%;
+            font-size: 14px;
+            padding-left: 40px;
+        }
+        /*******文章列表页*******/
+        .box-article-list {
+            padding: 10px;
+            width: 690px;
+        }
+        .font-title {
+            width: 400px;
+            margin-top: 5px;
+            float: left;
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            border-left: 2px solid #f00;
+            padding-left: 10px;
+        }
+        .box-article-list .bbs-btn-speak {
+            float: right;
+        }
+        .box-article-list .article_row {
+            border-bottom: 1px dotted #ccc;
+            margin-top: 20px;
+        }
+        .box-article-list .article_row span,
+        .box-article-list .article_row b,
+        .box-article-list .article_row i {
+            float: left;
+            font-weight: bold
+        }
+        .box-article-list .article_row span,
+        .box-article-content p a {
+            width: 380px;
+            padding-right: 20px;
+        }
+        .box-article-list .article_row b,
+        .box-article-content p span {
+            width: 180px;
+            padding-right: 20px;
+        }
+        .box-article-list .article_row i,
+        ..box-article-content p b {
+            width: 100px;
+        }
+        .box-article-content p {
+            float: left;
+            width: 100%;
+            line-height: 2;
+        }
+        .box-article-content p a,
+        .box-article-content p span,
+        .box-article-content p b {
+            float: left;
+        }
+        .box-write-article {
+            margin: 20px auto;
+        }
+        /******会员信息*********/
+        .box-bbs-userinfo {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .bbs-userinfo-overview {
+            background: #e5ecf2;
+            padding: 10px 10px 30px;
+        }
+        .bbs-userinfo-overview dt,
+        .box-bbs-userinfo dl dt img {
+            width: 54px;
+            height: 54px;
+        }
+        .bbs-userinfo-overview dt {
+            float: left;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .bbs-userinfo-overview dt img {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .bbs-userinfo-overview dd {
+            width: 700px;
+            float: left;
+            line-height: 2;
+        }
+        .bbs-userinfo-content {
+            margin-top: -30px;
+        }
+        .userinfo-content-title {
+            height: 31px;
+            line-height: 30px;
+            padding-left: 100px;
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -176px;
+        }
+        .userinfo-content-title span {
+            float: left;
+            display: block;
+            height: 30px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+        .userinfo-content-title span.current {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-bottom: 0;
+        }
+        .bbs-userinfo-detailcontent {
+            padding: 20px;
+            display: none;
+        }
+        .bbs-userinfo-content div.current {
+            display: block;
+        }
+        .bbs-userinfo-detailcontent dl {
+            float: left;
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #ccc;
+            line-height: 2;
+        }
+        .bbs-userinfo-detailcontent dt {
+            font-weight: bold;
+            float: left;
+            width: 100%;
+        }
+        .bbs-userinfo-detailcontent dd p {
+            float: left;
+            width: 300px;
+            margin-right: 10px;
+            display: inline;
+        }
+        .bbs-userinfo-detailcontent dd p span {
+            padding-right: 10px;
+        }
+        /*******底部回复的按钮*********/
+        .box-foot-reply {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .box-foot-replay-image {
+            width: 62px;
+            height: 32px;
+            margin: 10px;
+            background: url(../images/bbs-common-bg.png) no-repeat 0 -43px;
+        }
+        .box-foot-reply .dialog_main_content {
+            width: 100%;
+        }
+        .box-foot-reply .foot-textarea-content {
+            width: 940px;
+        }
+        .font-btn-sure {
+            margin: 10px
+        }
+        /*******我要投资详细页*******/
+        .box-common-container {
+            width: 980px;
+            margin: 0 auto;
+        }
+        .box-tender-bread-crumb {
+            margin-top: 20px;
+            line-height: 1;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .box-tender-bread-crumb span {
+            padding: 0 6px;
+        }
+        .box-tender-detail {
+            margin-top: 20px;
+        }
+        /****借款人相关信息****/
+        .tender-detail-left {
+            width: 217px;
+            float: left;
+            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            padding-bottom: 10px;
+        }
+        .font-borrower-summary {
+            margin-top: 26px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .tender-detail-borrower-info {
+            margin-top: 10px;
+        }
+        .borrower-info-img {
+            padding-left: 17px;
+            width: 96px;
+            height: 96px;
+            float: left;
+        }
+        .borrower-info-right {
+            float: right;
+            width: 95px;
+        }
+        .borrower-info-right h4 {
+            margin-top: 16px;
+            color: #333;
+            font-size: 16px;
+        }
+        .borrower-info-right .sub-login-tools {
+            margin-top: 8px;
+        }
+        .borrower-address {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .box-borrow-times {
+            margin-top: 13px;
+            padding: 0 50px;
+            height: 40px;
+            background: #f8f6f5;
+        }
+        .box-borrow-times i {
+            width: 42px;
+            height: 42px;
+            float: left;
+            margin-top: -5px;
+            background: url(../images/common_bg.png) no-repeat -407px -119px;
+        }
+        .box-borrow-times p {
+            float: right;
+            width: 65px;
+            text-align: right;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+        .box-borrow-times p font {
+            color: #ff2c2c;
+        }
+        .borrower-info-bottom {
+            margin: 15px 17px 0;
+            background: url(../images/common_bg.png) no-repeat 0 -743px;
+        }
+        .borrower-info-bottom li {
+            float: left;
+            width: 91px;
+            padding-top: 1px;
+            padding-bottom: 16px;
+        }
+        .borrower-info-bottom li i {
+            display: block;
+            margin: 0 auto;
+            background: url(../images/common_bg.png);
+        }
+        .borrower-info-bottom li a {
+            display: block;
+            text-align: center;
+            margin-top: 9px;
+        }
+        .borrower-info-bottom li.send-message-borrower i {
+            width: 16px;
+            height: 14px;
+            background-position: -418px -307px;
+        }
+        .borrower-info-bottom li.attention-borrower i {
+            width: 16px;
+            height: 14px;
+            background-position: -444px -307px;
+        }
+        .borrower-info-bottom li.report-borrower i {
+            width: 18px;
+            height: 18px;
+            background-position: -418px -327px;
+        }
+        .borrower-info-bottom li.borrowing-detail-info i {
+            width: 18px;
+            height: 18px;
+            background-position: -444px -327px;
+        }
+        /******标的详情******/
+        .tender-detail-right {
+            float: right;
+            width: 691px;
+            border: 1px solid #e0e0e0;
+            padding: 24px 26px 0;
+            background: #fff;
+        }
+        .title-tender-detail {
+            padding-bottom: 12px;
+            height: 20px;
+            line-height: 20px;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+        .title-tender-detail i {
+            float: left;
+            width: 5px;
+            height: 20px;
+            background: #316294;
+            margin-right: 19px;
+        }
+        .title-tender-detail h1 {
+            float: left;
+            font-size: 18px;
+            color: #000;
+            margin-right: 30px;
+            font-weight: normal;
+        }
+        .title-tender-detail font {
+            float: right;
+            font-size: 14px;
+            color: #999;
+        }
+        .tender-detail-info1 {
+            margin-top: 18px;
+            padding-bottom: 26px;
+        }
+        .detail-info1-left {
+            padding: 0 10px 0 25px;
+        }
+        .detail-info1-ul-wrap {
+            float: left;
+        }
+        .detail-info1-ul li {
+            float: left;
+            text-align: center;
+        }
+        .detail-info1-li1 {
+            margin-right: 43px;
+        }
+        .detail-info1-li2 {
+            margin-right: 72px;
+        }
+        .detail-info1-ul li font {
+            color: #ff2c2c;
+            display: block;
+            font-size: 20px;
+            height: 30px;
+        }
+        .detail-info2-ul {
+            float: right;
+        }
+        .detail-info2-ul li {
+            float: left;
+            ;
+            text-align: center;
+        }
+        .detail-info2-ul li font {
+            display: block;
+            font-size: 20px;
+            height: 30px;
+        }
+        .detail-info2-ul-min {
+            margin-right: 25px;
+        }
+        .detail-info2-li-line {
+            width: 1px;
+            height: 29px;
+            margin-right: 13px;
+            margin-top: 8px;
+            background: url(../images/common_bg.png) no-repeat -91px -743px;
+        }
+        /********满标待审的状态********/
+        .icos-tender-detail-status {
+            margin-top: 24px;
+        }
+        .icos-tender-detail-status .ico-borrowing,
+        .icos-tender-detail-status .ico-full-tender,
+        .icos-tender-detail-status .ico-overdue,
+        .icos-tender-detail-status .ico-repaymenting,
+        .icos-tender-detail-status .ico-closed-account,
+        .icos-tender-detail-status .ico-success-borrow,
+        .icos-tender-detail-status .ico-closed-account,
+        .icos-tender-detail-status .ico-foreshow {
+            width: 123px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            float: left;
+            background-image: url(../images/common_bg.png);
+        }
+        .icos-tender-detail-status .ico-borrowing {
+            background-position: -267px -897px;
+        }
+        .icos-tender-detail-status .ico-full-tender,
+        .icos-tender-detail-status .ico-repaymenting {
+            background-position: -133px -897px;
+        }
+        .icos-tender-detail-status .ico-overdue {
+            background-position: -133px -942px;
+        }
+        .icos-tender-detail-status .ico-closed-account,
+        .icos-tender-detail-status .ico-success-borrow {
+            background-position: 0 -942px;
+        }
+        .icos-tender-detail-status .ico-foreshow {
+            background-position: 0 -897px;
+        }
+        .ico-first-checkout {
+            width: 123px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            float: left;
+            margin-left: 10px;
+            background: #00cb9e;
+        }
+        .icos-tender-detail-status .ico-go-tender {
+            width: 144px;
+            height: 45px;
+            float: left;
+            margin-left: 42px;
+            cursor: pointer;
+            background: url(../images/common_bg.png) no-repeat -200px -628px;
+        }
+        .detail-info3-ul {
+            margin-top: 6px;
+            padding-left: 28px;
+            padding-top: 18px;
+            border-top: 1px dotted #e0e0e0;
+        }
+        .detail-info3-ul li {
+            margin-right: 33px;
+            font-size: 14px;
+            float: left;
+        }
+        .detail-info3-ul li i {
+            margin-right: 10px;
+        }
+        .detail-info3-ul li font {
+            float: left;
+            font-size: 14px;
+        }
+        .detail-info3-ul li font.font-collect-tender {
+            cursor: pointer;
+        }
+        .detail-info3-ul li.collect i {
+            float: left;
+            width: 16px;
+            height: 16px;
+            background: url(../images/common_bg.png) no-repeat -379px -275px;
+        }
+        /*****投标详细页以办理抵押登记***/
+        .detail-info3-ul li.info3-ul-notgo-tender i,
+        .detail-info3-ul li.info3-ul-go-tender i {
+            float: left;
+            margin-right: 10px;
+            width: 14px;
+            height: 14px;
+            background: url(../images/common_bg.png)
+        }
+        .detail-info3-ul li.info3-ul-go-tender i {
+            background-position: -322px -206px;
+        }
+        .detail-info3-ul li.info3-ul-notgo-tender i {
+            background-position: -394px -254px;
+        }
+        .detail-info3-ul li.info3-ul-go-tender i.ico-guarantee {
+            background-position: -446px -275px;
+        }
+        .detail-info3-ul li.info3-ul-notgo-tender i.ico-guarantee {
+            background-position: -446px -254px;
+        }
+        /*****投标详细页闹钟***/
+        .detail-info3-ul li.info3-ul-clock,
+        .detail-info3-ul li.info3-ul-not-clock {
+            margin-right: 0;
+        }
+        .detail-info3-ul li.info3-ul-clock i,
+        .detail-info3-ul li.info3-ul-not-clock i {
+            float: left;
+            margin-right: 10px;
+            width: 14px;
+            height: 14px;
+            background: url(../images/common_bg.png)
+        }
+        .detail-info3-ul li.info3-ul-clock i {
+            background-position: -324px -229px
+        }
+        .detail-info3-ul li.info3-ul-not-clock i {
+            background-position: -360px -273px
+        }
+        .detail-info3-ul li.info3-ul-clock font,
+        .detail-info3-ul li.info3-ul-not-clock font {
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        /*****投标详细页进度条***/
+        .detail-info3-ul li.info3-ul-bar-progress {
+            float: right;
+            width: 220px;
+            margin-right: 0;
+            margin-top: 1px;
+        }
+        .info3-ul-bar-progress .box-progress-bar {
+            position: relative;
+            width: 156px;
+            height: 11px;
+            background: url(../images/common_bg.png) no-repeat 0 -863px;
+            margin-right: 15px;
+            float: left;
+        }
+        .info3-ul-bar-progress .box-progress-bar b {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 156px;
+            height: 10px;
+            background: url(../images/common_bg.png) no-repeat 0 -878px;
+        }
+        .detail-info3-ul .info3-ul-bar-progress font {
+            font-size: 12px;
+        }
+        .detail-info4-ul {
+            margin-top: 16px;
+            border-top: 1px dotted #e0e0e0;
+            padding-top: 16px;
+            padding-left: 28px;
+            font-size: 14px;
+        }
+        .detail-info4-ul li {
+            float: left;
+            width: 224px;
+        }
+        .detail-info4-ul li b {
+            padding-right: 10px;
+        }
+        .detail-info4-ul li span {
+            padding: 0 12px;
+        }
+        .detail-info4-ul li.detail-info4-li-replayment {
+            width: 215px;
+        }
+        .detail-info5-ul {
+            margin-top: 20px;
+            padding-left: 28px;
+            font-size: 14px;
+        }
+        .detail-info5-ul li {
+            float: left;
+            width: 224px;
+        }
+        .detail-info5-ul li.special {
+            width: 215px;
+        }
+        /****标的物的相关描述***********/
+        .container-detail-info {
+            margin-top: 10px;
+        }
+        .title-container-detail-info {
+            height: 49px;
+            line-height: 49px;
+            border-left: 1px solid #e0e0e0;
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -158px;
+        }
+        .title-container-detail-info span {
+            float: left;
+            border-right: 1px solid #e0e0e0;
+            height: 48px;
+            border-top: 1px solid #e0e0e0;
+            padding: 0 40px;
+            position: relative;
+            cursor: pointer
+        }
+        .title-container-detail-info span.current {
+            background: #fff;
+            cursor: default;
+        }
+        .title-container-detail-info span.current i {
+            position: absolute;
+            left: 17px;
+            top: 17px;
+            width: 4px;
+            height: 15px;
+            background: #067bce;
+        }
+        .title-container-detail-info span font {
+            float: left;
+            font-size: 14px;
+        }
+        .title-container-detail-info span.current font {
+            color: #067bce;
+        }
+        .container-detail-info-publish {
+            background: #fff;
+            padding: 0 16px 24px;
+            border: 1px solid #e0e0e0;
+            border-top: 0;
+        }
+        .detail-info-publish-left {
+            float: left;
+            width: 707px;
+            padding-right: 12px;
+            margin-top: 18px;
+        }
+        .detail-info-publish-left dl {
+            padding-top: 24px;
+        }
+        .detail-info-publish-left dl.specail {
+            padding-top: 0;
+        }
+        .detail-info-publish-left dl dt {
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -185px;
+        }
+        .detail-info-publish-left dl dt font {
+            float: left;
+            font-size: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #067bce;
+        }
+        .detail-info-publish-left dl dd {
+            margin-top: 18px;
+        }
+        .detail-info-publish-left dl.specail dd {
+            margin-top: 18px;
+        }
+        .detail-info-publish-left dl dd img {
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+            width: 214px;
+            height: 135px;
+            padding: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        .detail-info-publish-left dl dd img.specail {
+            margin-right: 0;
+        }
+        .detail-info-publish-left dl dd.box-borrow-records span {
+            float: left;
+            width: 206px;
+            margin-bottom: 10px;
+        }
+        .box-tender-records-info {
+            font-size: 14px;
+        }
+        .detail-info-publish-right {
+            float: left;
+            width: 214px;
+            margin-top: 10px;
+            padding-left: 12px;
+            border-left: 1px solid #e0e0e0;
+        }
+        .title-detail-info-publish {
+            height: 32px;
+            line-height: 32px;
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -175px;
+        }
+        .title-detail-info-publish font {
+            height: 30px;
+            line-height: 30px;
+            float: left;
+            font-size: 14px;
+            border-bottom: 2px solid #fdd73f;
+        }
+        .title-detail-info-publish i {
+            float: right;
+            width: 34px;
+            height: 30px;
+            line-height: 30px;
+            background: url(../images/common_bg.png) no-repeat -271px -743px;
+        }
+        .detail-info-publish-right dl {
+            margin: 12px 12px 0;
+            font-size: 14px;
+        }
+        .detail-info-publish-right dl dt {
+            height: 36px;
+            background: #f8f6f5;
+            cursor: pointer;
+        }
+        .detail-info-publish-right dl dt i.ico-process {
+            float: left;
+            width: 9px;
+            height: 9px;
+            margin-top: 13px;
+            margin-right: 5px;
+            margin-left: -3px;
+            background: url(../images/common_bg.png) no-repeat -317px -743px;
+        }
+        .detail-info-publish-right dl dt.disabled i.ico-process {
+            background-position: -317px -757px;
+        }
+        .detail-info-publish-right dl dt font {
+            float: left;
+            margin-top: 11px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .detail-info-publish-right dl dt i.ico-arrow {
+            float: left;
+            width: 11px;
+            height: 7px;
+            margin-top: 15px;
+            background: url(../images/common_bg.png) no-repeat -332px -743px;
+        }
+        .detail-info-publish-right dl dt i.ico-number {
+            float: right;
+            width: 26px;
+            height: 16px;
+            line-height: 16px;
+            margin-top: 10px;
+            text-align: center;
+            margin-right: 5px;
+            color: #999;
+            background: url(../images/common_bg.png) no-repeat -353px -743px;
+        }
+        .detail-info-publish-right dl dd {
+            line-height: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            float: left;
+            width: 100%;
+        }
+        .detail-info-publish-right dl dd font {
+            float: left;
+            padding-left: 18px;
+            width: 140px;
+            line-height: 18px;
+        }
+        .detail-info-publish-right dl dd i {
+            float: right;
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+            background: url(../images/common_bg.png) no-repeat -400px -743px;
+        }
+        .detail-info-publish-right dl dd:hover font {
+            color: #333
+        }
+        .detail-info-publish-right dl dd.disabled {
+            cursor: text;
+        }
+        .detail-info-publish-right dl dd.disabled font {
+            color: #999;
+        }
+        .detail-info-publish-right dl dd.disabled i {
+            background-position: -381px -739px;
+        }
+        /*****详细页投标记录******/
+        .box-tender-records-info {
+            background: #fff;
+            padding-top: 14px;
+        }
+        .title-tender-records-info span {
+            padding-right: 40px;
+        }
+        .title-tender-records-info span font {
+            color: #ff5619;
+        }
+        .box-tender-records-info table.thead {
+            width: 100%;
+            margin-top: 12px;
+            border-bottom: 3px solid #1e87d2;
+        }
+        .box-tender-records-info table.thead tr {
+            height: 50px;
+            font-size: 14px;
+            background: #f8f6f5;
+            font-weight: normal;
+        }
+        .box-tender-records-info table.tbody {
+            width: 100%;
+        }
+        .box-tender-records-info table.tbody tr {
+            height: 32px;
+            font-size: 14px;
+            background: #e9ebed;
+        }
+        .box-tender-records-info table.tbody tr td {
+            border-right: 1px solid #e5e5e5;
+        }
+        /*****详细页留言板******/
+        .tender-message {
+            background: #fff;
+            padding-top: 14px;
+        }
+        .title-tender-message {
+            font-size: 14px;
+        }
+        .title-tender-message a {
+            color: #067bce;
+        }
+        .content-tender-message {
+            margin-top: 10px;
+            border-top: 2px solid #067bce;
+            padding: 20px 19px;
+            background: #f7f7f8;
+            border-bottom: 1px solid #ededef;
+        }
+        .title-content-tender-message a {
+            color: #416e9b;
+            padding: 0 5px;
+        }
+        .detail-content-tender-message {
+            margin-top: 10px;
+        }
+        .detail-content-tender-message textarea {
+            float: left;
+            width: 826px;
+            border: 1px solid #e0e0e0;
+            height: 53px;
+            border-right: 2px solid #ebebeb;
+            background: #fff;
+            padding: 10px;
+            font-family: "宋体";
+            line-height: 20px;
+        }
+        .detail-content-tender-message input {
+            float: left;
+            width: 93px;
+            height: 75px;
+            line-height: 75px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "宋体";
+            background: url(../images/common_bg.png) no-repeat -381px -509px;
+            border: 0;
+            cursor: pointer;
+            color: #fff;
+        }
+        .detail-content-tender-message input.readonly {
+            background-position: -381px -592px;
+            cursor: default;
+        }
+        .font-constrain {
+            position: absolute;
+            right: 120px;
+            bottom: 5px;
+        }
+        .tender-message-validate {
+            margin-top: 10px;
+        }
+        .tender-message-validate input {
+            padding-left: 10px;
+            float: left;
+            margin-right: 7px;
+            width: 60px;
+            height: 64px;
+            height: 22px;
+            line-height: 22px;
+            border: 1px solid #e0e0e0;
+        }
+        .tender-message-validate img {
+            float: left;
+            cursor: pointer;
+            height: 22px
+        }
+        .box-tender-record-comment {
+            margin-top: 20px;
+        }
+        .title-tender-record-comment font {
+            color: #ff2c2c;
+        }
+        /*****留言回复******/
+        .box-tender-record-comment ul li {
+            margin-top: 10px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+            float: left;
+            width: 100%;
+            font-family: "宋体";
+        }
+        .box-tender-record-comment ul li a {
+            font-family: "宋体";
+        }
+        .box-tender-record-comment ul li a.btn-zang,
+        .box-tender-record-comment ul li a.btn-remove-zang {
+            display: inline-block;
+            width: 50px;
+        }
+        .img-commenter {
+            float: left;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .content-tender-record-comment {
+            float: left;
+            width: 620px;
+        }
+        .content-tender-record-comment .tender-record-comment-rela font {
+            color: #333333;
+            padding-right: 15px;
+            font-weight: bold;
+        }
+        .content-tender-record-comment .tender-record-comment-rela span {
+            color: #999;
+        }
+        .content-tender-record-comment .tender-record-comment-rela-info {
+            line-height: 18px;
+            margin-top: 5px;
+        }
+        .content-tender-record-comment .box-already-repay-article {
+            border: 1px solid #eee;
+            margin-top: 10px;
+            line-height: 20px;
+            padding: 10px;
+            box-shadow: 0 0 2px #eee;
+            width: 740px;
+        }
+        .content-tender-record-comment .box-already-repay-article p {
+            margin-top: 10px;
+        }
+        .tender-record-comment-zang {
+            float: left;
+            width: 83px;
+            text-align: right;
+            margin-top: 25px;
+            margin-left: 60px;
+        }
+        tender-record-comment-zang .font-line {
+            padding: 0 12px;
+        }
+        .box-comment-reply {
+            position: relative;
+            margin-top: 5px;
+            width: 761px;
+            display: none;
+        }
+        .box-comment-reply i.ico-top-corner {
+            display: block;
+            height: 14px;
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -259px;
+        }
+        .content-comment-reply {
+            background: #f8f6f5;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+        }
+        .box-comment-reply i.ico-bottom-corner {
+            display: block;
+            height: 5px;
+            background: url(../images/foot_navigate_line.png) no-repeat 0 -277px;
+        }
+        .detail-comment-reply {
+            padding: 7px 18px;
+        }
+        .detail-comment-reply textarea {
+            float: left;
+            width: 500px;
+            line-height: 20px;
+            height: 20px;
+            padding: 5px 5px 5px 120px;
+            margin-right: 10px;
+            border: 1px solid #067bce;
+            border-radius: 4px;
+        }
+        .detail-comment-reply input {
+            width: 62px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            background: url(../images/common_bg.png) no-repeat -272px -777px;
+            border: 0;
+            cursor: pointer;
+        }
+        .content-comment-reply font {
+            position: absolute;
+            left: 30px;
+            top: 16px;
+            color: #999;
+            font-size: 12px;
+        }
+        .font-zang-number {
+            float: right;
+            width: 52px;
+            height: 25px;
+            line-height: 25px;
+            margin-top: 18px;
+            text-align: right;
+            padding-right: 8px;
+            color: #ff2c2c;
+            background: url(../images/common_bg.png) no-repeat -345px -777px;
+            cursor: pointer;
+        }
+        .box-message-tab {
+            display: none;
+        }
+        /****申请借款页面****/
+        .box-borrow-left {
+            padding: 10px;
+        }
+        .box-borrow-left h2 {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .box-borrow-input {
+            margin-top: 10px;
+        }
+        .box-borrow-input li {
+            width: 100%;
+            float: left;
+            margin-bottom: 10px;
+        }
+        .font-application-remark {
+            padding-left: 62px;
+            font-size: 14px;
+            color: #2B87DE;
+        }
+        .title-borrow-input {
+            font-size: 14px;
+        }
+        .title-borrow-input i {
+            color: #ff2c2c
+        }
+        .title-borrow-input font {
+            font-size: 14px;
+        }
+        .box-borrow-input li input {
+            float: left;
+            width: 100px;
+            border: 1px solid #e0e0e0;
+            height: 26px;
+            line-height: 26px;
+            padding-left: 10px;
+        }
+        .borrow-vali-info {
+            float: left;
+            height: 28px;
+            line-height: 28px;
+            width: 350px;
+            font-size: 14px;
+            margin-left: 18px;
+        }
+        .message-vali-info {
+            height: 18px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+        .content-tender-message .register-vali-fail i,
+        .content-tender-message .register-vali-success i {
+            margin-top: 0;
+        }
+        .box-borrow-input li em {
+            float: left;
+            height: 28px;
+            line-height: 28px;
+        }
+        .box-borrow-input .borrow-vali-info {
+            width: auto;
+        }
+        .box-borrow-input .borrow-vali-info font {
+            font-size: 14px;
+        }
+        .box-borrow-input li input.input-borrow-amount,
+        .box-borrow-input li input.input-borrow-mouth,
+        .box-borrow-input li input.input-mortgage-area {
+            width: 80px;
+        }
+        .box-borrow-input li input.borrower-email {
+            width: 150px;
+        }
+        .box-borrow-input li input.input-mortgage-name,
+        .box-borrow-input li input.input-mortgage-address {
+            width: 300px;
+        }
+        .box-borrow-input li textarea {
+            float: left;
+            padding-left: 10px;
+            padding-top: 10px;
+            width: 300px;
+            height: 50px;
+            border: 1px solid #e0e0e0;
+        }
+        .box-borrow-input li h3 {
+            padding-left: 62px;
+            padding-top: 20px;
+        }
+        .box-borrow-input li lable i {
+            color: #ff2c2c
+        }
+        .box-borrow-input .register-vali-fail i,
+        .box-borrow-input .register-vali-success i {
+            margin-top: 5px;
+        }
+        .btn_borrow_submit {
+            background: #2B87DE;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-left: 82px;
+        }
+        .detail-report-dialog {
+            padding: 0 25px;
+        }
+        .detail-report-dialog p {
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+        }
+        .detail-report-dialog p i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: #ff2c2c;
+        }
+        .detail-report-dialog p font {
+            float: left;
+            line-height: 20px;
+            margin-left: 10px;
+        }
+        .detail-report-dialog p font b {
+            color: #ff2c2c;
+        }
+        .textarea-report-dialog textarea {
+            float: left;
+            padding: 5px;
+        }
+        /****投标详细页*****/
+        .container-borrow-content {
+            margin-top: 12px;
+        }
+        .container-borrow-content .breakcrumb {
+            width: 980px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        .container-borrow-content .breakcrumb span {
+            padding: 0 6px;
+        }
+        .wrap-borrow-content {
+            background: #fff;
+            padding-bottom: 70px;
+        }
+        .box-borrow-content {
+            margin: 9px auto 0;
+            width: 980px;
+        }
+        .left-borrow-content {
+            float: left;
+            width: 615px;
+            padding-left: 18px;
+        }
+        .left-borrow-content h1 {
+            font-size: 20px;
+            margin-top: 23px;
+            font-weight: normal;
+        }
+        .left-borrow-content p.tender-type {
+            margin-top: 22px;
+        }
+        .left-borrow-content p.tender-type i,
+        .left-borrow-content p.tender-type font,
+        .left-borrow-content p.tender-type em,
+        .left-borrow-content p.tender-type span {
+            float: left;
+        }
+        .left-borrow-content p.tender-type i {
+            width: 13px;
+            height: 12px;
+            background: url(../images/common_bg.png) no-repeat -170px -818px;
+        }
+        .left-borrow-content p.tender-type i.building {
+            background-position: -170px -836px;
+        }
+        .left-borrow-content p.tender-type font {
+            margin-left: 5px;
+        }
+        .left-borrow-content p.tender-type em {
+            margin-left: 20px;
+            width: 1px;
+            height: 12px;
+            background: #cccccc;
+        }
+        .left-borrow-content p.tender-type span {
+            margin-left: 15px;
+        }
+        .left-borrow-content .borrower-info {
+            margin-top: 18px;
+            margin-left: 13px;
+            width: 540px;
+            height: 48px;
+            border: 11px solid #f0f0f0;
+            border-left: 18px solid #f0f0f0;
+        }
+        .left-borrow-content .borrower-info i.ico-borrower-status {
+            position: absolute;
+            left: -21px;
+            top: 12px;
+            color: #fff;
+            width: 70px;
+            height: 22px;
+            padding-bottom: 2px;
+            line-height: 22px;
+            text-align: center;
+            background: url(../images/common_bg.png) no-repeat -194px -818px;
+        }
+        .left-borrow-content .borrower-detail {
+            margin-left: 65px;
+            margin-top: 13px;
+        }
+        .left-borrow-content .borrower-detail img {
+            float: left;
+            width: 24px;
+            height: 24px;
+        }
+        .left-borrow-content .borrower-detail font {
+            float: left;
+            margin-top: 3px;
+            margin-left: 7px;
+            font-size: 12px;
+        }
+        .left-borrow-content .btn-send-message {
+            float: left;
+            margin-left: 22px;
+        }
+        .left-borrow-content .btn-send-message i,
+        .left-borrow-content .btn-attention-borrower i,
+        .left-borrow-content .btn-borrow-detail i {
+            float: left;
+            width: 16px;
+            height: 14px;
+            margin-top: 4px;
+            background: url(../images/common_bg.png) no-repeat -278px -818px;
+        }
+        .left-borrow-content .btn-send-message font,
+        .left-borrow-content .btn-attention-borrower font,
+        .left-borrow-content .btn-borrow-detail font {
+            margin-top: 5px;
+        }
+        .left-borrow-content .btn-attention-borrower {
+            float: left;
+            margin-left: 18px;
+        }
+        .left-borrow-content .btn-attention-borrower i {
+            background-position: -304px -818px
+        }
+        .left-borrow-content .btn-borrow-detail {
+            float: left;
+            margin-left: 18px;
+        }
+        .left-borrow-content .btn-borrow-detail i {
+            ;
+            width: 14px;
+            background-position: -332px -818px
+        }
+        /*****标的相关信息****/
+        .tender-content-summary {
+            margin-top: 20px;
+            height: 23px;
+        }
+        .tender-content-summary p {
+            float: left;
+            width: 185px;
+        }
+        .tender-content-summary p i {
+            float: left;
+        }
+        .tender-content-summary p span {
+            float: left;
+            margin-left: 15px;
+            margin-top: 8px;
+        }
+        .tender-content-summary p span b {
+            color: #ff5c10;
+        }
+        .tender-content-summary .interest i {
+            width: 22px;
+            height: 20px;
+            margin-top: 1px;
+            background: url(../images/common_bg.png) no-repeat -360px -818px;
+        }
+        .tender-content-summary .line {
+            width: 1px;
+            height: 20px;
+            background: #dddddd;
+            float: left;
+            margin-left: 20px;
+        }
+        .tender-content-summary .period i {
+            width: 23px;
+            height: 23px;
+            background: url(../images/common_bg.png) no-repeat -400px -818px;
+        }
+        .tender-content-summary .amount i {
+            width: 23px;
+            height: 23px;
+            background: url(../images/common_bg.png) no-repeat -439px -818px;
+        }
+        .tender-content-summary .balance i {
+            width: 24px;
+            height: 23px;
+            background: url(../images/common_bg.png) no-repeat -360px -846px;
+        }
+        .tender-content-summary .complete-degree i {
+            width: 23px;
+            height: 23px;
+            background: url(../images/common_bg.png) no-repeat -400px -846px;
+        }
+        .tender-content-summary .tender-max i {
+            width: 23px;
+            height: 22px;
+            background: url(../images/common_bg.png) no-repeat -439px -846px;
+        }
+        .tender-content-summary p.box-progress-bar {
+            position: relative;
+            margin-left: 60px;
+            margin-top: 9px;
+            height: 11px;
+            width: 100px;
+            background: url(../images/common_bg.png) no-repeat -115px -743px;
+        }
+        .tender-content-summary p.box-progress-bar b {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 10px;
+            background: url(../images/common_bg.png) no-repeat -115px -757px;
+        }
+        .tender-content-summary .font-progress {
+            float: left;
+            margin-top: 8px;
+            margin-left: 15px;
+        }
+        .tender-rela-info {
+            margin-top: 22px;
+            border-top: 1px solid #e3e3e3;
+            padding-top: 13px;
+        }
+        .tender-rela-info li {
+            float: left;
+            font-size: 14px;
+            margin-left: 40px;
+        }
+        .tender-rela-info li.special {
+            margin-left: 5px;
+        }
+        .container-info-publish {
+            margin: 56px auto 0;
+            width: 980px;
+        }
+        .container-info-publish .title-info-publish {
+            height: 50px;
+            line-height: 50px;
+            background: url(../images/common_big_bg.png) no-repeat 0 31px;
+        }
+        .container-info-publish .title-info-publish span {
+            float: left;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            width: 139px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .container-info-publish .title-info-publish em.current {
+            float: left;
+            width: 1px;
+            height: 14px;
+            margin-top: 18px;
+            background: url(../images/common_big_bg.png) no-repeat 0 -194px;
+        }
+        .container-info-publish .title-info-publish span.current {
+            cursor: default;
+            background: url(../images/common_big_bg.png) no-repeat 0 -231px;
+        }
+        .container-info-publish .title-info-publish span.current i {
+            position: absolute;
+            right: 10px;
+            top: 22px;
+            width: 9px;
+            height: 6px;
+            line-height: 6px;
+            background: url(../images/common_big_bg.png) no-repeat -153px -231px;
+        }
+        .box-info-publish .font-tender-name {
+            margin-top: 14px;
+            height: 22px;
+            line-height: 22px;
+        }
+        .box-info-publish .font-tender-name span {
+            font-size: 14px;
+            float: left;
+            color: #333;
+        }
+        .box-info-publish .font-tender-name font {
+            float: left;
+            margin-left: 24px;
+            cursor: pointer;
+            width: 96px;
+            height: 22px;
+            background: url(../images/common_bg.png) no-repeat -194px -846px;
+        }
+        .box-info-publish .line {
+            margin-top: 18px;
+            height: 2px;
+            width: 100%;
+            background: url(../images/common_big_bg.png) no-repeat 0 -299px;
+        }
+        .font-image-data {
+            margin-top: 30px;
+        }
+        .font-image-data i {
+            float: left;
+            width: 7px;
+            height: 12px;
+            margin-top: 5px;
+            background: url(../images/common_bg.png) no-repeat -304px -845px;
+        }
+        .font-image-data font {
+            float: left;
+            margin-left: 5px;
+            font-size: 16px;
+            color: #416e99;
+        }
+        .box-tender-images {
+            margin-top: 20px;
+            margin-left: -10px;
+        }
+        .box-tender-images a {
+            float: left;
+            width: 290px;
+            height: 180px;
+            margin-left: 10px;
+            padding: 9px;
+            border: 1px solid #ccc;
+        }
+        .box-tender-images a img {
+            width: 290px;
+            height: 180px;
+        }
+        .middle-line {
+            float: left;
+            width: 1px;
+            height: 271px;
+            margin-top: 30px;
+            margin-left: 19px;
+            background: url(../images/common_vertical_bg.png) no-repeat -1px 0;
+        }
+        .right-borrow-content {
+            width: 272px;
+            float: left;
+            margin-left: 41px;
+            margin-top: 27px;
+        }
+        .font-tender-status span {
+            float: left;
+            font-size: 16px;
+            color: #00b0ee;
+            margin-left: 3px;
+        }
+        .font-tender-status font {
+            float: right;
+            font-size: 18px;
+            color: #999;
+        }
+        .right-borrow-content .box-progress {
+            margin-top: 13px;
+            width: 270px;
+            height: 5px;
+            overflow: hidden;
+            position: relative;
+            background: url(../images/common_bg.png) no-repeat -161px -719px;
+        }
+        .right-borrow-content .box-progress b {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 270px;
+            height: 5px;
+            background: url(../images/common_bg.png) no-repeat -161px -727px;
+        }
+        .box-account-balance {
+            margin-top: 18px;
+        }
+        .box-account-balance i {
+            float: left;
+            width: 12px;
+            height: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: url(../images/common_big_bg.png) no-repeat -153px -240px;
+        }
+        .box-account-balance i.current {
+            background-position: -153px -256px;
+        }
+        .box-account-balance font {
+            float: left;
+            margin-left: 6px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+        .box-account-balance a,
+        .box-account-balance b {
+            float: right;
+            font-size: 14px;
+        }
+        .box-account-balance a em {
+            color: #e84022;
+            margin-right: 5px;
+        }
+        .box-account-balance b {
+            color: #333;
+        }
+        .box-zjb-balance {
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px solid #d2d2d2;
+        }
+        .box-invest-amount {
+            margin-top: 8px;
+            padding-top: 14px;
+            height: 16px;
+            line-height: 16px;
+            border-top: 1px solid #d2d2d2;
+        }
+        .box-invest-amount span {
+            float: left;
+            font-size: 14px;
+        }
+        .box-invest-amount a {
+            float: right;
+            color: #00b0ee;
+        }
+        .input-tender-amount,
+        .zjb-login-password,
+        .tender-valcode {
+            position: relative;
+            z-index: 1;
+            height: 36px;
+            line-height: 36px;
+            width: 260px;
+            border: 1px solid #d2d2d2;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .remind-tender-amount {
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+            top: 1px;
+            left: 1px;
+            height: 36px;
+            line-height: 36px;
+            width: 258px;
+            color: #bdbdbd;
+            font-size: 14px;
+            padding-left: 10px;
+            background: #fff;
+        }
+        .unit-tender-amount {
+            position: absolute;
+            z-index: 2;
+            top: 1px;
+            right: 1px;
+            height: 36px;
+            line-height: 36px;
+            width: 36px;
+            border-left: 1px solid #d2d2d2;
+            text-align: center;
+            font-size: 14px;
+        }
+        .right-borrow-content .go-tender,
+        .right-borrow-content .go-cancel {
+            margin-top: 17px;
+            width: 269px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            text-align: center;
+            background: url(../images/common_big_bg.png) no-repeat -180px -231px;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+        }
+        .right-borrow-content .go-cancel {
+            background-position: -729px -231px;
+            cursor: default;
+        }
+        .tender-valcode {
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            width: 80px;
+            border: 1px solid #d2d2d2;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .img-tender-valicode {
+            float: left;
+            height: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .box-tender-valcode .change-valicode {
+            float: right;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        .borrow-detail-info .line {
+            margin-top: 30px;
+        }
+        .content-detail-info {
+            padding: 16px 18px 16px 8px;
+            background: #f0f0f0;
+        }
+        .content-detail-info.box-borrower-record p {
+            float: left;
+            width: 310px;
+        }
+        .content-detail-info p {
+            line-height: 16px;
+            padding-bottom: 10px;
+        }
+        .box-process-show {
+            margin-top: 20px;
+        }
+        .tab-publish {
+            float: left;
+            width: 118px;
+            margin-top: -8px;
+        }
+        .tab-publish span {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            width: 112px;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            text-indent: 20px;
+            background: url(../images/common_big_bg.png) no-repeat -467px -231px;
+        }
+        .tab-publish span.current {
+            width: 118px;
+            color: #fff;
+            cursor: default;
+            background-position: -600px -231px;
+        }
+        .tab-publish span.disabled {
+            color: #999;
+            cursor: default;
+        }
+        .box-process-show .middle-img {
+            width: 350px;
+            max-height: 350px;
+            overflow: hidden;
+            float: left;
+            margin-left: 20px;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .box-process-show .middle-img img {
+            display: inline-block;
+            width: 348px;
+            border: 1px solid #e0e0e0;
+        }
+        .box-process-show .middle-img i.ico-magnify {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 24px;
+            height: 24px;
+            display: block;
+            cursor: pointer;
+            background: url(../images/common_bg.png) no-repeat -323px -846px;
+        }
+        .show-small-images {
+            position: relative;
+            margin-left: 6px;
+            margin-top: -20px;
+            float: left;
+            width: 450px;
+            height: 350px;
+            overflow: hidden
+        }
+        .show-small-images .temp-no-data {
+            margin-top: 20px;
+            margin-left: 20px;
+            text-align: center;
+            font-size: 14px;
+            padding: 40px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .wrap-small-images {
+            height: 300px;
+            width: 1900px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .wrap-small-images ul {
+            float: left;
+            width: 450px;
+            height: 300px;
+        }
+        .show-small-images li {
+            position: relative;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 130px;
+            height: 130px;
+            cursor: pointer;
+        }
+        .show-small-images li.current {
+            cursor: default;
+        }
+        .show-small-images li img {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 128px;
+            height: 128px;
+        }
+        .show-small-images li i.line-box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130px;
+            height: 130px;
+            background: url(../images/common_big_bg.png) no-repeat 0 -307px;
+        }
+        .show-small-images li.current i.line-box {
+            background: url(../images/common_big_bg.png) no-repeat -153px -307px;
+        }
+        .show-small-images li i.filter {
+            position: absolute;
+            display: block;
+            left: 1px;
+            bottom: 1px;
+            height: 25px;
+            width: 128px;
+            background: #000;
+            opacity: 0.5;
+            filter: alpha(opacity: 50);
+        }
+        .show-small-images li p {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 25px;
+            line-height: 25px;
+            width: 128px;
+            color: #fff;
+            text-align: center;
+        }
+        .show-small-images li a {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            background: url(../images/common_big_bg.png) no-repeat -152px -275px #666;
+        }
+        .box-paging-show {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .box-paging-show i {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+        .box-paging-show i.current {
+            color: #fff;
+            cursor: default;
+            background: url(../images/common_big_bg.png) no-repeat -355px -307px;
+        }
+        .box-paging-show i.prev,
+        .box-paging-show i.next {
+            background: url(../images/common_big_bg.png) no-repeat -315px -307px;
+        }
+        .box-paging-show i.prev.disabled,
+        .box-paging-show i.next.disabled {
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap-content-tender" data-tab="tendering" style="display: block;">
+        <div class="box-content-tendering">
+
+            <i class="ico-borrowing">借款中</i>
+            <div class="detail-content-tendering clearfix">
+                <a href="/invest/a20141100005.html" class="img-tendering-project" rel="nofollow">
+                    <img src="/data/upfiles/images/2014-11/05/0_borrow_borrow_type_1415170781399.jpg">
+                </a>
+
+                <div class="wrap-introduce-project">
+                    <div class="detail-introduce-project">
+                        <h3>
+                                    <a href="/invest/a20141100005.html">
+                                    车贷：testliukai                                    </a>
+                                </h3>
+                        <div class="detail-introduce-outline">
+                            testliukai...</div>
+
+                        <div class="tendering-relative-info clearfix">
+
+                            <div class="pr wrap-tendering-amount-total   clearfix">
+                                <div class="tendering-amount-total">
+                                    <b class="add-comma" style="float:left">100,00元</b>
+                                    <p style="clear:both">标的总额</p>
+
+                                </div>
+
+                                <ul class="pr">
+                                    <li>
+                                        <b>50元</b>
+                                        <p>最低投标</p>
+                                    </li>
+                                    <li>
+                                        <b class="c_ff2c2c">16.80%</b>
+                                        <p>年化率</p>
+                                    </li>
+                                    <li>
+                                        <b>3个月</b>
+                                        <p>期限</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tendering-relative-infor clearfix">
+
+
+                                <p class="box-progress-bar">
+                                    <b style="width:0.10%"></b>
+                                    <font>0.10%</font>
+                                </p>
+                                <p class="box-remain-time"><i></i><font class="mr10">剩余时间</font><span id="endtime0" class="new_time">4时51分58秒</span>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>选项卡 面向对象</title>
+<style>
+body{ margin:0;}
+#tab1,#tab2{ width:200px; height:200px; }
+#tab1 input,#tab2 input{ width:20%; height:25px; padding:0; display:inline}
+#tab1 input[class="active"],#tab2 input[class="active"]{ background-color:yellow}
+#tab1 div,#tab2 div{ display:none; width:200px; height:175px; border:1px solid #000;}
+</style>
+<script>
+
+window.onload=function(){
+	var tab= new Tab("tab1");
+	tab.init();
+	
+	var tab2= new Tab("tab2")
+	tab2.init();
+	}
+	
+	function Tab(Id){
+		
+	this.Box=document.getElementById(Id);
+	this.aBtn=this.Box.getElementsByTagName("input");
+	this.aDiv=this.Box.getElementsByTagName("div")
+		
+		}
+	
+	Tab.prototype.init=function(){
+		var This=this;
+			for(var i=0; i<this.aBtn.length;i++){
+		this.aBtn[i].index=i;
+		this.aBtn[i].onclick=function(){
+			
+			This.change(this)
+			}
+		}	
+		
+		
+		}
+	
+	Tab.prototype.change=function(obj){
+			for(var i=0; i<this.aBtn.length;i++){
+				this.aBtn[i].className="";
+				this.aDiv[i].style.display="none"
+				
+				}
+			obj.className="active";
+			this.aDiv[obj.index].style.display="block"
+		}
+	
+	
+	
+
+</script>
+
+
+
+
+
+</head>
+
+<body>
+<div id="tab1">
+<input class="active" type="button" value="111"/>
+<input type="button"  value="222"/>
+<input type="button"  value="333"/>
+<input type="button"  value="444"/>
+
+<div style="display:block">111</div>
+<div>222</div>
+<div>333</div>
+<div>444</div>
+
+
+</div>
+
+
+
+<div id="tab2">
+<input class="active" type="button" value="111"/>
+<input type="button"  value="222"/>
+<input type="button"  value="333"/>
+<input type="button"  value="444"/>
+
+<div style="display:block">111</div>
+<div>222</div>
+<div>333</div>
+<div>444</div>
+
+
+</div>
+
+
+
+
+</body>
+</html>

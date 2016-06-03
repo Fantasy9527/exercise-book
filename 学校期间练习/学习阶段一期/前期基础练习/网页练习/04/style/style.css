@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body {font-family: "宋体";font-size: 12px;margin:0 auto; padding: 0px; line-height:22px; color:#333;}
+div,ul,li,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd,ol,th,td{margin: 0px;padding: 0px;}
+li {list-style-type: none;}
+form,input,button,option,textarea,select{ margin: 0px;padding: 0px;}
+input,button,textarea,select{font:100% Tahoma,Helvetica,Arial,sans-serif;}
+a {color: #000;text-decoration: none;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover{text-decoration: underline;}
+a:active {text-decoration: underline;}
+table {font-size:inherit;font:100%;}
+th { font-weight:normal;}
+img { border: 0;}
+h3 { font-size: 14px; color: #000;}
+h4 { font-size: 12px;}
+.clear { clear: both; height: 0px; overflow: hidden;}
+.copy{ font-family:Arial, Helvetica, sans-serif}
+
+
+#content{ width:1000px; margin:0 auto;}
+
+
+.bane{ width:1000px; height:250px; float:left; background:url(../images/1.jpg) no-repeat; margin-left:6px; display:inline;}
+
+
+/*教练心得 begin*/
+.ny_tea .cont{ padding:10px 30px;}
+.ny_tea .tit{ width:688px; height:27px; margin:10px auto; background:url(../images/x_07.jpg) no-repeat;font-weight:bold; color:#31a01b; line-height:27px;}
+.ny_tea .tit .name{ padding-left:150px; float:left;  width:410px;}
+.ny_tea .tit .time{ padding-left:10px; float:left;}
+.ny_tea li { width:725px; float: left; background:url(../images/new03.jpg) 0 bottom repeat-x; line-height:30px;}
+.ny_tea li a { float: left;color:#666666;background:url(../images/x_11.jpg) no-repeat 5px 9px; padding-left:23px;}
+.ny_tea li a:hover{ color:#31a01b; text-decoration:none;}
+.ny_tea li .date { float: right; padding-right:75px;}
+/*教练心得 end*/
+
+
+
+

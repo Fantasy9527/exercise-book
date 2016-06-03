@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>打飞机</title>
+<style>
+body{ background:#000; text-align:center}
+#screen{ background:#fff; position:absolute; top:50%; margin-top:-200px; left:50%; margin-left:-340px; background:url(images/bg_02.jpg) left}
+
+</style>
+
+<script>
+window.onload=function(){
+	var S=document.getElementById("screen")
+	var gd=S.getContext("2d");
+	loadImage(["plane.png","cartridge.png","flivver.png","flivver2.png","flivver3.png","boo1.png","over.png"],function(imags){
+		
+		setInterval(function(){
+			gd.clearRect(0, 0, S.width, S.height) ; //清除画布
+			gd.drawImage(imags["plane"],0,0,64,72,planeX,planeY,64,72)   //画飞机
+			 for (var i = 0; i < aBull.length; i++) {					//画炮弹
+			gd.drawImage(imags["cartridge"],0,0,7,17,aBull[i].x,aBull[i].y,7,17)
+			
+			  }
+			
+			 for (var i = 0; i < plane1.length; i++) {					//画敌人一号
+			gd.drawImage(imags["flivver"],0,0,50,30,plane1[i].x,plane1[i].y,50,30)
+			
+			  }
+			  
+			for (var i = 0; i < plane2.length; i++) {					//画敌人二号
+			gd.drawImage(imags["flivver2"],0,0,70,90,plane2[i].x,plane2[i].y,70,90)
+			
+			  }
+			for (var i = 0; i < plane3.length; i++) {					//画敌人三号
+			gd.drawImage(imags["flivver3"],0,0,110,170,plane3[i].x,plane3[i].y,110,170)
+			
+			  }
+			function boon(boonX,boonY){
+			
+			gd.drawImage(imags["over"],0,0,40,43,boonX,boonY,40,40);    // 打击爆炸
+			
+			
+			}
+			
+			
+			function boon2(boonX,boonY){
+			
+			gd.drawImage(imags["over"],0,40,40,43,boonX,boonY,40,40);    // 死亡爆炸
+			
+			
+			}
+			 
+			
+			  for (var i = 0; i < aBull.length; i++) { // 让子弹飞一会儿
+			aBull[i].y-=10;
+			
+			     }
+				 
+			  for (var i = 0; i < plane1.length; i++) {  // 让飞机一号飞一会儿
+			plane1[i].y+=1
+			     }
+				 
+			  for (var i = 0; i < plane2.length; i++) { // 让飞机二号飞一会儿
+			plane2[i].y+=1
+			     }	
+				 
+			 for (var i = 0; i < plane3.length; i++) { // 让飞机三号飞一会儿
+			plane3[i].y+=1
+			     }	 
+				 
+				 
+				 	  	 
+	
+	
+		var timer2=null;
+	
+		 for (var i = 0; i < plane1.length; i++) {                         //子弹撞击飞机一号
+            for (var j = 0; j < aBull.length; j++) {
+
+              if (testColl(aBull[j].x, aBull[j].y,7,17 ,plane1[i].x,plane1[i].y,50,30 )) {
+              for (var i = 0; i < plane1.length; i++) {                         //子弹撞击飞机一号
+            for (var j = 0; j < aBull.length; j++) {
+				      /* boon(plane1[i].x+6,plane1[i].y);
+						boon2(plane1[i].x+6,plane1[i].y);
+						 plane1[i].hp--
+						aBull.splice(j, 1);
+						j--;
+						if(plane1[i].hp==0){
+						
+					   plane1.splice(i, 1);
+						i--;*/
+						
+					plane1[i].hp--;	
+					aBull.splice(j, 1);
+						j--;
+					timer2=setInterval(function(){
+							//boon(plane1[i].x,plane1[i].y);
+							},1)
+					setTimeout(function(){
+						clearInterval(timer2)
+						
+						},300)	
+					if(plane1[i].hp==0){
+						
+					   plane1.splice(i, 1);
+						i--
+					}
+						
+				    }		
+				}
+              }
+            }
+          }
+		
+		 
+		 
+		 for (var i = 0; i < plane2.length; i++) {								//子弹撞击飞机二号
+            for (var j = 0; j < aBull.length; j++) {
+				
+              if (testColl(aBull[j].x, aBull[j].y,7,17 ,plane2[i].x,plane2[i].y,70,90 )) {
+ 						 //boon(plane2[i].x+12,plane2[i].y+60)
+						 plane2[i].hp--
+						aBull.splice(j, 1);
+						if(plane2[i].hp==0){
+					   // boon(plane2[i].x+12,plane2[i].y+60);
+						//boon2(plane2[i].x+12,plane2[i].y+60)
+						plane2.splice(i, 1);
+						
+						
+						}
+              }
+            }
+          }
+		
+		
+		
+		for (var i = 0; i < plane3.length; i++) {												//子弹撞击飞机三号
+            for (var j = 0; j < aBull.length; j++) {
+
+              if (testColl(aBull[j].x, aBull[j].y,7,17 ,plane3[i].x,plane3[i].y,110,170 )) {
+						// boon(plane3[i].x+45,plane3[i].y+125)
+               			plane3[i].hp--
+						aBull.splice(j, 1);
+						 
+						if(plane3[i].hp==0){
+					  // boon(plane3[i].x+45,plane3[i].y+125)
+						plane3.splice(i, 1);
+						
+						
+						}
+              }
+            }
+          }	 
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		},1000/60)	
+		
+		
+		
+		
+		
+		
+		})
+	
+	
+	
+	
+	var timer=null
+	var planeX=(S.width-64)/2;
+	var planeY=S.height-72;
+	document.onkeydown=function(ev){
+		var iSpeed=5
+		var iRange=2
+		oEvent=ev||event;
+		//alert(oEvent.keyCode)
+		if(planeX<0){
+			planeX=5
+			
+			}
+		else if(planeX>S.width-64){
+				planeX=S.width-64
+			
+			}
+			
+		else if(planeY<0){
+				planeY=5
+			
+			}
+		else if(planeY>S.height-72){
+				planeY=S.height-72
+			
+			}	
+		clearInterval(timer)			
+		switch(oEvent.keyCode){
+			case 37:    //左边
+		timer=setInterval(function(){
+			planeX-=iRange
+			
+			
+			},iSpeed)
+			 break;
+			 
+			case 39:    //右边
+		timer=setInterval(function(){
+			planeX+=iRange
+			
+			
+			},iSpeed)
+		
+			 break;
+			
+			case 38:    //上边
+			timer=setInterval(function(){
+			planeY-=iRange
+			
+			
+			},iSpeed)
+			 break; 
+			 
+		   case 40:  
+		timer=setInterval(function(){
+			planeY+=iRange
+			
+			
+			},iSpeed)
+			 break; 
+			 
+		   case 32:    //下边
+			 aBull.push({
+				 x: planeX+29,
+				 y:planeY-20
+				});	 
+				 
+			 break; 
+			
+			}
+		}
+	
+	document.onkeyup=function(){
+		clearInterval(timer)
+		
+		
+		
+		}
+	
+	
+	
+	
+	var aBull = [];
+	var plane1=[];
+	var plane2=[];
+	var plane3=[];
+	var aOver=[]
+	setInterval(function(){
+		plane1.push({
+			x:Math.random()*400,
+			y:-17,
+			hp:3
+			
+			
+			})
+		},2000)
+		
+		
+		setInterval(function(){
+		plane2.push({
+			x:Math.random()*400,
+			y:-90,
+			hp:4
+			
+			
+			})
+		},4000)
+		
+	setInterval(function(){
+		plane3.push({
+			x:Math.random()*400,
+			y:-170,
+			hp:5
+			
+			
+			})
+		},8000)	
+function testColl(x1, y1, w1, h1, x2, y2, w2, h2) {
+        var l1 = x1;
+        var r1 = x1 + w1;
+        var t1 = y1;
+        var b1 = y1 + h1;
+
+        var l2 = x2;
+        var r2 = x2 + w2;
+        var t2 = y2;
+        var b2 = y2 + h2;
+
+        if (r1 < l2 || l1 > r2 || b1 < t2 || t1 > b2) {
+          return false
+        }
+
+        else {
+
+          return true
+
+        }
+
+      }		
+		
+		
+	}
+
+
+
+ 
+
+
+function loadImage(arr,fn){
+	var loaded=0;
+	var json = {}
+	for(var i=0; i<arr.length;i++){
+		var oImg= new Image();
+		oImg.onload=function(){
+			loaded++
+			if(loaded==arr.length){
+				
+				fn(json)
+				
+				
+				}
+			
+			}
+		oImg.src="images/" + arr[i]
+	   var name = arr[i].split(".")[0];
+       json[name] = oImg 
+		}
+	
+	
+	
+	
+	}
+
+</script>
+
+</head>
+
+<body>
+<canvas id="screen" width="680" height="400"></canvas>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+window.onload =function(){
+function addEvent(obj,ev,fn){
+	if (obj.attachEvent) {
+		obj.attachEvent("on"+ev,fn)
+	}
+	else{obj.addEventListener(ev,fn,false)}
+}
+
+
+	 var oBtn =document.getElementById('btn');
+
+	addEvent(oBtn,"click",function(){alert("a")});
+	addEvent(oBtn,"click",function(){alert("b")});
+
+
+
+}
+
+
+</script>
+
+</head>
+<body>
+<input id="btn" type="button" value="按钮">
+</body>
+</html>

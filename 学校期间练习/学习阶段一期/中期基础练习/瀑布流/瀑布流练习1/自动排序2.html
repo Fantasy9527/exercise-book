@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自适应换组</title>
+	<style type="text/css"> 
+*{ padding:0; margin:0;}
+.box{ width:100%; height: auto; position:relative; margin: 0 auto }
+.box div{ width: 100px; height: 100px; position:absolute; background-color:#000;}
+	</style>
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+		var iWidth=$(".box div").width();
+		var iHeight=$(".box div").height();
+		var iJG=10;
+		var MaxWidth=iWidth+iJG;
+		var iCell=0;
+		var arrL=[];
+		var arrT=[];
+		setCell()
+		function setCell(){
+			iCell=Math.floor($(window).width()/MaxWidth);
+			$(".box").width(iCell*MaxWidth-10)
+			document.title=iCell
+
+
+		}
+			
+		
+		SetPos()
+		function SetPos(){
+
+				for (var i = 0; i < iCell; i++) {
+			arrT.push(0);
+			arrL.push(i*MaxWidth);
+			
+		};
+				$(".box div").each(function(){
+					$(this).animate({
+						left:arrL[getMin()],
+						top:arrT[getMin()]
+					})
+					arrT[getMin()]+=iHeight+10
+
+
+
+
+				})
+		}
+		$(window).resize(function(){
+			var Ncell=iCell;
+			setCell()
+			arrL=[];
+			arrT=[];
+			
+			if ( Ncell==iCell) {
+				return
+			};
+			SetPos()
+			
+
+			
+			
+		})
+
+
+
+
+		function getMin(){
+		Now=arrT[0];
+		var index=0
+		for (var i = 1; i < arrT.length; i++) {
+			if (arrT[i]<Now) {
+				Now=arrT[i]
+				index=i
+
+			};
+		};
+
+		return index;
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	})
+
+
+	</script>
+</head>
+
+
+<body>
+	<div class="box">
+		
+		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+	</div>
+	
+</body>
+</html>

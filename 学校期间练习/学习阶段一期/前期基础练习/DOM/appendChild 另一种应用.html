@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript">
+window.onload=function(){
+var oUl1= document.getElementsByTagName('ul')[0];
+var oUl2 =document.getElementsByTagName('ul')[1];
+var aLi1=oUl1.getElementsByTagName('li');
+var aLi2=oUl2.getElementsByTagName('li');
+var oBtn=document.getElementsByTagName('input')[0];
+
+
+oBtn.onclick=function(){
+	var oLi2=oUl2.children[0];
+	var oLi1=oUl1.children[0];
+	
+	if (aLi1.length<aLi2.length) 
+	{oUl1.appendChild(oLi2);}
+else{oUl2.appendChild(oLi1);}
+
+
+
+}
+
+
+
+
+}
+
+</script>
+<style type="text/css">
+.ul2{ background:#ccc;}
+
+</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<input type="button" value="移动"/>
+	<ul class="ul2"></ul>
+</body>
+</html>
+

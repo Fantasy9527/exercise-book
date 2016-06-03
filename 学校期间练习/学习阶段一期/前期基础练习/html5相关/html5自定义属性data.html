@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>html5自定义属性data-*</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+$(function(){
+
+$("li").each(function(index){
+$(this).removeData("tese")
+
+$("li").eq(index).data("tese",index)
+})
+
+alert($("li").eq(5).data("tese"))
+
+})
+
+</script>
+</head>
+<body>
+
+<ul>
+<li data-tese="2"></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+
+
+</body>
+</html>

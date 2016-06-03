@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div{
+	width:200px;
+	height:200px;
+	background:#999;
+	display:none;
+	}
+.active{ background:#000; color: #fff;}	
+</style>
+<script>
+window.onload=function()
+{ 
+	var oDiv=document.getElementsByTagName('div');
+  	var aBtn=document.getElementsByTagName('input');
+ 	oDiv[0].style.display="block";
+ 	for (var i = 0; i <aBtn.length; i++) {
+ 	aBtn[i].index=i;
+ 	aBtn[i].onmousemove=function(){
+ 		
+ 		for(var i = 0; i <aBtn.length; i++)
+ 		{   
+ 			aBtn[i].className=""
+ 			oDiv[i].style.display="none"
+ 		}
+
+
+ 		 this.className='active';
+		 oDiv[this.index].style.display='block';
+ }
+	
+	}
+	
+	}
+</script>
+</head>
+
+<body>
+
+<input class="active" type="button" value="1111"/>
+<input type="button" value="1111"/>
+<input type="button" value="1111"/>
+<input type="button" value="1111"/>
+<div >1111</div>
+<div >2222</div>
+<div >3333</div>
+<div >4444</div>
+
+
+</body>
+</html>

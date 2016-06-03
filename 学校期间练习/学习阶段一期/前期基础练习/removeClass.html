@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>removeClass封装</title>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementsByTagName("div")[0]
+	removeClass(oDiv,"className1")
+	
+	}
+	
+
+function removeClass(obj,className){
+	if(obj.className!=""){
+		var arrClassName=obj.className.split(" ");
+		//className拆分成数组
+		
+		var hasClass=_index(arrClassName,className)
+		if(hasClass!==false){
+			alert()
+			arrClassName.splice(hasClass,1)
+			obj.className=arrClassName.join(" ");
+			//数组连接成字符串
+			
+			}
+		
+		}
+
+	}
+		
+		
+	function _index(arr,className){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==className){
+				return i
+				}
+			
+			
+			
+			}
+					return false
+		}	
+
+</script>
+</head>
+
+<body>
+<div class="className1"></div>
+</body>
+</html>

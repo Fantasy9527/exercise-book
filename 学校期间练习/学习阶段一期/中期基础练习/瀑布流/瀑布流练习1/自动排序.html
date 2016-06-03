@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+.box{ width:1000px; height:auto;  margin:0 auto;  position:relative;}
+.box div{ width:100px; height:100px; background-color:#000;position:absolute;}
+</style>
+<script src="jquery-1.10.2.min.js"></script>
+<script>
+$(function(){
+	
+	var iwidth=200;
+	var iHeight=200;
+	var jiange=10;
+	var iCell=0;
+	var arrL=[];
+	var arrT=[];
+	var zWidth=iwidth+jiange;
+	
+	$(".box div").width(iwidth)
+	$(".box div").height(iHeight)
+	
+	function setCell(){
+	
+	iCell=Math.floor($(window).width()/zWidth)
+	
+	document.title=iCell
+	$(".box").width(iCell*(zWidth)-jiange)
+	}
+
+	
+	setCell();
+	setPos();
+	function setPos(){
+	for (var i = 0; i < iCell; i++) {
+		 		arrT.push(0);
+		 		arrL.push(i*zWidth)
+
+		 	};
+	
+	
+	$(".box div").each(function(){
+		 		var iMin=getMin();
+
+		 		$(this).animate({
+		 			left:arrL[iMin],
+		 			top:arrT[iMin]
+
+
+		 		},400)
+		 		arrT[iMin]+=$(this).height()+10
+				
+				
+				})
+	}
+	
+
+			$(window).resize(function(){
+				var iLen = iCell
+				setCell()
+				arrL=[];
+				arrT=[];
+				if (iLen == iCell) {
+						return ;
+					}
+			
+			setPos();
+				
+				})
+
+	
+
+	
+	
+
+	function getMin(){
+			var _index=0
+			var iv=arrT[0];
+			for (var i = 1; i < arrT.length; i++) {
+				 if (arrT[i]<iv) {
+				 	iv=arrT[i];
+				 	_index=i;
+
+				 };
+				
+
+			};
+
+			 return _index;
+
+		}
+
+
+	
+
+
+
+
+
+
+
+
+})
+
+
+</script>
+</head>
+
+<body>
+<div class="box">
+<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>无标题文档</title>
+
+<style>
+
+.box{ width:200px; height:200px; border:1px #000 solid; -webkit-transform-style:preserve-3d; -webkit-perspective:200px; position:absolute; z-index:10;}
+.box div{ width:66px; height:66px; float:left;}
+.box div:nth-of-type(10){ width:120px; height:120px; transition: .3s all;  background:#000; position:absolute; top:40px; left:40px; z-index:1}
+.box div:nth-of-type(1):hover~ div:nth-of-type(10){-webkit-transform:rotateX(10deg) rotateY(-10deg) }
+.box div:nth-of-type(2):hover~ div:nth-of-type(10){-webkit-transform:rotateX(10deg)}
+.box div:nth-of-type(3):hover~ div:nth-of-type(10){-webkit-transform:rotateX(10deg) rotateY(10deg)}
+.box div:nth-of-type(4):hover~ div:nth-of-type(10){-webkit-transform:rotateY(-10deg)}
+.box div:nth-of-type(6):hover~ div:nth-of-type(10){-webkit-transform:rotateY(10deg)}
+.box div:nth-of-type(7):hover~ div:nth-of-type(10){-webkit-transform:rotateX(-10deg) rotateY(-10deg)}
+.box div:nth-of-type(8):hover~ div:nth-of-type(10){-webkit-transform:rotateX(-10deg)}
+.box div:nth-of-type(9):hover~ div:nth-of-type(10){-webkit-transform:rotateX(-10deg) rotateY(10deg)}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+</body>
+</html>

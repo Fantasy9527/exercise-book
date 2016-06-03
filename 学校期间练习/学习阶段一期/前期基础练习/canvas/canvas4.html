@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+<title>canvas</title>
+<style>
+body{ background:#000;}
+#canvas1{ background: #fff}
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+
+	var oC=document.getElementById('canvas1');
+	var oGc=oC.getContext("2d");
+	oGc.save()
+	oGc.fillStyle="red" //填充颜色
+	oGc.beginPath()     //开始绘图
+	oGc.moveTo(0,100)	//开始起点
+	oGc.lineTo(200,300)
+	oGc.lineTo(200,200)
+	
+	oGc.closePath()		//闭合绘图
+	oGc.fill()			
+	oGc.restore()
+
+	oGc.beginPath()
+	oGc.moveTo(150,100)
+	oGc.lineTo(350,300)
+	oGc.lineTo(350,200)
+	
+	oGc.closePath()
+	oGc.fill()
+	
+}
+
+
+
+</script>
+<body>
+<canvas id="canvas1" width="400" height="400" ></canvas>
+</body>
+</html>

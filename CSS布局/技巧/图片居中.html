@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+         .box{
+             width: 400px;
+             height: 400px;
+             position: relative;
+             overflow: hidden;
+         }
+        .box p{
+            position: absolute;
+            left:50%;
+            top: 50%;
+        }
+        .box p img{
+            position: absolute;
+            left:-50%;
+            top: -50%;
+        }
+        .box p .hid{
+            position: static;
+            
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+<div class="box">
+   <p>
+    <img src="img/1.jpg" alt="" class="hid">
+    <img src="img/1.jpg" alt="">
+       
+   </p>
+    
+</div>
+
+</body>
+
+</html>

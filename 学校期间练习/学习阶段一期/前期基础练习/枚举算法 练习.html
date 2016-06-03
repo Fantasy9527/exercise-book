@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>枚举算法</title>
+<script>
+window.onload=function(){
+var oDiv =document.getElementById("div1")
+var aP =oDiv.getElementsByTagName("p");
+var aSpan1=aP[0].getElementsByTagName("span");
+var aSpan2=aP[1].getElementsByTagName("span");
+var aSpan3=aP[2].getElementsByTagName("span");
+
+
+	for(var i=0; i<=9; i++){
+			for(var j=0; j<=9; i++){
+				for(var k=0; k<=9; k++){
+					for(var m=0;m<=9; m++){
+						for(var n=0; n<=9; n++){
+								
+								var a=10000*i+1000*j+100*k+10*m+n;
+								var b=i;
+								var c=n*111111
+								
+								if(a*b==c){
+								
+											aSpan1[0].innerHTML=i;
+											aSpan1[1].innerHTML=j;
+											aSpan1[2].innerHTML=k;
+											aSpan1[3].innerHTML=m;
+											aSpan1[4].innerHTML=n;
+											
+											aSpan2[0].innerHTML=i;
+											
+											
+								
+								
+											for(var x=0; x<=aSpan3.length; x++){
+												alert(n)
+													aSpan3[x].innerHTML=n
+											
+											
+											
+											}
+						
+									}
+						
+						}
+					
+					}
+			
+				}
+			
+			}
+	
+	}
+	
+
+
+}
+
+
+
+
+
+</script>
+<style>
+#div1{width:200px; height:200px; margin:20px  auto;}
+span{margin:10px 10px;}
+
+
+
+
+</style>
+
+</head>
+<body>
+<div id="div1">
+<p><span>枚</span><span>举</span><span>算</span><span>法</span><span>题</span></p>
+<br/>
+<p><span>算</span></p>
+<br/>
+<hr/>
+<p><span>法</span><span>法</span><span>法</span><span>法</span><span>法</span><span>法</span></p>
+</div>
+</body>
+</html>

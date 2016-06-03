@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+<title>canvas</title>
+<style>
+body{ background:#000;}
+#canvas1{ background: #fff}
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+
+	var oC=document.getElementById('canvas1');
+	var oGc=oC.getContext("2d");
+	//oGc.moveTo(200,200);
+	//oGc.arc(200,200,150,0,90*Math.PI/180,false) //起始位置X,Y,半径,起始弧度,结束弧度 角度*圆周率/180,false代表逆时针,true代表顺时针
+	//oGc.stroke()
+
+
+	function Time(){
+		var x=200;
+		var y=200;
+		var r=150;
+		var oDate=new Date;
+		oHours=oDate.getHours();
+		oMin=oDate.getMinutes();
+		oSen=oDate.getSeconds();
+		oHoursValue=(-90+oHours*30+oMin*6/360*30)*Math.PI/180
+		oMinsValue=(-90+oMin*6)*Math.PI/180
+		oGc.clearRect();
+		oSenValue=(-90+oSen*6)*Math.PI/180
+		oGc.beginPath()
+		for(var i=0;i<60;i++){
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r,6*i*Math.PI/180,(i+1)*6*Math.PI/180,false) 
+		oGc.stroke()
+		}
+		oGc.closePath();
+		
+		
+
+		oGc.beginPath()
+		oGc.fillStyle="white"
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*19/20,0,360*Math.PI/180,false)
+		oGc.fill()
+		oGc.closePath();
+
+		oGc.beginPath()
+		oGc.lineWidth=3
+		for(var i=0;i<60;i++){
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r,30*i*Math.PI/180,(i+1)*30*Math.PI/180,false) 
+		oGc.stroke()
+		}
+		oGc.closePath();
+
+
+
+		oGc.beginPath()
+		oGc.fillStyle="white"
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*18/20,0,360*Math.PI/180,false)
+		oGc.fill()
+		oGc.closePath();
+
+
+
+		//时针
+		oGc.beginPath()
+		oGc.lineWidth=4
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*10/20,oHoursValue,oHoursValue,false) 
+		oGc.stroke()
+		oGc.closePath();
+
+		//分针
+		oGc.beginPath()
+		oGc.lineWidth=2
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*15/20,oMinsValue,oMinsValue,false) 
+		oGc.stroke()
+		oGc.closePath();
+
+		//秒针
+		oGc.beginPath()
+		oGc.lineWidth=1
+		oGc.moveTo(x,y);
+		oGc.arc(x,y,r*18/20,oSenValue,oSenValue,false) 
+		oGc.stroke()
+		oGc.closePath();
+
+
+	}
+	
+	setInterval(Time,100)
+}
+
+
+
+</script>
+<body>
+<canvas id="canvas1" width="400" height="400" ></canvas>
+</body>
+</html>

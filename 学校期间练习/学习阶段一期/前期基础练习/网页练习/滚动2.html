@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0}
+div{width:5200px; height:375px; margin:auto; position:relative;overflow:hidden}
+ul{ position:absolute; }
+li{ list-style:none; float:left;width:600px; height:375px;}
+</style>
+<script>
+window.onload=function()
+
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0]
+	var aLi=oUl.getElementsByTagName('li')
+	
+	function move()
+	{
+		oUl.style.left=oUl.offsetLeft-1+'px';
+		
+		
+		}
+	
+	setInterval(move,1)
+	}
+	
+	
+	
+	(function() {
+var stepSize = 200, //每滚动一格鼠标，移动多少距离
+    doc = document.documentElement,
+    body = document.body,
+    docWidth = doc.clientWidth,
+    scrollLeft = -1,
+    ready = false;
+ 
+//添加鼠标滚轮事件
+if (document.addEventListener) {
+  document.addEventListener('mousewheel', scroll, false);
+  document.addEventListener('DOMMouseScroll', scroll, false); //针对firefox
+} else {
+  document.attachEvent('onmousewheel',scroll) //针对老ie浏览器
+}
+ 
+//处理mousewheel事件的信息
+function scroll (event) {
+  //第一次滚动需要获取当前滚动位置
+  if (!ready) {
+    scrollLeft = doc.scrollLeft + body.scrollLeft;
+    ready = true;
+  }
+  //firefox用detail反映滚动方向，而且方向和其他浏览器相反。其他浏览器用wheelDelta
+  var direction = event.wheelDelta || -event.detail; 
+  //保证滚动到头的时候不再调用update函数
+  if (scrollLeft <= 0 && direction > 0) {
+    return;
+  }
+  if (scrollLeft >= docWidth && direction < 0) {
+    return;
+  }
+  //根据鼠标滚动的方向确定是往左还是往右移动
+  var distance = direction > 0? -stepSize : stepSize;
+  update(distance);
+}
+ 
+//滚动
+function update (distance) {
+  scrollLeft += distance;
+  doc.scrollLeft = scrollLeft;
+  body.scrollLeft = scrollLeft; //针对webkit浏览器
+} 
+})();
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+<ul>
+<li><img src="1.jpg" alt="1" /></li>
+<li><img src="2.jpg" alt="2" /></li>
+<li><img src="3.jpg" alt="3" /></li>
+<li><img src="4.jpg" alt="4"/></li>
+</ul>
+</div>
+</body>
+</html>

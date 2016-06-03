@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="" ng-app="myCtrl">
+        <!--<input type="text" ng-model="person.name" placeholder="You name">-->
+        <h1>Hello {{name}}</h1>
+        <h5>{{clock}}</h5>
+    </div>
+    <script>
+     angular.module("myCtrl",[]).run(function($rootScope){
+        $rootScope.clock=new Date();
+        $rootScope.name="word";
+          
+     })
+    </script>
+</body>
+</html>

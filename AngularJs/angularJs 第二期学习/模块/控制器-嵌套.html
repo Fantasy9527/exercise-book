@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="" ng-app="myapp" ng-controller="ctrl">
+        <div class="" ng-controller="ctrlb">
+            <h1>{{name}}</h1>
+        </div>
+        {{test}}
+    </div>
+    <script>
+    angular.module("myapp",[]).controller('ParentController', function($scope) {
+ $scope.person = {greeted: false};
+});
+    
+    angular.module("myapp",[]).controller("ctrlb",function($scope){
+        $scope.name="njklnm"
+    })
+    </script>
+</body>
+</html>

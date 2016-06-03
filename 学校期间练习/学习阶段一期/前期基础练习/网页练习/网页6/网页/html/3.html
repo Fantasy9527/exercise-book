@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于我们</title>
+<link href="../css/div2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/javascript.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+    </script>
+    
+    
+    
+<style> 
+ #box2 {
+	height: 640px;
+	width: 100%;
+	float: none;
+	position: relative;
+	clear: both;
+	margin: 0px;
+	background-image: url(../images/121919312b505D0J.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center top;
+}   
+    
+</style>
+</head>
+
+
+</body>
+
+<div id="box">
+<div id="menu2" class="menu">
+      <ul>
+      <li><a href="#">首　　页</a></li>
+      <li><a href="#">企业文化</a></li>
+      <li><a href="#">产品展示</a></li>
+      <li><a href="#">新闻中心</a></li>
+      <li><a href="#">阳光服务</a></li>
+      <li><a href="#">加盟代理</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+    </ul>
+      <div class="menu">  
+      </div>
+  </div>
+</div> 
+<div id="box2">
+ <div class="menu" id="xbox">
+   <div class="content" id="content">
+   <div id="logo"></div>
+   <div id="main">
+    <div id="main top">
+      <h1>_______________________ </h1>
+      <h1> JUST DO IT.</h1>
+      <h1><span class="solid_line">关于我们<br />
+      </span></h1>
+      <p>-----------</p>
+      <p class="solid_line">IN SPORTS,NO ONE WILL TELL YOU NO!!<br />
+    </div>
+    
+    </div>
+    <div id="mainbottom">
+      <p>CARE TO KNOW MORE ABOUT US?</p>
+            
+    </div>
+   </div>   
+    </div>
+    </div>
+
+<div id="box3">
+<div class="content" id="content2">
+  <div id="Privacy"><img src="../images/aboutme.png" width="1004" height="150" /></div>
+  <hr />
+  <h1>NIKE</h1>
+  <p>NIKE英文原意指希腊胜利女神。NIKE是全球著名的体育用品品牌，中文译为耐克。该公司总部位于美国俄勒冈州Beaverton。该公司生产的体育用品包罗万象：服装，鞋类，运动器材等等。2011年9月初，耐克鞋被指中外有别，同款鞋国内价高却少气垫。<br />
+    介绍</p>
+  <p>　　耐克是全球著名的体育用品制造商，总部位于美国俄勒冈州，生产的体育用品包罗万象：服装、鞋类、运动器材等。耐克商标图案是个小钩子，造型简洁有力，急如闪电，一看就让人想到使用耐克体育用品后所产生的速度和爆发力。<br />
+    耐克一直将激励全世界的每一位运动员并为其献上最好的产品视为光荣的任务。耐克的语言就是运动的语言。耐克公司投入了大量的人力、物力用于新产品的开发和研制。耐克首创的气垫技术给体育界带来了一场革命。运用这项技术制造出的运动鞋可以很好地保护运动员的脚踝，防止其在作剧烈运动时扭伤。<br />
+    <br />
+    </p>
+  <h1>品牌语言</h1>
+  <p>　　1963年，俄勒冈大学毕业生比尔·鲍尔曼和校友菲尔·奈特共同创立了一家名为&quot;蓝带体育用品公司<br />
+    耐克鞋<br />
+  &quot;(Blue Ribbon Sports)的公司，主营体育用品。1972年，蓝带公司更名为耐克公司，从此开始缔造属于自己的传奇。<br />
+    公司创始人之一的比尔·鲍尔曼自1947年从俄勒冈大学毕业后一直留校担任田径教练，曾经训练出世界田径史上的传奇人物--史蒂夫·普雷方丹(Steve Prefontaine)。比尔·鲍尔曼幼年时家境贫寒，坎坷的经历培养了他铁一般的意志。而现任董事长兼首席执行官，菲尔·奈特作为公司的两位主要创始人之一对耐克的发展同样功不可没。<br />
+    1959年，菲尔·奈特从俄勒冈大学毕业，获得工商管理学士学位，一年后，他又进入著名的斯坦福大学攻读工商管理硕士学位。严格的管理教育使他具备成为一名优秀的管理者的素质。在以后的岁月里，两位校友携手并肩，同舟共济，带领公司不断发展壮大。如今，耐克公司生产经营活动遍布全球六大洲，其员工总数达到了22000人，与公司合作的供应商，托运商，零售商以及其他服务人员接近100万人。<br />
+    耐克公司一直将激励全世界的每一位运动员并为其献上最好的产品视为光荣的任务。耐克的语言就是运动的语言。三十年过去了，公司始终致力于为每一个人创造展现自我的机会。耐克深知：只有运用先进的技术才能生产出最好的产品。所以一直以来，耐克公司投入了大量的人力、物力用于[[新产品]]的开发和研制。耐克首创的气垫技术给体育界带来了一场革命。运用这项技术制造出的运动鞋可以很好地保护运动员的身体，尤其是脚踝与膝盖，防止其在作剧烈运动时扭伤，减少对膝盖的冲击与磨损。采用气垫技术的运动鞋一经推出就大受欢迎。普通消费者和专业运动员都对它爱不释手。<br />
+    2001年，耐克公司在研制出气垫技术后又推出了一种名为Shox的新型缓震技术。采用这种技术生产出来的运动鞋同样深受欢迎，销量节节攀升。除运动鞋以外，耐克公司的服装也不乏创新之作。例如：运用FIT技术制造的高性能纺织品能够有效地帮助运动员在任何气象条件下进行训练和比赛。耐克公司制造的其他体育用品，如：手表，眼镜等等都是高科技的结晶。<br />
+    <br />
+    </p>
+  <h1>品牌标志</h1>
+  <h2>标志含义</h2>
+  <p>耐克标志(4张)　NIKE这个名字，在西方人的眼光里很是吉利，而且易读易记，能叫得很响。耐克商标象征着希腊胜利女神翅膀的羽毛，代表着速度，同时也代表着动感和轻柔。耐克公司的耐克商标，图案是个小钩子，造型简洁有力，急如闪电，一看就让人想到使用耐克体育用品后所产生的速度和爆发力。首次以&quot;耐克&quot;命名的运动鞋，鞋底有方形凸粒以增强稳定性，鞋身的两旁有刀形的弯勾，象征女神的翅膀。<br />
+    方案介绍<br />
+    CI系统规定了耐克的名称标准字和Swoosh标志的不同运用规范和之间的区别。<br />
+    SWoosh标志是产品的标识，出现在所有产品上和广告中，而耐克的名称商标则经历了一次大的调整，原先斜体大写的标准字与SwooSh标志组合的反差效果太过激烈，为了协调均衡感，公司重新起用了70年代的小写字体，体现传统历史。它的力量在于它的历史渊源，这不是怀旧，而是激情，是我们的标示和我们的声音。耐克名称的标准字作为品牌的标识，出现在公司、公众服务、商场及形象推广活动中。<br />
+    新的策略，使得Swoosh标志在CI系统中起到了更加恰当有效的识别作用。<br />
+    发展简介<br />
+    在一次观看在上海举办的足球赛时，耐克的副总裁戈登·汤普森注意到各种大小尺寸的耐克标志无数次地出现在达拉斯队队员的球衣、旗帜、自动贩卖机等许多地方。由此，戈登·汤普森认为:标志己到了泛滥的程度，应进行一定的规范。<br />
+    耐克指派公司的设计部门制定完善系统的标志应用规范，每年标志都要被应用在网站、卖场、公司内部以及20000多种产品上，因此需要特别强调标志的运用弹性。<br />
+    </p>
+  <h1>发展过程<br />
+  </h1>
+  <p>1.1971年，因为名叫耐克的胜利女神有一对舞动的翅膀，学生卡洛林·戴维森设计了第一个Swoosh标志。<br />
+    2.1978年，耐克的Swoosh标志由框线变为实形，出现在标准字的下方，更加醒目突出。<br />
+    3.1985年，标志组合在方形中，形成正负效果。<br />
+    4.如今，Swoosh标志依据需要被单独运用。<br />
+    <br />
+    <h1>发展历程</h1></p>
+  <p>1958年，当时的创办人费尔．奈特奥勒岗(Oregon)州立大学田径队选手，毕业后返乡任教于波特兰。<br />
+    1964年，耐特与他的教练鲍尔曼各出资500美元，成立了运动鞋公司，取名为Nike。<br />
+    1972年，NIKE公司正式成立。其前身是由现任NIKE总裁菲尔·耐特以及比尔·鲍尔曼教练投资的蓝带体育公司。<br />
+    1973年，全美2000米到10000米跑记录创造者史蒂夫·普雷方丹成为第一个穿NIKE运动鞋的田径运动员。<br />
+    1975年将日本生产线转移至人力成本相对较低的韩国与台湾。<br />
+    1978年，NIKE国际公司正式成立。NIKE鞋开始进入加拿大、澳大利亚、欧洲和南美等海外市场。<br />
+    1979年，第一款运用NIKE专利气垫技术的Tailwind跑步鞋诞生。第一条NIKE服装生产线开始上马。<br />
+    1980年，NIKE进入中国，在北京设立了第一个NIKE生产联络代表处。<br />
+    1996年，正式在中国成立了全资子公司NIKE(苏州)体育用品有限公司，总部设于上海，并在北京、广州设立分公司(香港也于2002年1月作为分公司并入中国区)。<br />
+    2002年5月，NIKE开始在全国范围内举办NIKE蝎斗3对3足球赛，数百支青少年球队在广州、上海、北京三地分别角逐14、16、18岁三个级别的奖牌。这是NIKE公司为中国青少年体育发展做出的又一盛举。<br />
+    2008年耐克入选世界品牌价值实验室编制的《中国购买者满意度第一品牌》，排名第十四。<br />
+</p>
+<hr />
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  
+  
+</div>
+
+
+</div>
+<div id="box4">
+
+<div id="nike about">
+<div id="about">
+</div>
+       <div class="content" id="content3"></div>
+  
+  
+<div id="daohang">
+         <div id="daohangmain"><a href="#">HOME</a></div>
+<div id="daohangmain"><a href="#">ABOUT</a></div>
+         <div id="daohangmain"><a href="#">NEWS</a></div>
+         <div id="daohangmain"><a href="#">PORTFOLIO</a></div>
+         <div id="daohangmain"><a href="#">SERVICE</a></div>
+         <div id="daohangmain"><a href="#">CONTACT</a></div>
+       </div>
+<div id="contact">
+  <h3>
+             <h1>ABOUT ME</h1>
+</h3>
+           <h4>Nike,is an American multinational corporation that is engaged in the design, development and worldwide marketing and selling of footwear, apparel, equipment, accessories and services.he company is headquartered near Beaverton, Oregon, in the Portland metropolitan area. It is the world's leading supplier of athletic shoes and apparel[3] and a major manufacturer of sports equipment, with revenue in excess of US$24.1 billion in its fiscal year 2012 (ending May 31, 2012). As of 2012, it employed more than 44,000 people worldwide.</h4>
+           <p>&nbsp;</p>
+    </div>
+  </div>
+</div>  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+</div>
+   <div id="box5">
+   <div class="copyright" id="copyright">
+   
+     <div id="copyrightmain">
+       <div id="copyright1">隐私申明</div>
+       <div id="copyright2">使用条款</div>
+       <div id="copyright3">©2011 NIKE, INC. ALL RIGHTS RESERVED</div>
+     </div>
+   </div>
+   </div>
+  
+</body>
+</html>

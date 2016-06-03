@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用条款</title>
+<link href="../css/div2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/javascript.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+    </script>
+    
+    
+    
+<style> 
+ #box2 {
+	height: 640px;
+	width: 100%;
+	float: none;
+	position: relative;
+	clear: both;
+	margin: 0px;
+	background-image: url(../images/121919312b505D0J.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center top;
+}   
+    
+</style>
+</head>
+
+
+</body>
+
+<div id="box">
+<div id="menu2" class="menu">
+      <ul>
+      <li><a href="#">首　　页</a></li>
+      <li><a href="#">企业文化</a></li>
+      <li><a href="#">产品展示</a></li>
+      <li><a href="#">新闻中心</a></li>
+      <li><a href="#">阳光服务</a></li>
+      <li><a href="#">加盟代理</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+      <li><a href="#">在线咨询</a></li>
+    </ul>
+      <div class="menu">  
+      </div>
+  </div>
+</div> 
+<div id="box2">
+ <div class="menu" id="xbox">
+   <div class="content" id="content">
+   <div id="logo"></div>
+   <div id="main">
+    <div id="main top">
+      <h1>_______________________ </h1>
+      <h1> JUST DO IT.</h1>
+      <h1><span class="solid_line">使用条款<br />
+      </span></h1>
+      <p>-----------</p>
+      <p class="solid_line">IN SPORTS,NO ONE WILL TELL YOU NO!!<br />
+    </div>
+    
+    </div>
+    <div id="mainbottom">
+      <p>CARE TO KNOW MORE ABOUT US?</p>
+            
+    </div>
+   </div>   
+    </div>
+    </div>
+
+<div id="box3">
+<div class="content" id="content2">
+  <div id="Privacy"><img src="../images/Terms.png" width="1004" height="150" /></div>
+  <hr />
+  <p>请您在使用本网站前仔细阅读以下&ldquo;使用条款和条件&rdquo;（&ldquo;使用条款&rdquo;）。本网站所有用户均同意在访问并使用本网站的过程中遵循以下条款和条件及其他适用法律。若您不同意这些条款和条件，请勿使用本网站。</p>
+  <br />
+  <p>耐克将保留随时修订以下&ldquo;使用条款&rdquo;的权力。您同意定期查看以下&ldquo;使用条款&rdquo;，以了解以下所进行的修订，且您继续使用本网站的行为将被视为您已完全接受&ldquo;使用条款&rdquo;中的相关修订。我们将注明这些&ldquo;使用条款&rdquo;已进行更改，并将修订日期更新为&ldquo;最新一次修订&rdquo;的日期，并将其显示在&ldquo;使用条款&rdquo;的最后。如果您不同意遵守&ldquo;使用条款&rdquo;的修订版，您将无权使用本网站。</p>
+  <br />
+  <p>版权<br />
+    本网站内所有内容，含有的包括但不限于文本、图像或代码，均作为集体创作属耐克版权所有，受美国及其他版权法保护。该集体创作包括耐克授权准许的作品。?2006，耐克公司，版权所有。根据相关具体资料的限制或约束中的明文规定，您可以从网站的不同领域展示、下载或打印部分资料，作个人的非商业用途，或用于向耐克下达订单或购买耐克产品。未经耐克书面授权，严令禁止包括但不限于复制、发行、展示或传播本网站内容以作其他用途的行为。您还应同意不会更改或删除从网站上下载或打印的资料上的任何版权声明。</p>
+  <br />
+  <p>商标/知识产权<br />
+    所有网站中使用的耐克商标、服务标记和商号（包括但不限于耐克名称、Swoosh设计、篮球运动员剪影（Jumpman品牌）设计）均为耐克有限公司的商标或注册商标，未经耐克公司事先书面许可不得擅自使用。网站中其他的知识产权，包括但不限于已发行或待决专利权，均属耐克及/或授权公司版权所有。</p>
+  <br />
+  <p>产品订单<br />
+    由于不可抗力或物流、IT技术支持等原因，耐克有权决定是否接受所有通过网站下达的订单；这表示（且不限于）在该订单获得网站最终确认前，耐克均有权拒绝、接受或取消该订单申请。耐克会在中国法律法规许可范围内，保留对产品订单的最终解释权。如果您在使用信用卡付款后被取消订单，耐克应向您出具信用卡帐户贷记证明。</p>
+  <br />
+  <p>耐克拥有网站维护和内容文明把关的权利， 敬请您不要在本网站上发布或发表耐克认为带有侮辱性的、骚扰性的、恐吓性的、诽谤性的、淫秽性的、冒用他人姓名的、欺诈性的、误导性的、违反他人版权、商标或其他知识产权性的、侵犯隐私或宣传权的、违反耐克或另一方其他权利的、违法的、或对耐克影响不良的内容。敬请您不要上传网站上的商业内容或通过该网站为其他商业在线服务或组织招募会员的内容。我们会请您在注册时同意附加的使用条款，确保您能够在本网站上发布或发表用户生成的内容。</p>
+  <br />
+  <p>敬请您注意：如果发现您在网站及其他网站上发布或发表上述限制性内容，或采用恶意程序等方式下达/取消订单、或损坏商品造成质量问题退换货、或多次无理由拒收及退换货、或伪造订单盗链售卖等行为，耐克将有权决定是否限制您在本网站的权利和优惠，包括（不限于）：限制您的会员账号及相关个人信息，限制享受商城的购物优惠及活动、限制购买商城的商品、终止订单及账户、或禁止访问本网站。耐克同时保留追究相应侵权责任的权利。</p>
+  <br />
+  <p>用户生成的内容<br />
+    耐克将不会（且您已认可耐克没有义务）审查由用户访问本网站（包括但不限于本网站上电子公告、聊天室、社区网页或其他论坛中）所发布及/或提交的讯息、资料、信息、意见以及其他内容（统称为&ldquo;用户生成的内容&rdquo;）；耐克不对用户生成的内容承担任何责任；且耐克不保证用户生成的内容的准确性、真实性以及质量；耐克也不确保在本网站中不会出现有害的、不准确的、欺骗性的、敌意性的、威胁性的、诽谤性的、违法性的或其他不良用户生成的内容。您将承认耐克通过为您提供访问和查看网站中用户生成的内容的权利，仅作为上述发布行为的被动渠道，并不承担任何网站上用户相关的&ldquo;用户生成的内容&rdquo;或行为义务或责任。不限于上述内容，您承认并同意用户生成的内容中表达的或包含的信息、资料和意见将并不代表耐克公司或其子公司或其相关实体或内容提供商的观点。</p>
+  <br />
+  <p>如上所述，您承认并同意耐克拥有自行监管网站上发布的用户生成内容的全部权力。此外，无论何种情况，耐克仍保留更改、编辑、拒绝发布或删除上述全部或部分用户生成的内容的权力，且有权向任一第三方披露上述用户生成内容及其传送的相关情况。此外，您同意我们将没有义务使用或回应任何用户生成的内容。</p>
+  <br />
+  <p>您同意一旦网站出现的任何不良内容，您应立即以书面方式告知耐克公司。耐克将尽可能调查用户生成内容违背使用条款的申述。但不管是否涉及此类申述，(a) 耐克并不担保会编辑、清除或继续准许特定用户生成的内容的表述，且 (b) 不对诸如编辑、清除、或继续准许诸如此类的用户生成内容的表述承担任何责任。</p>
+  <br />
+  <p>使用该网站中的任何内容（包括但不限于用户生成的内容）的一切风险将由您个人承担。不限于上述内容，您承认并同意耐克不对提供有关医疗建议、或体能训练、运动或饮食方面的意见的用户生成的内容承担任何责任。若您就健康情况或健身计划存有任何疑问，请您咨询您的医师或其他具有资质的医疗机构。</p>
+  <br />
+  <p>您不得在网站上发布或发表耐克认为带有侮辱性的、骚扰性的、恐吓性的、诽谤性的、淫秽性的、冒用他人姓名的、欺诈性的、误导性的、违反他人版权、商标或其他知识产权性的、侵犯隐私或宣传权的、违反耐克或另一方其他权利的、违法的、或对耐克影响不良的内容。您不得上传网站上的商业内容或通过该网站为其他商业在线服务或组织招募会员的内容。我们将要求您注册并同意附加的使用条款，确保您能够在本网站上发布或发表用户生成的内容。</p>
+  <br />
+  <p>已提交信息的使用您同意耐克有权在未经给与您通知、偿付或致谢的情况下，自由使用您在本网站中发布的、或由您在访问本网站时创建的（包括但不限于NIKEiD网站上由您创建或提交的任何设计或其他信息）、或您向耐克发送或向网站提交的&ldquo;用户生成的内容&rdquo;中的任何评论、信息、设计、构思或其他内容，用于包括但不限于开发、制造、销售产品及服务、以及创建、修改、或改进网站或产品或服务。</p>
+  <br />
+  <p>版权代理机构<br />
+    依据美国版权法，《1998数字千年版权法》（以下简称&ldquo;DMCA&rdquo;）为那些认为在互联网上出现侵犯其权利的资料的版权所有人提供了追索权。如果您认为您的作品在本网站中被复制并被发布，并从某种程度上构成了版权侵犯行为，请向我们的版权代理机构提供以下信息：(1) 版权所有人或版权所有人授权代理人的电子签名或实体签名；(2) 对您主张遭受侵权之作品的描述； (3) 对您主张遭受侵权之作品在网站上所处位置的描述；(4) 您的地址、电话号码及电子邮件地址；(5) 您确信认为该未经版权所有人、其代理人或依照法律授权的争议使用行为的书面声明；以及(6) 您已充分了解虚假指证应承担的全部法律后果，在此前提下您保证所提供的前述资料均为合法的、正确的，并且您是版权所有人或已经合法授权有权代理版权所有人。任何未能遵守DMCA条款的版权所有人或其授权代理人所发出的任何通告，均不能被视为有效通告，不会被耐克视为足以证明侵权材料或行为属实的事实或情况。</p>
+  <br />
+  <p>我们建议您在咨询法律顾问后再向耐克版权代理机构提出公告。您应当了解依据DMCA条款，任何虚假主张均会受到处罚。</p>
+  <br />
+  <p>耐克公司有权在适当情况下或单方面裁定终止重复侵犯他人版权的用户帐户，或禁止此类用户访问本网站。</p>
+  <br />
+  <p>第三方链接<br />
+    耐克将尽全力向我们的访客提供增值服务，因此可能会链接至由第三方管理的网站。然而，即使该第三方为耐克附属公司，因为所有这些网站都具有各自独立于耐克的条款与条件以及隐私和数据收集方式，耐克将无法控制这些链接网站。上述些链接网站仅限为您提供便利，因此您在访问的同时需自行承担所有风险。耐克将尽全力保护网站及其网站上链接的真实性，因此需要收集有关网站与其链接网站的反馈信息。请在查阅从本网站链接至第三方网站的隐私政策后使用此类网站。</p>
+  <br />
+  <p>免责申明<br />
+    您同意通过采取赔偿、提供辩护等行为, 来确保耐克公司及其职员、董事、雇员、代理机构、授权机构以及供应商免于承担因您使用本网站的方式而造成的所有索赔、损失、支出、损坏与费用（包括但不限于合理的律师费用）。</p>
+  <br />
+  <p>隐私<br />
+    耐克将致力于保护您的隐私权。所有规范个人身份信息和您连接网站的其他信息的处理条款均已在我们的隐私政策中有所描述。</p>
+  <br />
+  <p>其它<br />
+    您对本网站的使用应遵循中华人民共和国法律，且不受其他法律条款或1980年《联合国国际货物销售合同公约》的约束。除法令禁止外，您同意按照个案处理解决对于由本网站直接或间接引发的或与本网站相关的部分或所有纠纷和索赔（包括但不限于购买耐克产品），而无须诉诸任何形式的（团体）诉讼，且须通过仲裁方式在中国国际经济贸易仲裁委员会(CIETAC)上海分会处理。如果您使用本网站，即代表同意接收来自耐克公司的电子讯息。您同意耐克使用电子方式向您发送的任何告知、协议、披露或其他讯息均符合各类通信法规，包括上述讯息的书面形式。若耐克未能坚持或严格履行上述&ldquo;条款和条件&rdquo;中的任何条款，应不被认为耐克放弃上述条款或相关权力。无论是无论是 双方之间的活动行为或是贸易往来，均不得擅自修改&ldquo;条款和条件&rdquo;中的任何条款。耐克有权随时依据本协议向其他方转让其权力和义务，恕不另行通告。</p>
+  <br />
+  <p>期限和终止<br />
+    该&ldquo;条款和条件&rdquo;适用于您访问本网站的整个过程。耐克保留单方面裁定终止或限制您使用本网站的权力，耐克没有义务向您告知且无需提供任何理由，且不对您或任一第三方承担任何责任。此外，耐克公司可随时终止该&ldquo;条款和条件&rdquo;中的全部或部分条款，耐克没有义务向您告知且无需提供任何理由。</p>
+  <br />
+<hr />
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  
+  
+</div>
+
+
+</div>
+<div id="box4">
+
+<div id="nike about">
+<div id="about">
+</div>
+       <div class="content" id="content3"></div>
+  
+  
+<div id="daohang">
+         <div id="daohangmain"><a href="#">HOME</a></div>
+<div id="daohangmain"><a href="#">ABOUT</a></div>
+         <div id="daohangmain"><a href="#">NEWS</a></div>
+         <div id="daohangmain"><a href="#">PORTFOLIO</a></div>
+         <div id="daohangmain"><a href="#">SERVICE</a></div>
+         <div id="daohangmain"><a href="#">CONTACT</a></div>
+       </div>
+<div id="contact">
+  <h3>
+             <h1>ABOUT ME</h1>
+</h3>
+           <h4>Nike,is an American multinational corporation that is engaged in the design, development and worldwide marketing and selling of footwear, apparel, equipment, accessories and services.he company is headquartered near Beaverton, Oregon, in the Portland metropolitan area. It is the world's leading supplier of athletic shoes and apparel[3] and a major manufacturer of sports equipment, with revenue in excess of US$24.1 billion in its fiscal year 2012 (ending May 31, 2012). As of 2012, it employed more than 44,000 people worldwide.</h4>
+           <p>&nbsp;</p>
+    </div>
+  </div>
+</div>  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+</div>
+   <div id="box5">
+   <div class="copyright" id="copyright">
+   
+     <div id="copyrightmain">
+       <div id="copyright1">隐私申明</div>
+       <div id="copyright2">使用条款</div>
+       <div id="copyright3">©2011 NIKE, INC. ALL RIGHTS RESERVED</div>
+     </div>
+   </div>
+   </div>
+  
+</body>
+</html>
