@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+        position: relative;
+    }
+
+    .tab-btn {
+        box-sizing: border-box;
+        width: 33.33333%;
+        height: 50px;
+        text-align: center;
+        ;
+        line-height: 50px;
+        border: 1px solid #000;
+        color: #000;
+        float: left;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .tab-btn input {
+        position: absolute;
+        left: -10000px
+    }
+
+    .tab-btn input:checked +span {
+        color: red;
+    }
+
+    .tab-btn input:checked +span +.tab-content {
+        display: block;
+    }
+
+    .tab-content {
+        position: absolute;
+        left: 0;
+        top: 50px;
+        height: 250px;
+        width: 300px;
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="tab">
+        <label class="tab-btn" for="tab">
+            <input id="tab" type="radio" name="tab" value="">
+            <span>1</span>
+            <div class="tab-content">
+                11111111
+            </div>
+        </label>
+        <label class="tab-btn">
+            <input type="radio" name="tab" value="">
+            <span>2</span>
+            <div class="tab-content">
+                22222222
+            </div>
+        </label>
+        <label class="tab-btn">
+            <input type="radio" name="tab" value="">
+            <span>3</span>
+            <div class="tab-content">
+                333333
+            </div>
+        </label>
+
+    </div>
+</body>
+
+</html>

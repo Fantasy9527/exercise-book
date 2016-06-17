@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            window.frames[0].postMessage(1212, 'http://127.0.0.1:9700');
+        }
+        window.addEventListener('message', function(e) {
+            console.log(e);
+        }, false);
+
+          //另一边的页面的代码,确实是可以实现跨域
+        // window.addEventListener('message',function(e){
+        //     console.log(e);
+        //   var xhr= new XMLHttpRequest();
+        //   xhr.open('get','/home/brands');
+        //   xhr.send();
+        //   xhr.onreadystatechange=function(){
+        //       if(e.source!=window.parent) return;
+        //
+        //       if(xhr.status==200&&xhr.readyState==4){
+        //           console.log(xhr);
+        //               window.parent.postMessage(xhr.response,'*');
+        //       }
+        //
+        //   }
+        // },false);
+    </script>
+    <iframe src="http://127.0.0.1:9700" width="" height=""></iframe>
+</body>
+
+</html>
